@@ -1,1546 +1,894 @@
-<?php
-/**
- * ===================================================================
- * Astra Child Theme functions.php - 最终整合版 (v17 - 支持Polylang多语言页脚)
- * 新增：Polylang 语言条件支持，可在 Elementor 主题生成器中按语言显示不同模板
- * 修改1：适配 WordPress Admin Bar，登录状态下自动下移页眉防止被遮挡
- * 修改2：提高液态玻璃的透明度 (0.85 -> 0.6)，视觉更通透
- * 保留：沉浸式页眉、在线客服、视频埋点等所有功能
- * ===================================================================
- */
+<!DOCTYPE html>
+<html lang="en">
 
-// 加载父主题样式
-function astra_child_enqueue_styles() {
-    wp_enqueue_style('astra-child-theme-css', 
-        get_stylesheet_directory_uri() . '/style.css',
-        array('astra-theme-css'),
-        wp_get_theme()->get('Version')
-    );
-}
-add_action('wp_enqueue_scripts', 'astra_child_enqueue_styles', 15);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/**
- * ===================================================================
- * 【新增】Polylang 多语言页脚支持
- * ===================================================================
- * 使用方法：
- * 1. 在 Elementor 主题生成器中创建两个页脚模板
- * 2. 第一个页脚设置显示条件为"整个网站"（这是中文页脚）
- * 3. 第二个页脚也设置显示条件为"整个网站"（这是英文页脚）
- * 4. 在 Polylang 设置中，将这两个页脚模板关联为翻译关系
- * 5. 系统会自动根据当前页面语言显示对应的页脚
- */
+    <!-- SEO Meta Tags -->
+    <title>Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog</title>
+    <meta name="description"
+        content="Expert insights on Amazon scraping API, e-commerce data extraction, and product data intelligence. Learn how Pangolin's Amazon API empowers businesses with real-time pricing, inventory tracking, and competitive analysis.">
+    <meta name="keywords"
+        content="Amazon Scraping API, E-commerce Data Scraping, Amazon Product Data API, E-commerce Price Monitoring, Amazon SERP API">
+    <meta name="author" content="Pangolin Scrape API">
+    <meta name="robots" content="index, follow">
 
-// 让 Polylang 支持 Elementor 模板
-function enable_polylang_for_elementor_templates($post_types, $is_settings) {
-    // 添加 Elementor 的模板文章类型
-    $post_types['elementor_library'] = 'elementor_library';
-    return $post_types;
-}
-add_filter('pll_get_post_types', 'enable_polylang_for_elementor_templates', 10, 2);
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pangolin-spg.github.io/">
+    <meta property="og:title" content="Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog">
+    <meta property="og:description"
+        content="Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence. Real-time pricing, inventory tracking, and competitive analysis.">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
-// 确保 Polylang 在后台管理界面显示语言选择
-function add_polylang_language_column_to_elementor($columns) {
-    if (function_exists('pll_current_language')) {
-        // 这将触发 Polylang 添加语言列
-        return $columns;
-    }
-    return $columns;
-}
-add_filter('manage_elementor_library_posts_columns', 'add_polylang_language_column_to_elementor');
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pangolin-spg.github.io/">
+    <meta property="twitter:title" content="Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog">
+    <meta property="twitter:description"
+        content="Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence.">
+    <meta property="twitter:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
-function filter_elementor_template_by_language($template_id) {
-    // 检查是否为页脚模板且 Polylang 已激活
-    if (!function_exists('pll_current_language') || empty($template_id)) {
-        return $template_id;
-    }
-    
-    $current_lang = pll_current_language();
-    
-    // 获取当前模板的语言版本（如果设置了翻译）
-    if (function_exists('pll_get_post')) {
-        $translated_template = pll_get_post($template_id, $current_lang);
-        if ($translated_template) {
-            return $translated_template;
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pangolin-spg.github.io/">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Pangolin Scrape API Blog",
+      "url": "https://pangolin-spg.github.io/",
+      "description": "Expert insights on Amazon scraping API and e-commerce data extraction",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangolin Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
         }
+      }
     }
-    
-    return $template_id;
-}
-add_filter('elementor/theme/get_location_templates/template_id', 'filter_elementor_template_by_language');
+    </script>
 
-/**
- * 【核心修改】添加页眉滚动效果的 JS 和 CSS
- */
-function add_header_scroll_script() {
-    ?>
-    <style>
-    /* --- 基础状态：始终固定，无背景 --- */
-    .ast-primary-header-bar {
-        position: fixed !important; /* 强制固定在顶部 */
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        z-index: 9998;
-        
-        /* 页眉高度设置 - 可以在这里修改 */
-        min-height: 60px !important;  /* 最小高度，可以根据需要调整 */
-        
-        /* 初始状态：完全透明 */
-        background-color: transparent !important;
-        background-image: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        border-radius: 0 !important;
-        
-        /* 关键：只对背景属性做平滑过渡动画 (淡入淡出) */
-        transition: background-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease, top 0.3s ease !important;
-    }
-
-    /* --- 修复：WordPress 后台管理条遮挡问题 --- */
-    /* 当登录且显示管理条时，页眉下移 32px */
-    body.admin-bar .ast-primary-header-bar {
-        top: 32px !important;
-    }
-    /* 移动端 WordPress 管理条通常较高 (46px)，需单独适配 */
-    @media screen and (max-width: 782px) {
-        body.admin-bar .ast-primary-header-bar {
-            top: 46px !important;
-        }
-    }
-    
-    /* --- 修复：横幅广告遮挡问题 --- */
-    /* 当有横幅时，页眉下移 40px */
-    body.has-top-banner .ast-primary-header-bar {
-        top: 40px !important;
-    }
-    /* 同时有管理条和横幅时 */
-    body.admin-bar.has-top-banner .ast-primary-header-bar {
-        top: 72px !important;  /* 32px (admin bar) + 40px (banner) */
-    }
-    @media screen and (max-width: 782px) {
-        body.admin-bar.has-top-banner .ast-primary-header-bar {
-            top: 86px !important;  /* 46px (admin bar) + 40px (banner) */
-        }
-    }
-
-    /* --- 滚动触发状态：液态玻璃遮罩显现 --- */
-    .ast-primary-header-bar.ast-header-sticked {
-        /* 位置、大小完全不变，因此LOGO和菜单不会跳动 */
-        
-        /* 液态玻璃视觉效果：提高透明度 (0.6) + 高斯模糊 */
-        background-color: rgba(255, 255, 255, 0.6) !important; 
-        backdrop-filter: blur(15px); /* 保持模糊度以确保文字可读 */
-        -webkit-backdrop-filter: blur(15px); /* Safari 兼容 */
-        
-        /* 底部增加一条极细微的玻璃边缘线 */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-        
-        /* 柔和的投影 */
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
-    }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.ast-primary-header-bar');
-        
-        // 兼容性检查
-        if (!header) {
-             header = document.querySelector('.site-header');
-        }
-
-        var scrollTrigger = 10; // 滚动触发阈值
-
-        if (header) {
-            // 初始化检查
-            checkScroll();
-
-            window.addEventListener('scroll', function() {
-                checkScroll();
-            });
-
-            function checkScroll() {
-                var scrollY = window.scrollY || window.pageYOffset;
-
-                if (scrollY > scrollTrigger) {
-                    // 滚动中：添加淡入效果
-                    header.classList.add('ast-header-sticked');
-                } else {
-                    // 回到顶部：恢复透明
-                    header.classList.remove('ast-header-sticked');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    },
+                    animation: {
+                        blob: 'blob 7s infinite',
+                        float: 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
                 }
             }
         }
-    });
     </script>
-    <?php
-}
-// 添加到页面头部
-add_action('wp_head', 'add_header_scroll_script');
-
-/**
- * ===================================================================
- * Polylang 语言切换器自定义样式
- * ===================================================================
- * 将语言切换器显示为紧凑的按钮样式,与其他菜单项区分
- */
-function add_polylang_language_switcher_styles() {
-    ?>
     <style>
-    /* Polylang 语言切换器按钮样式 */
-    .main-header-menu .lang-item > a,
-    .main-header-menu .menu-item[class*="language"] > a,
-    .main-header-menu .menu-item[class*="lang"] > a {
-        /* 按钮样式 */
-        background: rgba(255, 255, 255, 0.15) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        border-radius: 20px !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-        
-        /* 文字样式 */
-        padding: 4px 16px !important;
-        margin: 0 !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
-        color: #ffffff !important;
-        text-transform: none !important;
-        letter-spacing: 0.3px !important;
-        line-height: 1.1 !important;
-        white-space: nowrap !important;
-        text-decoration: none !important;
-        display: inline-block !important;
-        vertical-align: middle !important;
-        
-        /* 强制限制高度 */
-        min-height: 0 !important;
-        height: auto !important;
-        max-height: 28px !important;
-        
-        /* 动画效果 */
-        transition: all 0.3s ease !important;
-    }
-
-    /* 悬停效果 */
-    .main-header-menu .lang-item > a:hover,
-    .main-header-menu .menu-item[class*="language"] > a:hover,
-    .main-header-menu .menu-item[class*="lang"] > a:hover {
-        background: rgba(255, 255, 255, 0.25) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-    }
-
-    /* 点击效果 */
-    .main-header-menu .lang-item > a:active,
-    .main-header-menu .menu-item[class*="language"] > a:active,
-    .main-header-menu .menu-item[class*="lang"] > a:active {
-        transform: translateY(0) !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
-    }
-
-    /* 调整父元素 - 重置 Astra 主题的默认高度 */
-    .main-header-menu .lang-item,
-    .main-header-menu .menu-item[class*="language"],
-    .main-header-menu .menu-item[class*="lang"] {
-        padding: 0 !important;
-        margin: 0 10px !important;
-        min-height: 0 !important;
-        height: auto !important;
-        line-height: normal !important;
-    }
-
-    /* 更强制的高度重置 - 针对 Astra 主题 */
-    .main-header-bar .main-header-menu .lang-item,
-    .main-header-bar .main-header-menu .menu-item[class*="language"],
-    .main-header-bar .main-header-menu .menu-item[class*="lang"] {
-        min-height: 0 !important;
-        height: auto !important;
-        align-items: center !important;
-    }
-
-    .main-header-bar .main-header-menu .lang-item > a,
-    .main-header-bar .main-header-menu .menu-item[class*="language"] > a,
-    .main-header-bar .main-header-menu .menu-item[class*="lang"] > a {
-        min-height: 0 !important;
-        height: auto !important;
-    }
-
-    /* 移除 Astra 主题的默认悬停背景 */
-    .main-header-menu .lang-item > a:hover,
-    .main-header-menu .menu-item[class*="language"] > a:hover,
-    .main-header-menu .menu-item[class*="lang"] > a:hover {
-        background-color: transparent;
-    }
-
-    /* 移除可能的下划线 */
-    .main-header-menu .lang-item a,
-    .main-header-menu .menu-item[class*="language"] a,
-    .main-header-menu .menu-item[class*="lang"] a {
-        text-decoration: none !important;
-        border-bottom: none !important;
-    }
-
-    /* 确保链接文字颜色正确 */
-    .main-header-menu .lang-item a span,
-    .main-header-menu .menu-item[class*="language"] a span,
-    .main-header-menu .menu-item[class*="lang"] a span {
-        color: inherit !important;
-    }
-
-    /* 响应式设计 - 平板设备 */
-    @media (max-width: 992px) {
-        .main-header-menu .lang-item > a,
-        .main-header-menu .menu-item[class*="language"] > a,
-        .main-header-menu .menu-item[class*="lang"] > a {
-            padding: 4px 12px !important;
-            font-size: 13px !important;
-            line-height: 1.1 !important;
-            max-height: 26px !important;
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-        
-        .main-header-menu .lang-item,
-        .main-header-menu .menu-item[class*="language"],
-        .main-header-menu .menu-item[class*="lang"] {
-            margin: 0 8px !important;
-        }
-    }
 
-    /* 响应式设计 - 移动设备 */
-    @media (max-width: 768px) {
-        .main-header-menu .lang-item > a,
-        .main-header-menu .menu-item[class*="language"] > a,
-        .main-header-menu .menu-item[class*="lang"] > a {
-            padding: 5px 14px !important;
-            font-size: 14px !important;
-            line-height: 1.1 !important;
-            max-height: 28px !important;
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
         }
-        
-        .main-header-menu .lang-item,
-        .main-header-menu .menu-item[class*="language"],
-        .main-header-menu .menu-item[class*="lang"] {
-            margin: 10px auto !important;
-            display: block !important;
-            text-align: center !important;
-            max-width: 150px !important;
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
         }
-    }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
     </style>
-    <?php
-}
-add_action('wp_head', 'add_polylang_language_switcher_styles');
+</head>
 
-/**
- * 加载代码块相关的脚本和样式
- */
-function astra_child_enqueue_code_block_assets() {
-    // 加载自定义JavaScript
-    wp_enqueue_script(
-        'code-block-copy',
-        get_stylesheet_directory_uri() . '/js/code-block-copy.js',
-        array('jquery'),
-        '1.0.0',
-        true
-    );
-}
-add_action('wp_enqueue_scripts', 'astra_child_enqueue_code_block_assets');
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
 
-/**
- * 处理Gutenberg编辑器的代码块（统一处理，避免重复）- 仅作用于前台
- */
-function handle_gutenberg_code_blocks($block_content, $block) {
-    if ( ! is_admin() && $block['blockName'] === 'core/code') { 
-        if (strpos($block_content, 'copy-button') !== false) {
-            return $block_content;
-        }
-        $code_text = strip_tags($block_content);
-        $code_text = html_entity_decode($code_text);
-        return '<div class="code-block-container">' . 
-               '<button class="copy-button" data-clipboard-text="' . esc_attr($code_text) . '">Copy</button>' .
-               $block_content . 
-               '</div>';
-    }
-    return $block_content;
-}
-add_filter('render_block', 'handle_gutenberg_code_blocks', 10, 2);
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
+            <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="nav-link hover:text-white transition">Home</a>
+                <a href="#solutions" class="nav-link hover:text-white transition">Solutions</a>
+                <a href="#use-cases" class="nav-link hover:text-white transition">Use Cases</a>
+                <a href="#articles" class="nav-link hover:text-white transition">Blog</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">Docs</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                    class="nav-link hover:text-white transition">Pricing</a>
+            </div>
+            <a href="https://tool.pangolinfo.com/"
+                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                Try Free
+            </a>
+        </div>
+    </nav>
 
-/**
- * 【新增】为后台编辑器加载代码块的专属美化样式
- */
-add_action( 'admin_enqueue_scripts', 'admin_code_block_styles' );
-function admin_code_block_styles() {
-    $css = "
-        .editor-styles-wrapper .wp-block-code pre {
-            background-color: #1a202c !important;
-            color: #e2e8f0 !important;
-            border: 1px solid #2d3748 !important;
-            padding: 20px !important;
-            border-radius: 8px !important;
-            font-family: 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace !important;
-            font-size: 14px !important;
-            line-height: 1.6 !important;
-        }
-        .editor-styles-wrapper .wp-block-code pre code {
-            background: none !important;
-            padding: 0 !important;
-            color: inherit !important;
-            font-size: inherit !important;
-        }
-    ";
-    wp_add_inline_style( 'wp-edit-blocks', $css );
-}
+    <!-- Hero Section -->
+    <section id="home"
+        class="relative pt-40 pb-20 px-6 min-h-screen flex flex-col justify-center items-center text-center">
+        <div class="max-w-7xl mx-auto z-10">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase animate-float">
+                <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
+                Amazon Scraping API & E-commerce Data Intelligence
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                <span class="whitespace-nowrap">Amazon Product Data API</span><br>
+                <span class="text-gradient whitespace-nowrap">for E-commerce Intelligence</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence. Discover
+                how Pangolin's Amazon API empowers businesses with real-time pricing, inventory tracking, and
+                competitive analysis.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="https://tool.pangolinfo.com/"
+                    class="group relative px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/50 transition-all transform hover:-translate-y-1">
+                    <span class="relative z-10">Start Free Trial</span>
+                    <div
+                        class="absolute inset-0 h-full w-full bg-white/20 group-hover:w-full transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100">
+                    </div>
+                </a>
+                <a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                    class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition flex items-center gap-2 group">
+                    <span>API Playground</span>
+                    <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-/**
- * 防止WP Rocket合并关键的CSS和JS文件
- */
-function exclude_files_from_wp_rocket($excluded_files) {
-    if (!is_array($excluded_files)) {
-        $excluded_files = array();
-    }
-    
-    $excluded_files[] = get_stylesheet_directory_uri() . '/style.css';
-    $excluded_files[] = get_stylesheet_directory_uri() . '/js/code-block-copy.js';
-    
-    return $excluded_files;
-}
-add_filter('rocket_exclude_css', 'exclude_files_from_wp_rocket');
-add_filter('rocket_exclude_js', 'exclude_files_from_wp_rocket');
+    <!-- Stats Section -->
+    <section class="py-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">99.9%</div>
+                <div class="text-sm text-gray-400">API Uptime</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">30M+</div>
+                <div class="text-sm text-gray-400">Daily Amazon API Calls</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">2000+</div>
+                <div class="text-sm text-gray-400">E-commerce Businesses</div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">98%</div>
+                <div class="text-sm text-gray-400">Amazon Ad Coverage</div>
+            </div>
+        </div>
+    </section>
 
-// 添加 Referrer Meta 标签
-add_action('wp_head', function() {
-    echo '<meta name="referrer" content="no-referrer-when-downgrade">' . "\n";
-});
+    <!-- Pangolin Solutions Section -->
+    <section id="solutions" class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl md:text-5xl font-bold mb-3">Amazon & E-commerce Data Solutions</h2>
+                <p class="text-gray-400">Professional APIs for Amazon product data, pricing intelligence, and e-commerce
+                    analytics</p>
+            </div>
 
-function add_category_to_pages() {
-    register_taxonomy_for_object_type( 'category', 'page' );
-}
-add_action( 'init', 'add_category_to_pages' );
+            <!-- Featured Product -->
+            <div class="glass-card rounded-3xl p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold">Amazon Scraping API</div>
+                            <div class="text-gray-400 text-sm">Complete Amazon product data extraction and e-commerce
+                                intelligence</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="https://docs.pangolinfo.com/en-api-reference/amazonApi/amazonScrapeAPI"
+                            class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/10">API
+                            Docs</a>
+                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200">Learn
+                            More</a>
+                    </div>
+                </div>
 
-/**
- * =================================================================
- * Google Analytics & 视频埋点
- * =================================================================
- */
-add_action( 'wp_head', 'pangolin_add_gtag_script' );
-function pangolin_add_gtag_script() {
-    ?>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GET1NHBL0N"></script>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                                <i class="fas fa-box text-2xl text-orange-400"></i>
+                            </div>
+                            <span class="font-semibold">Amazon Product Data</span>
+                        </div>
+                        <div class="text-gray-300 text-sm leading-7">Extract product details, prices, variants, images,
+                            reviews, and ratings from Amazon marketplace</div>
+                    </div>
+                    <div class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                <i class="fas fa-search text-2xl text-blue-400"></i>
+                            </div>
+                            <span class="font-semibold">Amazon Search Results</span>
+                        </div>
+                        <div class="text-gray-300 text-sm leading-7">Collect organic rankings, sponsored ads, and Amazon
+                            SERP metadata</div>
+                    </div>
+                    <div class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                                <i class="fas fa-comments text-2xl text-pink-400"></i>
+                            </div>
+                            <span class="font-semibold">Amazon Review Data</span>
+                        </div>
+                        <div class="text-gray-300 text-sm leading-7">Gather customer reviews, ratings, sentiment
+                            analysis, and product feedback</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="https://www.pangolinfo.com/amz-data-tracker/" class="glass-card p-8 rounded-3xl h-full group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 group-hover:bg-purple-500/40 transition-colors">
+                        <i class="fas fa-chart-line text-purple-400 text-2xl"></i>
+                    </div>
+                    <div class="text-xl font-bold mb-2">AMZ Data Tracker</div>
+                    <div class="text-gray-400 text-sm mb-4">Real-time Amazon product tracking, price monitoring, and
+                        sales analytics with automated reporting.</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Zero-code Amazon
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Automated price
+                            alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Excel export
+                            ready</li>
+                    </ul>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/serpApi/serpAPI"
+                    class="glass-card p-8 rounded-3xl h-full group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4 group-hover:bg-green-500/40 transition-colors">
+                        <i class="fas fa-search text-green-400 text-2xl"></i>
+                    </div>
+                    <div class="text-xl font-bold mb-2">Amazon SERP API</div>
+                    <div class="text-gray-400 text-sm mb-4">Amazon search results, keyword rankings, and sponsored
+                        product placement data.</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Amazon organic
+                            rankings</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Sponsored ads
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Multi-marketplace
+                            support</li>
+                    </ul>
+                </a>
+
+                <a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                    class="glass-card p-8 rounded-3xl h-full group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 group-hover:bg-pink-500/40 transition-colors">
+                        <i class="fas fa-brain text-pink-400 text-2xl"></i>
+                    </div>
+                    <div class="text-xl font-bold mb-2">Amazon Data Solutions</div>
+                    <div class="text-gray-400 text-sm mb-4">AI-powered Amazon data intelligence for product selection
+                        and market analysis.</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> AI-driven
+                            insights</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Competitive
+                            analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Market trends
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold mb-3">E-commerce Use Cases</h2>
+                <p class="text-gray-400">From Amazon product selection to competitive pricing, our APIs cover the entire
+                    e-commerce lifecycle</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Use Case 1 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center">
+                            <i class="fas fa-box-open text-3xl text-yellow-400"></i>
+                        </div>
+                        <div class="text-xl font-bold">Amazon Product Selection</div>
+                    </div>
+                    <div class="text-gray-400 mb-4">Comprehensive Amazon product data for informed selection decisions
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Full Amazon
+                            catalog</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Category
+                            deep-dive</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Real-time product
+                            data</li>
+                    </ul>
+                </div>
+
+                <!-- Use Case 2 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                            <i class="fas fa-bullhorn text-3xl text-blue-400"></i>
+                        </div>
+                        <div class="text-xl font-bold">Amazon Ad Monitoring</div>
+                    </div>
+                    <div class="text-gray-400 mb-4">Track Amazon sponsored products and advertising strategies</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Keyword ad
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Sponsored
+                            placement</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Competitor ads
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Use Case 3 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-3xl text-teal-400"></i>
+                        </div>
+                        <div class="text-xl font-bold">E-commerce Price Monitoring</div>
+                    </div>
+                    <div class="text-gray-400 mb-4">Track Amazon and e-commerce pricing for competitive advantage</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Real-time price
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Price change
+                            alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Historical
+                            pricing</li>
+                    </ul>
+                </div>
+
+                <!-- Use Case 4 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                            <i class="fas fa-trophy text-3xl text-purple-400"></i>
+                        </div>
+                        <div class="text-xl font-bold">Amazon Bestseller Tracking</div>
+                    </div>
+                    <div class="text-gray-400 mb-4">Monitor Amazon bestseller lists and category rankings</div>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Bestseller
+                            rankings</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Category trends
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> New release
+                            tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Cases Section -->
+    <section class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold mb-3">E-commerce Success Stories</h2>
+                <p class="text-gray-400">How businesses leverage Pangolin's Amazon API for data-driven growth</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Case 1 -->
+                <div class="glass-card p-6 rounded-3xl group hover:scale-105 transition-all duration-300">
+                    <div class="relative mb-6 flex items-start justify-between">
+                        <i
+                            class="fas fa-chart-line text-4xl text-blue-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
+                            01</div>
+                    </div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Product Intelligence</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Powered 30K SKU Amazon product selection
+                        with 99%+ API success rate</div>
+                    <div class="flex items-center gap-2 text-xs text-accent-cyan">
+                        <i class="fas fa-check-circle"></i>
+                        <span>99%+ Amazon API Success</span>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="glass-card p-6 rounded-3xl group hover:scale-105 transition-all duration-300">
+                    <div class="relative mb-6 flex items-start justify-between">
+                        <i
+                            class="fas fa-layer-group text-4xl text-purple-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
+                            02</div>
+                    </div>
+                    <div class="font-semibold mb-2 text-lg">Multi-Category E-commerce</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Enabled multi-category expansion with Amazon
+                        data extraction</div>
+                    <div class="flex items-center gap-2 text-xs text-accent-purple">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Multi-Category Coverage</span>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="glass-card p-6 rounded-3xl group hover:scale-105 transition-all duration-300">
+                    <div class="relative mb-6 flex items-start justify-between">
+                        <i
+                            class="fas fa-bullhorn text-4xl text-orange-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
+                            03</div>
+                    </div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Ad Intelligence</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Built hourly Amazon sponsored product
+                        monitoring system</div>
+                    <div class="flex items-center gap-2 text-xs text-orange-400">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Hourly Amazon Tracking</span>
+                    </div>
+                </div>
+
+                <!-- Case 4 -->
+                <div class="glass-card p-6 rounded-3xl group hover:scale-105 transition-all duration-300">
+                    <div class="relative mb-6 flex items-start justify-between">
+                        <i
+                            class="fas fa-key text-4xl text-teal-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
+                            04</div>
+                    </div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Keyword Platform</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">High-precision Amazon SERP API supporting
+                        million-scale traffic analysis</div>
+                    <div class="flex items-center gap-2 text-xs text-teal-400">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Million-Scale Amazon Data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APIs Section -->
+    <section id="apis" class="py-16 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold">Amazon & E-commerce API Documentation</h2>
+                <p class="text-gray-400">Comprehensive guides for Amazon scraping API and e-commerce data extraction</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://docs.pangolinfo.com/en-api-reference/amazonApi/amazonScrapeAPI"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-orange-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">Amazon Scraping API</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Complete Amazon product data extraction</div>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/universalApi/universalApi"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                            <i class="fas fa-globe text-blue-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">E-commerce API</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Multi-platform e-commerce data</div>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/serpApi/serpAPI"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                            <i class="fas fa-search text-green-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">Amazon SERP API</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Amazon search results data</div>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/trendsApi/keywordTrendsAPI"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-purple-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">Amazon Keyword Trends</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Amazon search trends analysis</div>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/mapDataApi/mapDataAPI"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-cyan-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">Location Data API</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Geo-targeted e-commerce data</div>
+                </a>
+
+                <a href="https://docs.pangolinfo.com/en-api-reference/wipoApi/wipoAPI"
+                    class="glass-card p-6 rounded-2xl group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                            <i class="fas fa-file-alt text-pink-400 text-xl"></i>
+                        </div>
+                        <div class="font-semibold">WIPO API</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Intellectual property data</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles Section -->
+    <section id="articles" class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">Latest Amazon & E-commerce Articles</h2>
+                    <p class="text-gray-400">Expert insights on Amazon scraping API and e-commerce data intelligence</p>
+                </div>
+                <a href="https://github.com/Pangolin-spg/Pangolin-spg.github.io"
+                    class="text-accent-cyan hover:text-white transition flex items-center gap-2">
+                    View All Articles <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div
+                class="rounded-3xl p-12 bg-gradient-to-br from-accent-cyan/5 via-accent-purple/5 to-accent-pink/5 border border-white/5 backdrop-blur-2xl shadow-xl shadow-accent-purple/10 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-white">Ready to Scale Your Amazon Data Extraction?</h2>
+                <p class="text-gray-300 mb-8 max-w-xl mx-auto">Get started with 1,000 free Amazon API credits. No credit
+                    card required. Start extracting Amazon product data in minutes.</p>
+                <div class="max-w-md mx-auto flex gap-3 justify-center">
+                    <a href="https://tool.pangolinfo.com/"
+                        class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition">Start
+                        Free Trial</a>
+                    <a href="https://docs.pangolinfo.com/en-index"
+                        class="px-6 py-3 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">View
+                        API Docs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOLIN</span>
+                </div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Products</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">Pricing</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Resources</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API Documentation</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="https://github.com/Pangolin-spg/Pangolin-spg.github.io" class="hover:text-white">Blog
+                            Articles</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Company</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">Official Website</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">Console</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white">Amazon Solutions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangolin Scrape API. All rights reserved.</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
+        </div>
+    </footer>
+
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-GET1NHBL0N');
-        
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                console.log('==========isHidden:隐藏 ');
-                gtag('event', 'marketing_pangolin_page_leave', {
-                    page_location: window.location.href,
-                    page_origin: window.location.origin,
-                    page_path: window.location.pathname,
-                    event_category: 'engagement',
-                });
-            }
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const scrolled = window.scrollY > 10;
+            nav.style.backdropFilter = scrolled ? 'blur(8px)' : 'none';
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var video = document.getElementById('pangolin-intro-video');
-            
-            if (video) {
-                var progressMarkers = {};
-                
-                video.addEventListener('play', function() {
-                    gtag('event', 'video_start', {
-                        'event_category': 'video_engagement',
-                        'event_label': 'pangolin-intro-video',
-                        'video_title': 'Pangolin Intro Video',
-                        'video_url': video.currentSrc || video.src,
-                        'video_duration': Math.round(video.duration) || 0,
-                        'page_location': window.location.href,
-                        'custom_parameter_1': 'elementor_video'
-                    });
-                });
-                
-                video.addEventListener('pause', function() {
-                    if (!video.ended) {
-                        gtag('event', 'video_pause', {
-                            'event_category': 'video_engagement',
-                            'event_label': 'pangolin-intro-video',
-                            'video_title': 'Pangolin Intro Video',
-                            'video_current_time': Math.round(video.currentTime),
-                            'video_percent': Math.round((video.currentTime / video.duration) * 100),
-                            'page_location': window.location.href
+        // Default articles data
+        const defaultArticles = [
+            {
+                title: "Getting Started with Amazon Scraping API for Product Data Extraction",
+                category: "Amazon API",
+                excerpt: "Learn how to leverage Pangolin's Amazon scraping API to extract comprehensive product data, pricing, and reviews from Amazon marketplace.",
+                icon: "shopping-cart",
+                url: "#"
+            },
+            {
+                title: "Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence",
+                category: "E-commerce",
+                excerpt: "Discover proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale.",
+                icon: "box",
+                url: "#"
+            },
+            {
+                title: "Amazon Product Selection: Using API Data to Find Winning Products",
+                category: "Product Selection",
+                excerpt: "Master Amazon product selection by analyzing market trends, competitor data, and customer behavior with automated API extraction.",
+                icon: "chart-line",
+                url: "#"
+            },
+            {
+                title: "Amazon Sponsored Products: Monitor Competitor Ad Campaigns with API",
+                category: "Amazon Ads",
+                excerpt: "Track Amazon sponsored product placements, advertising strategies, and promotional campaigns using Amazon SERP API.",
+                icon: "bullhorn",
+                url: "#"
+            },
+            {
+                title: "Building Real-time Amazon Price Monitoring with Scraping API",
+                category: "Price Tracking",
+                excerpt: "Step-by-step guide to creating an automated Amazon price tracking system using Pangolin's e-commerce API.",
+                icon: "code",
+                url: "#"
+            },
+            {
+                title: "Scale Your Amazon Business with Data-Driven Product Intelligence",
+                category: "Case Study",
+                excerpt: "Real-world case studies showing how sellers leverage Amazon scraping API for 10x growth and competitive advantage.",
+                icon: "rocket",
+                url: "#"
+            }
+        ];
+
+        // Load articles function
+        async function loadArticles() {
+            const container = document.getElementById('articles-container');
+            const GITHUB_USER = 'Pangolin-spg';
+            const GITHUB_REPO = 'Pangolin-spg.github.io';
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/articles`);
+
+                if (response.ok) {
+                    const files = await response.json();
+                    const articles = files.filter(file => file.name.endsWith('.md'));
+
+                    if (articles.length > 0) {
+                        container.innerHTML = '';
+                        articles.slice(0, 6).forEach((article, index) => {
+                            const articleCard = createArticleCardFromGitHub(article, index);
+                            container.appendChild(articleCard);
                         });
+                        return;
                     }
-                });
-                
-                video.addEventListener('ended', function() {
-                    gtag('event', 'video_complete', {
-                        'event_category': 'video_engagement',
-                        'event_label': 'pangolin-intro-video',
-                        'video_title': 'Pangolin Intro Video',
-                        'video_duration': Math.round(video.duration),
-                        'page_location': window.location.href,
-                        'video_completion_rate': '100'
-                    });
-                });
-                
-                video.addEventListener('timeupdate', function() {
-                    if (video.duration > 0) {
-                        var progress = Math.round((video.currentTime / video.duration) * 100);
-                        
-                        if ((progress >= 25 && !progressMarkers['25']) ||
-                            (progress >= 50 && !progressMarkers['50']) ||
-                            (progress >= 75 && !progressMarkers['75'])) {
-                            
-                            var milestone = '';
-                            if (progress >= 75 && !progressMarkers['75']) {
-                                milestone = '75';
-                                progressMarkers['75'] = true;
-                            } else if (progress >= 50 && !progressMarkers['50']) {
-                                milestone = '50';
-                                progressMarkers['50'] = true;
-                            } else if (progress >= 25 && !progressMarkers['25']) {
-                                milestone = '25';
-                                progressMarkers['25'] = true;
-                            }
-                            
-                            if (milestone) {
-                                gtag('event', 'video_progress', {
-                                    'event_category': 'video_engagement',
-                                    'event_label': 'pangolin-intro-video',
-                                    'video_title': 'Pangolin Intro Video',
-                                    'video_progress': milestone + '%',
-                                    'video_current_time': Math.round(video.currentTime),
-                                    'page_location': window.location.href
-                                });
-                            }
-                        }
-                    }
-                });
-                
-                video.addEventListener('loadedmetadata', function() {
-                    gtag('event', 'video_loaded', {
-                        'event_category': 'video_engagement',
-                        'event_label': 'pangolin-intro-video',
-                        'video_title': 'Pangolin Intro Video',
-                        'video_duration': Math.round(video.duration),
-                        'page_location': window.location.href
-                    });
-                });
-                
-                video.addEventListener('waiting', function() {
-                    gtag('event', 'video_buffering', {
-                        'event_category': 'video_engagement',
-                        'event_label': 'pangolin-intro-video',
-                        'video_current_time': Math.round(video.currentTime),
-                        'page_location': window.location.href
-                    });
-                });
-                
-                video.addEventListener('volumechange', function() {
-                    gtag('event', 'video_volume_change', {
-                        'event_category': 'video_engagement',
-                        'event_label': 'pangolin-intro-video',
-                        'video_volume': Math.round(video.volume * 100),
-                        'video_muted': video.muted,
-                        'page_location': window.location.href
-                    });
-                });
-            }
-        });
-    </script>
-    <?php
-}
-
-/**
- * =================================================================
- * 在线客服系统
- * =================================================================
- */
-add_action( 'wp_footer', 'pangolin_add_online_chat_system' );
-function pangolin_add_online_chat_system() {
-    // 在 Elementor 编辑器中不加载，避免冲突
-    if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-        return;
-    }
-    
-    ?>
-    <script>
-    const locales = {
-        "zh": ['zh-CN'],
-        "en": ['en-US']
-    }
-    
-    const langInfo = {
-        'zh': {
-            langAlias: ['zh-CN'],
-            title: '点击在线客服<br>或扫码加微信',
-            qrCode: 'https://www.pangolinfo.com/wp-content/uploads/2025/03/WX20250526-134449@2x-e1748497234391.png',
-            chatUrl: 'https://chat.quickcep.com/initQuickChat.js?platform=others&accessId=83fb47fa-68bc-4d37-8d61-2d381b922816&lang=zh'
-        },
-        'en': {
-            langAlias: ['en-US'],
-            title: 'Chat online or scan<br>to chat on WhatsApp',
-            qrCode: 'https://www.pangolinfo.com/wp-content/uploads/2025/08/en-help-qrcode.webp',
-            chatUrl: 'https://chat.quickcep.com/initQuickChat.js?platform=others&accessId=83fb47fa-68bc-4d37-8d61-2d381b922816&lang=en'
-        }
-    }[Object.entries(locales).find(([key, arr]) => arr.includes(document.documentElement.lang))?.[0] || 'zh']
-    
-    injectChat()
-    
-    function injectChat() {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = langInfo.chatUrl;
-        document.body.appendChild(script);
-    }
-    
-    waitForElement('#quick-chat-iframe', (target) => {
-        const codeWrapper = createElementTools()
-        
-        const resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                const { width, height } = entry.contentRect;
-                width > 100 && Object.assign(codeWrapper.style, { opacity: 0, visibility: 'hidden' })
-            }
-        });
-        resizeObserver.observe(target);
-        
-        target.addEventListener("mouseenter", (e) => {
-            const styles = getComputedStyle(e.target);
-            const { bottom, height, left, right, top, width, x, y } = e.target.getBoundingClientRect();
-            if (width < 100) {
-                // 计算弹窗应该显示的位置
-                // 垂直居中:客服图标的中心点 - 弹窗高度的一半
-                const popupTop = top + (height / 2) - (codeWrapper.offsetHeight / 2);
-                // 水平位置:客服图标左侧,留出 10px 间距
-                const popupLeft = left - codeWrapper.offsetWidth - 10;
-                
-                Object.assign(codeWrapper.style, {
-                    opacity: 1,
-                    visibility: 'visible',
-                    top: `${popupTop}px`,
-                    left: `${popupLeft}px`,
-                })
-            }
-        })
-        
-        target.addEventListener("mouseleave", () => {
-            Object.assign(codeWrapper.style, { opacity: 0, visibility: 'hidden' })
-        })
-    });
-    
-    function waitForElement(selector, callback) {
-        const timer = setInterval(() => {
-            const el = document.querySelector(selector);
-            if (el) {
-                callback(el);
-                clearInterval(timer);
-            }
-        }, 200);
-    }
-    
-    function createElementTools() {
-        const wrapper = document.createElement("div");
-        Object.assign(wrapper.style, {
-            position: 'fixed', 
-            padding: '20px',
-            textAlign: 'center', 
-            color: '#0c254b',
-            visibility: 'hidden', 
-            transition: 'opacity .3s ease',
-            opacity: 0, 
-            borderRadius: '15px', 
-            background: '#FFFFFF', 
-            boxShadow: '0 4px 20px rgba(0, 0, 0, .15)',
-            zIndex: 9999
-        })
-        
-        const text = document.createElement("p");
-        text.innerHTML = langInfo?.title || '-';
-        Object.assign(text.style, { 
-            margin: '0 0 10px', 
-            fontSize: '12px', 
-            fontWeight: '400', 
-            color: '#0c254b' 
-        })
-        wrapper.appendChild(text);
-        
-        const img = document.createElement("img");
-        img.src = langInfo?.qrCode || '-';
-        img.alt = "QR Code";
-        Object.assign(img.style, { 
-            margin: '0 auto', 
-            width: '120px', 
-            height: 'auto', 
-            display: 'block', 
-            borderRadius: '5px' 
-        })
-        
-        wrapper.appendChild(img);
-        document.body.appendChild(wrapper);
-        
-        return wrapper
-    }
-    </script>
-    <?php
-}
-
-/**
- * =================================================================
- * Cookie 同意弹窗
- * =================================================================
- */
-add_action( 'wp_footer', 'pangolin_add_cookie_consent_banner' );
-function pangolin_add_cookie_consent_banner() {
-    // 在 Elementor 编辑器中不加载，避免冲突
-    if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-        return;
-    }
-    
-    if ( function_exists( 'pll_current_language' ) ) {
-        $current_lang = pll_current_language();
-    } else {
-        $current_lang = 'en';
-    }
-
-    if ( $current_lang === 'zh' ) {
-        $privacy_policy_url = 'https://www.pangolinfo.com/zh/privacy-policy-cn/';
-        $banner_text = '我们使用必要的 Cookie 以确保我们网站的正常运行。在征得您的同意后，我们可能还会使用非必要的 Cookie 来改善用户体验并分析网站流量。点击"接受"，即表示您同意我们按照《<a href="%s">隐私政策</a>》中的描述使用 Cookie。';
-        $decline_btn_text = '拒绝';
-        $accept_btn_text = '接受';
-    } else {
-        $privacy_policy_url = 'https://www.pangolinfo.com/pangolin-scrape-api-privacy-policy/';
-        $banner_text = 'We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze website traffic. By clicking "Accept," you agree to our website\'s cookie use as described in our <a href="%s">Cookie Policy</a>.';
-        $decline_btn_text = 'Decline';
-        $accept_btn_text = 'Accept';
-    }
-    ?>
-    <div id="cookie-consent-banner">
-        <p><?php printf($banner_text, esc_url($privacy_policy_url)); ?></p>
-        <div class="ccb-buttons">
-            <button class="ccb-button ccb-decline" id="cookie-decline"><?php echo esc_html($decline_btn_text); ?></button>
-            <button class="ccb-button ccb-accept" id="cookie-accept"><?php echo esc_html($accept_btn_text); ?></button>
-        </div>
-    </div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var banner = document.getElementById('cookie-consent-banner');
-        if (!banner) return;
-
-        var acceptBtn = document.getElementById('cookie-accept');
-        var declineBtn = document.getElementById('cookie-decline');
-
-        function getCookie(name) {
-            var value = '; ' + document.cookie;
-            var parts = value.split('; ' + name + '=');
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        if (!getCookie('cookie_consent_status')) {
-            banner.style.display = 'block';
-        }
-
-        function setConsentCookie(status) {
-            var date = new Date();
-            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + date.toUTCString();
-            document.cookie = 'cookie_consent_status=' + status + ';' + expires + ';path=/;SameSite=Lax';
-            banner.style.display = 'none';
-        }
-
-        acceptBtn.addEventListener('click', function() { setConsentCookie('accepted'); });
-        declineBtn.addEventListener('click', function() { setConsentCookie('declined'); });
-    });
-    </script>
-    <?php
-}
-
-/**
- * =================================================================
- * Cloudflare Turnstile 验证码集成 - 防止机器人表单提交
- * =================================================================
- * 配置时间：2025-12-10
- * 服务：Cloudflare Turnstile
- * 站点：Pangolin 官网
- */
-
-// 配置密钥
-define('TURNSTILE_SITE_KEY', '0x4AAAAAACFub-s1vgpEKek0');
-define('TURNSTILE_SECRET_KEY', '0x4AAAAAACFub5brTezVyhvwZ0-qBqkTxyw');
-
-/**
- * 1. 加载 Turnstile 脚本和自定义 JS
- */
-add_action('wp_footer', 'load_turnstile_captcha_assets');
-function load_turnstile_captcha_assets() {
-    // 在 Elementor 编辑器中不加载，避免冲突
-    if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-        return;
-    }
-    
-    ?>
-    <!-- Cloudflare Turnstile Script -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-    
-    <script>
-    // 全局变量存储已渲染的验证码
-    window.turnstileWidgets = window.turnstileWidgets || [];
-    
-    // 添加验证码到表单
-    function addTurnstileToForms() {
-        console.log('[Turnstile] 开始查找 Elementor 表单...');
-        
-        var forms = [];
-        
-        // 方法 1: 标准 Elementor 表单（最精确）
-        var elementorForms = document.querySelectorAll('.elementor-form');
-        console.log('[Turnstile] 方法1 - 找到', elementorForms.length, '个 .elementor-form');
-        
-        if (elementorForms.length > 0) {
-            forms = Array.from(elementorForms);
-        } else {
-            // 方法 2: 查找所有表单，然后严格过滤
-            var allForms = document.querySelectorAll('form');
-            console.log('[Turnstile] 方法2 - 页面上共有', allForms.length, '个表单');
-            
-            allForms.forEach(function(form) {
-                // 排除搜索表单
-                if (form.role === 'search' || 
-                    form.className.indexOf('search') !== -1 ||
-                    form.id.indexOf('search') !== -1 ||
-                    form.querySelector('input[type="search"]')) {
-                    console.log('[Turnstile] ⊗ 跳过搜索表单:', form.className || form.id);
-                    return;
                 }
-                
-                // 排除评论表单
-                if (form.id === 'commentform' || 
-                    form.className.indexOf('comment') !== -1) {
-                    console.log('[Turnstile] ⊗ 跳过评论表单:', form.className || form.id);
-                    return;
-                }
-                
-                // 排除登录/注册表单
-                if (form.className.indexOf('login') !== -1 || 
-                    form.className.indexOf('register') !== -1 ||
-                    form.id.indexOf('login') !== -1) {
-                    console.log('[Turnstile] ⊗ 跳过登录/注册表单:', form.className || form.id);
-                    return;
-                }
-                
-                // 只保留 Elementor 表单
-                if (form.className.indexOf('elementor') !== -1 || 
-                    form.closest('.elementor-element') ||
-                    form.querySelector('.elementor-field-group')) {
-                    console.log('[Turnstile] ✓ 找到 Elementor 表单:', form.className);
-                    forms.push(form);
-                }
+            } catch (error) {
+                console.log('Using default articles');
+            }
+
+            // Use default articles
+            container.innerHTML = '';
+            defaultArticles.forEach((article, index) => {
+                const articleCard = createArticleCard(article, index);
+                container.appendChild(articleCard);
             });
-            
-            console.log('[Turnstile] 方法2 - 过滤后找到', forms.length, '个 Elementor 表单');
         }
-        
-        if (forms.length === 0) {
-            console.log('[Turnstile] ❌ 未找到任何 Elementor 表单');
-            return false;
+
+        function createArticleCard(article, index) {
+            const card = document.createElement('a');
+            card.className = 'glass-card p-6 rounded-3xl group cursor-pointer transition-all duration-300';
+            card.href = article.url;
+
+            card.innerHTML = `
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-${article.icon} text-white text-xl"></i>
+                </div>
+                <div class="mb-3">
+                    <span class="px-3 py-1 rounded-full bg-accent-cyan/20 text-accent-cyan text-xs font-semibold uppercase tracking-wider">${article.category}</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-accent-cyan transition-colors">${article.title}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">${article.excerpt}</p>
+                <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                    <span>Read More</span>
+                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                </div>
+            `;
+
+            return card;
         }
-        
-        var added = false;
-        
-        forms.forEach(function(form, index) {
-            console.log('[Turnstile] 处理表单', index, '- Class:', form.className);
-            
-            // 检查是否已经添加过验证码
-            if (form.querySelector('.cf-turnstile-wrapper')) {
-                console.log('[Turnstile] 表单', index, '已有验证码，跳过');
-                return;
-            }
-            
-            // 查找提交按钮 - 使用多种选择器
-            var submitButton = form.querySelector('.elementor-field-type-submit') ||
-                              form.querySelector('.elementor-button') ||
-                              form.querySelector('button[type="submit"]') ||
-                              form.querySelector('input[type="submit"]');
-            
-            console.log('[Turnstile] 提交按钮:', submitButton ? '找到' : '未找到');
-            
-            if (submitButton) {
-                // 创建验证码容器
-                var captchaWrapper = document.createElement('div');
-                captchaWrapper.className = 'elementor-field-group elementor-column elementor-col-100 cf-turnstile-wrapper';
-                captchaWrapper.style.cssText = 'margin: 20px 0; text-align: center; width: 100%; clear: both;';
-                
-                // 创建 Turnstile 容器
-                var captchaDiv = document.createElement('div');
-                captchaDiv.className = 'cf-turnstile';
-                captchaDiv.id = 'turnstile-' + Math.random().toString(36).substr(2, 9);
-                
-                captchaWrapper.appendChild(captchaDiv);
-                
-                // 在提交按钮前插入验证码
-                submitButton.parentNode.insertBefore(captchaWrapper, submitButton);
-                
-                // 渲染 Turnstile
-                renderTurnstile(captchaDiv);
-                
-                console.log('[Turnstile] ✅ 验证码已添加到表单', index);
-                added = true;
-            } else {
-                console.log('[Turnstile] ❌ 表单', index, '未找到提交按钮');
-            }
-        });
-        
-        return added;
-    }
-    
-    // 渲染 Turnstile 验证码
-    function renderTurnstile(element) {
-        // 等待 Turnstile API 加载
-        if (typeof turnstile === 'undefined') {
-            setTimeout(function() {
-                renderTurnstile(element);
-            }, 100);
-            return;
+
+        function createArticleCardFromGitHub(article, index) {
+            const card = document.createElement('a');
+            card.className = 'glass-card p-6 rounded-3xl group cursor-pointer transition-all duration-300';
+            card.href = article.html_url;
+            card.target = '_blank';
+
+            const title = article.name.replace('.md', '').replace(/-/g, ' ');
+            const categories = ['Amazon API', 'E-commerce', 'Product Selection', 'Amazon Ads', 'Price Tracking', 'Case Study'];
+            const icons = ['shopping-cart', 'box', 'chart-line', 'bullhorn', 'code', 'rocket'];
+            const category = categories[index % categories.length];
+            const icon = icons[index % icons.length];
+
+            card.innerHTML = `
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-${icon} text-white text-xl"></i>
+                </div>
+                <div class="mb-3">
+                    <span class="px-3 py-1 rounded-full bg-accent-cyan/20 text-accent-cyan text-xs font-semibold uppercase tracking-wider">${category}</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-accent-cyan transition-colors">${title}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence strategies.</p>
+                <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                    <span>Read More</span>
+                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                </div>
+            `;
+
+            return card;
         }
-        
-        try {
-            // 获取语言设置
-            var htmlLang = document.documentElement.lang || 'zh-CN';
-            console.log('[Turnstile] 检测到的语言:', htmlLang);
-            
-            // 改进语言判断逻辑
-            var lang = 'zh-CN'; // 默认中文
-            if (htmlLang) {
-                var langLower = htmlLang.toLowerCase();
-                // 检查是否包含 'en'（支持 en、en-US、en-GB 等）
-                if (langLower.indexOf('en') === 0 || langLower === 'en') {
-                    lang = 'en';
-                }
-            }
-            
-            console.log('[Turnstile] 使用的语言:', lang);
-            
-            // 渲染验证码
-            var widgetId = turnstile.render(element, {
-                sitekey: '<?php echo esc_js(TURNSTILE_SITE_KEY); ?>',
-                theme: 'light',
-                size: 'normal',
-                language: lang,
-                callback: function(token) {
-                    console.log('[Turnstile] 验证成功');
-                },
-                'error-callback': function() {
-                    console.log('[Turnstile] 验证失败');
-                }
-            });
-            
-            window.turnstileWidgets.push(widgetId);
-            console.log('[Turnstile] 验证码已渲染, Widget ID:', widgetId);
-        } catch (error) {
-            console.error('[Turnstile] 渲染失败:', error);
-        }
-    }
-    
-    // 页面加载完成后执行
-    function initTurnstile() {
-        console.log('[Turnstile] 初始化开始，等待表单加载...');
-        
-        // 第一次尝试：等待 2 秒（给表单更多加载时间）
-        setTimeout(function() {
-            console.log('[Turnstile] 第1次尝试添加验证码');
-            var success = addTurnstileToForms();
-            
-            if (!success) {
-                // 第二次尝试：再等 2 秒
-                console.log('[Turnstile] 第1次失败，2秒后第2次尝试...');
-                setTimeout(function() {
-                    console.log('[Turnstile] 第2次尝试添加验证码');
-                    var success2 = addTurnstileToForms();
-                    
-                    if (!success2) {
-                        // 第三次尝试：再等 3 秒
-                        console.log('[Turnstile] 第2次失败，3秒后第3次尝试...');
-                        setTimeout(function() {
-                            console.log('[Turnstile] 第3次尝试添加验证码');
-                            addTurnstileToForms();
-                        }, 3000);
-                    }
-                }, 2000);
-            }
-        }, 2000);
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTurnstile);
-    } else {
-        initTurnstile();
-    }
-    
-    // 监听 Elementor 弹窗打开事件
-    jQuery(document).ready(function($) {
-        console.log('[Turnstile] 开始监听弹窗事件');
-        
-        // 方法 1: 监听 Elementor 弹窗显示事件
-        $(document).on('elementor/popup/show', function(event, id, instance) {
-            console.log('[Turnstile] 检测到 Elementor 弹窗打开 (方法1), ID:', id);
-            setTimeout(function() {
-                addTurnstileToForms();
-            }, 500);
-        });
-        
-        // 方法 2: 监听所有弹窗相关的点击事件
-        $(document).on('click', '[data-elementor-open-lightbox], .elementor-popup-trigger, [href*="#elementor-action"]', function() {
-            console.log('[Turnstile] 检测到弹窗触发按钮被点击 (方法2)');
-            setTimeout(function() {
-                addTurnstileToForms();
-            }, 800);
-        });
-        
-        // 方法 3: 监听 DOM 变化（弹窗出现）
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.addedNodes.length) {
-                    mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeType === 1) {
-                            // 检测弹窗容器
-                            if (node.classList && (
-                                node.classList.contains('elementor-popup-modal') ||
-                                node.classList.contains('dialog-widget-content') ||
-                                node.classList.contains('elementor-location-popup')
-                            )) {
-                                console.log('[Turnstile] 检测到弹窗容器出现 (方法3)');
-                                setTimeout(function() {
-                                    addTurnstileToForms();
-                                }, 500);
-                            }
-                            
-                            // 检测表单出现
-                            if (node.classList && node.classList.contains('elementor-form')) {
-                                console.log('[Turnstile] 检测到新表单出现 (方法3)');
-                                setTimeout(function() {
-                                    addTurnstileToForms();
-                                }, 500);
-                            }
-                            
-                            // 检测弹窗内的表单
-                            if (node.querySelector && node.querySelector('.elementor-form')) {
-                                console.log('[Turnstile] 检测到弹窗内有表单 (方法3)');
-                                setTimeout(function() {
-                                    addTurnstileToForms();
-                                }, 500);
-                            }
-                        }
-                    });
-                }
-            });
-        });
-        
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-        
-        console.log('[Turnstile] 弹窗监听器已启动');
-    });
+
+        // Load articles when page loads
+        document.addEventListener('DOMContentLoaded', loadArticles);
     </script>
-    
-    <style>
-    /* Cloudflare Turnstile 验证码样式 */
-    .cf-turnstile-wrapper {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 15px 0 !important;
-        background: #f9f9f9;
-        border-radius: 8px;
-        margin: 20px auto !important;
-        min-height: 65px;
-        text-align: center !important;
-    }
-    
-    .cf-turnstile {
-        margin: 0 auto !important;
-        display: inline-block !important;
-    }
-    
-    /* 确保在弹窗中也居中 */
-    .elementor-popup-modal .cf-turnstile-wrapper,
-    .dialog-widget-content .cf-turnstile-wrapper {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-        .cf-turnstile-wrapper {
-            padding: 10px 0 !important;
-        }
-        
-        .cf-turnstile {
-            transform: scale(0.95);
-            transform-origin: center;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .cf-turnstile {
-            transform: scale(0.85);
-        }
-    }
-    </style>
-    <?php
-}
+</body>
 
-/**
- * 2. 验证 Turnstile 响应
- */
-add_action('elementor_pro/forms/validation', 'validate_turnstile_captcha', 10, 2);
-function validate_turnstile_captcha($record, $ajax_handler) {
-    // 获取 Turnstile 响应
-    $turnstile_response = isset($_POST['cf-turnstile-response']) ? sanitize_text_field($_POST['cf-turnstile-response']) : '';
-    
-    // 检查是否有响应
-    if (empty($turnstile_response)) {
-        // 根据语言返回错误信息
-        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'zh';
-        $error_message = ($current_lang === 'en') 
-            ? 'Please complete the verification.' 
-            : '请完成人机验证。';
-        
-        $ajax_handler->add_error_message($error_message);
-        error_log('[Turnstile] 验证失败 - 未收到响应 - IP: ' . $_SERVER['REMOTE_ADDR']);
-        return;
-    }
-    
-    // 验证 token
-    $verify_result = verify_turnstile_token($turnstile_response);
-    
-    if (!$verify_result['success']) {
-        $ajax_handler->add_error_message($verify_result['message']);
-        return;
-    }
-    
-    // 验证成功，记录日志
-    error_log('[Turnstile] 验证成功 - IP: ' . $_SERVER['REMOTE_ADDR']);
-}
-
-/**
- * 3. Turnstile 验证函数
- */
-function verify_turnstile_token($response) {
-    $verify_url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-    
-    // 发送验证请求
-    $response_data = wp_remote_post($verify_url, array(
-        'body' => array(
-            'secret' => TURNSTILE_SECRET_KEY,
-            'response' => $response,
-            'remoteip' => $_SERVER['REMOTE_ADDR']
-        ),
-        'timeout' => 10
-    ));
-    
-    // 检查请求是否成功
-    if (is_wp_error($response_data)) {
-        error_log('[Turnstile] API 请求失败: ' . $response_data->get_error_message());
-        
-        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'zh';
-        $error_message = ($current_lang === 'en')
-            ? 'Verification service is temporarily unavailable. Please try again later.'
-            : '验证服务暂时不可用，请稍后重试。';
-        
-        return array(
-            'success' => false,
-            'message' => $error_message
-        );
-    }
-    
-    // 解析响应
-    $response_body = json_decode(wp_remote_retrieve_body($response_data), true);
-    
-    // 检查验证结果
-    if (!isset($response_body['success']) || !$response_body['success']) {
-        $error_codes = isset($response_body['error-codes']) ? implode(', ', $response_body['error-codes']) : 'unknown';
-        error_log('[Turnstile] 验证失败 - IP: ' . $_SERVER['REMOTE_ADDR'] . ' - 错误代码: ' . $error_codes);
-        
-        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'zh';
-        $error_message = ($current_lang === 'en')
-            ? 'Verification failed. Please try again.'
-            : '人机验证失败，请重试。';
-        
-        return array(
-            'success' => false,
-            'message' => $error_message
-        );
-    }
-    
-    // 验证成功
-    return array(
-        'success' => true,
-        'message' => 'Verification passed'
-    );
-}
-
-/**
- * =================================================================
- * Elementor 弹窗关闭按钮修复
- * =================================================================
- * 修复关闭按钮不显示的问题
- */
-add_action('wp_head', 'fix_elementor_popup_close_button');
-function fix_elementor_popup_close_button() {
-    ?>
-    <style>
-    /* Elementor 弹窗关闭按钮修复 */
-    .elementor-popup-modal .dialog-close-button,
-    .elementor-popup-modal .eicon-close {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    /* 关闭按钮基础样式 */
-    .elementor-popup-modal .dialog-close-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        z-index: 999999 !important;
-        background: transparent;
-        border: none;
-        padding: 0;
-    }
-    
-    /* 关闭图标样式 */
-    .elementor-popup-modal .dialog-close-button i {
-        font-size: 24px;
-        color: #333;
-        line-height: 40px;
-    }
-    
-    .elementor-popup-modal .dialog-close-button:hover i {
-        color: #000;
-    }
-    
-    /* 如果使用 SVG 图标 */
-    .elementor-popup-modal .dialog-close-button svg {
-        width: 24px;
-        height: 24px;
-        fill: #333;
-    }
-    
-    .elementor-popup-modal .dialog-close-button:hover svg {
-        fill: #000;
-    }
-    
-    /* 确保图标库加载 */
-    .elementor-popup-modal .eicon {
-        font-family: 'eicons' !important;
-        speak: none;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    
-    /* 备用方案：使用 × 符号 */
-    .elementor-popup-modal .dialog-close-button:not(:has(i)):not(:has(svg))::before {
-        content: '×';
-        font-size: 32px;
-        line-height: 40px;
-        color: #333;
-        font-weight: 300;
-        display: block;
-        text-align: center;
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-        .elementor-popup-modal .dialog-close-button {
-            top: 10px;
-            right: 10px;
-            width: 36px;
-            height: 36px;
-        }
-        
-        .elementor-popup-modal .dialog-close-button i {
-            font-size: 20px;
-            line-height: 36px;
-        }
-    }
-    </style>
-    <?php
-}
-?>
-
-<?php
-/**
- * =================================================================
- * 顶部促销横幅 - 英文首页专用
- * =================================================================
- * 功能：显示促销信息，点击打开 Calendly 链接
- * 显示条件：仅英文首页
- */
-add_action('wp_body_open', 'add_top_promo_banner');
-function add_top_promo_banner() {
-    // 只在英文首页显示
-    if (!is_front_page()) {
-        return;
-    }
-    
-    // 检查是否是英文页面
-    $current_lang = 'en';
-    if (function_exists('pll_current_language')) {
-        $current_lang = pll_current_language();
-    }
-    
-    if ($current_lang !== 'en') {
-        return;
-    }
-    
-    ?>
-    <!-- 顶部促销横幅 -->
-    <div id="pangolin-top-banner" class="pangolin-promo-banner">
-        <div class="banner-content">
-            <span class="banner-text">
-                Discover the New Pangolin Version — Join a 30-min interview & get 
-                <strong class="highlight">50% OFF for life</strong>.
-            </span>
-        </div>
-        <button class="banner-close" aria-label="Close banner">×</button>
-    </div>
-    
-    <style>
-    /* 顶部促销横幅样式 */
-    .pangolin-promo-banner {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 40px;
-        background-color: #F8F8F8;
-        z-index: 999999 !important;  /* 确保在最上层 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .pangolin-promo-banner:hover {
-        background-color: #F0F0F0;
-    }
-    
-    /* 横幅链接样式 */
-    .pangolin-promo-banner .banner-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
-    }
-    
-    .pangolin-promo-banner .banner-content {
-        max-width: 1200px;
-        width: 100%;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-    
-    .pangolin-promo-banner .banner-text {
-        font-size: 14px;
-        line-height: 1.5;
-        color: #333333;
-        text-align: center;
-        font-weight: 400;
-    }
-    
-    .pangolin-promo-banner .banner-text .highlight {
-        color: #0066FF;
-        font-weight: 600;
-    }
-    
-    .pangolin-promo-banner .banner-close {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: transparent;
-        border: none;
-        font-size: 24px;
-        line-height: 1;
-        color: #666;
-        cursor: pointer;
-        padding: 0;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: color 0.2s ease;
-    }
-    
-    .pangolin-promo-banner .banner-close:hover {
-        color: #333;
-    }
-    
-    /* 最简方案：给 body 添加 padding-top，所有内容向下移动 */
-    body.has-top-banner {
-        padding-top: 40px !important;
-    }
-    
-    /* sticky 导航栏在横幅下方 */
-    body.has-top-banner header.site-header[style*="position: fixed"],
-    body.has-top-banner header.site-header[style*="position: sticky"],
-    body.has-top-banner .site-header[style*="position: fixed"],
-    body.has-top-banner .site-header[style*="position: sticky"],
-    body.has-top-banner .main-header-bar-wrap.ast-header-sticked,
-    body.has-top-banner .ast-header-break-point .main-header-bar-wrap.ast-header-sticked .main-header-bar,
-    body.has-top-banner header.sticky,
-    body.has-top-banner .sticky-header,
-    body.has-top-banner .is-sticky {
-        top: 40px !important;
-        z-index: 99 !important;
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-        .pangolin-promo-banner {
-            height: auto;
-            min-height: 40px;
-            padding: 8px 0;
-        }
-        
-        .pangolin-promo-banner .banner-text {
-            font-size: 12px;
-            padding-right: 30px;
-        }
-        
-        .pangolin-promo-banner .banner-close {
-            right: 10px;
-            font-size: 20px;
-        }
-        
-        body.has-top-banner {
-            padding-top: 56px !important;
-        }
-        
-        body.has-top-banner header.site-header,
-        body.has-top-banner .site-header,
-        body.has-top-banner header.sticky,
-        body.has-top-banner .sticky-header,
-        body.has-top-banner .is-sticky,
-        body.has-top-banner .ast-header-sticked {
-            top: 56px !important;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .pangolin-promo-banner .banner-text {
-            font-size: 11px;
-            line-height: 1.4;
-        }
-    }
-    
-    /* 横幅关闭后的状态 */
-    .pangolin-promo-banner.banner-closed {
-        display: none;
-    }
-    
-    /* 关闭横幅后，移除 body padding */
-    body.banner-closed {
-        padding-top: 0 !important;
-    }
-    </style>
-    
-    <script>
-    (function() {
-        // 等待 DOM 加载完成
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initBanner);
-        } else {
-            initBanner();
-        }
-        
-        function initBanner() {
-            var banner = document.getElementById('pangolin-top-banner');
-            if (!banner) return;
-            
-            console.log('[Banner] 初始化顶部横幅');
-            
-            // 添加 body class
-            document.body.classList.add('has-top-banner');
-            
-            // 点击横幅（除了关闭按钮）触发隐藏的弹窗按钮
-            banner.addEventListener('click', function(e) {
-                if (e.target.classList.contains('banner-close')) {
-                    return;
-                }
-                
-                console.log('[Banner] 横幅被点击，查找隐藏的弹窗按钮');
-                
-                // 查找隐藏的弹窗触发按钮（ID: popup-trigger-12817）
-                var popupTriggerContainer = document.getElementById('popup-trigger-12817');
-                
-                if (popupTriggerContainer) {
-                    console.log('[Banner] 找到隐藏按钮容器');
-                    
-                    // 查找容器内的实际链接元素
-                    var popupLink = popupTriggerContainer.querySelector('a');
-                    
-                    if (popupLink) {
-                        console.log('[Banner] 找到按钮内的链接，触发点击');
-                        popupLink.click();
-                    } else {
-                        // 如果没有链接，直接点击容器
-                        console.log('[Banner] 未找到链接元素，直接点击容器');
-                        popupTriggerContainer.click();
-                    }
-                } else {
-                    console.error('[Banner] 未找到隐藏的弹窗按钮（ID: popup-trigger-12817）');
-                    console.log('[Banner] 请确保在页面中添加了带有此 ID 的 Elementor 按钮');
-                }
-            });
-            
-            // 关闭按钮功能
-            var closeBtn = banner.querySelector('.banner-close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    console.log('[Banner] 关闭按钮被点击');
-                    closeBanner();
-                });
-            }
-            
-            // 关闭横幅（刷新后会重新显示）
-            function closeBanner() {
-                banner.classList.add('banner-closed');
-                document.body.classList.remove('has-top-banner');
-                document.body.classList.add('banner-closed');
-                
-                console.log('[Banner] 横幅已关闭，刷新页面后会重新显示');
-            }
-        }
-    })();
-    </script>
-    <?php
-}
-?>
+</html>
