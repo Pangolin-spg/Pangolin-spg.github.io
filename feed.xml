@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pangolin Scrape API Blog - Amazon Scraping API Insights</title>
+        <link>https://blog.pangolinfo.com/</link>
+        <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 13 Dec 2025 10:46:00 +0800</lastBuildDate>
+        <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
+        <image>
+            <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
+            <title>Pangolin Scrape API Blog</title>
+            <link>https://blog.pangolinfo.com/</link>
+        </image>
+
+        <!-- Article 1 -->
+        <item>
+            <title>Getting Started with Amazon Scraping API for Product Data Extraction</title>
+            <link>https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html</link>
+            <guid>https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>Learn how to leverage Pangolin's Amazon scraping API to extract comprehensive product data, pricing, and reviews from Amazon marketplace.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+        <!-- Article 2 -->
+        <item>
+            <title>Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence</title>
+            <link>https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html</link>
+            <guid>https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>E-commerce</category>
+            <description>Discover proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+        <!-- Article 3 -->
+        <item>
+            <title>Amazon Product Selection: Using API Data to Find Winning Products</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>Product Selection</category>
+            <description>Master Amazon product selection by analyzing market trends, competitor data, and customer behavior with automated API extraction.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+        <!-- Article 4 -->
+        <item>
+            <title>Amazon Sponsored Products: Monitor Competitor Ad Campaigns with API</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>Amazon Ads</category>
+            <description>Track Amazon sponsored product placements, advertising strategies, and promotional campaigns using Amazon SERP API.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+        <!-- Article 5 -->
+        <item>
+            <title>Building Real-time Amazon Price Monitoring with Scraping API</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>Price Tracking</category>
+            <description>Step-by-step guide to creating an automated Amazon price tracking system using Pangolin's e-commerce API.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+        <!-- Article 6 -->
+        <item>
+            <title>Scale Your Amazon Business with Data-Driven Product Intelligence</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-business-case-studies.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-business-case-studies.html</guid>
+            <pubDate>Thu, 12 Dec 2025 00:00:00 +0800</pubDate>
+            <category>Case Study</category>
+            <description>Real-world case studies showing how sellers leverage Amazon scraping API for 10x growth and competitive advantage.</description>
+            <author>Pangolin Scrape API Team</author>
+        </item>
+
+    </channel>
+</rss>
