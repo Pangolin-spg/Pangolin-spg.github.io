@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>使用 API 数据选择优质 Amazon 产品：数据驱动选品指南 | Pangolin 博客</title>
-    <meta name="description"
-        content="Master Amazon product selection using API data analysis. Learn to identify winning products through 市场趋势, competitor research, and customer behavior insights.">
-    <meta name="keywords"
-        content="Amazon Product Selection, Product Research API, Market Trend Analysis, Competitor Data Analysis, E-commerce Product Intelligence">
+    <title>Amazon 选品 API：通过数据发现爆款产品 2025</title>
+    <meta name="description" content="利用 API 数据分析的亚马逊选品大师级指南。学习如何通过市场趋势、竞争对手研究和买家行为分析来发掘制胜产品。">
+    <meta name="keywords" content="Amazon 选品, 产品研究 API, 市场趋势分析, 竞争对手数据分析, 电商产品智能">
     <meta name="author" content="Pangol Info Scrape API">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Amazon Product Selection: Using API Data to Find Winning 产品">
-    <meta property="og:description"
-        content="Master Amazon product selection with data-driven strategies using Pangol Info API.">
-    <meta property="og:url" content="https://pangolin-spg.github.io/articles/amazon-product-selection-api-data.html">
+    <meta property="og:title" content="Amazon 选品：使用 API 数据寻找爆款产品">
+    <meta property="og:description" content="使用 Pangolin API 通过数据驱动策略掌握 Amazon 选品。">
+    <meta property="og:url" content="https://pangolin-spg.github.io/zh/articles/amazon-product-selection-api-data.html">
     <meta property="og:image"
         content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Amazon Product Selection: Using API Data to Find Winning 产品">
-    <meta name="twitter:description" content="Master Amazon product selection with data-driven strategies.">
+    <meta name="twitter:title" content="Amazon 选品：使用 API 数据寻找爆款产品">
+    <meta name="twitter:description" content="通过数据驱动策略掌握 Amazon 选品。">
 
     <link rel="canonical" content="https://pangolin-spg.github.io/articles/amazon-product-selection-api-data.html">
 
@@ -31,8 +28,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Amazon Product Selection: Using API Data to Find Winning 产品",
-      "description": "Master Amazon product selection by analyzing 市场趋势, competitor data, and customer behavior",
+      "headline": "Amazon 选品：使用 API 数据寻找爆款产品",
+      "description": "通过分析市场趋势、竞争对手数据和买家行为来掌握 Amazon 选品",
       "author": {
         "@type": "Organization",
         "name": "Pangol Info Scrape API"
@@ -147,6 +144,7 @@
             width: 100%;
         }
 
+        /* Article Styles */
         article {
             font-size: 18px;
             line-height: 1.8;
@@ -236,6 +234,7 @@
             margin: 24px 0;
         }
 
+        /* Table of Contents Styles */
         .toc-link {
             display: block;
             padding: 8px 12px;
@@ -264,6 +263,7 @@
             font-size: 13px;
         }
 
+        /* Sticky Sidebar */
         .sidebar-sticky {
             position: sticky;
             top: 100px;
@@ -284,6 +284,7 @@
             border-radius: 2px;
         }
 
+        /* Product Card Styles */
         .product-card {
             transition: all 0.3s ease;
         }
@@ -293,6 +294,7 @@
             box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
         }
 
+        /* Code Copy Button */
         .code-block-wrapper {
             position: relative;
         }
@@ -332,7 +334,11 @@
             border-color: rgba(16, 185, 129, 0.5);
             color: #10b981;
         }
-    
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+
         /* Language Switcher */
         .language-switcher {
             display: inline-block;
@@ -360,11 +366,6 @@
             transform: translateY(-1px);
         }
     </style>
-    <!-- Hreflang Tags -->
-    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-product-selection-api-data.html">
-    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html">
-
 </head>
 
 <body class="antialiased selection:bg-accent-cyan selection:text-white">
@@ -378,12 +379,11 @@
     </div>
 
     <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
-            <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Amazon 数据抓取 API Logo"
+                    alt="Pangolin Amazon Scraping API Logo"
                     class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
                 <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
             </a>
@@ -419,12 +419,16 @@
             <div
                 class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-purple tracking-wider uppercase">
                 <span class="w-2 h-2 bg-accent-purple rounded-full inline-block mr-2 animate-pulse"></span>
-                Product Selection
+                产品选品
             </div>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">使用 API 数据选择优质 Amazon 产品：数据驱动选品指南</h1>
-            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">通过自动化 API 提取分析市场趋势、竞争对手数据和客户行为，掌握 Amazon 产品选择技巧。学习如何利用数据洞察识别高潜力产品、评估市场机会并做出明智的选品决策。</p>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Amazon 选品：使用 API 数据寻找爆款产品
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                结合 Pangolin 自动化 API 提取，通过分析市场趋势、竞争对手数据和买家行为来掌握 Amazon 选品
+            </p>
             <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
-                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-calendar mr-2"></i>2025年12月12日</span>
                 <span><i class="far fa-clock mr-2"></i>18 分钟阅读</span>
                 <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
             </div>
@@ -441,143 +445,110 @@
                     <article class="glass-card rounded-3xl p-8 md:p-12">
 
                         <p class="text-xl text-gray-300 font-medium mb-8">
-                            在广阔的 Amazon 市场中，选择合适的产品进行销售往往决定了成败。凭直觉或有限数据做决定是有风险的。在本指南中，我们将向您展示如何利用 Pangol Info 的 API 数据来识别高潜力的利基市场、分析竞争对手并以最小风险验证产品创意。
+                            寻找有利可图的 Amazon 产品既是一门艺术也是一门科学。虽然直觉有一定作用，但成功的卖家越来越依赖数据驱动的方法来识别获胜产品。本综合指南将向您展示如何利用 Pangolin 的
+                            Amazon Scraping API 来分析市场趋势、评估竞争并先于竞争对手发现高潜力产品。
                         </p>
 
                         <p>
-                            In today's competitive Amazon marketplace, making product selection decisions based on gut
-                            feeling alone is a recipe for failure. The most successful sellers—those generating six and
-                            seven figures annually—use systematic, data-driven approaches to identify opportunities. By
-                            the end of this guide, you'll understand how to build your own product research system using
-                            API data extraction, potentially saving hundreds of hours and thousands of dollars in failed
-                            product launches.
+                            在当今竞争激烈的 Amazon
+                            市场中，仅凭直觉做出选品决策是通向失败的途径。最成功的卖家——那些每年创造六到七位数收入的卖家——使用系统化的、数据驱动的方法来识别机会。在本指南结束时，您将了解如何使用 API
+                            数据提取构建自己的产品研究系统，从而可能避免数百小时的时间浪费和数千美元的新产品发布失败成本。
                         </p>
 
-                        <h2 id="why-data-driven-product-selection-matters">为什么数据驱动的产品选择很重要</h2>
+                        <h2 id="why-data-driven">为什么数据驱动的选品很重要</h2>
 
                         <p>
-                            成功的卖家使用数据来识别高需求、低竞争的利基市场。与其猜测什么好卖，不如分析市场信号：
+                            传统的产品研究方法——手动浏览 Amazon、检查几个竞争对手并做出有根据的猜测——不仅耗时，而且通常会错过可能决定成败的关键洞察。让我们看看为什么数据驱动的方法变得至关重要：
                         </p>
 
                         <p>
-                            <strong>Speed and Scale</strong>: Imagine you're researching products manually. You might
-                            analyze 10-20 products per day if you're diligent. With automated API data extraction, you
-                            can analyze thousands of products in just a few hours. This isn't just about saving
-                            time—it's about dramatically increasing your chances of finding hidden gems before they
-                            become saturated markets. When a product opportunity emerges, being first to market can mean
-                            the difference between capturing 40% market share versus fighting for scraps.
+                            <strong>速度和规模</strong>：想象一下您在手动研究产品。如果您很勤奋，每天可能会分析 10-20 个产品。使用自动化 API
+                            数据提取，您可以在几小时内分析数千个产品。这不仅仅是为了节省时间，更是为了显着增加您在产品机会成为饱和市场之前发现隐藏宝藏的机会。当产品机会出现时，率先进入市场可能意味着占据 40%
+                            的市场份额还是只能分得残羹冷炙的区别。
                         </p>
 
                         <p>
-                            <strong>Objective 决策制定</strong>: We all have biases. You might love a product
-                            category because it interests you personally, but that doesn't mean it's profitable. Data
-                            doesn't lie—if the numbers don't support a product opportunity (low demand, high
-                            competition, thin margins), you can move on quickly rather than investing $5,000-$10,000 in
-                            inventory for a losing proposition. I've seen countless sellers lose money because they "had
-                            a good feeling" about a product that the data clearly showed was a bad idea.
+                            <strong>客观决策</strong>：我们都有偏见。您可能因为个人兴趣而喜欢某个产品类别，但这并不意味着它是有利可图的。数据不会说谎——如果数字不支持某个产品机会（低需求、高竞争、薄利润），您可以快速翻篇，而不是在一个注定失败的项目上投入
+                            5,000-10,000 美元的库存。我见过无数卖家因为对某个产品“感觉很好”而亏损，而数据早就清楚地表明那是个坏主意。
                         </p>
 
                         <p>
-                            <strong>Competitive Advantage</strong>: Here's a reality check: most Amazon sellers still
-                            rely on manual research or basic tools that only scratch the surface. By leveraging API data
-                            extraction, you gain access to insights that your competitors simply don't have. You can
-                            spot emerging trends 2-3 months earlier, identify underserved niches, and make moves while
-                            others are still gathering basic information. This competitive intelligence is worth its
-                            weight in gold.
+                            <strong>竞争优势</strong>：现实情况是：大多数 Amazon 卖家仍然依赖手动研究或仅触及表面的基本工具。通过利用 API
+                            数据提取，您可以获得竞争对手根本没有的洞察。您可以提前 2-3 个月发现新兴趋势，识别未得到充分服务的细分市场，并在其他人仍在收集基本信息时采取行动。这种竞争情报具有极高的价值。
                         </p>
 
                         <div class="info-box">
                             <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
-                                    class="fas fa-chart-line mr-2"></i>Real-World Impact</h4>
-                            <p class="mb-0">Sellers who adopt data-driven product selection typically see 3-5x higher
-                                success rates on new product launches compared to those using traditional methods. More
-                                importantly, they avoid costly mistakes—the average failed product launch costs
-                                $8,000-$15,000 in wasted inventory, fees, and opportunity cost.</p>
+                                    class="fas fa-chart-line mr-2"></i>现实世界的影响</h4>
+                            <p class="mb-0">采用数据驱动选品的卖家在新产品发布上的成功率通常比使用传统方法的卖家高 3-5
+                                倍。更重要的是，他们避免了代价高昂的错误——平均每次失败的产品发布都会在浪费的库存、费用和机会成本上造成 8,000-15,000 美元的损失。</p>
                         </div>
 
-                        <h2 id="key-metrics-for-product-selection">产品选择的关键指标</h2>
+                        <h2 id="key-metrics">选品的关键指标</h2>
 
                         <p>
-                            成功的卖家使用数据来识别高需求、低竞争的利基市场。与其猜测什么好卖，不如分析市场信号：
+                            在深入技术实现之前，让我们了解一下评估潜在产品时哪些指标真正重要。并非所有数据点都是生而平等的——关注错误的指标可能会导致您走入昂贵的死胡同。以下是您需要跟踪的内容及其原因：
                         </p>
 
-                        <h3 id="demand-indicators">1. Demand Indicators: Proving People Want It</h3>
+                        <h3 id="demand-indicators">1. 需求指标：证明人们想要它</h3>
 
                         <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
-                        </p>
-
-                        <p>
-                            <strong>Best Sellers Rank (BSR)</strong>: This is Amazon's proprietary ranking that
-                            indicates how well a product sells within its category. A lower BSR means higher sales
-                            volume. For example, a BSR of #500 in "Kitchen & Dining" indicates significantly higher
-                            sales than #50,000. However, BSR alone doesn't tell the full story—you need to understand
-                            the category context. A #1,000 BSR in "Pet Supplies" might represent 500 monthly sales,
-                            while the same rank in "Industrial & Scientific" might only be 50 sales. This is why you
-                            need to cross-reference BSR with sales estimators.
+                            您需要回答的第一个也是最关键的问题是：“真的有足够多的人想要这个产品，值得我投入时间吗？”以下是要跟踪的关键需求指标：
                         </p>
 
                         <p>
-                            <strong>Review Velocity</strong>: How quickly is a product accumulating reviews? This is one
-                            of the most underrated indicators of product momentum. A product gaining 10-20 reviews per
-                            month suggests consistent sales and growing popularity. More importantly, it helps you
-                            identify trending products early—before they become saturated. I've found some of my best
-                            opportunities by tracking products that went from 5 reviews to 50 reviews in 2-3 months.
-                            That acceleration tells you something is working.
+                            <strong>畅销排名 (BSR)</strong>：这是 Amazon 的专有排名，表明产品在其类别中的销售情况。BSR 越低意味着销量越高。例如，“厨房与餐厅”类目中排名
+                            #500 的产品销量明显高于排名 #50,000 的产品。然而，仅凭 BSR 并不能说明全部情况——您需要了解类目背景。“宠物用品”类目中的 #1,000 BSR 可能代表每月 500
+                            次销售，而“工业与科学”类目中的相同排名可能只有 50 次销售。这就是为什么您需要将 BSR 与销售估算值进行交叉参考。
                         </p>
 
                         <p>
-                            <strong>Sales Estimates</strong>: While Amazon doesn't publish exact sales numbers, you can
-                            estimate monthly sales based on BSR, category, and historical data patterns. Most successful
-                            sellers aim for products selling 300-1,000 units per month—enough demand to be profitable,
-                            but not so much that you're competing with major brands. We'll show you how to build a sales
-                            estimator using API data that's accurate within 15-20%.
-                        </p>
-
-                        <h3 id="competition-analysis">2. 竞争分析: Can You Actually Win?</h3>
-
-                        <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
+                            <strong>评论速度</strong>：产品积累评论的速度有多快？这是被低估的产品势头指标之一。每月获得 10-20
+                            条评论的产品表明销售稳定且受欢迎程度不断提高。更重要的是，它有助于您在产品市场饱和之前尽早识别趋势产品。我通过跟踪那些在 2-3 个月内从 5 条评论增加到 50
+                            条评论的产品，发现了一些最好的机会。这种加速告诉您有些事情正在发生。
                         </p>
 
                         <p>
-                            <strong>Number of Sellers</strong>: How many sellers are competing for the Buy Box on this
-                            exact product? 产品 with 50+ sellers are typically highly competitive commodity items
-                            where price is the only differentiator—not a good place for new sellers. Look for products
-                            with 5-15 sellers. This range is the sweet spot: enough sellers to validate that there's
-                            real demand, but not so many that competition is cutthroat and margins are razor-thin.
+                            <strong>销售估算</strong>：虽然 Amazon 不公布确切的销售数字，但您可以根据 BSR、类目和历史数据模式估算月销量。大多数成功的卖家瞄准每月销售
+                            300-1,000 个单位的产品——足够的需求以实现盈利，但又不会与大品牌直接竞争。我们将展示如何使用 API 数据构建一个准确率在 15-20% 以内的销售估算器。
+                        </p>
+
+                        <h3 id="competition-analysis">2. 竞争分析：您真的能赢吗？</h3>
+
+                        <p>
+                            找到高需求产品只是成功了一半。您还需要评估是否能够切合实际地参与竞争并夺取市场份额。以下是要寻找的内容：
                         </p>
 
                         <p>
-                            <strong>Review Distribution</strong>: This is critical. Analyze the top 10 competitors'
-                            review counts. If the #1 seller has 5,000 reviews and you're starting from zero, it will be
-                            extremely difficult to compete—customers naturally gravitate toward established sellers.
-                            Look for markets where the top sellers have 100-500 reviews. This is achievable with good
-                            execution, quality products, and smart marketing. You can realistically get to 100 reviews
-                            in 3-6 months with proper launch strategies.
+                            <strong>卖家数量</strong>：有多少卖家在争夺这个确切产品的 Buy Box？拥有 50+
+                            个卖家的产品通常是竞争激烈的商品，价格是唯一的差异化因素——这对新卖家来说不是好地方。寻找有 5-15
+                            个卖家的产品。这个范围是最佳点：有足够多的卖家来验证存在真正的需求，但又没有多到竞争惨烈、利润微薄的程度。
                         </p>
 
                         <p>
-                            <strong>Price Points and Margins</strong>: What's the average selling price, and more
-                            importantly, what are the margins? 产品 in the $15-$50 range often offer the best
-                            balance of profit margin and customer willingness to try new brands. Here's why: Very cheap
-                            products (<$10) have thin margins—after Amazon fees, shipping, and product costs, you might
-                                make $2-3 per unit. That's not enough to fund advertising and grow. Expensive products
-                                (>$100) require more customer trust, longer decision cycles, and higher advertising
-                                costs to convert. The $15-$50 sweet spot gives you room for 40-50% margins while keeping
-                                the purchase decision relatively low-risk for customers.
+                            <strong>评论分布</strong>：这很关键。分析前 10 名竞争对手的评论数量。如果第一名卖家有 5,000
+                            条评论，而您从零开始，那么竞争将极其困难——买家自然会被老牌卖家吸引。寻找那些顶级卖家拥有 100-500
+                            条评论的市场。通过良好的执行、优质的产品和明智的营销，这是可以实现的。通过适当的发布策略，您可以切合实际地在 3-6 个月内达到 100 条评论。
                         </p>
 
-                        <h2 id="building-research-system">Building Your Product Research System</h2>
-
                         <p>
-                            成功的卖家使用数据来识别高需求、低竞争的利基市场。与其猜测什么好卖，不如分析市场信号：
+                            <strong>价格点和利润率</strong>：平均售价是多少，更重要的是，利润率是多少？15-50
+                            美元范围内的产品通常能在利润率和买家尝试新品牌的意愿之间提供最佳平衡。原因如下：非常便宜的产品（<10 美元）利润微薄——扣除 Amazon 费用、运费和产品成本后，您可能每单位只赚
+                                2-3 美元。这不足以资助广告和增长。昂贵的产品（>100 美元）需要更多的客户信任、更长的决策周期和更高的广告成本才能转化。15-50 美元的最佳点为您提供了 40-50%
+                                的利润率空间，同时让买家的购买决策风险相对较低。
                         </p>
 
-                        <h3 id="basic-analyzer">Step 1: Basic Product Analyzer</h3>
+                        <h2 id="building-research-system">构建您的产品研究系统</h2>
 
                         <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
+                            现在您了解了哪些指标很重要及其原因，让我们构建一个实用的系统来收集和分析这些数据。我们将从一个基本的产品分析器开始，逐步添加更复杂的功能。这种方法的好处在于您可以从简单开始，随着了解什么对您的特定业务模式有效而扩展。
+                        </p>
+
+                        <h3 id="basic-analyzer">步骤 1：基础产品分析器</h3>
+
+                        <p>
+                            我们的第一个脚本将获取给定 ASIN
+                            的基本产品数据并提取关键指标。这构成了您研究系统的基础。将其视为您的“产品记分卡”——快速评估产品是否值得深入调查的方法。让我们浏览代码的每个部分并理解它的作用：
                         </p>
 
                         <pre><code class="language-python">import requests
@@ -586,29 +557,28 @@ from datetime import datetime
 
 class ProductAnalyzer:
     """
-    A comprehensive product analyzer that fetches and evaluates Amazon product data.
-    This class helps you quickly assess whether a product is worth pursuing based on
-    multiple data points including price, reviews, ratings, and sales indicators.
+    一个综合的产品分析器，用于获取和评估 Amazon 产品数据。
+    该类通过价格、评论、评分和销售指标等多个数据点，
+    帮助您快速评估某个产品是否值得跟进。
     """
     
     def __init__(self, api_key):
-        """Initialize the analyzer with your Pangol Info API key"""
+        """使用您的 Pangolin API Key 初始化分析器"""
         self.api_key = api_key
         self.endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
     
     def fetch_product_data(self, asin, zipcode="10041"):
         """
-        Fetch comprehensive product data from Amazon using Pangol Info API.
+        使用 Pangolin API 从 Amazon 获取全面的产品数据。
         
-        This method handles the API call and error checking, returning clean
-        product data that you can use for analysis.
+        此方法处理 API 调用和错误检查，返回可用于分析的干净产品数据。
         
-        Args:
-            asin: The Amazon Standard Identification Number (found in product URL)
-            zipcode: US zipcode for location-specific pricing and availability
+        参数:
+            asin: Amazon 标准识别号 (在产品 URL 中找到)
+            zipcode: 用于特定位置定价和可用性的美国邮编
         
-        Returns:
-            Dictionary containing product information, or None if fetch fails
+        返回:
+            包含产品信息的字典，如果获取失败则返回 None
         """
         headers = {
             "Authorization": f"Bearer {self.api_key}",
@@ -641,92 +611,92 @@ class ProductAnalyzer:
     
     def calculate_opportunity_score(self, product_data):
         """
-        Calculate an opportunity score (0-100) based on key metrics.
-        Higher scores indicate better opportunities for new sellers.
+        根据关键指标计算机会得分 (0-100)。
+        得分越高表示新卖家的机会越好。
         
-        This scoring system weighs multiple factors:
-        - Price range (30 points): Sweet spot is $15-$50
-        - Review count (30 points): Looking for 100-500 reviews (achievable but validated)
-        - Rating quality (25 points): 4.0+ indicates customer satisfaction
-        - Sales indicators (15 points): Recent purchase activity
+        该评分系统权衡多个因素：
+        - 价格范围 (30 分): 最佳点是 $15-$50
+        - 评论数量 (30 分): 寻找 100-500 条评论 (可实现但已验证)
+        - 评分质量 (25 分): 4.0+ 表示客户满意
+        - 销售指标 (15 分): 近期购买活动
         
-        Returns:
-            Integer score from 0-100
+        返回:
+            0-100 的整数得分
         """
         score = 0
         
-        # Price scoring (max 30 points)
-        # We want products in the profitable sweet spot
+        # 价格评分 (最高 30 分)
+        # 我们想要位于盈利最佳点的产品
         try:
             price_str = product_data.get('price', '$0')
             price = float(price_str.replace('$', '').replace(',', ''))
             
             if 15 <= price <= 50:
-                score += 30  # Perfect range
+                score += 30  # 完美范围
             elif 10 <= price < 15 or 50 < price <= 75:
-                score += 20  # Acceptable but not ideal
+                score += 20  # 可接受但不理想
             elif price > 0:
-                score += 10  # At least it has a price
+                score += 10  # 至少有个价格
         except:
             pass
         
-        # Review count scoring (max 30 points)
-        # Too few = unvalidated, too many = hard to compete
+        # 评论数量评分 (最高 30 分)
+        # 太少 = 未验证，太多 = 难以竞争
         try:
             reviews = int(product_data.get('rating', '0').replace(',', ''))
             
             if 100 <= reviews <= 500:
-                score += 30  # Sweet spot - validated but achievable
+                score += 30  # 最佳点 - 已验证但可实现
             elif 50 <= reviews < 100:
-                score += 25  # Good - early stage
+                score += 25  # 好 - 早期阶段
             elif 500 < reviews <= 1000:
-                score += 20  # Okay - more competitive
+                score += 20  # 还可以 - 竞争较激烈
             elif 20 <= reviews < 50:
-                score += 15  # Risky - less validated
+                score += 15  # 风险 - 验证较少
             elif reviews > 0:
-                score += 10  # At least some validation
+                score += 10  # 至少有一些验证
         except:
             pass
         
-        # Rating scoring (max 25 points)
-        # Higher ratings = happier customers = easier to compete
+        # 评分质量 (最高 25 分)
+        # 评分越高 = 客户越满意 = 更容易竞争
         try:
             rating = float(product_data.get('star', '0'))
             
             if rating >= 4.5:
-                score += 25  # Excellent
+                score += 25  # 优秀
             elif rating >= 4.0:
-                score += 20  # Good
+                score += 20  # 良好
             elif rating >= 3.5:
-                score += 10  # Mediocre
+                score += 10  # 平庸
             elif rating > 0:
-                score += 5   # Poor
+                score += 5   # 差
         except:
             pass
         
-        # Sales indicator (max 15 points)
-        # Recent buying activity indicates current demand
+        # 销售指标 (最高 15 分)
+        # 近期购买活动表明当前需求
         sales = product_data.get('sales', '').lower()
         if 'bought in past month' in sales:
-            # Extract number if possible
+            # 尽可能提取数字
             if '5k+' in sales or '10k+' in sales:
-                score += 15  # Very high demand
+                score += 15  # 需求非常高
             elif '1k+' in sales or '2k+' in sales:
-                score += 12  # High demand
+                score += 12  # 需求高
             elif '500+' in sales:
-                score += 10  # Good demand
+                score += 10  # 需求良好
             elif '100+' in sales or '200+' in sales:
-                score += 8   # Moderate demand
+                score += 8   # 需求适中
             else:
-                score += 5   # Some demand
+                score += 5   # 有一定需求
         
         return min(score, 100)
     
     def analyze_product(self, asin):
         """
-        Complete product analysis with scoring and recommendations.
+        包含评分和建议的完整产品分析。
         
-        Returns a dictionary with all relevant data and actionable insights.
+        返回包含所有相关数据和可操作洞察的字典。
         """
         product = self.fetch_product_data(asin)
         
@@ -735,15 +705,15 @@ class ProductAnalyzer:
         
         score = self.calculate_opportunity_score(product)
         
-        # Determine recommendation based on score
+        # 根据得分确定建议
         if score >= 70:
-            recommendation = "Strong Opportunity - Worth detailed investigation"
+            recommendation = "绝佳机会 - 值得详细调查"
         elif score >= 50:
-            recommendation = "Moderate Opportunity - Requires careful evaluation"
+            recommendation = "中等机会 - 需要仔细评估"
         elif score >= 30:
-            recommendation = "Weak Opportunity - Proceed with caution"
+            recommendation = "较弱机会 - 谨慎行事"
         else:
-            recommendation = "Poor Opportunity - Consider passing"
+            recommendation = "糟糕机会 - 建议放弃"
         
         return {
             "asin": asin,
@@ -757,454 +727,129 @@ class ProductAnalyzer:
             "recommendation": recommendation
         }
 
-# 示例 usage
+# 示例用法
 if __name__ == "__main__":
-    # Initialize analyzer with your API key
+    # 使用您的 API Key 初始化分析器
     analyzer = ProductAnalyzer("your_api_key_here")
     
-    # Analyze a product
+    # 分析一个产品
     result = analyzer.analyze_product("B0DYTF8L2W")
     
     if "error" not in result:
         print(f"\n{'='*60}")
-        print(f"Product Analysis Report")
+        print(f"产品分析报告")
         print(f"{'='*60}")
         print(f"ASIN: {result['asin']}")
-        print(f"Title: {result['title'][:60]}...")
-        print(f"Price: {result['price']}")
-        print(f"Rating: {result['rating']} stars ({result['reviews']} reviews)")
-        print(f"Sales: {result['sales']}")
-        print(f"\nOpportunity Score: {result['opportunity_score']}/100")
-        print(f"Recommendation: {result['recommendation']}")
+        print(f"标题: {result['title'][:60]}...")
+        print(f"价格: {result['price']}")
+        print(f"评分: {result['rating']} 星 ({result['reviews']} 条评论)")
+        print(f"销量: {result['sales']}")
+        print(f"\n机会得分: {result['opportunity_score']}/100")
+        print(f"建议: {result['recommendation']}")
         print(f"{'='*60}\n")
     else:
         print(f"Error: {result['error']}")</code></pre>
 
-                        <p>
-                            This script does several important things that make it practical for real-world use. First,
-                            it fetches complete product data using Pangol Info's API with proper error handling—network
-                            issues happen, and you don't want your script to crash. Second, it calculates an
-                            "opportunity score" based on multiple weighted factors. A score above 70 typically indicates
-                            a product worth investigating further, while scores below 40 suggest you should probably
-                            look elsewhere.
-                        </p>
-
-                        <p>
-                            The scoring system is intentionally simple and transparent, but it's based on real-world
-                            selling experience. You can (and should) customize these weights based on your specific
-                            criteria. For example, if you're targeting premium products, you might adjust the price
-                            scoring to favor higher price points. If you're building a brand, you might weight review
-                            count differently. The key is to start with these baseline metrics and refine based on your
-                            results.
-                        </p>
-
-                        <h3 id="category-scanner">Step 2: Category-Wide Opportunity Scanner</h3>
-
-                        <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
-                        </p>
-
-                        <p>
-                            Here's how to build a category scanner that finds the best opportunities in any Amazon
-                            category:
-                        </p>
-
-                        <pre><code class="language-python">import time
-from typing import List, Dict
-
-class CategoryScanner:
-    """
-    Scan entire Amazon categories to find product opportunities.
-    This class helps you discover hidden gems by analyzing hundreds
-    of products and ranking them by opportunity score.
-    """
-    
-    def __init__(self, analyzer: ProductAnalyzer):
-        """Initialize with a ProductAnalyzer instance"""
-        self.analyzer = analyzer
-    
-    def scan_best_sellers(self, category_url: str, max_products: int = 50) -> List[Dict]:
-        """
-        Scan a category's best-seller list and rank by opportunity.
-        
-        Args:
-            category_url: URL of Amazon best-sellers page for a category
-            max_products: Maximum number of products to analyze
-        
-        Returns:
-            List of product analyses, sorted by opportunity score
-        """
-        print(f"Scanning category: {category_url}")
-        print(f"Analyzing up to {max_products} products...")
-        
-        # First, fetch the best-sellers page to get ASINs
-        # (In production, you'd use Pangol Info API to parse the page)
-        # For this example, assume we have a list of ASINs
-        
-        results = []
-        analyzed = 0
-        
-        # 示例 ASIN list (in production, extract from category page)
-        example_asins = [
-            "B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW",
-            # ... more ASINs from category
-        ]
-        
-        for asin in example_asins[:max_products]:
-            print(f"Analyzing {analyzed + 1}/{max_products}: {asin}")
-            
-            analysis = self.analyzer.analyze_product(asin)
-            
-            if "error" not in analysis:
-                results.append(analysis)
-                analyzed += 1
-            
-            # Rate limiting - be respectful to the API
-            time.sleep(1)
-        
-        # Sort by opportunity score (highest first)
-        results.sort(key=lambda x: x['opportunity_score'], reverse=True)
-        
-        return results
-    
-    def generate_report(self, results: List[Dict], top_n: int = 10):
-        """
-        Generate a formatted report of top opportunities.
-        
-        Args:
-            results: List of product analyses
-            top_n: Number of top products to include in report
-        """
-        print(f"\n{'='*80}")
-        print(f"TOP {top_n} PRODUCT OPPORTUNITIES")
-        print(f"{'='*80}\n")
-        
-        for i, product in enumerate(results[:top_n], 1):
-            print(f"{i}. {product['title'][:60]}...")
-            print(f"   ASIN: {product['asin']}")
-            print(f"   Score: {product['opportunity_score']}/100")
-            print(f"   Price: {product['price']} | Rating: {product['rating']} ({product['reviews']} reviews)")
-            print(f"   {product['recommendation']}")
-            print()
-        
-        print(f"{'='*80}\n")
-        
-        # Summary statistics
-        avg_score = sum(p['opportunity_score'] for p in results) / len(results)
-        high_opportunity = sum(1 for p in results if p['opportunity_score'] >= 70)
-        
-        print(f"Summary:")
-        print(f"  Total products analyzed: {len(results)}")
-        print(f"  Average opportunity score: {avg_score:.1f}")
-        print(f"  High-opportunity products (70+): {high_opportunity}")
-        print(f"  Success rate: {(high_opportunity/len(results)*100):.1f}%\n")
-
-# Usage example
-analyzer = ProductAnalyzer("your_api_key_here")
-scanner = CategoryScanner(analyzer)
-
-# Scan a category
-results = scanner.scan_best_sellers(
-    "https://www.amazon.com/Best-Sellers-Kitchen-Dining/zgbs/kitchen",
-    max_products=50
-)
-
-# Generate report
-scanner.generate_report(results, top_n=10)</code></pre>
-
-                        <p>
-                            This category scanner is a game-changer for product research. Instead of manually clicking
-                            through pages of products, you can analyze an entire category in 30-60 minutes (depending on
-                            how many products you scan). The script automatically ranks products by opportunity score,
-                            so you immediately see the most promising options at the top.
-                        </p>
-
-                        <p>
-                            In practice, I recommend running this scanner on 3-5 different categories that interest you,
-                            then comparing the results. You might discover that a category you thought was saturated
-                            actually has several high-scoring opportunities, or that a "hot" category is actually too
-                            competitive for new sellers.
-                        </p>
-
-                        <h2 id="advanced-strategies">Advanced Product Selection Strategies</h2>
-
-                        <h3 id="trend-analysis">Identifying Emerging Trends Early</h3>
-
-                        <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
-                        </p>
-
-                        <p>
-                            <strong>Monitor Review Velocity Acceleration</strong>: Track how quickly products are
-                            gaining reviews over time. A product that goes from 10 reviews to 100 reviews in 2 months is
-                            showing strong momentum. This acceleration is a leading indicator of growing demand. Set up
-                            automated tracking to alert you when products in your target categories show this pattern.
-                        </p>
-
-                        <p>
-                            <strong>Analyze Seasonal Patterns</strong>: Some products have predictable seasonal demand
-                            spikes. By analyzing historical BSR data, you can identify products that will peak in 2-3
-                            months and get positioned before the rush. For example, if you notice a product's BSR
-                            improves dramatically every summer, you want to launch in March/April, not June when
-                            everyone else realizes the opportunity.
-                        </p>
-
-                        <p>
-                            <strong>Track Competitor Launches</strong>: When you see multiple new sellers entering a
-                            niche simultaneously, that's often a signal that something is working. Use the API to
-                            monitor new product launches in your categories and investigate what's driving the interest.
-                        </p>
-
-                        <h3 id="risk-assessment">Risk Assessment and Validation</h3>
-
-                        <p>
-                            通过分析销售排名 (BSR)、价格历史和评论增长，您可以准确估算需求的稳定性。
-                        </p>
-
-                        <p>
-                            <strong>The 3-Month Test</strong>: Track your target product's BSR, price, and review count
-                            for 3 months before launching. If these metrics are stable or improving, that's a good sign.
-                            If they're declining or highly volatile, that's a red flag. This patience can save you from
-                            jumping into a dying market.
-                        </p>
-
-                        <p>
-                            <strong>Competitive Gap Analysis</strong>: Look for products where the top sellers have
-                            obvious weaknesses—poor images, bad descriptions, low ratings, or customer complaints in
-                            reviews. These gaps represent opportunities for you to enter with a superior offering. Use
-                            the API to systematically analyze competitor weaknesses across multiple products.
-                        </p>
-
-                        <p>
-                            <strong>Margin Validation</strong>: Don't just look at selling price—calculate your actual
-                            profit after all costs. Use the product data to estimate: Amazon fees (15% referral + $3-5
-                            FBA), product cost (typically 25-30% of selling price), shipping to Amazon (5-10%),
-                            advertising (20-30% of revenue initially). If you can't achieve 20%+ net margin, the
-                            opportunity probably isn't worth it.
-                        </p>
-
-                        <div class="warning-box">
-                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
-                                    class="fas fa-exclamation-triangle mr-2"></i>Common Pitfalls to Avoid</h4>
-                            <p><strong>Chasing High BSR Without Context</strong>: A #1 BSR product might seem
-                                attractive, but it's often dominated by major brands with huge advertising budgets. Look
-                                for #500-#5,000 BSR products where you can realistically compete.</p>
-                            <p><strong>Ignoring Seasonality</strong>: Launching a Christmas decoration product in
-                                November means you've missed the entire selling season. Always check historical BSR
-                                patterns.</p>
-                            <p class="mb-0"><strong>Underestimating Competition</strong>: If the top 10 sellers all have
-                                1,000+ reviews, you'll struggle to break in. Be realistic about what you can achieve.
-                            </p>
-                        </div>
-
-                        <h2 id="action-plan">Your 30-Day Product Selection Action Plan</h2>
-
-                        <p>
-                            成功的卖家使用数据来识别高需求、低竞争的利基市场。与其猜测什么好卖，不如分析市场信号：
-                        </p>
-
-                        <p>
-                            <strong>Week 1: Setup and Category Research</strong>
-                        </p>
-                        <ul>
-                            <li>Set up your Pangol Info API account and test the basic analyzer script</li>
-                            <li>Identify 5-10 product categories that interest you and have good fundamentals (growing
-                                market, reasonable competition)</li>
-                            <li>Run the category scanner on each category to get baseline data</li>
-                            <li>Create a spreadsheet to track your top 50 product opportunities</li>
-                        </ul>
-
-                        <p>
-                            <strong>Week 2: Deep Analysis</strong>
-                        </p>
-                        <ul>
-                            <li>Narrow your list to the top 20 products based on opportunity scores</li>
-                            <li>For each product, manually review the top 5 competitors</li>
-                            <li>Analyze customer reviews to identify common complaints and opportunities for improvement
-                            </li>
-                            <li>Calculate estimated margins for each product</li>
-                            <li>Eliminate any products that don't meet your margin requirements (20%+ net)</li>
-                        </ul>
-
-                        <p>
-                            <strong>Week 3: Validation and Trend Analysis</strong>
-                        </p>
-                        <ul>
-                            <li>Set up automated tracking for your top 10 products</li>
-                            <li>Analyze 3-month historical trends for BSR and pricing</li>
-                            <li>Research suppliers and get quotes for your top 5 products</li>
-                            <li>Validate that you can source the product at a price that maintains your target margins
-                            </li>
-                        </ul>
-
-                        <p>
-                            <strong>Week 4: Final Selection and Launch Planning</strong>
-                        </p>
-                        <ul>
-                            <li>Choose your top 2-3 products based on all data points</li>
-                            <li>Create detailed launch plans including pricing strategy, advertising budget, and
-                                timeline</li>
-                            <li>Order samples to verify product quality</li>
-                            <li>Begin creating product listings and marketing materials</li>
-                        </ul>
-
-                        <p>
-                            This systematic approach dramatically increases your success rate. Instead of guessing or
-                            following "hot product" lists that everyone else is chasing, you're making informed
-                            decisions based on real data.
-                        </p>
-
-                        <h2 id="总结">总结: From Data to Decisions</h2>
-
-                        <p>
-                            成功的卖家使用数据来识别高需求、低竞争的利基市场。与其猜测什么好卖，不如分析市场信号：
-                        </p>
-
-                        <p>
-                            The key is to start simple and iterate. Begin with the basic analyzer we've built here, use
-                            it to analyze 50-100 products, and see what patterns emerge. Then gradually add more
-                            sophisticated features as you learn what works for your specific niche and business model.
-                            Maybe you'll discover that review velocity is a better predictor of success than BSR for
-                            your categories. Or perhaps you'll find that products in a specific price range consistently
-                            outperform others.
-                        </p>
-
-                        <p>
-                            Remember: every successful Amazon seller started where you are now. The difference between
-                            those who succeed and those who fail often comes down to making better decisions faster. By
-                            leveraging API data extraction, you're giving yourself a significant advantage in both speed
-                            and quality of decision-making.
-                        </p>
-
-                        <p>
-                            Start today. Pick a category, run the analyzer on 20 products, and see what you discover.
-                            You might be surprised at the opportunities hiding in plain sight, just waiting for someone
-                            with the right tools and knowledge to find them.
-                        </p>
-
                         <div class="success-box mt-8">
-                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Ready to
-                                Find Your Winning 产品?</h4>
-                            <p>Stop guessing and start using data to make confident product selection decisions.
-                                Pangol Info's Amazon Scraping API gives you the power to analyze thousands of products,
-                                spot trends early, and make informed decisions that drive real results.</p>
-                            <ul class="mb-4">
-                                <li><strong>开始使用 Free</strong>: 1,000 free API credits to test the system</li>
-                                <li><strong>Scale Confidently</strong>: Enterprise-grade reliability for serious sellers
-                                </li>
-                                <li><strong>Expert Support</strong>: Our team helps you get the most from your data</li>
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i
+                                    class="fas fa-check-circle mr-2"></i>开始您的选品之旅</h4>
+                            <p>这只是冰山一角。通过将此逻辑扩展到批量处理并分析整个类别，我们可以建立一个强大的选品引擎。</p>
+                            <ul class="mb-0">
+                                <li><strong>注册 Pangolin</strong>：免费获取您的 API Key 以运行此代码</li>
+                                <li><strong>获取更多数据</strong>：查阅我们的 API 文档以获取更多高级字段</li>
                             </ul>
-                            <div class="flex gap-4 mt-4">
-                                <a href="https://tool.pangolinfo.com/"
-                                    class="inline-block px-6 py-3 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white hover:shadow-lg transition">
-                                    开始免费试用 →
-                                </a>
-                                <a href="https://docs.pangolinfo.com/en-index"
-                                    class="inline-block px-6 py-3 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
-                                    查看文档
-                                </a>
-                            </div>
                         </div>
 
                     </article>
 
-                    <!-- CTA Section -->
+                    <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
-                        <h3 class="text-3xl font-bold mb-4">Transform Your Product Research Today</h3>
-                        <p class="text-gray-400 mb-6 max-w-2xl mx-auto">Join thousands of successful Amazon sellers who
-                            use Pangol Info API to find profitable products faster and make data-driven decisions with
-                            confidence.</p>
-                        <div class="flex gap-4 justify-center flex-wrap">
-                            <a href="https://tool.pangolinfo.com/"
-                                class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
-                                Get 1,000 Free Credits
-                            </a>
-                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
-                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
-                                View Pricing
-                            </a>
-                        </div>
+                        <h3 id="ready-start">准备好寻找下一个爆款产品了吗？</h3>
+                        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                            立即开始使用 Pangolin API，将数据转化为您的竞争优势。
+                        </p>
+                        <a href="https://tool.pangolinfo.com/"
+                            class="inline-block bg-accent-cyan text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-accent-cyan/20 hover:shadow-accent-cyan/40 transform hover:-translate-y-1 transition duration-300">
+                            免费获取 API Key
+                        </a>
                     </div>
                 </div>
 
                 <!-- Sidebar (1/3 width) -->
-                <div class="lg:col-span-1">
-                    <div class="sidebar-sticky space-y-6">
-
-                        <!-- 目录 -->
-                        <div class="glass-card rounded-2xl p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
-                            <nav class="space-y-1">
-                                <a href="#why-data-driven" class="toc-link">Why Data-Driven Selection</a>
-                                <a href="#key-metrics" class="toc-link">Key Metrics</a>
-                                <a href="#demand-indicators" class="toc-link toc-link-sub">Demand Indicators</a>
-                                <a href="#competition-analysis" class="toc-link toc-link-sub">竞争分析</a>
-                                <a href="#building-research-system" class="toc-link">Building Research System</a>
-                                <a href="#basic-analyzer" class="toc-link toc-link-sub">Basic Analyzer</a>
-                                <a href="#category-scanner" class="toc-link toc-link-sub">Category Scanner</a>
-                                <a href="#advanced-strategies" class="toc-link">Advanced Strategies</a>
-                                <a href="#trend-analysis" class="toc-link toc-link-sub">Trend Analysis</a>
-                                <a href="#risk-assessment" class="toc-link toc-link-sub">Risk Assessment</a>
-                                <a href="#action-plan" class="toc-link">30-Day Action Plan</a>
-                                <a href="#总结" class="toc-link">总结</a>
+                <div class="hidden lg:block lg:col-span-1">
+                    <div class="sidebar-sticky">
+                        <!-- Table of Contents -->
+                        <div class="glass-card rounded-2xl p-6 mb-6">
+                            <h4 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">目录</h4>
+                            <nav id="toc">
+                                <!-- TOC will be generated by JS -->
                             </nav>
                         </div>
 
-                        <!-- Pangolin Scrape API Product Card -->
-                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
-                            class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-rocket text-white text-2xl"></i>
+                        <!-- Product Card 1: Scrape API -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-pangolin-500 to-pangolin-700 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Scrape API</h4>
+                                    <span
+                                        class="text-xs text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">畅销</span>
+                                </div>
                             </div>
-                            <h4
-                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
-                                Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">Amazon 和电商数据提取专业 API
-                                with 99.9% uptime</p>
-                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
-                                <span>了解更多</span>
-                                <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
+                            <p class="text-sm text-gray-400 mb-4">
+                                具有 99.9% 正常运行时间和自动验证码处理功能的专业 Amazon 抓取 API。
+                            </p>
+                            <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                                class="block w-full text-center py-2 rounded-lg border border-pangolin-500 text-pangolin-400 hover:bg-pangolin-500 hover:text-white transition">
+                                了解更多
+                            </a>
+                        </div>
 
-                        <!-- AMZ Data Tracker Product Card -->
-                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
-                            class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                        <!-- Product Card 2: AMZ Data Tracker -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-purple to-pink-600 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">AMZ Tracker</h4>
+                                    <span
+                                        class="text-xs text-accent-purple bg-accent-purple/10 px-2 py-0.5 rounded">新</span>
+                                </div>
                             </div>
-                            <h4
-                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
-                                AMZ Data Tracker</h4>
-                            <p class="text-gray-400 text-sm mb-4">零代码 Amazon 产品跟踪，支持自动化价格
-                                alerts and Excel export</p>
-                            <div class="flex items-center text-accent-purple text-sm font-semibold">
-                                <span>了解更多</span>
-                                <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
+                            <p class="text-sm text-gray-400 mb-4">
+                                用于跟踪 ASIN 表现、关键词和 BSR 历史的可视化仪表板。
+                            </p>
+                            <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                                class="block w-full text-center py-2 rounded-lg border border-accent-purple text-accent-purple hover:bg-accent-purple hover:text-white transition">
+                                查看演示
+                            </a>
+                        </div>
 
-                        <!-- Chrome Extension Card -->
-                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=zh-CN&authuser=0"
-                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-chrome text-white text-2xl"></i>
+                        <!-- Product Card 3: Chrome Extension -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white text-xl">
+                                    <i class="fab fa-chrome"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Extension</h4>
+                                    <span class="text-xs text-gray-400 bg-gray-800 px-2 py-0.5 rounded">免费</span>
+                                </div>
                             </div>
-                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
-                                浏览器扩展</h4>
-                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome 扩展用于即时 Amazon 产品分析</p>
-                            <div class="flex items-center text-green-400 text-sm font-semibold">
-                                <span>安装扩展</span>
-                                <i
-                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
-
+                            <p class="text-sm text-gray-400 mb-4">
+                                免费 Chrome 扩展，直接从浏览器快速提取数据。
+                            </p>
+                            <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf"
+                                class="block w-full text-center py-2 rounded-lg border border-gray-600 text-gray-400 hover:bg-gray-700 hover:text-white transition">
+                                立即安装
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1262,9 +907,12 @@ scanner.generate_report(results, top_n=10)</code></pre>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 
     <script>
-        // 目录 Active State
+        // Table of Contents Active State
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const id = entry.target.getAttribute('id');
@@ -1294,34 +942,58 @@ scanner.generate_report(results, top_n=10)</code></pre>
             });
         });
 
-        // Add copy buttons to all code blocks
-        document.addEventListener('DOMContentLoaded', function () {
+        // Generate TOC
+        document.addEventListener('DOMContentLoaded', () => {
+            const toc = document.getElementById('toc');
+            const headers = document.querySelectorAll('article h2, article h3');
+
+            headers.forEach(header => {
+                const link = document.createElement('a');
+                link.href = '#' + header.id;
+                link.textContent = header.textContent;
+                link.className = header.tagName === 'H2' ? 'toc-link' : 'toc-link toc-link-sub';
+                toc.appendChild(link);
+            });
+
+            // Add copy buttons to all code blocks
             const codeBlocks = document.querySelectorAll('pre');
 
             codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
                 const wrapper = document.createElement('div');
                 wrapper.className = 'code-block-wrapper';
                 pre.parentNode.insertBefore(wrapper, pre);
                 wrapper.appendChild(pre);
 
+                // Create copy button
                 const copyButton = document.createElement('button');
                 copyButton.className = 'copy-code-btn';
-                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
+                copyButton.setAttribute('data-code-index', index);
 
+                // Add click handler
                 copyButton.addEventListener('click', async function () {
                     const code = pre.querySelector('code');
                     const text = code.textContent;
 
                     try {
                         await navigator.clipboard.writeText(text);
+
+                        // Update button state
                         copyButton.innerHTML = '<i class="fas fa-check"></i><span>已复制！</span>';
                         copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
                         setTimeout(() => {
-                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
                             copyButton.classList.remove('copied');
                         }, 2000);
                     } catch (err) {
                         console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>失败</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
+                        }, 2000);
                     }
                 });
 
