@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Amazon Scraping API Tutorial: Product Data Extraction Guide 2025</title>
+    <title>Amazon 数据抓取 API 产品数据提取入门指南 | Pangolin 博客</title>
     <meta name="description" content="学习如何使用 Pangol Info 的 Amazon 数据抓取 API 提取产品数据、价格和评论。完整的入门指南，包含代码示例和最佳实践。">
     <meta name="keywords" content="Amazon API, 数据抓取, 产品数据提取, Amazon 爬虫, 电商数据, API 教程">
     <meta name="author" content="Pangol Info Scrape API">
@@ -391,11 +391,12 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
-            <a href="/zh/index.html" class="flex items-center gap-3">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
+            <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Amazon Scraping API Logo"
+                    alt="Pangolin Amazon 数据抓取 API Logo"
                     class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
                 <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
             </a>
@@ -403,15 +404,25 @@
                 <a href="/zh/index.html#home" class="nav-link hover:text-white transition">首页</a>
                 <a href="/zh/index.html#solutions" class="nav-link hover:text-white transition">解决方案</a>
                 <a href="/zh/index.html#use-cases" class="nav-link hover:text-white transition">应用场景</a>
-                <a href="/zh/index.html#articles" class="nav-link hover:text-white transition">博客</a>
+                <a href="/zh/blog.html" class="nav-link hover:text-white transition">博客</a>
                 <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">文档</a>
                 <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
                     class="nav-link hover:text-white transition">定价</a>
             </div>
-            <a href="https://tool.pangolinfo.com/"
-                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
-                Get API Key
-            </a>
+            <div class="flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <a href="/articles/getting-started-amazon-scraping-api.html" class="language-btn">
+                        <span>🇺🇸</span>
+                        <span>English</span>
+                    </a>
+                </div>
+                <!-- Get API Key Button -->
+                <a href="https://tool.pangolinfo.com/"
+                    class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                    获取 API Key
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -423,13 +434,8 @@
                 <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
                 Amazon API Tutorial
             </div>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                Getting Started with Amazon Scraping API for Product Data Extraction
-            </h1>
-            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
-                Learn how to leverage Pangol Info's Amazon scraping API to extract comprehensive product data, pricing, and
-                reviews from Amazon marketplace
-            </p>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">Amazon 数据抓取 API 产品数据提取入门指南</h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">学习如何使用 Pangol Info 的 Amazon 数据抓取 API 从 Amazon 市场提取全面的产品数据、价格和评论信息。本指南将带您了解从身份验证到高级数据提取的完整流程，包含实用代码示例和最佳实践。</p>
             <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
                 <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
                 <span><i class="far fa-clock mr-2"></i>15 分钟阅读</span>
@@ -456,7 +462,7 @@
                             efficiently and at scale.
                         </p>
 
-                        <h2 id="why-matters">Why Amazon Product Data Extraction Matters</h2>
+                        <h2 id="why-amazon-product-data-extraction-matters">为什么 Amazon 产品数据提取很重要</h2>
 
                         <p>
                             Amazon hosts over 350 million products across multiple marketplaces worldwide. For
@@ -483,7 +489,7 @@
                             where Pangol Info's Amazon Scraping API becomes invaluable.
                         </p>
 
-                        <h2 id="understanding-api">Understanding Pangol Info's Amazon Scraping API</h2>
+                        <h2 id="understanding-pangol-info's-amazon-scraping-api">了解 Pangol Info 的 Amazon 数据抓取 API</h2>
 
                         <p>
                             Pangol Info's Amazon Scraping API is a professional-grade solution designed specifically for
@@ -549,9 +555,9 @@
                                 control. Use environment variables or secure key management systems.</p>
                         </div>
 
-                        <h2 id="step-by-step">Extracting Product Data: Step-by-Step Guide</h2>
+                        <h2 id="extracting-product-data-step-by-step-guide">提取产品数据：分步指南</h2>
 
-                        <h3 id="basic-extraction">1. Basic Product Information Extraction</h3>
+                        <h3 id="basic-product-information-extraction">1. 基础产品信息提取</h3>
 
                         <p>
                             Let's start with extracting basic product information. The most common use case is fetching
@@ -625,7 +631,7 @@ else:
     print(f"HTTP Error: {response.status_code}")
     print(response.text)</code></pre>
 
-                        <h3 id="response-structure">2. Understanding the Response Structure</h3>
+                        <h3 id="understanding-the-response-structure">2. 理解响应结构</h3>
 
                         <p>
                             When you set <code>format: "json"</code>, Pangolin returns structured JSON data with the
@@ -681,7 +687,7 @@ else:
   }
 }</code></pre>
 
-                        <h3 id="price-monitoring">3. Building a Price Monitoring System</h3>
+                        <h3 id="building-a-price-monitoring-system">3. 构建价格监控系统</h3>
 
                         <p>
                             Price monitoring is one of the most valuable applications of Amazon data extraction. Here's
@@ -754,9 +760,9 @@ tracker = AmazonPriceTracker(API_KEY)
 product = tracker.track_price('B08N5WRWNW')
 print(f"Tracked: {product.get('title')} - {product.get('price')}")</code></pre>
 
-                        <h2 id="best-practices">Best Practices and Optimization</h2>
+                        <h2 id="best-practices-and-optimization">最佳实践和优化</h2>
 
-                        <h3 id="rate-limiting">Rate Limiting and Error Handling</h3>
+                        <h3 id="rate-limiting-and-error-handling">速率限制和错误处理</h3>
 
                         <p>
                             Implementing proper rate limiting and error handling ensures reliable, long-term operation:
@@ -791,7 +797,7 @@ def scrape_with_safety(asin):
     # Your scraping code here
     pass</code></pre>
 
-                        <h2 id="conclusion">Conclusion</h2>
+                        <h2 id="conclusion">总结</h2>
 
                         <p>
                             Amazon product data extraction is a powerful capability that can transform your e-commerce
@@ -821,8 +827,8 @@ def scrape_with_safety(asin):
 
                     <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
-                        <h3 class="text-3xl font-bold mb-4">Ready to Start Extracting Amazon Data?</h3>
-                        <p class="text-gray-400 mb-6">Get 1,000 free API credits and start building today</p>
+                        <h3 id="ready-to-start-extracting-amazon-data">准备开始提取 Amazon 数据了吗？</h3>
+                        <p class="text-gray-400 mb-6">获取 1,000 个免费 API 积分，立即开始构建</p>
                         <div class="flex gap-4 justify-center flex-wrap">
                             <a href="https://tool.pangolinfo.com/"
                                 class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
@@ -869,7 +875,7 @@ def scrape_with_safety(asin):
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
                                 Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
+                            <p class="text-gray-400 text-sm mb-4">Amazon 和电商数据提取专业 API
                                 with 99.9% uptime</p>
                             <div class="flex items-center text-accent-cyan text-sm font-semibold">
                                 <span>了解更多</span>
@@ -888,7 +894,7 @@ def scrape_with_safety(asin):
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
                                 AMZ Data Tracker</h4>
-                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
+                            <p class="text-gray-400 text-sm mb-4">零代码 Amazon 产品跟踪，支持自动化价格
                                 alerts and Excel export</p>
                             <div class="flex items-center text-accent-purple text-sm font-semibold">
                                 <span>了解更多</span>

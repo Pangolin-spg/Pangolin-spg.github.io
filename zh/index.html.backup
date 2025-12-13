@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Amazon 数据抓取 API 博客 | 电商数据提取教程</title>
+    <title>Amazon Scraping API Blog | E-commerce Data Extraction Tutorials</title>
     <meta name="description"
-        content="专业的 Amazon 数据抓取 API 教程和电商数据提取指南。学习产品数据智能分析、价格监控和竞争分析。">
+        content="Expert Amazon scraping API tutorials and e-commerce data extraction guides. Learn product data intelligence, price monitoring, and competitive analysis with Pangol Info API.">
     <meta name="keywords"
-        content="Amazon 数据抓取 API, 电商数据提取, Amazon 产品数据, 价格监控 API, Amazon SERP API">
+        content="Amazon Scraping API, E-commerce Data Extraction, Amazon Product Data, Price Monitoring API, Amazon SERP API">
     <meta name="author" content="Pangol Info Scrape API">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pangolin-spg.github.io/">
-    <meta property="og:title" content="Amazon 数据抓取 API 与电商数据提取 | Pangolin 博客">
+    <meta property="og:title" content="Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog">
     <meta property="og:description"
-        content="专业的 Amazon 数据抓取 API 洞察、电商数据提取和产品智能分析。实时价格监控、库存追踪和竞争分析。">
+        content="Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence. Real-time pricing, inventory tracking, and competitive analysis.">
     <meta property="og:image"
         content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pangolin-spg.github.io/">
-    <meta property="twitter:title" content="Amazon 数据抓取 API 与电商数据提取 | Pangolin 博客">
+    <meta property="twitter:title" content="Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog">
     <meta property="twitter:description"
-        content="专业的 Amazon 数据抓取 API 洞察、电商数据提取和产品智能分析。">
+        content="Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence.">
     <meta property="twitter:image"
         content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
@@ -40,9 +40,9 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Pangol Info 数据抓取 API 博客",
+      "name": "Pangol Info Scrape API Blog",
       "url": "https://pangolin-spg.github.io/",
-      "description": "专业的 Amazon 数据抓取 API 和电商数据提取洞察",
+      "description": "Expert insights on Amazon scraping API and e-commerce data extraction",
       "publisher": {
         "@type": "Organization",
         "name": "Pangol Info Scrape API",
@@ -209,11 +209,6 @@
             transform: translateY(-1px);
         }
     </style>
-    <!-- Hreflang Tags -->
-    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/index.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/index.html">
-    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/index.html">
-
 </head>
 
 <body class="antialiased selection:bg-accent-cyan selection:text-white">
@@ -231,31 +226,31 @@
         <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
             <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Amazon 数据抓取 API Logo"
+                    alt="Pangolin Amazon Scraping API Logo"
                     class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
                 <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
             </a>
             <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
-                <a href="#home" class="nav-link hover:text-white transition">首页</a>
-                <a href="#solutions" class="nav-link hover:text-white transition">解决方案</a>
-                <a href="#use-cases" class="nav-link hover:text-white transition">应用场景</a>
-                <a href="blog.html" class="nav-link hover:text-white transition">博客</a>
-                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">文档</a>
+                <a href="#home" class="nav-link hover:text-white transition">Home</a>
+                <a href="#solutions" class="nav-link hover:text-white transition">Solutions</a>
+                <a href="#use-cases" class="nav-link hover:text-white transition">Use Cases</a>
+                <a href="blog.html" class="nav-link hover:text-white transition">Blog</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">Docs</a>
                 <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
-                    class="nav-link hover:text-white transition">定价</a>
+                    class="nav-link hover:text-white transition">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
                 <!-- Language Switcher -->
                 <div class="language-switcher">
-                    <a href="/index.html" class="language-btn">
-                        <span>🇺🇸</span>
-                        <span>English</span>
+                    <a href="/zh/index.html" class="language-btn">
+                        <span>🇨🇳</span>
+                        <span>中文</span>
                     </a>
                 </div>
                 <!-- Get API Key Button -->
                 <a href="https://tool.pangolinfo.com/"
                     class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
-                    获取 API Key
+                    Get API Key
                 </a>
             </div>
         </div>
@@ -268,28 +263,28 @@
             <div
                 class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase animate-float">
                 <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
-                AMAZON 数据抓取 API 与电商数据智能
+                Amazon Scraping API & E-commerce Data Intelligence
             </div>
             <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                <span class="whitespace-nowrap">Amazon 产品数据 API</span><br>
-                <span class="text-gradient whitespace-nowrap">助力电商智能决策</span>
+                <span class="whitespace-nowrap">Amazon Product Data API</span><br>
+                <span class="text-gradient whitespace-nowrap">for E-commerce Intelligence</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                专业的 Amazon 数据抓取 API 洞察、电商数据提取和产品智能分析。 Discover
+                Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence. Discover
                 how Pangol Info's Amazon API empowers businesses with real-time pricing, inventory tracking, and
                 competitive analysis.
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
                 <a href="https://tool.pangolinfo.com/"
                     class="group relative px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/50 transition-all transform hover:-translate-y-1">
-                    <span class="relative z-10">开始免费试用</span>
+                    <span class="relative z-10">Start Free Trial</span>
                     <div
                         class="absolute inset-0 h-full w-full bg-white/20 group-hover:w-full transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100">
                     </div>
                 </a>
                 <a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
                     class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition flex items-center gap-2 group">
-                    <span>API 演示</span>
+                    <span>API Playground</span>
                     <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
@@ -301,19 +296,19 @@
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="glass-card p-6 rounded-2xl text-center">
                 <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">99.9%</div>
-                <div class="text-sm text-gray-400">API 正常运行时间</div>
+                <div class="text-sm text-gray-400">API Uptime</div>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center">
                 <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">30M+</div>
-                <div class="text-sm text-gray-400">每日 API 调用次数</div>
+                <div class="text-sm text-gray-400">Daily Amazon API Calls</div>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center">
                 <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">2000+</div>
-                <div class="text-sm text-gray-400">电商企业客户</div>
+                <div class="text-sm text-gray-400">E-commerce Businesses</div>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center">
                 <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">98%</div>
-                <div class="text-sm text-gray-400">广告数据覆盖率</div>
+                <div class="text-sm text-gray-400">Amazon Ad Coverage</div>
             </div>
         </div>
     </section>
@@ -322,8 +317,9 @@
     <section id="solutions" class="py-20 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
-                <h2 class="text-4xl md:text-5xl font-bold mb-3">Amazon 与电商数据解决方案</h2>
-                <p class="text-gray-400">专业的 Amazon 产品数据、价格智能和电商分析 API 服务</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-3">Amazon & E-commerce Data Solutions</h2>
+                <p class="text-gray-400">Professional APIs for Amazon product data, pricing intelligence, and e-commerce
+                    analytics</p>
             </div>
 
             <!-- Featured Product -->
@@ -335,17 +331,18 @@
                             <i class="fas fa-rocket text-white text-3xl"></i>
                         </div>
                         <div>
-                            <div class="text-2xl font-bold">Amazon 数据抓取 API</div>
-                            <div class="text-gray-400 text-sm">完整的 Amazon 产品数据提取和电商智能分析服务</div>
+                            <div class="text-2xl font-bold">Amazon Scraping API</div>
+                            <div class="text-gray-400 text-sm">Complete Amazon product data extraction and e-commerce
+                                intelligence</div>
                         </div>
                     </div>
                     <div class="flex gap-3">
                         <a href="https://docs.pangolinfo.com/en-api-reference/amazonApi/amazonScrapeAPI"
                             class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/10">API
-                            文档</a>
+                            Docs</a>
                         <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
-                            class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200">了解
-                            更多</a>
+                            class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200">Learn
+                            More</a>
                     </div>
                 </div>
 
@@ -355,27 +352,30 @@
                             <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
                                 <i class="fas fa-box text-2xl text-orange-400"></i>
                             </div>
-                            <span class="font-semibold">Amazon 产品数据</span>
+                            <span class="font-semibold">Amazon Product Data</span>
                         </div>
-                        <div class="text-gray-300 text-sm leading-7">从 Amazon 市场提取产品详情、价格、变体、图片、评论和评分</div>
+                        <div class="text-gray-300 text-sm leading-7">Extract product details, prices, variants, images,
+                            reviews, and ratings from Amazon marketplace</div>
                     </div>
                     <div class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
                         <div class="flex items-start gap-3 mb-2">
                             <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
                                 <i class="fas fa-search text-2xl text-blue-400"></i>
                             </div>
-                            <span class="font-semibold">Amazon 搜索结果</span>
+                            <span class="font-semibold">Amazon Search Results</span>
                         </div>
-                        <div class="text-gray-300 text-sm leading-7">收集自然排名、赞助广告和 Amazon SERP 元数据</div>
+                        <div class="text-gray-300 text-sm leading-7">Collect organic rankings, sponsored ads, and Amazon
+                            SERP metadata</div>
                     </div>
                     <div class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
                         <div class="flex items-start gap-3 mb-2">
                             <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
                                 <i class="fas fa-comments text-2xl text-pink-400"></i>
                             </div>
-                            <span class="font-semibold">Amazon 评论数据</span>
+                            <span class="font-semibold">Amazon Review Data</span>
                         </div>
-                        <div class="text-gray-300 text-sm leading-7">收集客户评论、评分、情感分析和产品反馈</div>
+                        <div class="text-gray-300 text-sm leading-7">Gather customer reviews, ratings, sentiment
+                            analysis, and product feedback</div>
                     </div>
                 </div>
             </div>
@@ -388,14 +388,15 @@
                         <i class="fas fa-chart-line text-purple-400 text-2xl"></i>
                     </div>
                     <div class="text-xl font-bold mb-2">AMZ Data Tracker</div>
-                    <div class="text-gray-400 text-sm mb-4">实时 Amazon 产品跟踪、价格监控和销售分析，支持自动化报告。</div>
+                    <div class="text-gray-400 text-sm mb-4">Real-time Amazon product tracking, price monitoring, and
+                        sales analytics with automated reporting.</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 零代码 Amazon
-                            跟踪</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 自动价格
-                            提醒</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Excel 导出
-                            就绪</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Zero-code Amazon
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Automated price
+                            alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Excel export
+                            ready</li>
                     </ul>
                 </a>
 
@@ -406,14 +407,15 @@
                         <i class="fas fa-search text-green-400 text-2xl"></i>
                     </div>
                     <div class="text-xl font-bold mb-2">Amazon SERP API</div>
-                    <div class="text-gray-400 text-sm mb-4">Amazon 搜索结果、关键词排名和赞助产品投放数据。</div>
+                    <div class="text-gray-400 text-sm mb-4">Amazon search results, keyword rankings, and sponsored
+                        product placement data.</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Amazon 自然
-                            排名</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 赞助广告
-                            跟踪</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 多市场
-                            支持</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Amazon organic
+                            rankings</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Sponsored ads
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Multi-marketplace
+                            support</li>
                     </ul>
                 </a>
 
@@ -423,14 +425,15 @@
                         class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 group-hover:bg-pink-500/40 transition-colors">
                         <i class="fas fa-brain text-pink-400 text-2xl"></i>
                     </div>
-                    <div class="text-xl font-bold mb-2">Amazon 数据解决方案</div>
-                    <div class="text-gray-400 text-sm mb-4">AI 驱动的 Amazon 数据智能，用于产品选择和市场分析。</div>
+                    <div class="text-xl font-bold mb-2">Amazon Data Solutions</div>
+                    <div class="text-gray-400 text-sm mb-4">AI-powered Amazon data intelligence for product selection
+                        and market analysis.</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> AI 驱动
-                            洞察</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 竞争
-                            分析</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 市场趋势
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> AI-driven
+                            insights</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Competitive
+                            analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Market trends
                         </li>
                     </ul>
                 </a>
@@ -438,12 +441,13 @@
         </div>
     </section>
 
-    <!-- 应用场景 Section -->
+    <!-- Use Cases Section -->
     <section id="use-cases" class="py-20 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold mb-3">E-commerce 应用场景</h2>
-                <p class="text-gray-400">从 Amazon 产品选择到竞争定价，我们的 API 覆盖整个电商生命周期</p>
+                <h2 class="text-4xl font-bold mb-3">E-commerce Use Cases</h2>
+                <p class="text-gray-400">From Amazon product selection to competitive pricing, our APIs cover the entire
+                    e-commerce lifecycle</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -453,17 +457,17 @@
                         <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center">
                             <i class="fas fa-box-open text-3xl text-yellow-400"></i>
                         </div>
-                        <div class="text-xl font-bold">Amazon 产品选择</div>
+                        <div class="text-xl font-bold">Amazon Product Selection</div>
                     </div>
-                    <div class="text-gray-400 mb-4">全面的 Amazon 产品数据，助力明智的选择决策
+                    <div class="text-gray-400 mb-4">Comprehensive Amazon product data for informed selection decisions
                     </div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 完整 Amazon
-                            目录</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 类别
-                            深度分析</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 实时产品
-                            数据</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Full Amazon
+                            catalog</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Category
+                            deep-dive</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Real-time product
+                            data</li>
                     </ul>
                 </div>
 
@@ -473,15 +477,15 @@
                         <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
                             <i class="fas fa-bullhorn text-3xl text-blue-400"></i>
                         </div>
-                        <div class="text-xl font-bold">Amazon 广告监控</div>
+                        <div class="text-xl font-bold">Amazon Ad Monitoring</div>
                     </div>
-                    <div class="text-gray-400 mb-4">跟踪 Amazon 赞助产品和广告策略</div>
+                    <div class="text-gray-400 mb-4">Track Amazon sponsored products and advertising strategies</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 关键词广告
-                            跟踪</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 赞助
-                            投放</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 竞争对手广告
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Keyword ad
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Sponsored
+                            placement</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Competitor ads
                         </li>
                     </ul>
                 </div>
@@ -494,14 +498,14 @@
                         </div>
                         <div class="text-xl font-bold">E-commerce Price Monitoring</div>
                     </div>
-                    <div class="text-gray-400 mb-4">跟踪 Amazon 和电商定价，获得竞争优势</div>
+                    <div class="text-gray-400 mb-4">Track Amazon and e-commerce pricing for competitive advantage</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 实时价格
-                            跟踪</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 价格变动
-                            提醒</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 历史
-                            定价</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Real-time price
+                            tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Price change
+                            alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Historical
+                            pricing</li>
                     </ul>
                 </div>
 
@@ -511,16 +515,16 @@
                         <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
                             <i class="fas fa-trophy text-3xl text-purple-400"></i>
                         </div>
-                        <div class="text-xl font-bold">Amazon 畅销榜跟踪</div>
+                        <div class="text-xl font-bold">Amazon Bestseller Tracking</div>
                     </div>
-                    <div class="text-gray-400 mb-4">监控 Amazon 畅销榜和类别排名</div>
+                    <div class="text-gray-400 mb-4">Monitor Amazon bestseller lists and category rankings</div>
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 畅销榜
-                            排名</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 类别趋势
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Bestseller
+                            rankings</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Category trends
                         </li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 新品
-                            跟踪</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> New release
+                            tracking</li>
                     </ul>
                 </div>
             </div>
@@ -531,8 +535,8 @@
     <section class="py-20 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold mb-3">电商成功案例 Stories</h2>
-                <p class="text-gray-400">企业如何利用 Pangol Info 的 Amazon API 实现数据驱动的增长</p>
+                <h2 class="text-4xl font-bold mb-3">E-commerce Success Stories</h2>
+                <p class="text-gray-400">How businesses leverage Pangol Info's Amazon API for data-driven growth</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -545,11 +549,12 @@
                             class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
                             01</div>
                     </div>
-                    <div class="font-semibold mb-2 text-lg">Amazon 产品智能</div>
-                    <div class="text-gray-400 text-sm leading-relaxed mb-4">支持 30K SKU Amazon 产品选择，API 成功率超过 99%</div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Product Intelligence</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Powered 30K SKU Amazon product selection
+                        with 99%+ API success rate</div>
                     <div class="flex items-center gap-2 text-xs text-accent-cyan">
                         <i class="fas fa-check-circle"></i>
-                        <span>Amazon API 成功率超过 99%</span>
+                        <span>99%+ Amazon API Success</span>
                     </div>
                 </div>
 
@@ -562,11 +567,12 @@
                             class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
                             02</div>
                     </div>
-                    <div class="font-semibold mb-2 text-lg">多类别电商</div>
-                    <div class="text-gray-400 text-sm leading-relaxed mb-4">通过 Amazon 数据提取实现多类别扩展</div>
+                    <div class="font-semibold mb-2 text-lg">Multi-Category E-commerce</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Enabled multi-category expansion with Amazon
+                        data extraction</div>
                     <div class="flex items-center gap-2 text-xs text-accent-purple">
                         <i class="fas fa-check-circle"></i>
-                        <span>多类别覆盖</span>
+                        <span>Multi-Category Coverage</span>
                     </div>
                 </div>
 
@@ -579,11 +585,12 @@
                             class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
                             03</div>
                     </div>
-                    <div class="font-semibold mb-2 text-lg">Amazon 广告智能</div>
-                    <div class="text-gray-400 text-sm leading-relaxed mb-4">构建每小时 Amazon 赞助产品监控系统</div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Ad Intelligence</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">Built hourly Amazon sponsored product
+                        monitoring system</div>
                     <div class="flex items-center gap-2 text-xs text-orange-400">
                         <i class="fas fa-check-circle"></i>
-                        <span>每小时 Amazon 跟踪</span>
+                        <span>Hourly Amazon Tracking</span>
                     </div>
                 </div>
 
@@ -596,11 +603,12 @@
                             class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400">
                             04</div>
                     </div>
-                    <div class="font-semibold mb-2 text-lg">Amazon 关键词平台</div>
-                    <div class="text-gray-400 text-sm leading-relaxed mb-4">高精度 Amazon SERP API，支持百万级流量分析</div>
+                    <div class="font-semibold mb-2 text-lg">Amazon Keyword Platform</div>
+                    <div class="text-gray-400 text-sm leading-relaxed mb-4">High-precision Amazon SERP API supporting
+                        million-scale traffic analysis</div>
                     <div class="flex items-center gap-2 text-xs text-teal-400">
                         <i class="fas fa-check-circle"></i>
-                        <span>百万级 Amazon 数据</span>
+                        <span>Million-Scale Amazon Data</span>
                     </div>
                 </div>
             </div>
@@ -611,8 +619,8 @@
     <section id="apis" class="py-16 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold">Amazon & E-commerce API 文档</h2>
-                <p class="text-gray-400">Amazon 数据抓取 API 和电商数据提取的综合指南</p>
+                <h2 class="text-4xl font-bold">Amazon & E-commerce API Documentation</h2>
+                <p class="text-gray-400">Comprehensive guides for Amazon scraping API and e-commerce data extraction</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -622,9 +630,9 @@
                         <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
                             <i class="fas fa-shopping-bag text-orange-400 text-xl"></i>
                         </div>
-                        <div class="font-semibold">Amazon 数据抓取 API</div>
+                        <div class="font-semibold">Amazon Scraping API</div>
                     </div>
-                    <div class="text-gray-400 text-sm">完整的 Amazon 产品数据提取</div>
+                    <div class="text-gray-400 text-sm">Complete Amazon product data extraction</div>
                 </a>
 
                 <a href="https://docs.pangolinfo.com/en-api-reference/universalApi/universalApi"
@@ -635,7 +643,7 @@
                         </div>
                         <div class="font-semibold">E-commerce API</div>
                     </div>
-                    <div class="text-gray-400 text-sm">多平台电商数据</div>
+                    <div class="text-gray-400 text-sm">Multi-platform e-commerce data</div>
                 </a>
 
                 <a href="https://docs.pangolinfo.com/en-api-reference/serpApi/serpAPI"
@@ -646,7 +654,7 @@
                         </div>
                         <div class="font-semibold">Amazon SERP API</div>
                     </div>
-                    <div class="text-gray-400 text-sm">Amazon 搜索结果数据</div>
+                    <div class="text-gray-400 text-sm">Amazon search results data</div>
                 </a>
 
                 <a href="https://docs.pangolinfo.com/en-api-reference/trendsApi/keywordTrendsAPI"
@@ -657,7 +665,7 @@
                         </div>
                         <div class="font-semibold">Amazon Keyword Trends</div>
                     </div>
-                    <div class="text-gray-400 text-sm">Amazon 搜索趋势分析</div>
+                    <div class="text-gray-400 text-sm">Amazon search trends analysis</div>
                 </a>
 
                 <a href="https://docs.pangolinfo.com/en-api-reference/mapDataApi/mapDataAPI"
@@ -668,7 +676,7 @@
                         </div>
                         <div class="font-semibold">Location Data API</div>
                     </div>
-                    <div class="text-gray-400 text-sm">地理定向电商数据</div>
+                    <div class="text-gray-400 text-sm">Geo-targeted e-commerce data</div>
                 </a>
 
                 <a href="https://docs.pangolinfo.com/en-api-reference/wipoApi/wipoAPI"
@@ -679,13 +687,13 @@
                         </div>
                         <div class="font-semibold">WIPO API</div>
                     </div>
-                    <div class="text-gray-400 text-sm">知识产权数据</div>
+                    <div class="text-gray-400 text-sm">Intellectual property data</div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 最新文章 Section -->
+    <!-- Latest Articles Section -->
     <section id="articles" class="py-20 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-10">
@@ -695,7 +703,7 @@
                 </div>
                 <a href="https://www.pangolinfo.com/blog-pangolin-scrape-api-professional-web-data-collection/"
                     class="text-accent-cyan hover:text-white transition flex items-center gap-2">
-                    查看所有文章 <i class="fas fa-arrow-right"></i>
+                    View All Articles <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
             <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -709,8 +717,9 @@
         <div class="max-w-4xl mx-auto">
             <div
                 class="rounded-3xl p-12 bg-gradient-to-br from-accent-cyan/5 via-accent-purple/5 to-accent-pink/5 border border-white/5 backdrop-blur-2xl shadow-xl shadow-accent-purple/10 text-center">
-                <h2 class="text-4xl font-bold mb-6 text-white">准备扩展您的 Amazon 数据提取了吗？</h2>
-                <p class="text-gray-300 mb-8 max-w-xl mx-auto">获取 1,000 个免费 Amazon API 积分。无需信用卡。几分钟内开始提取 Amazon 产品数据。</p>
+                <h2 class="text-4xl font-bold mb-6 text-white">Ready to Scale Your Amazon Data Extraction?</h2>
+                <p class="text-gray-300 mb-8 max-w-xl mx-auto">Get started with 1,000 free Amazon API credits. No credit
+                    card required. Start extracting Amazon product data in minutes.</p>
                 <div class="max-w-md mx-auto flex gap-3 justify-center">
                     <a href="https://tool.pangolinfo.com/"
                         class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition">Start
@@ -729,46 +738,47 @@
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                        alt="Pangolin Amazon 数据抓取 API Logo" class="w-8 h-8 rounded" />
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
                     <span class="font-bold text-lg text-white">PANGOLIN</span>
                 </div>
-                <div class="text-gray-300 mb-4">为全球企业提供专业的 Amazon 数据抓取 API 和电商数据提取解决方案。</div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
             </div>
             <div>
-                <div class="font-semibold text-white mb-3">产品</div>
+                <div class="font-semibold text-white mb-3">Products</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
-                            class="hover:text-white">Amazon 数据抓取 API</a></li>
+                            class="hover:text-white">Amazon Scraping API</a></li>
                     <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
                             Tracker</a></li>
-                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">定价</a>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">Pricing</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <div class="font-semibold text-white mb-3">资源</div>
+                <div class="font-semibold text-white mb-3">Resources</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API 文档</a>
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API Documentation</a>
                     </li>
                     <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
-                            class="hover:text-white">API 演示</a></li>
+                            class="hover:text-white">API Playground</a></li>
                     <li><a href="https://github.com/Pangolin-spg/Pangolin-spg.github.io" class="hover:text-white">Blog
                             Articles</a></li>
                 </ul>
             </div>
             <div>
-                <div class="font-semibold text-white mb-3">公司</div>
+                <div class="font-semibold text-white mb-3">Company</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">官方网站</a></li>
-                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">控制台</a></li>
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">Official Website</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">Console</a></li>
                     <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
-                            class="hover:text-white">Amazon 解决方案</a></li>
+                            class="hover:text-white">Amazon Solutions</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. 保留所有权利。</div>
-            <div class="text-gray-600 text-sm">AMAZON 数据抓取 API 与电商数据智能</div>
+            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. All rights reserved.</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
         </div>
     </footer>
 
@@ -783,28 +793,28 @@
         // Default articles data
         const defaultArticles = [
             {
-                title: "Getting Started with Amazon 数据抓取 API for Product Data Extraction",
+                title: "Getting Started with Amazon Scraping API for Product Data Extraction",
                 category: "Amazon API",
-                excerpt: "学习如何利用 Pangol Info 的 Amazon 数据抓取 API 从 Amazon 市场提取全面的产品数据、价格和评论信息。",
+                excerpt: "Learn how to leverage Pangol Info's Amazon scraping API to extract comprehensive product data, pricing, and reviews from Amazon marketplace.",
                 icon: "shopping-cart",
                 url: "articles/getting-started-amazon-scraping-api.html"
             },
             {
-                title: "Advanced Amazon Data Extraction: Best Practices 助力电商智能决策",
+                title: "Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence",
                 category: "E-commerce",
                 excerpt: "Discover proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale.",
                 icon: "box",
                 url: "articles/advanced-amazon-data-extraction-best-practices.html"
             },
             {
-                title: "Amazon 产品选择: Using API Data to Find Winning 产品",
+                title: "Amazon Product Selection: Using API Data to Find Winning Products",
                 category: "Product Selection",
                 excerpt: "Master Amazon product selection by analyzing market trends, competitor data, and customer behavior with automated API extraction.",
                 icon: "chart-line",
                 url: "articles/amazon-product-selection-api-data.html"
             },
             {
-                title: "Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API",
+                title: "Amazon Sponsored Products: Monitor Competitor Ad Campaigns with API",
                 category: "Amazon Ads",
                 excerpt: "Track Amazon sponsored product placements, advertising strategies, and promotional campaigns using Amazon SERP API.",
                 icon: "bullhorn",
@@ -813,12 +823,12 @@
             {
                 title: "Building Real-time Amazon Price Monitoring with Scraping API",
                 category: "Price Tracking",
-                excerpt: "使用 Pangol Info 的电商 API 创建自动化 Amazon 价格跟踪系统的分步指南。",
+                excerpt: "Step-by-step guide to creating an automated Amazon price tracking system using Pangol Info's e-commerce API.",
                 icon: "code",
                 url: "articles/amazon-price-monitoring-system.html"
             },
             {
-                title: "通过数据驱动的产品智能扩展 Amazon 业务",
+                title: "Scale Your Amazon Business with Data-Driven Product Intelligence",
                 category: "Case Study",
                 excerpt: "Real-world case studies showing how sellers leverage Amazon scraping API for 10x growth and competitive advantage.",
                 icon: "rocket",
@@ -875,7 +885,7 @@
                 <h3 class="text-xl font-bold mb-3 text-white group-hover:text-accent-cyan transition-colors">${article.title}</h3>
                 <p class="text-gray-400 text-sm leading-relaxed mb-4">${article.excerpt}</p>
                 <div class="flex items-center text-accent-cyan text-sm font-semibold">
-                    <span>阅读更多</span>
+                    <span>Read More</span>
                     <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                 </div>
             `;
@@ -905,7 +915,7 @@
                 <h3 class="text-xl font-bold mb-3 text-white group-hover:text-accent-cyan transition-colors">${title}</h3>
                 <p class="text-gray-400 text-sm leading-relaxed mb-4">Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence strategies.</p>
                 <div class="flex items-center text-accent-cyan text-sm font-semibold">
-                    <span>阅读更多</span>
+                    <span>Read More</span>
                     <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                 </div>
             `;
