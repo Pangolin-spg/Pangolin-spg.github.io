@@ -1,0 +1,15 @@
+{
+  "host": "blog.pangolinfo.com",
+  "key": "f95cfee06c954ae3bcb1d71d5718bc71",
+  "keyLocation": "https://blog.pangolinfo.com/f95cfee06c954ae3bcb1d71d5718bc71.txt",
+  "urlList": [
+    "https://blog.pangolinfo.com/",
+    "https://blog.pangolinfo.com/blog.html",
+    "https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html",
+    "https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html",
+    "https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html",
+    "https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html",
+    "https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html",
+    "https://blog.pangolinfo.com/articles/amazon-business-case-studies.html"
+  ]
+}

@@ -1,0 +1,30 @@
+To: support@perplexity.ai
+Subject: Request to Index blog.pangolinfo.com
+
+Hello Perplexity Team,
+
+I would like to request indexing for our technical blog about Amazon API and e-commerce data extraction:
+
+- Website URL: https://blog.pangolinfo.com
+- Sitemap URL: https://blog.pangolinfo.com/sitemap.xml
+- RSS Feed: https://blog.pangolinfo.com/feed.xml
+
+Content Overview:
+- Amazon Scraping API tutorials
+- E-commerce data extraction guides
+- Product intelligence best practices
+- Real-world case studies
+
+Our robots.txt explicitly allows PerplexityBot crawling, and all content is original, high-quality technical documentation.
+
+We believe our content would be valuable for Perplexity users searching for:
+- Amazon API integration
+- Web scraping techniques
+- E-commerce automation
+- Data extraction solutions
+
+Thank you for considering our request!
+
+Best regards,
+Pangolin Team
+https://www.pangolinfo.com
