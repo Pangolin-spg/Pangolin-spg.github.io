@@ -6,37 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Amazon 数据抓取 API 产品数据提取入门指南 | Pangolin 博客</title>
-    <meta name="description" content="学习如何使用 Pangol Info 的 Amazon 数据抓取 API 提取产品数据、价格和评论。完整的入门指南，包含代码示例和最佳实践。">
-    <meta name="keywords" content="Amazon API, 数据抓取, 产品数据提取, Amazon 爬虫, 电商数据, API 教程">
+    <title>Amazon 数据抓取 API 入门：2025 产品数据提取指南 | Pangolin</title>
+    <meta name="description" content="完整的 Amazon 数据抓取 API 教程，包含代码示例。学习如何使用 Pangolin API 提取产品数据、定价、评论和库存。适合初学者的分步指南。">
+    <meta name="keywords" content="Amazon 数据抓取 API 教程, 产品数据提取, Amazon API 指南, 电商数据抓取, Pangol Info API">
     <meta name="author" content="Pangol Info Scrape API">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Getting Started with Amazon Scraping API for Product Data Extraction">
-    <meta property="og:description"
-        content="Complete guide to extracting Amazon product data using Pangolin Scraping API with practical examples.">
-    <meta property="og:url" content="https://pangolin-spg.github.io/articles/getting-started-amazon-scraping-api.html">
+    <meta property="og:title" content="Amazon 数据抓取 API 产品数据提取入门指南">
+    <meta property="og:description" content="使用 Pangolin Scraping API 提取 Amazon 产品数据的完整指南，附带实用示例。">
+    <meta property="og:url"
+        content="https://pangolin-spg.github.io/zh/articles/getting-started-amazon-scraping-api.html">
     <meta property="og:image"
         content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Getting Started with Amazon Scraping API for Product Data Extraction">
-    <meta name="twitter:description"
-        content="Complete guide to extracting Amazon product data using Pangolin Scraping API.">
+    <meta name="twitter:title" content="Amazon 数据抓取 API 产品数据提取入门指南">
+    <meta name="twitter:description" content="使用 Pangolin Scraping API 提取 Amazon 产品数据的完整指南。">
 
     <!-- Canonical URL -->
     <link rel="canonical" content="https://pangolin-spg.github.io/articles/getting-started-amazon-scraping-api.html">
 
-    <!-- Schema.org Article Markup -->
+    <!-- Schema.org Article Markup (Technical content remains English typically for SEO schema integrity, or can be translated) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Getting Started with Amazon Scraping API for Product Data Extraction",
-      "description": "Complete guide to Amazon product data extraction using Pangolin Scraping API",
+      "headline": "Amazon 数据抓取 API 产品数据提取入门指南",
+      "description": "使用 Pangolin Scraping API 提取 Amazon 产品数据的完整指南",
       "author": {
         "@type": "Organization",
         "name": "Pangol Info Scrape API"
@@ -241,7 +240,7 @@
             margin: 24px 0;
         }
 
-        /* 目录 Styles */
+        /* Table of Contents Styles */
         .toc-link {
             display: block;
             padding: 8px 12px;
@@ -345,7 +344,7 @@
         .copy-code-btn i {
             font-size: 14px;
         }
-    
+
         /* Language Switcher */
         .language-switcher {
             display: inline-block;
@@ -374,9 +373,12 @@
         }
     </style>
     <!-- Hreflang Tags -->
-    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/getting-started-amazon-scraping-api.html">
-    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html">
+    <link rel="alternate" hreflang="en"
+        href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html">
+    <link rel="alternate" hreflang="zh-CN"
+        href="https://blog.pangolinfo.com/zh/articles/getting-started-amazon-scraping-api.html">
+    <link rel="alternate" hreflang="x-default"
+        href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html">
 
 </head>
 
@@ -391,12 +393,11 @@
     </div>
 
     <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
-            <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Amazon 数据抓取 API Logo"
+                    alt="Pangolin Amazon Scraping API Logo"
                     class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
                 <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
             </a>
@@ -432,12 +433,16 @@
             <div
                 class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase">
                 <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
-                Amazon API Tutorial
+                Amazon API 教程
             </div>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">Amazon 数据抓取 API 产品数据提取入门指南</h1>
-            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">学习如何使用 Pangol Info 的 Amazon 数据抓取 API 从 Amazon 市场提取全面的产品数据、价格和评论信息。本指南将带您了解从身份验证到高级数据提取的完整流程，包含实用代码示例和最佳实践。</p>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Amazon 数据抓取 API 产品数据提取入门指南
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                了解如何利用 Pangolin 的 Amazon 数据抓取 API 从 Amazon 市场中提取全面的产品数据、定价和评论信息。
+            </p>
             <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
-                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-calendar mr-2"></i>2025年12月12日</span>
                 <span><i class="far fa-clock mr-2"></i>15 分钟阅读</span>
                 <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
             </div>
@@ -454,10 +459,11 @@
                     <article class="glass-card rounded-3xl p-8 md:p-12">
 
                         <p class="text-xl text-gray-300 font-medium mb-8">
-                            Amazon 产品数据提取已成为电商企业、市场研究人员和数据分析师的必备能力。无论您是监控竞争对手价格、进行产品研究，还是构建价格比对工具，可靠地访问 Amazon 庞大的产品目录都至关重要。本综合指南将带您了解使用 Pangol Info 的 Amazon 数据抓取 API 高效、大规模提取产品数据所需的一切知识。
+                            Amazon 产品数据提取已成为电商业务、市场研究人员和数据分析师的必备能力。无论您是监控竞争对手定价、进行产品研究，还是构建比价工具，可靠地访问 Amazon
+                            庞大的产品目录都至关重要。本综合指南将带您了解使用 Pangolin Amazon Scraping API 高效且大规模提取产品数据所需的一切知识。
                         </p>
 
-                        <h2 id="why-amazon-product-data-extraction-matters">为什么 Amazon 产品数据提取很重要</h2>
+                        <h2 id="why-matters">为什么 Amazon 产品数据提取很重要</h2>
 
                         <p>
                             Amazon 在全球多个市场拥有超过 3.5 亿种产品。对于在电商领域运营的企业而言，访问这些数据可提供无价的洞察：
@@ -467,18 +473,19 @@
                             <li><strong>竞争情报</strong>：实时跟踪竞争对手的定价策略、产品发布和库存水平</li>
                             <li><strong>市场研究</strong>：识别热门产品，通过评论分析客户情绪，并发现市场空白</li>
                             <li><strong>动态定价</strong>：根据实时市场数据调整您的定价策略，以实现利润最大化</li>
-                            <li><strong>选品决策</strong>：根据需求、竞争和盈利指标，做出数据驱动的产品销售决策</li>
+                            <li><strong>产品选择</strong>：根据需求、竞争和盈利指标，做出数据驱动的产品销售决策</li>
                             <li><strong>库存管理</strong>：监控库存水平和供货模式，以优化您自己的库存</li>
                         </ul>
 
                         <p>
-                            然而，大规模手动提取数据是不切实际的。Amazon 的网站结构复杂，频繁变化，并实施了复杂的反爬虫措施。这正是 Pangol Info 的 Amazon 数据抓取 API 发挥价值的地方。
+                            然而，手动提取这些数据在规模化时是不切实际的。Amazon 的网站结构复杂，频繁变化，并实施了复杂的反爬虫措施。这正是 Pangolin Amazon Scraping API
+                            发挥无价作用的地方。
                         </p>
 
-                        <h2 id="understanding-pangol-info's-amazon-scraping-api">了解 Pangol Info 的 Amazon 数据抓取 API</h2>
+                        <h2 id="understanding-api">了解 Pangolin Amazon Scraping API</h2>
 
                         <p>
-                            Pangol Info 的 Amazon 数据抓取 API 是专为 Amazon 数据提取设计的企业级解决方案。与普通的网络爬虫不同，它处理了 Amazon 基础设施的所有复杂性：
+                            Pangolin Amazon Scraping API 是专为 Amazon 数据提取设计的专业级解决方案。与通过基本网页爬虫不同，它处理了 Amazon 基础设施的所有复杂性：
                         </p>
 
                         <div class="info-box">
@@ -488,17 +495,17 @@
                                 <li><strong>多市场支持</strong>：从 Amazon.com、Amazon.co.uk、Amazon.de 和其他 15+ 个市场提取数据</li>
                                 <li><strong>全面的数据字段</strong>：访问产品详情、定价、评论、评分、图片、变体等</li>
                                 <li><strong>实时数据</strong>：以亚秒级响应时间获取最新的实时信息</li>
-                                <li><strong>可扩展架构</strong>：以企业级可靠性处理数百万请求</li>
+                                <li><strong>可扩展的基础设施</strong>：以企业级可靠性处理数百万个请求</li>
                             </ul>
                         </div>
 
-                        <h2 id="prerequisites">入门准备：前置条件</h2>
+                        <h2 id="prerequisites">入门：前置条件</h2>
 
-                        <p>在深入代码之前，您需要准备：</p>
+                        <p>在深入代码之前，您需要：</p>
 
                         <ol>
-                            <li><strong>Pangol Info API 账户</strong>：注册于 <a href="https://tool.pangolinfo.com/"
-                                    class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 以获取您的 API 凭证</li>
+                            <li><strong>Pangolin API 账户</strong>：在 <a href="https://tool.pangolinfo.com/"
+                                    class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 注册以获取您的 API 凭据</li>
                             <li><strong>API Key</strong>：从控制台获取您的认证密钥（您将获得 1,000 个免费积分作为开始）</li>
                             <li><strong>开发环境</strong>：Python 3.7+、Node.js 14+ 或任何可以发送 HTTP 请求的语言</li>
                             <li><strong>基础编程知识</strong>：熟悉 REST API 和 JSON 数据结构</li>
@@ -507,7 +514,7 @@
                         <h2 id="authentication">身份验证和 API 基础</h2>
 
                         <p>
-                            Pangol Info 的 API 使用 Bearer 令牌认证。每个请求都必须在 Authorization 标头中包含您的 API 密钥。基本结构如下：
+                            Pangolin API 使用 Bearer 令牌认证。每个请求都必须在 Authorization 标头中包含您的 API Key。基本结构如下：
                         </p>
 
                         <pre><code class="language-bash">curl -X POST "https://scrapeapi.pangolinfo.com/api/v1/scrape" \
@@ -523,16 +530,17 @@
   }'</code></pre>
 
                         <div class="warning-box">
-                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i class="fas fa-exclamation-triangle mr-2"></i>安全最佳实践</h4>
-                            <p class="mb-0">切勿在客户端代码中硬编码您的 API Key 或将其提交到版本控制系统. 使用环境变量或安全密钥管理系统。</p>
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
+                                    class="fas fa-exclamation-triangle mr-2"></i>安全最佳实践</h4>
+                            <p class="mb-0">切勿在客户端代码中硬编码您的 API Key 或将其提交到版本控制系统。请使用环境变量或安全密钥管理系统。</p>
                         </div>
 
-                        <h2 id="extracting-product-data-step-by-step-guide">提取产品数据：分步指南</h2>
+                        <h2 id="step-by-step">提取产品数据：分步指南</h2>
 
-                        <h3 id="basic-product-information-extraction">1. 基础产品信息提取</h3>
+                        <h3 id="basic-extraction">1. 基础产品信息提取</h3>
 
                         <p>
-                            让我们从提取基础产品信息开始。最常见的用例是使用 ASIN（Amazon 标准识别码）从产品详情页获取数据。
+                            让我们从提取基础产品信息开始。最常见的用例是使用 ASIN（Amazon Standard Identification Number）从产品详情页获取数据。
                         </p>
 
                         <p><strong>Python 示例：</strong></p>
@@ -540,38 +548,38 @@
                         <pre><code class="language-python">import requests
 import json
 
-# Your Pangol Info API credentials
+# 您的 Pangolin API 凭据
 API_KEY = "your_api_key_here"
 API_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
 
-# Product ASIN you want to scrape
+# 您想要抓取的产品 ASIN
 product_asin = "B0DYTF8L2W"
 amazon_url = f"https://www.amazon.com/dp/{product_asin}"
 
-# Request headers
+# 请求头
 headers = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
 
-# Request payload
+# 请求负载
 payload = {
     "url": amazon_url,
     "parserName": "amzProductDetail",
     "format": "json",
     "bizContext": {
-        "zipcode": "10041"  # US zipcode (required for Amazon)
+        "zipcode": "10041"  # 美国邮编 (Amazon 需要)
     }
 }
 
-# Make the API request
+# 发送 API 请求
 response = requests.post(API_ENDPOINT, headers=headers, json=payload)
 
-# Check if request was successful
+# 检查请求是否成功
 if response.status_code == 200:
     result = response.json()
     
-    # Extract product information from the response structure
+    # 从响应结构中提取产品信息
     if result.get('code') == 0:
         data = result.get('data', {})
         json_data = data.get('json', [{}])[0]
@@ -589,7 +597,7 @@ if response.status_code == 200:
                 print(f"Brand: {product.get('brand')}")
                 print(f"Sales: {product.get('sales')}")
                 
-                # Save to file
+                # 保存到文件
                 with open(f'product_{product_asin}.json', 'w') as f:
                     json.dump(product, f, indent=2)
             else:
@@ -602,10 +610,10 @@ else:
     print(f"HTTP Error: {response.status_code}")
     print(response.text)</code></pre>
 
-                        <h3 id="understanding-the-response-structure">2. 理解响应结构</h3>
+                        <h3 id="response-structure">2. 理解响应结构</h3>
 
                         <p>
-                            当您设置 <code>format: "json"</code> 时，Pangolin 会返回如下结构的 JSON 数据：
+                            当您设置 <code>format: "json"</code> 时，Pangolin 会返回如下结构的结构化 JSON 数据：
                         </p>
 
                         <pre><code class="language-json">{
@@ -657,7 +665,7 @@ else:
   }
 }</code></pre>
 
-                        <h3 id="building-a-price-monitoring-system">3. 构建价格监控系统</h3>
+                        <h3 id="price-monitoring">3. 构建价格监控系统</h3>
 
                         <p>
                             价格监控是 Amazon 数据提取最有价值的应用之一。这是一个完整的示例：
@@ -729,9 +737,9 @@ tracker = AmazonPriceTracker(API_KEY)
 product = tracker.track_price('B08N5WRWNW')
 print(f"Tracked: {product.get('title')} - {product.get('price')}")</code></pre>
 
-                        <h2 id="best-practices-and-optimization">最佳实践和优化</h2>
+                        <h2 id="best-practices">最佳实践和优化</h2>
 
-                        <h3 id="rate-limiting-and-error-handling">速率限制和错误处理</h3>
+                        <h3 id="rate-limiting">速率限制和错误处理</h3>
 
                         <p>
                             实施适当的速率限制和错误处理可确保可靠的长期运行：
@@ -769,19 +777,20 @@ def scrape_with_safety(asin):
                         <h2 id="conclusion">总结</h2>
 
                         <p>
-                            Amazon 产品数据提取是一项强大的能力，可以改变您的电商业务战略。借助 Pangol Info 的 Amazon 数据抓取 API，您可以访问企业级基础设施，处理所有数据提取的复杂性，从而专注于获取洞察和做出数据驱动的决策。
+                            Amazon 产品数据提取是一项强大的能力，可以改变您的电商业务战略。借助 Pangolin Amazon Scraping
+                            API，您可以访问企业级基础设施，处理所有数据提取的复杂性，从而专注于获取洞察和做出数据驱动的决策。
                         </p>
 
                         <div class="success-box mt-8">
                             <h4 class="font-bold text-lg mb-3 text-green-500"><i
                                     class="fas fa-check-circle mr-2"></i>下一步</h4>
                             <ul class="mb-0">
-                                <li><strong>注册 Pangolin</strong>：免费获取您的 API Key 于 <a
-                                        href="https://tool.pangolinfo.com/"
-                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
-                                <li><strong>探索文档</strong>：访问 <a
-                                        href="https://docs.pangolinfo.com/en-index"
-                                        class="text-accent-cyan hover:underline">docs.pangolinfo.com</a> 获取完整的 API 参考</li>
+                                <li><strong>注册 Pangolin</strong>：在 <a href="https://tool.pangolinfo.com/"
+                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 免费获取您的 API Key
+                                </li>
+                                <li><strong>探索文档</strong>：访问 <a href="https://docs.pangolinfo.com/en-index"
+                                        class="text-accent-cyan hover:underline">docs.pangolinfo.com</a> 获取完整的 API 参考
+                                </li>
                                 <li><strong>在 Playground 中测试</strong>：尝试交互式 API Playground</li>
                                 <li><strong>加入社区</strong>：与其他开发者联系并分享您的用例</li>
                             </ul>
@@ -791,99 +800,92 @@ def scrape_with_safety(asin):
 
                     <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
-                        <h3 id="ready-to-start-extracting-amazon-data">准备开始提取 Amazon 数据了吗？</h3>
-                        <p class="text-gray-400 mb-6">获取 1,000 个免费 API 积分，立即开始构建</p>
-                        <div class="flex gap-4 justify-center flex-wrap">
-                            <a href="https://tool.pangolinfo.com/"
-                                class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
-                                开始免费试用
-                            </a>
-                            <a href="https://docs.pangolinfo.com/en-index"
-                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
-                                查看文档
-                            </a>
-                        </div>
+                        <h3 id="ready-start">准备开始提取 Amazon 数据了吗？</h3>
+                        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                            只需几分钟即可开始免费使用。无需信用卡。
+                        </p>
+                        <a href="https://tool.pangolinfo.com/"
+                            class="inline-block bg-accent-cyan text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-accent-cyan/20 hover:shadow-accent-cyan/40 transform hover:-translate-y-1 transition duration-300">
+                            免费获取 API Key
+                        </a>
                     </div>
                 </div>
 
                 <!-- Sidebar (1/3 width) -->
-                <div class="lg:col-span-1">
-                    <div class="sidebar-sticky space-y-6">
-
-                        <!-- 目录 -->
-                        <div class="glass-card rounded-2xl p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
-                            <nav class="space-y-1">
-                                <a href="#why-matters" class="toc-link">为什么 Amazon 数据提取很重要</a>
-                                <a href="#understanding-api" class="toc-link">了解 Pangol Info 的 API</a>
-                                <a href="#prerequisites" class="toc-link">入门准备：前置条件</a>
-                                <a href="#authentication" class="toc-link">身份验证和 API 基础</a>
-                                <a href="#step-by-step" class="toc-link">分步指南</a>
-                                <a href="#basic-extraction" class="toc-link toc-link-sub">1. Basic Product
-                                    Extraction</a>
-                                <a href="#response-structure" class="toc-link toc-link-sub">2. Response Structure</a>
-                                <a href="#price-monitoring" class="toc-link toc-link-sub">3. Price Monitoring</a>
-                                <a href="#best-practices" class="toc-link">最佳实践</a>
-                                <a href="#rate-limiting" class="toc-link toc-link-sub">速率限制</a>
-                                <a href="#conclusion" class="toc-link">总结</a>
+                <div class="hidden lg:block lg:col-span-1">
+                    <div class="sidebar-sticky">
+                        <!-- Table of Contents -->
+                        <div class="glass-card rounded-2xl p-6 mb-6">
+                            <h4 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">目录</h4>
+                            <nav id="toc">
+                                <!-- TOC will be generated by JS -->
                             </nav>
                         </div>
 
-                        <!-- Pangolin Scrape API Product Card -->
-                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
-                            class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-rocket text-white text-2xl"></i>
+                        <!-- Product Card 1: Scrape API -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-pangolin-500 to-pangolin-700 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Scrape API</h4>
+                                    <span
+                                        class="text-xs text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">畅销</span>
+                                </div>
                             </div>
-                            <h4
-                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
-                                Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">Amazon 和电商数据提取专业 API
-                                with 99.9% uptime</p>
-                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
-                                <span>了解更多</span>
-                                <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
+                            <p class="text-sm text-gray-400 mb-4">
+                                具有 99.9% 正常运行时间和自动验证码处理功能的专业 Amazon 抓取 API。
+                            </p>
+                            <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                                class="block w-full text-center py-2 rounded-lg border border-pangolin-500 text-pangolin-400 hover:bg-pangolin-500 hover:text-white transition">
+                                了解更多
+                            </a>
+                        </div>
 
-                        <!-- AMZ Data Tracker Product Card -->
-                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
-                            class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                        <!-- Product Card 2: AMZ Data Tracker -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-purple to-pink-600 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">AMZ Tracker</h4>
+                                    <span
+                                        class="text-xs text-accent-purple bg-accent-purple/10 px-2 py-0.5 rounded">新</span>
+                                </div>
                             </div>
-                            <h4
-                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
-                                AMZ Data Tracker</h4>
-                            <p class="text-gray-400 text-sm mb-4">零代码 Amazon 产品跟踪，支持自动化价格
-                                alerts and Excel export</p>
-                            <div class="flex items-center text-accent-purple text-sm font-semibold">
-                                <span>了解更多</span>
-                                <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
+                            <p class="text-sm text-gray-400 mb-4">
+                                用于跟踪 ASIN 表现、关键词和 BSR 历史的可视化仪表板。
+                            </p>
+                            <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                                class="block w-full text-center py-2 rounded-lg border border-accent-purple text-accent-purple hover:bg-accent-purple hover:text-white transition">
+                                查看演示
+                            </a>
+                        </div>
 
-                        <!-- Chrome Extension Card -->
-                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=zh-CN&authuser=0"
-                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-chrome text-white text-2xl"></i>
+                        <!-- Product Card 3: Chrome Extension -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white text-xl">
+                                    <i class="fab fa-chrome"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Extension</h4>
+                                    <span class="text-xs text-gray-400 bg-gray-800 px-2 py-0.5 rounded">免费</span>
+                                </div>
                             </div>
-                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
-                                浏览器扩展</h4>
-                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome 扩展用于即时 Amazon 产品分析</p>
-                            <div class="flex items-center text-green-400 text-sm font-semibold">
-                                <span>安装扩展</span>
-                                <i
-                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                            </div>
-                        </a>
-
+                            <p class="text-sm text-gray-400 mb-4">
+                                免费 Chrome 扩展，直接从浏览器快速提取数据。
+                            </p>
+                            <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf"
+                                class="block w-full text-center py-2 rounded-lg border border-gray-600 text-gray-400 hover:bg-gray-700 hover:text-white transition">
+                                立即安装
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -946,7 +948,7 @@ def scrape_with_safety(asin):
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 
     <script>
-        // 目录 Active State
+        // Table of Contents Active State
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const id = entry.target.getAttribute('id');
@@ -976,8 +978,20 @@ def scrape_with_safety(asin):
             });
         });
 
-        // Add copy buttons to all code blocks
-        document.addEventListener('DOMContentLoaded', function () {
+        // Generate TOC
+        document.addEventListener('DOMContentLoaded', () => {
+            const toc = document.getElementById('toc');
+            const headers = document.querySelectorAll('article h2, article h3');
+
+            headers.forEach(header => {
+                const link = document.createElement('a');
+                link.href = '#' + header.id;
+                link.textContent = header.textContent;
+                link.className = header.tagName === 'H2' ? 'toc-link' : 'toc-link toc-link-sub';
+                toc.appendChild(link);
+            });
+
+            // Add copy buttons to all code blocks
             const codeBlocks = document.querySelectorAll('pre');
 
             codeBlocks.forEach((pre, index) => {
@@ -990,7 +1004,7 @@ def scrape_with_safety(asin):
                 // Create copy button
                 const copyButton = document.createElement('button');
                 copyButton.className = 'copy-code-btn';
-                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
                 copyButton.setAttribute('data-code-index', index);
 
                 // Add click handler
@@ -1007,14 +1021,14 @@ def scrape_with_safety(asin):
 
                         // Reset after 2 seconds
                         setTimeout(() => {
-                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
                             copyButton.classList.remove('copied');
                         }, 2000);
                     } catch (err) {
                         console.error('Failed to copy:', err);
-                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>失败</span>';
                         setTimeout(() => {
-                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
                         }, 2000);
                     }
                 });
