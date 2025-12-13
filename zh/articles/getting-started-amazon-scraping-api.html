@@ -454,86 +454,60 @@
                     <article class="glass-card rounded-3xl p-8 md:p-12">
 
                         <p class="text-xl text-gray-300 font-medium mb-8">
-                            Amazon product data extraction has become essential for e-commerce businesses, market
-                            researchers, and data analysts. Whether you're monitoring competitor pricing, conducting
-                            product research, or building a price comparison tool, having reliable access to Amazon's
-                            vast product catalog is crucial. This comprehensive guide will walk you through everything
-                            you need to know about using Pangol Info's Amazon Scraping API to extract product data
-                            efficiently and at scale.
+                            Amazon 产品数据提取已成为电商企业、市场研究人员和数据分析师的必备能力。无论您是监控竞争对手价格、进行产品研究，还是构建价格比对工具，可靠地访问 Amazon 庞大的产品目录都至关重要。本综合指南将带您了解使用 Pangol Info 的 Amazon 数据抓取 API 高效、大规模提取产品数据所需的一切知识。
                         </p>
 
                         <h2 id="why-amazon-product-data-extraction-matters">为什么 Amazon 产品数据提取很重要</h2>
 
                         <p>
-                            Amazon hosts over 350 million products across multiple marketplaces worldwide. For
-                            businesses operating in the e-commerce space, access to this data provides invaluable
-                            insights:
+                            Amazon 在全球多个市场拥有超过 3.5 亿种产品。对于在电商领域运营的企业而言，访问这些数据可提供无价的洞察：
                         </p>
 
                         <ul>
-                            <li><strong>Competitive Intelligence</strong>: Track competitor pricing strategies, product
-                                launches, and inventory levels in real-time</li>
-                            <li><strong>Market Research</strong>: Identify trending products, analyze customer sentiment
-                                through reviews, and discover market gaps</li>
-                            <li><strong>Dynamic Pricing</strong>: Adjust your pricing strategy based on real-time market
-                                data to maximize profitability</li>
-                            <li><strong>Product Selection</strong>: Make data-driven decisions about which products to
-                                sell based on demand, competition, and profitability metrics</li>
-                            <li><strong>Inventory Management</strong>: Monitor stock levels and availability patterns to
-                                optimize your own inventory</li>
+                            <li><strong>竞争情报</strong>：实时跟踪竞争对手的定价策略、产品发布和库存水平</li>
+                            <li><strong>市场研究</strong>：识别热门产品，通过评论分析客户情绪，并发现市场空白</li>
+                            <li><strong>动态定价</strong>：根据实时市场数据调整您的定价策略，以实现利润最大化</li>
+                            <li><strong>选品决策</strong>：根据需求、竞争和盈利指标，做出数据驱动的产品销售决策</li>
+                            <li><strong>库存管理</strong>：监控库存水平和供货模式，以优化您自己的库存</li>
                         </ul>
 
                         <p>
-                            However, extracting this data manually is impractical at scale. Amazon's website structure
-                            is complex, frequently changes, and implements sophisticated anti-bot measures. This is
-                            where Pangol Info's Amazon Scraping API becomes invaluable.
+                            然而，大规模手动提取数据是不切实际的。Amazon 的网站结构复杂，频繁变化，并实施了复杂的反爬虫措施。这正是 Pangol Info 的 Amazon 数据抓取 API 发挥价值的地方。
                         </p>
 
                         <h2 id="understanding-pangol-info's-amazon-scraping-api">了解 Pangol Info 的 Amazon 数据抓取 API</h2>
 
                         <p>
-                            Pangol Info's Amazon Scraping API is a professional-grade solution designed specifically for
-                            Amazon data extraction. Unlike basic web scrapers, it handles all the complexities of
-                            Amazon's infrastructure:
+                            Pangol Info 的 Amazon 数据抓取 API 是专为 Amazon 数据提取设计的企业级解决方案。与普通的网络爬虫不同，它处理了 Amazon 基础设施的所有复杂性：
                         </p>
 
                         <div class="info-box">
                             <h4 class="font-bold text-lg mb-2 text-accent-cyan">Key Features</h4>
                             <ul class="mb-0">
-                                <li><strong>99.9% Success Rate</strong>: Advanced anti-detection technology ensures
-                                    reliable data extraction</li>
-                                <li><strong>Multi-Marketplace Support</strong>: Extract data from Amazon.com,
-                                    Amazon.co.uk, Amazon.de, and 15+ other marketplaces</li>
-                                <li><strong>Comprehensive Data Fields</strong>: Access product details, pricing,
-                                    reviews, ratings, images, variants, and more</li>
-                                <li><strong>Real-time Data</strong>: Get fresh, up-to-date information with sub-second
-                                    response times</li>
-                                <li><strong>Scalable Infrastructure</strong>: Handle millions of requests with
-                                    enterprise-grade reliability</li>
+                                <li><strong>99.9% 成功率</strong>：先进的反检测技术确保可靠的数据提取</li>
+                                <li><strong>多市场支持</strong>：从 Amazon.com、Amazon.co.uk、Amazon.de 和其他 15+ 个市场提取数据</li>
+                                <li><strong>全面的数据字段</strong>：访问产品详情、定价、评论、评分、图片、变体等</li>
+                                <li><strong>实时数据</strong>：以亚秒级响应时间获取最新的实时信息</li>
+                                <li><strong>可扩展架构</strong>：以企业级可靠性处理数百万请求</li>
                             </ul>
                         </div>
 
                         <h2 id="prerequisites">入门准备：前置条件</h2>
 
-                        <p>Before diving into code, you'll need:</p>
+                        <p>在深入代码之前，您需要准备：</p>
 
                         <ol>
-                            <li><strong>Pangol Info API Account</strong>: Sign up at <a href="https://tool.pangolinfo.com/"
-                                    class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> to get your API
-                                credentials</li>
-                            <li><strong>API Key</strong>: Obtain your authentication key from the dashboard (you'll get
-                                1,000 free credits to start)</li>
-                            <li><strong>Development Environment</strong>: Python 3.7+, Node.js 14+, or any language that
-                                can make HTTP requests</li>
-                            <li><strong>Basic Programming Knowledge</strong>: Familiarity with REST APIs and JSON data
-                                structures</li>
+                            <li><strong>Pangol Info API 账户</strong>：注册于 <a href="https://tool.pangolinfo.com/"
+                                    class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 以获取您的 API 凭证</li>
+                            <li><strong>API Key</strong>：从控制台获取您的认证密钥（您将获得 1,000 个免费积分作为开始）</li>
+                            <li><strong>开发环境</strong>：Python 3.7+、Node.js 14+ 或任何可以发送 HTTP 请求的语言</li>
+                            <li><strong>基础编程知识</strong>：熟悉 REST API 和 JSON 数据结构</li>
                         </ol>
 
                         <h2 id="authentication">身份验证和 API 基础</h2>
 
                         <p>
-                            Pangol Info's API uses Bearer token authentication. Every request must include your API key in
-                            the Authorization header. Here's the basic structure:
+                            Pangol Info 的 API 使用 Bearer 令牌认证。每个请求都必须在 Authorization 标头中包含您的 API 密钥。基本结构如下：
                         </p>
 
                         <pre><code class="language-bash">curl -X POST "https://scrapeapi.pangolinfo.com/api/v1/scrape" \
@@ -560,11 +534,10 @@
                         <h3 id="basic-product-information-extraction">1. 基础产品信息提取</h3>
 
                         <p>
-                            Let's start with extracting basic product information. The most common use case is fetching
-                            data from a product detail page using the ASIN (Amazon Standard Identification Number).
+                            让我们从提取基础产品信息开始。最常见的用例是使用 ASIN（Amazon 标准识别码）从产品详情页获取数据。
                         </p>
 
-                        <p><strong>Python Example:</strong></p>
+                        <p><strong>Python 示例：</strong></p>
 
                         <pre><code class="language-python">import requests
 import json
@@ -634,8 +607,7 @@ else:
                         <h3 id="understanding-the-response-structure">2. 理解响应结构</h3>
 
                         <p>
-                            When you set <code>format: "json"</code>, Pangolin returns structured JSON data with the
-                            following structure:
+                            当您设置 <code>format: "json"</code> 时，Pangolin 会返回如下结构的 JSON 数据：
                         </p>
 
                         <pre><code class="language-json">{
@@ -690,8 +662,7 @@ else:
                         <h3 id="building-a-price-monitoring-system">3. 构建价格监控系统</h3>
 
                         <p>
-                            Price monitoring is one of the most valuable applications of Amazon data extraction. Here's
-                            a complete example:
+                            价格监控是 Amazon 数据提取最有价值的应用之一。这是一个完整的示例：
                         </p>
 
                         <pre><code class="language-python">import time
@@ -765,7 +736,7 @@ print(f"Tracked: {product.get('title')} - {product.get('price')}")</code></pre>
                         <h3 id="rate-limiting-and-error-handling">速率限制和错误处理</h3>
 
                         <p>
-                            Implementing proper rate limiting and error handling ensures reliable, long-term operation:
+                            实施适当的速率限制和错误处理可确保可靠的长期运行：
                         </p>
 
                         <pre><code class="language-python">import time
@@ -800,10 +771,7 @@ def scrape_with_safety(asin):
                         <h2 id="conclusion">总结</h2>
 
                         <p>
-                            Amazon product data extraction is a powerful capability that can transform your e-commerce
-                            business strategy. With Pangol Info's Amazon Scraping API, you have access to enterprise-grade
-                            infrastructure that handles all the complexities of data extraction, allowing you to focus
-                            on deriving insights and making data-driven decisions.
+                            Amazon 产品数据提取是一项强大的能力，可以改变您的电商业务战略。借助 Pangol Info 的 Amazon 数据抓取 API，您可以访问企业级基础设施，处理所有数据提取的复杂性，从而专注于获取洞察和做出数据驱动的决策。
                         </p>
 
                         <div class="success-box mt-8">
