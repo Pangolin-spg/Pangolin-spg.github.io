@@ -332,4 +332,4 @@ Allow: /
 ---
 
 **最后更新**: 2025-12-13
-**维护者**: Pangolin Team
+**维护者**: Pangol Info Team

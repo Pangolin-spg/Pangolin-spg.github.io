@@ -149,7 +149,7 @@
 7. **Canonical URL**: 避免重复内容问题
 
 ### 🎯 关键词策略
-- **品牌词**: Pangolin API, Pangolin Scrape API
+- **品牌词**: Pangolin API, Pangol Info Scrape API
 - **核心词**: Amazon Scraping API, E-commerce Data Extraction
 - **功能词**: Price Monitoring, Product Selection, Ad Monitoring
 - **场景词**: Product Intelligence, Competitive Analysis

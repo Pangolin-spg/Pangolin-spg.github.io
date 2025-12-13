@@ -150,7 +150,7 @@ We believe our content would be valuable for Perplexity users searching for:
 Thank you for considering our request!
 
 Best regards,
-Pangolin Team
+Pangol Info Team
 https://www.pangolinfo.com
 EOF
 
