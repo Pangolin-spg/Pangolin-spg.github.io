@@ -5,26 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>通过数据驱动的产品智能扩展 Amazon 业务：成功案例研究 | Pangolin 博客</title>
-    <meta name="description"
-        content="Real-world case studies showing how Amazon sellers leverage scraping APIs for 10x growth. Learn from successful product research, dynamic pricing, and brand protection strategies.">
-    <meta name="keywords"
-        content="Amazon 案例研究, E-commerce Growth, Data-Driven Selling, Amazon API Success Stories, Private Label Strategy, Amazon Brand Protection, MAP Monitoring">
+    <title>利用数据驱动的产品智能扩展您的 Amazon 业务 | Pangolin 案例研究</title>
+    <meta name="description" content="真实案例研究展示了 Amazon 卖家如何利用抓取 API 实现 10 倍增长。学习成功的产品研究、动态定价和品牌保护策略。">
+    <meta name="keywords" content="Amazon 案例研究, 电商增长, 数据驱动销售, Amazon API 成功案例, 自有品牌策略, Amazon 品牌保护, MAP 监控">
     <meta name="author" content="Pangol Info Scrape API">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Scale Your Amazon Business with Data-Driven Product Intelligence">
-    <meta property="og:description"
-        content="Discover how top sellers use data to scale revenue, protect brands, and dominate niches. 4 real-world case studies with code examples.">
-    <meta property="og:url" content="https://pangolin-spg.github.io/articles/amazon-business-case-studies.html">
+    <meta property="og:title" content="利用数据驱动的产品智能扩展您的 Amazon 业务">
+    <meta property="og:description" content="探索顶级卖家如何使用数据来扩大收入、保护品牌并在细分市场占据主导地位。4 个附带代码示例的真实案例研究。">
+    <meta property="og:url" content="https://pangolin-spg.github.io/zh/articles/amazon-business-case-studies.html">
     <meta property="og:image"
         content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Scale Your Amazon Business with Data-Driven Product Intelligence">
-    <meta name="twitter:description"
-        content="Real data, real growth. See how Amazon sellers scale with API technology.">
+    <meta name="twitter:title" content="利用数据驱动的产品智能扩展您的 Amazon 业务">
+    <meta name="twitter:description" content="真实数据，真实增长。看 Amazon 卖家如何利用 API 技术进行扩展。">
 
     <link rel="canonical" content="https://pangolin-spg.github.io/articles/amazon-business-case-studies.html">
 
@@ -32,8 +28,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Scale Your Amazon Business with Data-Driven Product Intelligence",
-      "description": "In-depth case studies of successful Amazon sellers using data scraping for product research, pricing, and brand protection.",
+      "headline": "利用数据驱动的产品智能扩展您的 Amazon 业务",
+      "description": "关于成功的 Amazon 卖家使用数据抓取进行产品研究、定价和品牌保护的深入案例研究。",
       "author": {
         "@type": "Organization",
         "name": "Pangol Info Scrape API"
@@ -149,6 +145,7 @@
             width: 100%;
         }
 
+        /* Article Styles */
         article {
             font-size: 18px;
             line-height: 1.8;
@@ -260,6 +257,7 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /* Table of Contents Styles */
         .toc-link {
             display: block;
             padding: 8px 12px;
@@ -288,6 +286,7 @@
             font-size: 13px;
         }
 
+        /* Sticky Sidebar */
         .sidebar-sticky {
             position: sticky;
             top: 100px;
@@ -308,6 +307,7 @@
             border-radius: 2px;
         }
 
+        /* Product Card Styles */
         .product-card {
             transition: all 0.3s ease;
         }
@@ -317,6 +317,7 @@
             box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
         }
 
+        /* Code Copy Button */
         .code-block-wrapper {
             position: relative;
         }
@@ -356,7 +357,11 @@
             border-color: rgba(16, 185, 129, 0.5);
             color: #10b981;
         }
-    
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+
         /* Language Switcher */
         .language-switcher {
             display: inline-block;
@@ -384,11 +389,6 @@
             transform: translateY(-1px);
         }
     </style>
-    <!-- Hreflang Tags -->
-    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-business-case-studies.html">
-    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html">
-
 </head>
 
 <body class="antialiased selection:bg-accent-cyan selection:text-white">
@@ -402,12 +402,11 @@
     </div>
 
     <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
-            <a href="https://www.pangolinfo.com/" class="flex items-center gap-3">
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Amazon 数据抓取 API Logo"
+                    alt="Pangolin Amazon Scraping API Logo"
                     class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
                 <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
             </a>
@@ -445,10 +444,14 @@
                 <span class="w-2 h-2 bg-accent-emerald rounded-full inline-block mr-2 animate-pulse"></span>
                 案例研究
             </div>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">通过数据驱动的产品智能扩展 Amazon 业务：成功案例研究</h1>
-            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">真实案例研究展示卖家如何利用 Amazon 数据抓取 API 实现 10 倍增长和竞争优势。探索成功企业如何运用数据智能优化产品选择、定价策略和市场拓展，获得可持续的业务增长。</p>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                利用数据驱动的产品智能扩展您的 Amazon 业务
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                真实案例研究展示了卖家如何利用 Amazon 抓取 API 实现 10 倍增长和竞争优势
+            </p>
             <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
-                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-calendar mr-2"></i>2025年12月12日</span>
                 <span><i class="far fa-clock mr-2"></i>25 分钟阅读</span>
                 <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
             </div>
@@ -464,171 +467,151 @@
                 <div class="lg:col-span-2">
                     <article class="glass-card rounded-3xl p-8 md:p-12">
 
-                        <!-- 简介 -->
+                        <!-- Introduction -->
                         <p class="text-xl text-gray-300 font-medium mb-8">
-                            理论虽好，但现实世界的结果更佳。在这个案例研究集中，我们展示了各种企业——从初创公司到大型企业——如何利用 Amazon 数据提取来实现显著增长、优化运营并获得竞争优势。
+                            在 Amazon 电商的高风险竞争中，依靠直觉已不再足够。苦苦挣扎的副业和 7 位数的商业帝国之间的区别往往归结为一件事：数据。
                         </p>
 
                         <p>
-                            We've analyzed the growth trajectories of hundreds of sellers using Pangol Info's Scraping API.
-                            While their business models vary—from arbitrage to private label—the successful ones share a
-                            common DNA. They treat Amazon not as a marketplace, but as a data mine. They don't guess
-                            what customers want; they let the data tell them.
+                            我们分析了数百名使用 Pangolin Scraping API 的卖家的增长轨迹。虽然他们的商业模式各不相同——从套利到自有品牌——但成功者拥有共同的 DNA。他们不把 Amazon
+                            仅仅视为一个市场，而是一个数据矿山。他们不猜测客户想要什么；他们让数据告诉他们。
                         </p>
 
                         <p>
-                            This article presents four detailed case studies of sellers who transformed their businesses
-                            using programmatic data collection. You'll see exactly how they did it, the code strategies
-                            they used, and the bottom-line 结果 they achieved.
+                            本文介绍了四个详细的案例研究，讲述了卖家如何使用程序化数据收集实现了业务转型。您将确切地看到他们是如何做的，他们使用的代码策略，以及他们实现的最终结果。
                         </p>
 
                         <!-- Case Study 1: New Seller -->
-                        <h2 id="case-study-1">Case Study 1: From Zero to $50k/Month</h2>
+                        <h2 id="case-study-1">案例研究 1：从零到月入 5 万美元</h2>
 
                         <div
                             class="glass-card p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 mb-8">
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div class="stat-card">
                                     <div class="stat-value text-accent-cyan">$5K</div>
-                                    <div class="stat-label">Starting Capital</div>
+                                    <div class="stat-label">启动资金</div>
                                 </div>
                                 <div class="stat-card">
-                                    <div class="stat-value text-accent-emerald">6 Mo</div>
-                                    <div class="stat-label">Time to Goal</div>
+                                    <div class="stat-value text-accent-emerald">6 个月</div>
+                                    <div class="stat-label">达成目标时间</div>
                                 </div>
                                 <div class="stat-card">
                                     <div class="stat-value text-accent-purple">$52K</div>
-                                    <div class="stat-label">Monthly Rev</div>
+                                    <div class="stat-label">月收入</div>
                                 </div>
                                 <div class="stat-card">
                                     <div class="stat-value text-pangolin-400">300%</div>
-                                    <div class="stat-label">ROI</div>
+                                    <div class="stat-label">投资回报率 (ROI)</div>
                                 </div>
                             </div>
                         </div>
 
                         <p>
-                            <strong>挑战:</strong> "Sarah" (name changed for privacy) was a new seller with
-                            limited budget. She knew she couldn't afford a failed product launch. The popular product
-                            research tools (JungleScout, Helium10) were showing the same "winning products" to everyone,
-                            leading to instant saturation. She needed to find hidden gems that others were missing.
+                            <strong>挑战：</strong> “Sarah”（化名）是一位预算有限的新卖家。她知道自己负担不起一次失败的产品发布。流行的产品研究工具（JungleScout,
+                            Helium10）向每个人展示相同的“获胜产品”，导致市场瞬间饱和。她需要找到别人错过的隐藏宝石。
                         </p>
 
                         <p>
-                            <strong>解决方案:</strong> Instead of looking for "best sellers", Sarah looked for
-                            "improving products". She built a script to track products that had low review counts (<50)
-                                but rapidly increasing sales rank (BSR) and rating velocity. </p>
+                            <strong>解决方案：</strong> Sarah 没有寻找“畅销品”，而是寻找“潜力品”。她编写了一个脚本来跟踪那些评论数较少（<50）但销售排名 (BSR)
+                                和评论增长速度迅速提升的产品。 </p>
 
                                 <p>
-                                    <strong>The Code Strategy:</strong>
-                                    She used Pangol Info API to scan specific sub-categories daily, calculating a custom
-                                    "Velocity Score".
+                                    <strong>代码策略：</strong>
+                                    她使用 Pangol Info API 每天扫描特定的子类别，计算自定义的“速度得分”。
                                 </p>
 
                                 <pre><code class="language-python">def calculate_velocity_score(asin, current_data, history_data):
     """
-    Identify products that are heating up before they become bestsellers.
+    在产品成为畅销书之前识别出正在升温的产品。
     """
     if not history_data:
         return 0
         
-    # Calculate BSR improvement (Lower is better)
+    # 计算 BSR 提升 (越低越好)
     bsr_change = history_data['bsr'] - current_data['bsr']
     
-    # Calculate Review velocity (New reviews per day)
+    # 计算评论速度 (每天的新评论)
     days_diff = (current_data['date'] - history_data['date']).days
     review_growth = (current_data['reviews'] - history_data['reviews']) / max(days_diff, 1)
     
-    # Calculate Rating stability
+    # 计算评分稳定性
     rating_hold = 1 if current_data['rating'] >= 4.5 else 0
     
-    # Custom formula: Reward BSR drops and review growth
+    # 自定义公式：奖励 BSR 下降和评论增长
     score = (bsr_change * 0.5) + (review_growth * 100) + (rating_hold * 50)
     return score
 
-# Sarah ran this on "Home & Garden > Organization" subcats
-# RESULT: Found a specific type of 'Bamboo Drawer Organizer' weeks before it trended.</code></pre>
+# Sarah 在 "Home & Garden > Organization" 子类别上运行此代码
+# 结果: 在一种特定类型的 'Bamboo Drawer Organizer' 流行前几周发现了它。</code></pre>
 
                                 <p>
-                                    <strong>The Result:</strong> Sarah launched 3 products in the "Home Organization"
-                                    niche. Because she entered early based on velocity signals rather than raw sales
-                                    volume, she established her brand as a category leader before the big competitors
-                                    arrived. Six months later, her store hit $52,000 in monthly revenue with a healthy
-                                    28% net margin.
+                                    <strong>结果：</strong> Sarah 在“家庭收纳”利基市场推出了 3
+                                    款产品。因为她是根据速度信号而不是原始销量进入市场的，所以她在大型竞争对手到来之前就确立了自己的品牌作为类别领导者的地位。六个月后，由于其先行者优势，她的商店月收入达到
+                                    52,000 美元，净利润率高达 28%。
                                 </p>
 
-                                <!-- 案例研究 2：成熟卖家 -->
-                                <h2 id="case-study-2">案例研究 2：成熟卖家 Doubles Revenue</h2>
+                                <!-- Case Study 2: Established Seller -->
+                                <h2 id="case-study-2">案例研究 2：成熟卖家收入翻倍</h2>
 
                                 <p>
-                                    <strong>挑战:</strong> A mid-sized electronics seller ($500k/year) was
-                                    stagnating. Their ad costs (ACoS) were rising, and competitors were aggressively
-                                    undercutting them. They were bleeding profit to stay competitive.
+                                    <strong>挑战：</strong> 一家中型电子产品卖家（年收入 50 万美元）停滞不前。他们的广告成本 (ACoS)
+                                    正在上升，竞争对手正在积极地以低价抢占市场。为了保持竞争力，他们的利润在不断流失。
                                 </p>
 
                                 <p>
-                                    <strong>解决方案:</strong> They realized they were fighting a price war blindly.
-                                    They implemented a "Smart Margin" system. Instead of just lowering prices, they
-                                    analyzed <em>when</em> competitors ran out of stock or raised prices, and
-                                    capitalized on those moments.
+                                    <strong>解决方案：</strong>
+                                    他们意识到自己是在盲目地进行价格战。他们实施了“智能利润”系统。他们不再只是降低价格，而是分析竞争对手<em>何时</em>缺货或提价，并抓住这些时刻。
                                 </p>
 
                                 <pre><code class="language-python">class ProfitOptimizer:
     def determine_strategy(self, my_inventory, competitor_status):
         """
-        Decide pricing based on inventory levels and competitor weakness.
+        根据库存水平和竞争对手的弱点决定定价。
         """
-        # Scenario 1: Competitor is Out of Stock
-        # OPPORTUNITY: Raise price to maximize margin
+        # 场景 1: 竞争对手缺货
+        # 机会: 提高价格以最大化利润
         if competitor_status['availability'] != 'In Stock':
             return "MAXIMIZE_PROFIT"
             
-        # Scenario 2: My Inventory is High (>90 days supply)
-        # ACTION: Aggressive pricing to liquidate capital
+        # 场景 2: 我的库存很高 (>90 天供应量)
+        # 行动: 激进定价以回笼资金
         if my_inventory > 1000:
             return "LIQUIDATE_SLOW"
             
-        # Scenario 3: Competitor Delivery Time is bad (>1 week)
-        # OPPORTUNITY: Pricing power due to Prime shipping advantage
+        # 场景 3: 竞争对手交货时间很差 (>1 周)
+        # 机会: 由于 Prime 配送优势而拥有定价权
         if "Prime" not in competitor_status['shipping']:
             return "PRIME_PREMIUM"
             
         return "MATCH_COMPETITIVE"</code></pre>
 
                                 <p>
-                                    <strong>The Result:</strong> By raising prices when competitors were weak (instead
-                                    of always matching the lowest price), they increased their average order value by
-                                    12%. Simultaneously, they used the extra margin to bid more aggressively on PPC,
-                                    driving more volume. Revenue doubled to $1M in 12 months.
+                                    <strong>结果：</strong> 通过在竞争对手疲软时提高价格（而不是总是匹配最低价格），他们的平均订单价值增加了 12%。同时，他们利用额外的利润更积极地竞标
+                                    PPC，推动了更多销量。收入在 12 个月内翻了一番，达到 100 万美元。
                                 </p>
 
                                 <!-- Case Study 3: Brand Protection -->
-                                <h2 id="case-study-3">Case Study 3: Brand Protection Success</h2>
+                                <h2 id="case-study-3">案例研究 3：品牌保护成功案例</h2>
 
                                 <p>
-                                    <strong>挑战:</strong> A premium beauty brand was suffering from
-                                    unauthorized resellers violating MAP (Minimum Advertised Price). Their brand value
-                                    was eroding, and authorized retailers were angry. Manual checking was impossible
-                                    across 500+ SKUs.
+                                    <strong>挑战：</strong> 一个高端美容品牌正遭受违反
+                                    MAP（最低广告价格）的未经授权经销商的困扰。他们的品牌价值正在受到侵蚀，授权零售商对此感到愤怒。在 500 多个 SKU 中进行手动检查是不可能的。
                                 </p>
 
                                 <p>
-                                    <strong>解决方案:</strong> They built a "MAP Enforcer" bot. The system scanned
-                                    their ASINs every hour. If a seller appeared with a price below MAP, the system
-                                    automatically logged the violation, took a screenshot (via scraping), and generated
-                                    a cease-and-desist letter template.
+                                    <strong>解决方案：</strong> 他们构建了一个 "MAP 执法者" 机器人。该系统每小时扫描一次他们的 ASIN。如果出现价格低于 MAP
+                                    的卖家，系统会自动记录违规行为，截图（通过抓取），并生成终止和停止函模板。
                                 </p>
 
 
                                 <p>
-                                    <strong>The Code Strategy:</strong>
-                                    Using Python and <code>pandas</code>, they automated the detection of unauthorized
-                                    sellers.
+                                    <strong>代码策略：</strong>
+                                    使用 Python 和 <code>pandas</code>，他们自动化了未经授权卖家的检测。
                                 </p>
 
                                 <pre><code class="language-python">def check_map_violations(asin, map_price, current_offers):
     """
-    Detect sellers violating Minimum Advertised Price (MAP policy).
+    检测违反最低广告价格 (MAP 政策) 的卖家。
     """
     violations = []
     
@@ -636,10 +619,10 @@
         seller_name = offer['seller_name']
         price = offer['price']
         
-        # 1. Price Check
-        if price < map_price * 0.99:  # Allow 1% variance
+        # 1. 价格检查
+        if price < map_price * 0.99:  # 允许 1% 的差异
             
-            # 2. Whitelist Check
+            # 2. 白名单检查
             if seller_name not in APPROVED_RESELLERS:
                 violations.append({
                     "asin": asin,
@@ -651,34 +634,29 @@
                 
     return violations
 
-# Automated this to run every hour.
-# RESULT: Reduced violations by 95% in 45 days.</code></pre>
+# 自动化每小时运行一次。
+# 结果: 45 天内违规行为减少了 95%。</code></pre>
 
                                 <p>
-                                    <strong>The Result:</strong> The "wild west" pricing stopped. Authorized retailers
-                                    regained confidence and increased their orders by 40%. The brand successfully
-                                    reclaimed its premium positioning in the market, directly adding $200k to their
-                                    annual bottom line by stopping margin erosion.
+                                    <strong>结果：</strong> “狂野西部”式的定价停止了。授权零售商重获信心，订单量增加了
+                                    40%。该品牌成功夺回了在市场上的高端定位，通过阻止利润侵蚀直接为年度底线增加了 20 万美元。
                                 </p>
 
                                 <!-- Case Study 4: Private Label Success -->
-                                <h2 id="case-study-4">Case Study 4: Review Mining for Product Dev</h2>
+                                <h2 id="case-study-4">案例研究 4：挖掘评论用于产品开发</h2>
 
                                 <p>
-                                    <strong>挑战:</strong> A private label seller wanted to enter the "Yoga
-                                    Mat" market. It was incredibly saturated. To succeed, they needed a product that was
-                                    objectively better than the competition in ways that customers actually cared about.
+                                    <strong>挑战：</strong> 一位自有品牌卖家想进入“瑜伽垫”市场。这个市场极其饱和。为了成功，他们需要一款在客户真正关心的方面客观上优于竞争对手的产品。
                                 </p>
 
                                 <p>
-                                    <strong>解决方案:</strong> They didn't guess. They scraped 10,000 reviews from
-                                    the top 5 competitors. They used Natural Language Processing (NLP) to find the most
-                                    common 2-star and 3-star complaints.
+                                    <strong>解决方案：</strong> 他们没有猜测。他们从前 5 名竞争对手那里抓取了 10,000 条评论。他们使用自然语言处理 (NLP) 找到了最常见的
+                                    2 星和 3 星投诉。
                                 </p>
 
                                 <p>
-                                    <strong>The Code Strategy:</strong>
-                                    A sentiment analysis script that aggregates negative phrases to find product flaws.
+                                    <strong>代码策略：</strong>
+                                    一个情绪分析脚本，聚合负面短语以查找产品缺陷。
                                 </p>
 
                                 <pre><code class="language-python">from collections import Counter
@@ -686,15 +664,15 @@ import re
 
 def analyze_negative_feedback(reviews):
     """
-    Find the most common complaints in competitor reviews.
+    在竞争对手评论中查找最常见的投诉。
     """
     complaints = []
     
-    # Filter for critical reviews (1-3 stars)
+    # 筛选批评性评论 (1-3 星)
     negative_reviews = [r['text'] for r in reviews if r['rating'] <= 3]
     
     for text in negative_reviews:
-        # Simple extraction of "slippery", "smell", "torn"
+        # 简单提取 "slippery", "smell", "torn"
         if "slippery" in text.lower():
             complaints.append("SLIPPERY")
         if "smell" in text.lower() or "odor" in text.lower():
@@ -704,77 +682,63 @@ def analyze_negative_feedback(reviews):
             
     return Counter(complaints).most_common(5)
 
-# RESULT for Yoga Mats:
-# 1. "Slippery when sweaty" (45% of complaints)
-# 2. "Chemical smell" (30%)
-# 3. "Too thin" (15%)</code></pre>
+# 瑜伽垫的结果:
+# 1. "Slippery when sweaty" (出汗时滑) (45% 的投诉)
+# 2. "Chemical smell" (化学气味) (30%)
+# 3. "Too thin" (太薄) (15%)</code></pre>
 
                                 <p>
-                                    <strong>The Result:</strong> The data was clear. Customers hated "slippery" and
-                                    "smelly" mats. The seller sourced an eco-friendly, extra-grip cork mat. Their
-                                    marketing copy specifically targeted these pain points: "Never Slips, Zero Chemical
-                                    Smell". The product launched with a 4.8-star average and reached $80k/month in sales
-                                    within 4 months.
+                                    <strong>结果：</strong>
+                                    数据很清楚。顾客讨厌“滑”和“有臭味”的垫子。卖家采购了一种环保、超强抓地力的软木垫。他们的营销文案专门针对这些痛点：“绝不打滑，零化学气味”。该产品一经推出即获得
+                                    4.8 星的平均评分，并在 4 个月内达到了 8 万美元/月的销售额。
                                 </p>
 
                                 <!-- Success Patterns -->
-                                <h2 id="success-patterns">Common Success Patterns</h2>
+                                <h2 id="success-patterns">共同的成功模式</h2>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
                                     <div class="glass-card p-6 rounded-xl border-t-4 border-t-pangolin-500">
-                                        <h4 class="font-bold text-white mb-2">Automate ruthlessly</h4>
-                                        <p class="text-sm text-gray-400 mb-0">Winners don't check prices manually. They
-                                            build systems that work while they sleep.</p>
+                                        <h4 class="font-bold text-white mb-2">无情地自动化</h4>
+                                        <p class="text-sm text-gray-400 mb-0">赢家不手动检查价格。他们构建在睡觉时也能工作的系统。</p>
                                     </div>
                                     <div class="glass-card p-6 rounded-xl border-t-4 border-t-accent-purple">
-                                        <h4 class="font-bold text-white mb-2">Data > Opinion</h4>
-                                        <p class="text-sm text-gray-400 mb-0">They never say "I think this product will
-                                            work." They say "The data shows an 80% probability."</p>
+                                        <h4 class="font-bold text-white mb-2">数据 > 观点</h4>
+                                        <p class="text-sm text-gray-400 mb-0">他们从不说“我认为这个产品会成功”。他们说“数据显示有 80% 的概率”。</p>
                                     </div>
                                     <div class="glass-card p-6 rounded-xl border-t-4 border-t-accent-cyan">
-                                        <h4 class="font-bold text-white mb-2">Speed Wins</h4>
-                                        <p class="text-sm text-gray-400 mb-0">They react to competitor OOS (Out of
-                                            Stock) events within minutes, not days.</p>
+                                        <h4 class="font-bold text-white mb-2">速度制胜</h4>
+                                        <p class="text-sm text-gray-400 mb-0">他们在几分钟内（而不是几天）对竞争对手的 OOS（缺货）事件做出反应。</p>
                                     </div>
                                     <div class="glass-card p-6 rounded-xl border-t-4 border-t-accent-emerald">
-                                        <h4 class="font-bold text-white mb-2">Long-term Vision</h4>
-                                        <p class="text-sm text-gray-400 mb-0">They invest in infrastructure (APIs,
-                                            databases) early, knowing it scales with them.</p>
+                                        <h4 class="font-bold text-white mb-2">长远眼光</h4>
+                                        <p class="text-sm text-gray-400 mb-0">他们早期就投资于基础设施（API、数据库），知道它会随他们一起扩展。</p>
                                     </div>
                                 </div>
 
                                 <!-- Action Plan -->
-                                <h2 id="action-plan">Your Action Plan</h2>
+                                <h2 id="action-plan">您的行动计划</h2>
 
                                 <p>
-                                    You don't need to be a coding genius to start. Here is a realistic path to replicate
-                                    these 结果:
+                                    您不需要成为编码天才即可开始。这是复制这些结果的现实路径：
                                 </p>
 
                                 <ol>
-                                    <li><strong>Week 1:</strong> Get a <a href="https://tool.pangolinfo.com/"
-                                            class="text-accent-cyan hover:underline">Pangol Info API key</a> (free trial)
-                                        and write a simple script to check your own product ranks.</li>
-                                    <li><strong>Week 2:</strong> Pick ONE case study above that matches your biggest
-                                        pain point. Is it product research? Pricing?</li>
-                                    <li><strong>Week 3:</strong> Build a "MVP" (Minimum Viable Product) version of that
-                                        script. Don't worry about perfection. Just get the data.</li>
-                                    <li><strong>Month 2:</strong> Automate it. Set it to run daily and email you the
-                                        结果.</li>
+                                    <li><strong>第 1 周：</strong> 获取 <a href="https://tool.pangolinfo.com/"
+                                            class="text-accent-cyan hover:underline">Pangol Info API
+                                            Key</a>（免费试用）并编写一个简单的脚本来检查您自己的产品排名。</li>
+                                    <li><strong>第 2 周：</strong> 从上面的案例研究中挑选一个符合您最大痛点这一个。是产品研究？还是定价？</li>
+                                    <li><strong>第 3 周：</strong> 构建该脚本的“MVP”（最小可行产品）版本。不要担心完美。先把数据拿到手。</li>
+                                    <li><strong>第 2 个月：</strong> 自动化它。将其设置为每天运行并通过电子邮件将结果发送给您。</li>
                                 </ol>
 
-                                <h2 id="conclusion">总结</h2>
+                                <h2 id="conclusion">结论</h2>
 
                                 <p>
-                                    The era of "easy money" on Amazon is over. The era of "smart money" has just begun.
-                                    The sellers in these case studies aren't luckier than you—they just have better
-                                    vision because they use data as their eyes.
+                                    Amazon 上“赚快钱”的时代已经结束。“赚聪明钱”的时代才刚刚开始。这些案例研究中的卖家并不比您幸运——他们只是拥有更好的视野，因为他们用数据作为眼睛。
                                 </p>
 
                                 <p>
-                                    Whether you are just starting or managing millions in revenue, the API is the great
-                                    equalizer. It gives you the same intelligence capabilities as the biggest brands in
-                                    the world. The only question is: what will you build with it?
+                                    无论您是刚刚起步还是管理着数百万的收入，API 都是伟大的平衡器。它为您提供了与世界上最大的品牌相同的情报能力。唯一的问题是：您将用它构建什么？
                                 </p>
 
 
@@ -785,14 +749,13 @@ def analyze_negative_feedback(reviews):
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-pangolin-600/20 to-accent-purple/20 opacity-0 group-hover:opacity-100 transition duration-500">
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 relative z-10">Start Your Success Story</h3>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">开始您的成功故事</h3>
                         <p class="text-gray-300 mb-8 max-w-lg mx-auto relative z-10">
-                            The tools used in these case studies are available to you right now. Get your API key and
-                            start digging for data.
+                            这些案例研究中使用的工具现在就在您手中。获取您的 API Key 并开始挖掘数据。
                         </p>
                         <a href="https://tool.pangolinfo.com/"
                             class="inline-block bg-gradient-to-r from-pangolin-500 to-accent-cyan text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pangolin-500/30 hover:shadow-pangolin-500/50 transform hover:-translate-y-1 transition duration-300 relative z-10">
-                            Get Free API Key <i class="fas fa-arrow-right ml-2"></i>
+                            免费获取 API Key <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -800,10 +763,9 @@ def analyze_negative_feedback(reviews):
                 <!-- Sidebar (1/3 width) -->
                 <div class="hidden lg:block lg:col-span-1">
                     <div class="sidebar-sticky">
-                        <!-- 目录 -->
+                        <!-- Table of Contents -->
                         <div class="glass-card rounded-2xl p-6 mb-6">
-                            <h4 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Table of
-                                Contents</h4>
+                            <h4 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">目录</h4>
                             <nav id="toc">
                                 <!-- TOC will be generated by JS -->
                             </nav>
@@ -818,7 +780,8 @@ def analyze_negative_feedback(reviews):
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-white">Scrape API</h4>
-                                    <span class="text-xs text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">畅销</span>
+                                    <span
+                                        class="text-xs text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">畅销</span>
                                 </div>
                             </div>
                             <p class="text-sm text-gray-400 mb-4">
@@ -839,7 +802,8 @@ def analyze_negative_feedback(reviews):
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-white">AMZ Tracker</h4>
-                                    <span class="text-xs text-accent-purple bg-accent-purple/10 px-2 py-0.5 rounded">新</span>
+                                    <span
+                                        class="text-xs text-accent-purple bg-accent-purple/10 px-2 py-0.5 rounded">新</span>
                                 </div>
                             </div>
                             <p class="text-sm text-gray-400 mb-4">
@@ -873,31 +837,98 @@ def analyze_negative_feedback(reviews):
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 bg-black/40 backdrop-blur-md pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="mb-8">
-                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
-                    alt="Pangolin Logo" class="w-12 h-12 mx-auto rounded-lg mb-4 opacity-80" />
-                <p class="text-gray-500">利用企业级数据基础设施为 Amazon 卖家赋能。</p>
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOLIN</span>
+                </div>
+                <div class="text-gray-300 mb-4">为全球企业提供专业的 Amazon 数据抓取 API 和电商数据提取解决方案。</div>
             </div>
-            <div class="text-sm text-gray-600">
-                &copy; 2025 Pangolin Scrape API. 保留所有权利。
+            <div>
+                <div class="font-semibold text-white mb-3">产品</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">定价</a>
+                    </li>
+                </ul>
             </div>
+            <div>
+                <div class="font-semibold text-white mb-3">资源</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API 文档</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="/zh/index.html#articles" class="hover:text-white">博客文章</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">公司</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">官方网站</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">控制台</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white">Amazon 解决方案</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. 保留所有权利。</div>
+            <div class="text-gray-600 text-sm">Amazon 数据抓取 API 与电商数据智能</div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
     <script>
-        // 复制代码 Functionality
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Generate TOC
         document.addEventListener('DOMContentLoaded', () => {
-            // Generate TOC
             const toc = document.getElementById('toc');
             const headers = document.querySelectorAll('article h2, article h3');
 
@@ -909,62 +940,49 @@ def analyze_negative_feedback(reviews):
                 toc.appendChild(link);
             });
 
-            // Sticky Navbar
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    navbar.classList.add('shadow-lg', 'bg-black/40');
-                } else {
-                    navbar.classList.remove('shadow-lg', 'bg-black/20');
-                }
-            });
+            // Add copy buttons to all code blocks
+            const codeBlocks = document.querySelectorAll('pre');
 
-            // Highlight TOC on scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '-100px 0px -60% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        document.querySelectorAll('.toc-link').forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === '#' + id) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            headers.forEach(header => observer.observe(header));
-
-            // Setup Code Copy Buttons
-            document.querySelectorAll('pre').forEach(pre => {
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
                 const wrapper = document.createElement('div');
                 wrapper.className = 'code-block-wrapper';
                 pre.parentNode.insertBefore(wrapper, pre);
                 wrapper.appendChild(pre);
 
-                const btn = document.createElement('button');
-                btn.className = 'copy-code-btn';
-                btn.innerHTML = '<i class="far fa-copy"></i> Copy';
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
+                copyButton.setAttribute('data-code-index', index);
 
-                btn.addEventListener('click', () => {
-                    const code = pre.querySelector('code').innerText;
-                    navigator.clipboard.writeText(code);
-                    btn.innerHTML = '<i class="fas fa-check"></i> 已复制！';
-                    btn.classList.add('copied');
-                    setTimeout(() => {
-                        btn.innerHTML = '<i class="far fa-copy"></i> Copy';
-                        btn.classList.remove('copied');
-                    }, 2000);
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>已复制！</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>失败</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>复制</span>';
+                        }, 2000);
+                    }
                 });
 
-                wrapper.appendChild(btn);
+                wrapper.appendChild(copyButton);
             });
         });
     </script>
