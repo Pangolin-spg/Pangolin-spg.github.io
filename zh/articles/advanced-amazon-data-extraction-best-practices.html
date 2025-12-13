@@ -649,7 +649,7 @@ class BulkAmazonScraper:
 scraper = BulkAmazonScraper(API_KEY, batch_size=50)
 
 # Scrape 500 products
-asins = [f"B0{i:08d}" for i in range(500)]  # Example ASINs
+asins = [f"B0{i:08d}" for i in range(500)]  # 示例 ASINs
 results = scraper.scrape_products(asins)
 
 print(f"Successfully scraped {len(results)} products")</code></pre>
@@ -1030,7 +1030,7 @@ for asin in asins:
     limiter.wait_if_needed()
     scrape_product(asin)</code></pre>
 
-                        <h2 id="conclusion">Conclusion</h2>
+                        <h2 id="conclusion">总结</h2>
 
                         <p>
                             Advanced Amazon data extraction is about more than just collecting data—it's about building
@@ -1097,7 +1097,7 @@ for asin in asins:
                                 <a href="#best-practices" class="toc-link">Production Best Practices</a>
                                 <a href="#error-handling" class="toc-link toc-link-sub">Error Handling</a>
                                 <a href="#rate-limiting" class="toc-link toc-link-sub">Rate Limiting</a>
-                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                                <a href="#conclusion" class="toc-link">总结</a>
                             </nav>
                         </div>
 
@@ -1276,7 +1276,7 @@ for asin in asins:
                         await navigator.clipboard.writeText(text);
 
                         // Update button state
-                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>已复制！</span>';
                         copyButton.classList.add('copied');
 
                         // Reset after 2 seconds

@@ -689,10 +689,10 @@ class PriceTracker:
                 self.store_price_point(asin, data)
         print("Batch check complete.")
 
-# Usage Example
+# Usage 示例
 if __name__ == "__main__":
     tracker = PriceTracker(api_key="YOUR_API_KEY_HERE")
-    my_products = ["B08N5WRWNW", "B09G9F5T3R"] # Example ASINs
+    my_products = ["B08N5WRWNW", "B09G9F5T3R"] # 示例 ASINs
     tracker.run_check(my_products)</code></pre>
 
                         <p>
@@ -1033,7 +1033,7 @@ class AlertSystem:
                         </div>
 
                         <!-- Section 9: Conclusion -->
-                        <h2 id="conclusion">Conclusion</h2>
+                        <h2 id="conclusion">总结</h2>
 
                         <p>
                             Price is the single most powerful lever you have in e-commerce. By building this automated
@@ -1168,7 +1168,7 @@ class AlertSystem:
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script>
-        // Copy Code Functionality
+        // 复制代码 Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Generate TOC
             const toc = document.getElementById('toc');
@@ -1229,7 +1229,7 @@ class AlertSystem:
                 btn.addEventListener('click', () => {
                     const code = pre.querySelector('code').innerText;
                     navigator.clipboard.writeText(code);
-                    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    btn.innerHTML = '<i class="fas fa-check"></i> 已复制！';
                     btn.classList.add('copied');
                     setTimeout(() => {
                         btn.innerHTML = '<i class="far fa-copy"></i> Copy';

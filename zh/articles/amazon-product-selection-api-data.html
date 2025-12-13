@@ -457,7 +457,7 @@
                             product launches.
                         </p>
 
-                        <h2 id="why-data-driven">Why Data-Driven Product Selection Matters</h2>
+                        <h2 id="why-data-driven-product-selection-matters">为什么数据驱动的产品选择很重要</h2>
 
                         <p>
                             Traditional product research methods—manually browsing Amazon, checking a few competitors,
@@ -502,7 +502,7 @@
                                 $8,000-$15,000 in wasted inventory, fees, and opportunity cost.</p>
                         </div>
 
-                        <h2 id="key-metrics">Key Metrics for Product Selection</h2>
+                        <h2 id="key-metrics-for-product-selection">产品选择的关键指标</h2>
 
                         <p>
                             Before we dive into the technical implementation, let's understand what metrics actually
@@ -775,7 +775,7 @@ class ProductAnalyzer:
             "recommendation": recommendation
         }
 
-# Example usage
+# 示例 usage
 if __name__ == "__main__":
     # Initialize analyzer with your API key
     analyzer = ProductAnalyzer("your_api_key_here")
@@ -865,7 +865,7 @@ class CategoryScanner:
         results = []
         analyzed = 0
         
-        # Example ASIN list (in production, extract from category page)
+        # 示例 ASIN list (in production, extract from category page)
         example_asins = [
             "B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW",
             # ... more ASINs from category
@@ -1167,7 +1167,7 @@ scanner.generate_report(results, top_n=10)</code></pre>
                                 <a href="#why-data-driven" class="toc-link">Why Data-Driven Selection</a>
                                 <a href="#key-metrics" class="toc-link">Key Metrics</a>
                                 <a href="#demand-indicators" class="toc-link toc-link-sub">Demand Indicators</a>
-                                <a href="#competition-analysis" class="toc-link toc-link-sub">Competition Analysis</a>
+                                <a href="#competition-analysis" class="toc-link toc-link-sub">竞争分析</a>
                                 <a href="#building-research-system" class="toc-link">Building Research System</a>
                                 <a href="#basic-analyzer" class="toc-link toc-link-sub">Basic Analyzer</a>
                                 <a href="#category-scanner" class="toc-link toc-link-sub">Category Scanner</a>
@@ -1175,7 +1175,7 @@ scanner.generate_report(results, top_n=10)</code></pre>
                                 <a href="#trend-analysis" class="toc-link toc-link-sub">Trend Analysis</a>
                                 <a href="#risk-assessment" class="toc-link toc-link-sub">Risk Assessment</a>
                                 <a href="#action-plan" class="toc-link">30-Day Action Plan</a>
-                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                                <a href="#conclusion" class="toc-link">总结</a>
                             </nav>
                         </div>
 
@@ -1345,7 +1345,7 @@ scanner.generate_report(results, top_n=10)</code></pre>
 
                     try {
                         await navigator.clipboard.writeText(text);
-                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>已复制！</span>';
                         copyButton.classList.add('copied');
                         setTimeout(() => {
                             copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
