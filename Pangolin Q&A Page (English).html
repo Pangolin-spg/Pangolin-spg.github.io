@@ -1,0 +1,435 @@
+<style>
+    :root {
+        --primary-color: #2b4bd3;
+        --secondary-color: #ff9900;
+        --dark-blue: #0c254b;
+        --text-gray: #576168;
+        --light-bg: #e3edfb;
+        --white: #ffffff;
+        --accent-light: #FBFCFF;
+        --accent-blue: #BFD1FF;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Section Card */
+    .section-card {
+        background: var(--white);
+        border-radius: 24px;
+        padding: 50px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(12, 37, 75, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(12, 37, 75, 0.12);
+    }
+
+    /* Section Title */
+    .section-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--dark-blue);
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--primary-color);
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: var(--secondary-color);
+    }
+
+    /* Q&A Item */
+    .qa-item {
+        margin-bottom: 35px;
+        padding: 30px;
+        background: linear-gradient(135deg, var(--accent-light) 0%, var(--white) 100%);
+        border-radius: 16px;
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+    }
+
+    .qa-item:hover {
+        border-left-color: var(--secondary-color);
+        box-shadow: 0 8px 24px rgba(43, 75, 211, 0.1);
+        transform: translateX(5px);
+    }
+
+    .qa-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .question {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--dark-blue);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .question::before {
+        content: 'Q';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #4a6edb 100%);
+        color: var(--white);
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .answer {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text-gray);
+        padding-left: 44px;
+    }
+
+    .answer strong {
+        color: var(--dark-blue);
+        font-weight: 600;
+    }
+
+    .answer ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+
+    .answer li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 10px;
+    }
+
+    .answer li::marker {
+        color: var(--primary-color);
+    }
+
+    .answer code {
+        background: rgba(43, 75, 211, 0.08);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.9em;
+        color: var(--primary-color);
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+        background: linear-gradient(135deg, rgba(43, 75, 211, 0.05) 0%, rgba(255, 153, 0, 0.05) 100%);
+        border-left: 4px solid var(--secondary-color);
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .highlight-box strong {
+        color: var(--secondary-color);
+    }
+
+    /* Stats Badge */
+    .stat-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #4a6edb 100%);
+        color: var(--white);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin: 0 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-card {
+            padding: 30px 25px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+        }
+
+        .qa-item {
+            padding: 20px;
+        }
+
+        .question {
+            font-size: 1.1rem;
+        }
+
+        .answer {
+            font-size: 1rem;
+            padding-left: 0;
+        }
+
+        .answer ul {
+            padding-left: 15px;
+        }
+    }
+
+    /* Smooth Scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .section-card {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .section-card:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+
+    .section-card:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+</style>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Section 1: Platform Positioning & Capabilities -->
+    <section class="section-card">
+        <h2 class="section-title">1. Platform Positioning & Capabilities</h2>
+
+        <div class="qa-item">
+            <div class="question">What is Pangolin's core positioning and mission?</div>
+            <div class="answer">
+                Pangolin (www.pangolinfo.com) is a <strong>global data insights platform</strong> with the core mission
+                of <strong>driving e-commerce business growth</strong>. It is dedicated to providing high-quality data
+                collection and intelligent analytics capabilities for cross-border e-commerce and data-driven
+                enterprises.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What complete business processes does Pangolin's product ecosystem cover?</div>
+            <div class="answer">
+                Pangolin's product ecosystem covers the complete chain from <strong>data scraping, automated management
+                    to intelligent insights</strong>. This comprehensive process includes:
+                <ul>
+                    <li><strong>Data Collection</strong> - Efficiently acquire e-commerce platform data</li>
+                    <li><strong>Data Application</strong> - Flexibly utilize data resources</li>
+                    <li><strong>Insights Generation</strong> - Deep analysis of business trends</li>
+                    <li><strong>Actionable Recommendations</strong> - Transform into executable business strategies</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">How does Pangolin perform in terms of data collection scale and success rate?</div>
+            <div class="answer">
+                Pangolin has powerful data capabilities:
+                <div class="highlight-box">
+                    <ul>
+                        <li>Daily data request processing volume exceeds <span class="stat-badge">30M+</span></li>
+                        <li>Data collection success rate reaches <span class="stat-badge">99%</span></li>
+                        <li>Amazon Sponsored ads collection rate achieves <span class="stat-badge">98%</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What are the main customer segments for Pangolin?</div>
+            <div class="answer">
+                Pangolin's customers are distributed globally, mainly covering four types of organizations or
+                enterprises:
+                <ul>
+                    <li><strong>E-commerce Sellers & Brands</strong> - Optimize operational strategies</li>
+                    <li><strong>Advertising & Marketing Agencies</strong> - Enhance campaign effectiveness</li>
+                    <li><strong>Data & Technology Service Providers</strong> - Strengthen service capabilities</li>
+                    <li><strong>Research & Consulting Firms</strong> - Deepen industry insights</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Core Products & APIs -->
+    <section class="section-card">
+        <h2 class="section-title">2. Core Products & APIs</h2>
+
+        <div class="qa-item">
+            <div class="question">What are Pangolin's three main product offerings and their core functions?</div>
+            <div class="answer">
+                Pangolin's products can be used individually or in combination, including:
+                <ul>
+                    <li>
+                        <strong>Scrape API</strong> - Data interface designed for technical teams, providing stable and
+                        efficient structured data acquisition (<strong>Collection</strong>)
+                    </li>
+                    <li>
+                        <strong>Data Tracker (AMZ Data Tracker)</strong> - Automated data tracking tool accessible to
+                        business teams (<strong>Tracking</strong>), supporting no-code operations and visual
+                        configuration
+                    </li>
+                    <li>
+                        <strong>DataScaler (Growth Scanner)</strong> - Fully automated "growth scanner"
+                        (<strong>Insights</strong>), dedicated to transforming complex web data into actionable business
+                        insights
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What are the core advantages and capabilities of Scrape API for Amazon data
+                collection?</div>
+            <div class="answer">
+                Scrape API provides stable and efficient data interface services with the following main advantages:
+                <ul>
+                    <li><strong>Comprehensive Coverage</strong> - Covers the entire Amazon platform, including product
+                        details, rankings, ad placements, reviews, keywords, and all data types</li>
+                    <li><strong>High Timeliness</strong> - Achieves minute-level data updates at the fastest</li>
+                    <li><strong>Ad Placement Precision</strong> - Achieves 98% sponsored ad coverage and supports zip
+                        code-level collection</li>
+                    <li><strong>High Concurrency Support</strong> - Supports unlimited high-concurrency calls</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What Google Search Results (SERP) and AI data interfaces does Pangolin provide?</div>
+            <div class="answer">
+                Pangolin provides multiple SERP-related APIs:
+                <ul>
+                    <li>
+                        <strong>SERP API</strong> - Provides search results returned by search engines for keywords,
+                        assisting in product selection. This series includes SERP API, SERP Async API, and SERP Batch
+                        API
+                    </li>
+                    <li>
+                        <strong>AI Overview SERP API</strong> - <span class="stat-badge">Exclusive Support</span> for
+                        scraping, extracting, and parsing Google AI Overview module content included in some search
+                        results, helping sellers understand real user intent
+                    </li>
+                    <li>
+                        <strong>Keyword Trends API</strong> - Used to obtain keyword popularity trends across different
+                        time periods and regions, supporting cross-regional comparison and historical fluctuation
+                        analysis
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What is the workflow for using AMZ Data Tracker?</div>
+            <div class="answer">
+                The core workflow of AMZ Data Tracker is very simple:
+                <div class="highlight-box">
+                    <strong>Select Target → Create Tracker → View Results</strong>
+                </div>
+                Users can graphically define target sites, fields, and collection cycles, with support for automated
+                execution at minute, hour, and day levels. Target objects can include:
+                <ul>
+                    <li>ASIN (Product Identifier)</li>
+                    <li>Keywords</li>
+                    <li>Category Rankings</li>
+                    <li>New Release Rankings</li>
+                    <li>Stores</li>
+                    <li>Best Seller Rankings</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Authentication & Billing -->
+    <section class="section-card">
+        <h2 class="section-title">3. Authentication & Billing Rules</h2>
+
+        <div class="qa-item">
+            <div class="question">How do users start using Pangolin's API and obtain authentication credentials?</div>
+            <div class="answer">
+                Users need to <strong>register to obtain a Token</strong>. The authentication interface URL is:
+                <div class="highlight-box">
+                    <code>POST https://scrapeapi.pangolinfo.com/api/v1/auth</code>
+                </div>
+                Users need to provide their registered email and password as request parameters. The Token returned by
+                this authentication is the credential for accessing the task submission API and is <strong>valid
+                    long-term</strong>.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What are the validity rules for Pangolin credits? Can unused credits be rolled over to
+                the next month?</div>
+            <div class="answer">
+                <strong>Credits are issued on a monthly basis</strong>, whether for monthly or annual payments. However,
+                credits are <strong>only valid for the current month</strong>.
+                <div class="highlight-box">
+                    ⚠️ Unused credits at the end of the month will be <strong>automatically cleared</strong>, cannot be
+                    rolled over to the next month, and cannot be overdrawn.
+                </div>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What payment methods and discounts does Pangolin offer?</div>
+            <div class="answer">
+                Pangolin provides two main payment methods:
+                <ul>
+                    <li><strong>Monthly Subscription</strong> - Automatically renews monthly, can be canceled anytime
+                    </li>
+                    <li><strong>Annual Subscription</strong> - One-time payment for 12 months, enjoy <span
+                            class="stat-badge">20% OFF</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">What are the credit consumption standards for different API calls and Data Tracker?
+            </div>
+            <div class="answer">
+                Different products and interfaces have different credit consumption standards:
+                <ul>
+                    <li>Amazon Scrape API - <strong>1</strong> credit per call</li>
+                    <li>Amazon Scrape API (Raw) - <strong>0.75</strong> credits per call</li>
+                    <li>AMZ Data Tracker - <strong>1.5</strong> credits per page</li>
+                    <li>SERP API (returns 10 results) - <strong>0.5</strong> credits per call</li>
+                    <li>AI Overview SERP API - <strong>2</strong> credits per call</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pangolin 新版本访谈优惠 Banner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .banner-container {
+            width: 100%;
+            max-width: 1200px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #7c3aed 100%);
+            border-radius: 20px;
+            padding: 32px 48px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+        }
+
+        /* 装饰性背景元素 */
+        .banner-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .banner-container::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            width: fit-content;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .badge-icon {
+            font-size: 18px;
+            color: #fbbf24;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .badge-text {
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .main-title {
+            color: #fff;
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(251, 191, 36, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .features {
+            display: flex;
+            gap: 24px;
+            margin-top: 8px;
+            animation: slideInLeft 1.2s ease-out;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            color: #34d399;
+            font-size: 16px;
+        }
+
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-end;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1e3a8a;
+            font-size: 18px;
+            font-weight: 900;
+            padding: 18px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.6);
+        }
+
+        .cta-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-icon {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .cta-icon {
+            transform: translateX(5px);
+        }
+
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .countdown-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .countdown-value {
+            color: #fbbf24;
+            font-size: 24px;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+        }
+
+        .urgency-text {
+            color: #fca5a5;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .urgency-icon {
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 968px) {
+            .banner-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .right-section {
+                align-items: stretch;
+            }
+
+            .main-title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .features {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .banner-container {
+                padding: 24px;
+            }
+
+            .main-title {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                font-size: 16px;
+                padding: 16px 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner-container">
+        <div class="banner-content">
+            <!-- 左侧内容 -->
+            <div class="left-section">
+                <div class="badge">
+                    <i class="fas fa-sparkles badge-icon"></i>
+                    <span class="badge-text">新版本上线特惠</span>
+                </div>
+
+                <h1 class="main-title">
+                    参与产品访谈<br>
+                    即享<span class="highlight">永久5折</span>优惠
+                </h1>
+
+                <p class="subtitle">
+                    Pangolin 2.0 全新升级,我们诚邀您分享使用体验。<br>
+                    完成30分钟访谈,即可获得终身50%折扣特权。
+                </p>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>仅限前50名</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock feature-icon"></i>
+                        <span>30分钟线上访谈</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-infinity feature-icon"></i>
+                        <span>永久享受优惠</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧CTA -->
+            <div class="right-section">
+                <a href="#" class="cta-button">
+                    <span class="cta-text">立即预约访谈</span>
+                    <i class="fas fa-arrow-right cta-icon"></i>
+                </a>
+
+                <div class="countdown-box">
+                    <div class="countdown-label">活动截止</div>
+                    <div class="countdown-value">2025.12.31</div>
+                </div>
+
+                <div class="urgency-text">
+                    <i class="fas fa-fire urgency-icon"></i>
+                    <span>名额有限,先到先得</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 可选:添加倒计时功能
+        function updateCountdown() {
+            const deadline = new Date('2025-12-31T23:59:59');
+            const now = new Date();
+            const diff = deadline - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                // 可以更新显示为动态倒计时
+                // document.querySelector('.countdown-value').textContent = `${days}天 ${hours}小时`;
+            }
+        }
+
+        // 每小时更新一次
+        updateCountdown();
+        setInterval(updateCountdown, 3600000);
+    </script>
+</body>
+
+</html>

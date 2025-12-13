@@ -1,0 +1,108 @@
+/* 
+ * Elementor 弹窗关闭按钮修复
+ * 如果关闭按钮不显示，添加这些 CSS
+ */
+
+/* 确保关闭按钮显示 */
+.elementor-popup-modal .dialog-close-button,
+.elementor-popup-modal .eicon-close {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 关闭按钮基础样式 */
+.elementor-popup-modal .dialog-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10000;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+/* 关闭图标样式 */
+.elementor-popup-modal .dialog-close-button i {
+    font-size: 24px;
+    color: #333;
+    line-height: 40px;
+}
+
+/* 关闭按钮悬停效果 */
+.elementor-popup-modal .dialog-close-button:hover i {
+    color: #000;
+}
+
+/* 如果使用 SVG 图标 */
+.elementor-popup-modal .dialog-close-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+}
+
+.elementor-popup-modal .dialog-close-button:hover svg {
+    fill: #000;
+}
+
+/* 确保图标库加载 */
+.elementor-popup-modal .eicon {
+    font-family: 'eicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 如果关闭按钮被其他元素遮挡 */
+.elementor-popup-modal .dialog-widget-content {
+    position: relative;
+}
+
+.elementor-popup-modal .dialog-close-button {
+    z-index: 999999 !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .elementor-popup-modal .dialog-close-button {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .elementor-popup-modal .dialog-close-button i {
+        font-size: 20px;
+        line-height: 36px;
+    }
+}
+
+/* 如果完全看不到关闭按钮，使用备用方案 */
+.elementor-popup-modal .dialog-close-button::before {
+    content: '×';
+    font-size: 32px;
+    line-height: 40px;
+    color: #333;
+    font-weight: 300;
+    display: block;
+    text-align: center;
+}
+
+/* 深色背景的弹窗 */
+.elementor-popup-modal.dark-popup .dialog-close-button i,
+.elementor-popup-modal.dark-popup .dialog-close-button::before {
+    color: #fff;
+}
+
+.elementor-popup-modal.dark-popup .dialog-close-button:hover i,
+.elementor-popup-modal.dark-popup .dialog-close-button:hover::before {
+    color: #ddd;
+}

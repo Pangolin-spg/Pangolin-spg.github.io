@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Overview SERP API - 实时抓取 Google AI Overviews | Pangolin</title>
+    <meta name="description"
+        content="专业的 AI Overview SERP API,实时抓取 Google AI 生成摘要,助您优化 SEO 策略、监控竞争对手、提升 AI 搜索可见性。98%+ 成功率,毫秒级响应。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #2b4bd3;
+            --secondary-orange: #ff9900;
+            --dark-blue: #0c254b;
+            --light-bg: #e3edfb;
+            --text-gray: #576168;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-gray);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            color: var(--dark-blue);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #2b4bd3 0%, #1e3a8a 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-orange);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), #7c3aed);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-black mb-6 text-white leading-tight">
+                    实时抓取 Google AI Overviews<br>
+                    <span class="text-yellow-300">掌握 AI 搜索时代的竞争优势</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+                    专业的 AI Overview SERP API,助您追踪 AI 生成摘要、优化 SEO 策略、监控竞争对手引用
+                </p>
+
+                <!-- 核心卖点 -->
+                <div class="grid md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
+                    <div class="glass-effect rounded-2xl p-6">
+                        <i class="fas fa-bolt text-4xl text-yellow-300 mb-3"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">毫秒级响应</h3>
+                        <p class="text-blue-100 text-sm">实时获取 AI Overview 数据</p>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6">
+                        <i class="fas fa-bullseye text-4xl text-yellow-300 mb-3"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">98%+ 成功率</h3>
+                        <p class="text-blue-100 text-sm">稳定可靠的数据采集</p>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6">
+                        <i class="fas fa-code text-4xl text-yellow-300 mb-3"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">结构化 JSON</h3>
+                        <p class="text-blue-100 text-sm">即插即用的数据格式</p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#pricing" class="btn-primary inline-block">
+                        <i class="fas fa-rocket mr-2"></i>免费试用
+                    </a>
+                    <a href="#api-docs"
+                        class="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition">
+                        <i class="fas fa-book mr-2"></i>查看文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品价值主张 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4">为什么需要 AI Overview SERP API?</h2>
+            <p class="text-center text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                AI 搜索正在改变游戏规则,传统 SERP API 已无法满足需求
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 卡片 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 hover-lift">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">AI 搜索改变规则</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li>• 出现在 13%-30% 搜索结果</li>
+                        <li>• 信息类查询覆盖率达 75%</li>
+                        <li>• 占据"零位置"影响 SEO</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 hover-lift">
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #ff9900, #ff6b6b);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">传统 API 的盲区</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li>• 无法捕获 AI 摘要内容</li>
+                        <li>• 缺失引用源追踪数据</li>
+                        <li>• 无法监控动态变化</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 hover-lift">
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">数据驱动 SEO</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li>• 分析哪些内容被引用</li>
+                        <li>• 优化内容提高引用率</li>
+                        <li>• 监控竞争对手可见性</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 4 -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 hover-lift">
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">GEO 优化基础</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li>• 适应 AI 驱动搜索环境</li>
+                        <li>• 提升 AI 摘要曝光度</li>
+                        <li>• 获取高质量精准流量</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能特性 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4">强大的功能,满足您的所有需求</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">企业级 API,专业级服务</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 功能 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-file-alt text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">完整内容提取</h3>
+                    <p class="text-gray-600">提取完整的 AI 生成摘要文本,包含所有文本块和段落结构,支持同步和异步 AI Overview</p>
+                </div>
+
+                <!-- 功能 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-link text-4xl text-orange-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">引用源追踪</h3>
+                    <p class="text-gray-600">识别被 AI 引用的网站和页面,提取引用链接和缩略图,分析引用权重和排序</p>
+                </div>
+
+                <!-- 功能 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-sliders-h text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">多参数定制</h3>
+                    <p class="text-gray-600">支持地理位置定位、设备类型选择(移动/桌面)、语言和地区设置</p>
+                </div>
+
+                <!-- 功能 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-code-branch text-4xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">结构化 JSON</h3>
+                    <p class="text-gray-600">标准化的数据格式,易于集成到现有系统,完整的 API 文档支持</p>
+                </div>
+
+                <!-- 功能 5 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-shield-alt text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">绕过反爬机制</h3>
+                    <p class="text-gray-600">自动处理 Google bot-blocker,高成功率的请求处理,智能重试机制</p>
+                </div>
+
+                <!-- 功能 6 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <i class="fas fa-sync-alt text-4xl text-teal-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">实时数据更新</h3>
+                    <p class="text-gray-600">分钟级数据刷新,追踪 AI Overview 变化,历史数据对比</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API 代码示例 -->
+    <section id="api-docs" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold text-center mb-4">5 分钟快速集成</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">简单易用的 API,开发者友好</p>
+
+            <div class="bg-gray-900 rounded-2xl p-8 text-white overflow-x-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-green-400 font-mono">Python 示例</span>
+                    <button class="text-sm bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">
+                        <i class="fas fa-copy mr-2"></i>复制代码
+                    </button>
+                </div>
+                <pre class="text-sm"><code>import requests
+
+url = "https://api.pangolinfo.com/serp/ai-overview"
+params = {
+    "api_key": "YOUR_API_KEY",
+    "query": "best amazon scraping tools",
+    "location": "United States",
+    "device": "desktop",
+    "language": "en"
+}
+
+response = requests.get(url, params=params)
+data = response.json()
+
+# 获取 AI Overview 内容
+ai_overview = data['ai_overview']['content']
+sources = data['ai_overview']['sources']
+
+print(f"AI Overview: {ai_overview}")
+print(f"Referenced Sources: {sources}")</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- 定价方案 -->
+    <section id="pricing" class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4">灵活的定价,适合各种规模</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">按需选择,随时升级</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 入门版 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl hover-lift">
+                    <h3 class="text-2xl font-bold mb-2">入门版</h3>
+                    <div class="text-4xl font-black text-blue-600 mb-4">¥299<span
+                            class="text-lg text-gray-500">/月</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i><span>1,000
+                                次请求/月</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-green-500 mr-3 mt-1"></i><span>基础技术支持</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i><span>标准 API
+                                访问</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i><span>JSON
+                                数据格式</span></li>
+                    </ul>
+                    <button class="w-full btn-primary text-center">立即开始</button>
+                </div>
+
+                <!-- 专业版 -->
+                <div
+                    class="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl p-8 shadow-2xl transform scale-105 relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        最受欢迎
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">专业版</h3>
+                    <div class="text-4xl font-black mb-4">¥999<span class="text-lg opacity-80">/月</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start"><i class="fas fa-check text-yellow-300 mr-3 mt-1"></i><span>10,000
+                                次请求/月</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-yellow-300 mr-3 mt-1"></i><span>优先技术支持</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-yellow-300 mr-3 mt-1"></i><span>高级功能访问</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-yellow-300 mr-3 mt-1"></i><span>批量处理能力</span></li>
+                    </ul>
+                    <button
+                        class="w-full bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition">立即升级</button>
+                </div>
+
+                <!-- 企业版 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl hover-lift">
+                    <h3 class="text-2xl font-bold mb-2">企业版</h3>
+                    <div class="text-4xl font-black text-blue-600 mb-4">定制</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-green-500 mr-3 mt-1"></i><span>无限次请求</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-green-500 mr-3 mt-1"></i><span>专属客户经理</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i><span>SLA
+                                保障</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check text-green-500 mr-3 mt-1"></i><span>定制化开发</span></li>
+                    </ul>
+                    <button
+                        class="w-full border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-600 hover:text-white transition">联系销售</button>
+                </div>
+            </div>
+
+            <p class="text-center mt-8 text-gray-600">
+                <i class="fas fa-info-circle mr-2"></i>按需计费: ¥0.5/次请求 (超出套餐部分)
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA 区域 -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">立即开始,抢占 AI 搜索先机</h2>
+            <p class="text-xl mb-8 text-blue-100">免费试用 100 次请求 · 无需信用卡 · 5 分钟快速接入</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#"
+                    class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition transform hover:scale-105">
+                    <i class="fas fa-rocket mr-2"></i>免费注册
+                </a>
+                <a href="#"
+                    class="border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition">
+                    <i class="fas fa-phone mr-2"></i>联系销售
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Pangolin</h4>
+                    <p class="text-sm">专业的数据采集 API 服务提供商</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">产品</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Scrape API</a></li>
+                        <li><a href="#" class="hover:text-white">AI Overview API</a></li>
+                        <li><a href="#" class="hover:text-white">Data Tracker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">资源</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">API 文档</a></li>
+                        <li><a href="#" class="hover:text-white">使用案例</a></li>
+                        <li><a href="#" class="hover:text-white">博客</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-envelope mr-2"></i>support@pangolinfo.com</li>
+                        <li><i class="fas fa-globe mr-2"></i>www.pangolinfo.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 Pangolin Info. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

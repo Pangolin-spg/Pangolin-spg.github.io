@@ -1,0 +1,547 @@
+/* ============================================
+   Pangolin Interview Form - Elementor 自定义 CSS
+   ============================================
+   
+   使用方法:
+   1. 复制全部CSS代码
+   2. 在Elementor编辑器中,点击左下角 ⚙️ 设置图标
+   3. 选择 "Custom CSS" 标签
+   4. 粘贴代码
+   5. 更新/发布
+   
+   或者:
+   1. 进入 WordPress 后台
+   2. 外观 → 自定义 → 额外CSS
+   3. 粘贴代码
+   4. 发布
+   ============================================ */
+
+/* ========================================
+   1. POPUP 容器样式
+   ======================================== */
+
+/* Popup 整体容器 */
+.elementor-popup-modal .dialog-widget-content {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Popup Header 渐变背景 */
+.elementor-popup-modal .elementor-element.elementor-section.popup-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #7c3aed 100%) !important;
+    padding: 24px 32px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header 装饰性背景光晕 */
+.elementor-popup-modal .popup-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Header 标题样式 */
+.elementor-popup-modal .popup-header .elementor-heading-title {
+    color: #ffffff !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    margin-bottom: 6px !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header 副标题样式 */
+.elementor-popup-modal .popup-header .elementor-text-editor {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    opacity: 0.95;
+    position: relative;
+    z-index: 2;
+}
+
+/* Popup 关闭按钮 */
+.elementor-popup-modal .dialog-close-button {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    font-size: 18px !important;
+    transition: all 0.3s ease !important;
+}
+
+.elementor-popup-modal .dialog-close-button:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: rotate(90deg) !important;
+}
+
+
+/* ========================================
+   2. FORM 表单整体样式
+   ======================================== */
+
+/* Form 容器 */
+.elementor-popup-modal .elementor-form {
+    padding: 24px 32px !important;
+}
+
+/* Form 字段容器 */
+.elementor-popup-modal .elementor-field-group {
+    margin-bottom: 16px !important;
+}
+
+/* 最后一个字段的底部间距 */
+.elementor-popup-modal .elementor-field-group:last-of-type {
+    margin-bottom: 20px !important;
+}
+
+
+/* ========================================
+   3. FORM 标签样式
+   ======================================== */
+
+/* 字段标签 */
+.elementor-popup-modal .elementor-field-label {
+    display: block !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    margin-bottom: 6px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 必填星号 */
+.elementor-popup-modal .elementor-mark-required {
+    color: #ef4444 !important;
+    margin-left: 2px !important;
+}
+
+
+/* ========================================
+   4. FORM 输入框样式
+   ======================================== */
+
+/* 所有输入框通用样式 */
+.elementor-popup-modal .elementor-field-textual,
+.elementor-popup-modal .elementor-field-type-text input,
+.elementor-popup-modal .elementor-field-type-email input,
+.elementor-popup-modal .elementor-field-type-textarea textarea {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background: #ffffff !important;
+    color: #1f2937 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+
+/* 输入框聚焦状态 */
+.elementor-popup-modal .elementor-field-textual:focus,
+.elementor-popup-modal .elementor-field-type-text input:focus,
+.elementor-popup-modal .elementor-field-type-email input:focus,
+.elementor-popup-modal .elementor-field-type-textarea textarea:focus {
+    outline: none !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Placeholder 文字样式 */
+.elementor-popup-modal .elementor-field-textual::placeholder,
+.elementor-popup-modal .elementor-field-type-text input::placeholder,
+.elementor-popup-modal .elementor-field-type-email input::placeholder,
+.elementor-popup-modal .elementor-field-type-textarea textarea::placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+}
+
+/* Textarea 特殊样式 */
+.elementor-popup-modal .elementor-field-type-textarea textarea {
+    resize: vertical !important;
+    min-height: 70px !important;
+    max-height: 200px !important;
+}
+
+
+/* ========================================
+   5. FORM 提示文字样式
+   ======================================== */
+
+/* Help Text (字段下方的提示文字) */
+.elementor-popup-modal .elementor-field-subtype-email + .elementor-field-help,
+.elementor-popup-modal .elementor-help-inline {
+    font-size: 11px !important;
+    color: #64748b !important;
+    margin-top: 4px !important;
+    line-height: 1.4 !important;
+}
+
+
+/* ========================================
+   6. FORM 提交按钮样式
+   ======================================== */
+
+/* 提交按钮容器 */
+.elementor-popup-modal .elementor-field-type-submit {
+    margin-top: 20px !important;
+}
+
+/* 提交按钮 */
+.elementor-popup-modal .elementor-button.elementor-size-md,
+.elementor-popup-modal .elementor-field-type-submit .elementor-button {
+    width: 100% !important;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    padding: 14px 32px !important;
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* 提交按钮悬停效果 */
+.elementor-popup-modal .elementor-button.elementor-size-md:hover,
+.elementor-popup-modal .elementor-field-type-submit .elementor-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4) !important;
+    background: linear-gradient(135deg, #1e40af 0%, #6d28d9 100%) !important;
+}
+
+/* 提交按钮点击效果 */
+.elementor-popup-modal .elementor-button.elementor-size-md:active,
+.elementor-popup-modal .elementor-field-type-submit .elementor-button:active {
+    transform: translateY(0) !important;
+}
+
+/* 按钮图标 */
+.elementor-popup-modal .elementor-button-icon {
+    transition: transform 0.3s ease !important;
+}
+
+.elementor-popup-modal .elementor-button:hover .elementor-button-icon {
+    transform: translateX(5px) !important;
+}
+
+
+/* ========================================
+   7. FORM 验证错误样式
+   ======================================== */
+
+/* 错误消息 */
+.elementor-popup-modal .elementor-message.elementor-message-danger {
+    background: #fef2f2 !important;
+    border-left: 4px solid #ef4444 !important;
+    color: #991b1b !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+    font-size: 13px !important;
+}
+
+/* 错误状态的输入框 */
+.elementor-popup-modal .elementor-field-textual.elementor-error,
+.elementor-popup-modal .elementor-error input,
+.elementor-popup-modal .elementor-error textarea {
+    border-color: #ef4444 !important;
+    background: #fef2f2 !important;
+}
+
+/* 字段级错误提示 */
+.elementor-popup-modal .elementor-field-group .elementor-message-danger {
+    font-size: 12px !important;
+    color: #dc2626 !important;
+    margin-top: 4px !important;
+}
+
+
+/* ========================================
+   8. FORM 成功消息样式
+   ======================================== */
+
+/* 成功消息容器 */
+.elementor-popup-modal .elementor-message.elementor-message-success {
+    background: #f0fdf4 !important;
+    border-left: 4px solid #10b981 !important;
+    color: #065f46 !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    margin: 20px 0 !important;
+    text-align: center !important;
+}
+
+/* 成功消息标题 */
+.elementor-popup-modal .elementor-message-success h3 {
+    color: #065f46 !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    margin-bottom: 10px !important;
+}
+
+/* 成功消息文本 */
+.elementor-popup-modal .elementor-message-success p {
+    color: #047857 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+}
+
+/* 成功消息中的链接/按钮 */
+.elementor-popup-modal .elementor-message-success a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e3a8a !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    padding: 12px 28px !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.elementor-popup-modal .elementor-message-success a:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4) !important;
+}
+
+
+/* ========================================
+   9. 响应式设计 - 移动端优化
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Popup Header */
+    .elementor-popup-modal .popup-header {
+        padding: 20px 24px !important;
+    }
+    
+    .elementor-popup-modal .popup-header .elementor-heading-title {
+        font-size: 20px !important;
+    }
+    
+    .elementor-popup-modal .popup-header .elementor-text-editor {
+        font-size: 13px !important;
+    }
+    
+    /* Form 容器 */
+    .elementor-popup-modal .elementor-form {
+        padding: 20px 24px !important;
+    }
+    
+    /* 字段间距 */
+    .elementor-popup-modal .elementor-field-group {
+        margin-bottom: 14px !important;
+    }
+    
+    /* 输入框 */
+    .elementor-popup-modal .elementor-field-textual,
+    .elementor-popup-modal .elementor-field-type-text input,
+    .elementor-popup-modal .elementor-field-type-email input,
+    .elementor-popup-modal .elementor-field-type-textarea textarea {
+        font-size: 16px !important; /* 防止iOS自动缩放 */
+    }
+    
+    /* 提交按钮 */
+    .elementor-popup-modal .elementor-button {
+        padding: 12px 24px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Popup 整体 */
+    .elementor-popup-modal .dialog-widget-content {
+        margin: 10px !important;
+        max-height: 90vh !important;
+    }
+    
+    /* Header */
+    .elementor-popup-modal .popup-header {
+        padding: 16px 20px !important;
+    }
+    
+    .elementor-popup-modal .popup-header .elementor-heading-title {
+        font-size: 18px !important;
+    }
+    
+    /* Form */
+    .elementor-popup-modal .elementor-form {
+        padding: 16px 20px !important;
+    }
+    
+    /* Textarea 高度 */
+    .elementor-popup-modal .elementor-field-type-textarea textarea {
+        min-height: 60px !important;
+    }
+}
+
+
+/* ========================================
+   10. 加载动画和过渡效果
+   ======================================== */
+
+/* Popup 打开动画 */
+.elementor-popup-modal.elementor-popup-modal--show {
+    animation: popupFadeIn 0.3s ease !important;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Form 字段渐入动画 */
+.elementor-popup-modal .elementor-field-group {
+    animation: fieldSlideIn 0.4s ease backwards;
+}
+
+.elementor-popup-modal .elementor-field-group:nth-child(1) { animation-delay: 0.1s; }
+.elementor-popup-modal .elementor-field-group:nth-child(2) { animation-delay: 0.15s; }
+.elementor-popup-modal .elementor-field-group:nth-child(3) { animation-delay: 0.2s; }
+.elementor-popup-modal .elementor-field-group:nth-child(4) { animation-delay: 0.25s; }
+.elementor-popup-modal .elementor-field-group:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes fieldSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   11. 辅助功能优化
+   ======================================== */
+
+/* 聚焦可见性 */
+.elementor-popup-modal .elementor-field-textual:focus-visible,
+.elementor-popup-modal .elementor-button:focus-visible {
+    outline: 2px solid #2563eb !important;
+    outline-offset: 2px !important;
+}
+
+/* 禁用状态 */
+.elementor-popup-modal .elementor-field-textual:disabled,
+.elementor-popup-modal .elementor-button:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+
+/* ========================================
+   12. 自定义滚动条 (可选)
+   ======================================== */
+
+/* Popup 内容滚动条 */
+.elementor-popup-modal .dialog-widget-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.elementor-popup-modal .dialog-widget-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.elementor-popup-modal .dialog-widget-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.elementor-popup-modal .dialog-widget-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* ========================================
+   13. 打印样式优化 (可选)
+   ======================================== */
+
+@media print {
+    .elementor-popup-modal {
+        display: none !important;
+    }
+}
+
+
+/* ========================================
+   14. 特殊情况处理
+   ======================================== */
+
+/* 修复某些主题的冲突 */
+.elementor-popup-modal .elementor-field-textual,
+.elementor-popup-modal .elementor-button {
+    box-sizing: border-box !important;
+}
+
+/* 确保按钮文字居中 */
+.elementor-popup-modal .elementor-button-content-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+}
+
+/* 移除默认的outline */
+.elementor-popup-modal * {
+    outline-color: #2563eb !important;
+}
+
+
+/* ========================================
+   15. 深色模式支持 (可选)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+    /* 如果需要支持深色模式,可以在这里添加样式 */
+    /* 目前保持浅色主题以确保品牌一致性 */
+}
+
+
+/* ============================================
+   END OF CSS
+   ============================================
+   
+   提示:
+   - 所有样式都使用 !important 确保优先级
+   - 已针对 Elementor 的类名进行适配
+   - 包含完整的响应式设计
+   - 包含动画和过渡效果
+   - 包含错误和成功状态样式
+   
+   如需调整:
+   - 颜色: 搜索对应的十六进制颜色代码修改
+   - 间距: 修改 padding 和 margin 值
+   - 字体: 修改 font-size 值
+   - 圆角: 修改 border-radius 值
+   ============================================ */

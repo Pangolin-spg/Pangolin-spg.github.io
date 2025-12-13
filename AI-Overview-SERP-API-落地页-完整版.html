@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Overview SERP API - 实时抓取 Google AI Overviews | Pangolin</title>
+    <meta name="description"
+        content="专业的 AI Overview SERP API,实时抓取 Google AI 生成摘要,支持引用源追踪、页面截图、结构化 JSON 输出。98%+ 成功率,2 积分/次请求。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* WordPress 样式重置 - 最高优先级 */
+        body,
+        html {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        /* 移除 WordPress 默认的 section 间距 */
+        section {
+            margin: 0 !important;
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+        /* 移除 WordPress 容器的默认样式 */
+        .entry-content,
+        .site-content,
+        article {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        :root {
+            --primary-blue: #2b4bd3;
+            --secondary-orange: #ff9900;
+            --dark-blue: #0c254b;
+            --light-bg: #e3edfb;
+            --text-gray: #576168;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif !important;
+            color: var(--text-gray) !important;
+            background-color: #f9fafb !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            color: var(--dark-blue);
+        }
+
+        /* Hero Banner 样式 - 增强优先级 */
+        .banner-en {
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(255, 153, 0, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 153, 0, 0.25) 0%, transparent 50%),
+                linear-gradient(135deg, #1a3a7d 0%, #2b4bd3 50%, #3d5fdb 100%) !important;
+            background-size: 100% 100%, 100% 100%, 200% 200% !important;
+            animation: dataPulse 8s ease infinite !important;
+            position: relative !important;
+            margin: 0 !important;
+            padding: 6rem 0 !important;
+        }
+
+        @keyframes dataPulse {
+
+            0%,
+            100% {
+                background-position: 0% 0%, 0% 0%, 0% 50%;
+            }
+
+            50% {
+                background-position: 0% 0%, 0% 0%, 100% 50%;
+            }
+        }
+
+        .banner-en::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 153, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 153, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* 渐变文字特效 */
+        .hero-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #a855f7 50%, #3b82f6 75%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-orange);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-blue), #7c3aed);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c792ea;
+        }
+
+        .code-block .string {
+            color: #c3e88d;
+        }
+
+        .code-block .comment {
+            color: #546e7a;
+        }
+
+        .code-block .function {
+            color: #82aaff;
+        }
+
+        /* Footer 样式 */
+        footer {
+            padding: 3rem 0 !important;
+            margin: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <section class="banner-en text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+            <div class="text-center">
+                <div
+                    class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/20">
+                    <i class="fas fa-sparkles mr-2"></i>AI 搜索时代的数据基础设施
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-black mb-6 text-white leading-tight">
+                    实时抓取 <span class="hero-gradient">Google AI Overviews</span><br>
+                    掌握 AI 搜索竞争优势
+                </h1>
+
+                <p class="text-xl md:text-2xl mb-10 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                    专业的 AI Overview SERP API,追踪 AI 生成摘要、引用源、优化 SEO 策略<br>
+                    <span class="text-yellow-300 font-semibold">98%+ 成功率 · 支持截图 · 结构化 JSON · 2 积分/次</span>
+                </p>
+
+                <!-- 核心卖点 -->
+                <div class="grid md:grid-cols-4 gap-4 mb-12 max-w-5xl mx-auto">
+                    <div class="glass-effect rounded-xl p-5">
+                        <i class="fas fa-bolt text-3xl text-yellow-300 mb-2"></i>
+                        <h3 class="text-base font-bold text-white mb-1">毫秒级响应</h3>
+                        <p class="text-blue-100 text-xs">实时获取数据</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-5">
+                        <i class="fas fa-camera text-3xl text-yellow-300 mb-2"></i>
+                        <h3 class="text-base font-bold text-white mb-1">页面截图</h3>
+                        <p class="text-blue-100 text-xs">可视化验证</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-5">
+                        <i class="fas fa-link text-3xl text-yellow-300 mb-2"></i>
+                        <h3 class="text-base font-bold text-white mb-1">引用源追踪</h3>
+                        <p class="text-blue-100 text-xs">完整引用链接</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-5">
+                        <i class="fas fa-code text-3xl text-yellow-300 mb-2"></i>
+                        <h3 class="text-base font-bold text-white mb-1">结构化 JSON</h3>
+                        <p class="text-blue-100 text-xs">即插即用</p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#pricing" class="btn-primary">
+                        <i class="fas fa-rocket mr-2"></i>免费试用
+                    </a>
+                    <a href="#api-docs"
+                        class="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition inline-block">
+                        <i class="fas fa-book mr-2"></i>API 文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 什么是 AI Overview -->
+    <section class="bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">什么是 Google AI Overviews?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    AI Overviews 是 Google 在搜索结果顶部显示的 AI 生成摘要,为用户提供快速、综合的答案
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6">
+                    <div class="text-4xl font-black text-blue-600 mb-2">13-30%</div>
+                    <h3 class="text-lg font-bold mb-2">搜索结果覆盖率</h3>
+                    <p class="text-sm text-gray-600">AI Overview 出现在 13%-30% 的搜索结果中</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6">
+                    <div class="text-4xl font-black text-purple-600 mb-2">75%</div>
+                    <h3 class="text-lg font-bold mb-2">信息类查询</h3>
+                    <p class="text-sm text-gray-600">对信息类查询的覆盖率高达 75%</p>
+                </div>
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6">
+                    <div class="text-4xl font-black text-orange-600 mb-2">#0</div>
+                    <h3 class="text-lg font-bold mb-2">零位置排名</h3>
+                    <p class="text-sm text-gray-600">占据搜索结果最顶部,影响传统 SEO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section class="bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4">强大的功能特性</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">一站式 AI Overview 数据采集解决方案</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">完整内容提取</h3>
+                    <p class="text-gray-600 text-sm">提取完整的 AI 生成摘要文本,包含所有文本块和段落结构,支持同步和异步 AI Overview</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #ff9900, #ff6b6b);">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">引用源追踪</h3>
+                    <p class="text-gray-600 text-sm">识别被 AI 引用的网站和页面,提取引用链接、标题和缩略图,分析引用权重</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">页面截图</h3>
+                    <p class="text-gray-600 text-sm">可选的页面截图功能,完整保存搜索结果页面,便于可视化验证和存档</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">结构化 JSON</h3>
+                    <p class="text-gray-600 text-sm">标准化的 JSON 数据格式,易于集成到现有系统,完整的 API 文档支持</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">高成功率</h3>
+                    <p class="text-gray-600 text-sm">98%+ 的请求成功率,自动处理 Google 反爬机制,智能重试机制</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">多参数定制</h3>
+                    <p class="text-gray-600 text-sm">支持地理位置定位、设备类型选择、语言和地区设置,满足各种需求</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API 文档示例 -->
+    <section id="api-docs" class="bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold text-center mb-4">API 调用示例</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">5 分钟快速集成,开发者友好</p>
+
+            <!-- 请求示例 -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-paper-plane text-blue-600 mr-3"></i>请求示例
+                </h3>
+                <div class="code-block">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-green-400 font-mono text-sm">cURL</span>
+                        <button class="text-xs bg-blue-600 px-3 py-1 rounded hover:bg-blue-700 transition">
+                            <i class="fas fa-copy mr-1"></i>复制
+                        </button>
+                    </div>
+                    <pre><code><span class="keyword">curl</span> --request POST \
+  --url https://scrapeapi.pangolinfo.com/api/v2/scrape \
+  --header <span class="string">'Authorization: Bearer &lt;token&gt;'</span> \
+  --header <span class="string">'Content-Type: application/json'</span> \
+  --data <span class="string">'{
+    "url": "https://www.google.com/search?q=how+java+work",
+    "parserName": "googleSearch",
+    "screenshot": false
+}'</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 请求参数 -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-sliders-h text-purple-600 mr-3"></i>请求参数
+                </h3>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left py-3 font-bold text-gray-700">参数</th>
+                                <th class="text-left py-3 font-bold text-gray-700">必填</th>
+                                <th class="text-left py-3 font-bold text-gray-700">类型</th>
+                                <th class="text-left py-3 font-bold text-gray-700">说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-mono text-blue-600">url</td>
+                                <td class="py-3"><span
+                                        class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold">Yes</span>
+                                </td>
+                                <td class="py-3 text-gray-600">string</td>
+                                <td class="py-3 text-gray-600">目标 Google 搜索 URL</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-mono text-blue-600">parserName</td>
+                                <td class="py-3"><span
+                                        class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold">Yes</span>
+                                </td>
+                                <td class="py-3 text-gray-600">string</td>
+                                <td class="py-3 text-gray-600">解析器名称: <code
+                                        class="bg-gray-200 px-2 py-1 rounded">googleSearch</code></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-mono text-blue-600">screenshot</td>
+                                <td class="py-3"><span
+                                        class="bg-gray-200 text-gray-600 px-2 py-1 rounded text-xs">No</span></td>
+                                <td class="py-3 text-gray-600">boolean</td>
+                                <td class="py-3 text-gray-600">是否需要页面截图</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 返回示例 -->
+            <div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-600 mr-3"></i>返回示例
+                </h3>
+                <div class="code-block">
+                    <pre><code>{
+  <span class="string">"code"</span>: <span class="keyword">0</span>,
+  <span class="string">"message"</span>: <span class="string">"ok"</span>,
+  <span class="string">"data"</span>: {
+    <span class="string">"ai_overview"</span>: <span class="keyword">1</span>,
+    <span class="string">"url"</span>: <span class="string">"https://www.google.com/search?q=how+java+work"</span>,
+    <span class="string">"json"</span>: {
+      <span class="string">"type"</span>: <span class="string">"organic"</span>,
+      <span class="string">"items"</span>: [
+        {
+          <span class="string">"type"</span>: <span class="string">"ai_overview"</span>,
+          <span class="string">"items"</span>: [
+            {
+              <span class="string">"content"</span>: [<span class="string">"Java works through..."</span>]
+            }
+          ],
+          <span class="string">"references"</span>: [...]
+        }
+      ]
+    },
+    <span class="string">"screenshot"</span>: <span class="string">"https://..."</span>
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 定价 -->
+    <section id="pricing" class="bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-bold text-center mb-4">简单透明的定价</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">按需付费,无隐藏费用</p>
+
+            <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+                <div class="text-center mb-8">
+                    <div
+                        class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">
+                        AI Overview SERP API
+                    </div>
+                    <h3 class="text-3xl font-black text-gray-800 mb-2">积分消耗</h3>
+                    <div class="flex items-baseline justify-center gap-2">
+                        <span class="text-6xl font-black text-blue-600">2</span>
+                        <span class="text-2xl text-gray-600">积分/次请求</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h4 class="font-bold text-lg mb-3 flex items-center">
+                            <i class="fas fa-check-circle text-blue-600 mr-2"></i>包含功能
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>完整 AI Overview 内容提取</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>引用源链接和标题</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>结构化 JSON 数据</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>可选页面截图</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <h4 class="font-bold text-lg mb-3 flex items-center">
+                            <i class="fas fa-calculator text-purple-600 mr-2"></i>费用示例
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex justify-between">
+                                <span>1,000 次请求</span>
+                                <span class="font-bold">2,000 积分</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>10,000 次请求</span>
+                                <span class="font-bold">20,000 积分</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>100,000 次请求</span>
+                                <span class="font-bold">200,000 积分</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 pt-4 border-t border-purple-200">
+                            <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold text-sm">
+                                查看完整价格计算器 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="btn-primary text-lg">
+                        <i class="fas fa-rocket mr-2"></i>立即开始使用
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">
+                        <i class="fas fa-gift mr-1"></i>新用户赠送 1,000 积分用于测试
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section class="bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4">谁在使用 AI Overview API?</h2>
+            <p class="text-center text-xl text-gray-600 mb-12">服务全球 SEO 专业人员和数据团队</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 hover-lift">
+                    <div
+                        class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO 专业人员</h3>
+                    <p class="text-gray-700 text-sm">监控 AI Overview 对关键词排名的影响,优化内容以提高 AI 引用率,追踪竞争对手可见性</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 hover-lift">
+                    <div
+                        class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">数字营销机构</h3>
+                    <p class="text-gray-700 text-sm">为客户提供全面的搜索可见性报告,制定 AI 时代的 SEO 策略,监控品牌表现</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 hover-lift">
+                    <div
+                        class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">开发者</h3>
+                    <p class="text-gray-700 text-sm">构建 SEO 监控工具,训练 AI 模型,集成搜索数据到应用,大规模数据收集</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="banner-en text-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">立即开始,抢占 AI 搜索先机</h2>
+            <p class="text-xl mb-8 text-blue-100">免费试用 · 5 分钟快速接入 · 专业技术支持</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#"
+                    class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition transform hover:scale-105 inline-block">
+                    <i class="fas fa-rocket mr-2"></i>免费注册
+                </a>
+                <a href="#"
+                    class="border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition inline-block">
+                    <i class="fas fa-phone mr-2"></i>联系销售
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Pangolin</h4>
+                    <p class="text-sm">专业的数据采集 API 服务提供商</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">产品</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Amazon Scrape API</a></li>
+                        <li><a href="#" class="hover:text-white transition">AI Overview API</a></li>
+                        <li><a href="#" class="hover:text-white transition">AMZ Data Tracker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">资源</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">API 文档</a></li>
+                        <li><a href="#" class="hover:text-white transition">使用案例</a></li>
+                        <li><a href="#" class="hover:text-white transition">博客</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-envelope mr-2"></i>support@pangolinfo.com</li>
+                        <li><i class="fas fa-globe mr-2"></i>www.pangolinfo.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 Pangolin Info. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

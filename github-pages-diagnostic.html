@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Diagnostic Tool - Pangolin Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status.loading {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .icon {
+            font-size: 20px;
+        }
+
+        .article-list {
+            list-style: none;
+        }
+
+        .article-item {
+            padding: 15px;
+            border-left: 3px solid #667eea;
+            background: #f9fafb;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .article-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-item a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .info-box strong {
+            color: #1e40af;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 GitHub Pages Diagnostic Tool</h1>
+            <p>Checking your Pangolin blog setup...</p>
+        </div>
+
+        <!-- Repository Status -->
+        <div class="card">
+            <h2>📦 Repository Status</h2>
+            <div id="repo-status" class="status loading">
+                <span class="icon">⏳</span>
+                <span>Checking repository...</span>
+            </div>
+            <div id="repo-info"></div>
+        </div>
+
+        <!-- Articles Folder Status -->
+        <div class="card">
+            <h2>📁 Articles Folder</h2>
+            <div id="articles-status" class="status loading">
+                <span class="icon">⏳</span>
+                <span>Checking articles folder...</span>
+            </div>
+            <div id="articles-list"></div>
+        </div>
+
+        <!-- GitHub Pages Status -->
+        <div class="card">
+            <h2>🌐 GitHub Pages Status</h2>
+            <div id="pages-status" class="status loading">
+                <span class="icon">⏳</span>
+                <span>Checking GitHub Pages...</span>
+            </div>
+            <div id="pages-info"></div>
+        </div>
+
+        <!-- Solutions -->
+        <div class="card">
+            <h2>💡 Solutions & Next Steps</h2>
+            <div id="solutions"></div>
+        </div>
+    </div>
+
+    <script>
+        const GITHUB_USER = 'Pangolin-spg';
+        const GITHUB_REPO = 'Pangolin-spg.github.io';
+
+        async function checkRepository() {
+            const statusEl = document.getElementById('repo-status');
+            const infoEl = document.getElementById('repo-info');
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    statusEl.className = 'status success';
+                    statusEl.innerHTML = '<span class="icon">✅</span><span>Repository found!</span>';
+
+                    infoEl.innerHTML = `
+                        <div class="info-box">
+                            <strong>Repository:</strong> ${data.full_name}<br>
+                            <strong>Default Branch:</strong> ${data.default_branch}<br>
+                            <strong>Last Updated:</strong> ${new Date(data.updated_at).toLocaleString()}
+                        </div>
+                    `;
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.innerHTML = '<span class="icon">❌</span><span>Repository not found or not accessible</span>';
+                }
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '<span class="icon">❌</span><span>Error checking repository: ' + error.message + '</span>';
+            }
+        }
+
+        async function checkArticles() {
+            const statusEl = document.getElementById('articles-status');
+            const listEl = document.getElementById('articles-list');
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/articles`);
+
+                if (response.ok) {
+                    const files = await response.json();
+                    const articles = files.filter(file => file.name.endsWith('.md'));
+
+                    if (articles.length > 0) {
+                        statusEl.className = 'status success';
+                        statusEl.innerHTML = `<span class="icon">✅</span><span>Found ${articles.length} article(s)</span>`;
+
+                        let html = '<ul class="article-list">';
+                        articles.forEach(article => {
+                            const articleUrl = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/blob/main/articles/${article.name}`;
+                            const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/articles/${article.name}`;
+                            html += `
+                                <li class="article-item">
+                                    <strong>${article.name}</strong><br>
+                                    <small>
+                                        <a href="${articleUrl}" target="_blank">View on GitHub</a> | 
+                                        <a href="${rawUrl}" target="_blank">View Raw</a>
+                                    </small>
+                                </li>
+                            `;
+                        });
+                        html += '</ul>';
+                        listEl.innerHTML = html;
+                    } else {
+                        statusEl.className = 'status warning';
+                        statusEl.innerHTML = '<span class="icon">⚠️</span><span>Articles folder exists but no .md files found</span>';
+                    }
+                } else if (response.status === 404) {
+                    statusEl.className = 'status error';
+                    statusEl.innerHTML = '<span class="icon">❌</span><span>Articles folder not found</span>';
+                    listEl.innerHTML = `
+                        <div class="info-box">
+                            <strong>Issue:</strong> The "articles" folder doesn't exist in your repository.<br>
+                            <strong>Solution:</strong> Create a folder named "articles" in the root of your repository.
+                        </div>
+                    `;
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.innerHTML = '<span class="icon">❌</span><span>Error accessing articles folder</span>';
+                }
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '<span class="icon">❌</span><span>Error: ' + error.message + '</span>';
+            }
+        }
+
+        async function checkGitHubPages() {
+            const statusEl = document.getElementById('pages-status');
+            const infoEl = document.getElementById('pages-info');
+
+            try {
+                // Check if index.html exists
+                const indexResponse = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/index.html`);
+
+                if (indexResponse.ok) {
+                    statusEl.className = 'status success';
+                    statusEl.innerHTML = '<span class="icon">✅</span><span>index.html found in repository</span>';
+
+                    infoEl.innerHTML = `
+                        <div class="info-box">
+                            <strong>Blog URL:</strong> <a href="https://${GITHUB_USER}.github.io/" target="_blank">https://${GITHUB_USER}.github.io/</a><br>
+                            <strong>Status:</strong> GitHub Pages should be live (may take a few minutes to deploy)
+                        </div>
+                        <button class="btn" onclick="window.open('https://${GITHUB_USER}.github.io/', '_blank')">
+                            🚀 Open Blog
+                        </button>
+                    `;
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.innerHTML = '<span class="icon">❌</span><span>index.html not found in repository root</span>';
+
+                    infoEl.innerHTML = `
+                        <div class="info-box">
+                            <strong>Issue:</strong> No index.html file found in the repository root.<br>
+                            <strong>Solution:</strong> Upload the index.html file to the root of your repository.
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '<span class="icon">❌</span><span>Error checking GitHub Pages</span>';
+            }
+        }
+
+        function showSolutions() {
+            const solutionsEl = document.getElementById('solutions');
+
+            solutionsEl.innerHTML = `
+                <h3 style="margin-bottom: 15px;">📋 Step-by-Step Setup Guide:</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <strong>1. Enable GitHub Pages</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Go to your repository: <a href="https://github.com/${GITHUB_USER}/${GITHUB_REPO}" target="_blank">github.com/${GITHUB_USER}/${GITHUB_REPO}</a></li>
+                        <li>Click "Settings" → "Pages"</li>
+                        <li>Under "Source", select "main" branch</li>
+                        <li>Click "Save"</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <strong>2. Upload index.html</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Upload the index.html file to the <strong>root</strong> of your repository</li>
+                        <li>Not in any subfolder - it must be in the main directory</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <strong>3. Verify Articles Folder</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>Create a folder named "articles" in the root</li>
+                        <li>Upload your .md files into this folder</li>
+                        <li>File: "Amazon URL Parameter Construction-Complete Guide for Data Scraping.md"</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <strong>4. Access Your Article</strong>
+                    <div class="code-block" style="margin-top: 10px;">
+# GitHub URL (to view/edit)
+https://github.com/${GITHUB_USER}/${GITHUB_REPO}/blob/main/articles/Amazon%20URL%20Parameter%20Construction-Complete%20Guide%20for%20Data%20Scraping.md
+
+# Raw URL (direct content)
+https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/articles/Amazon%20URL%20Parameter%20Construction-Complete%20Guide%20for%20Data%20Scraping.md
+
+# Blog Homepage (after GitHub Pages is enabled)
+https://${GITHUB_USER}.github.io/
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>⏱️ Note:</strong> After uploading files, GitHub Pages may take 1-5 minutes to deploy. 
+                    The article list on your blog will automatically load from the articles folder.
+                </div>
+
+                <button class="btn" onclick="location.reload()">
+                    🔄 Refresh Diagnostic
+                </button>
+            `;
+        }
+
+        // Run all checks
+        async function runDiagnostics() {
+            await checkRepository();
+            await checkArticles();
+            await checkGitHubPages();
+            showSolutions();
+        }
+
+        // Start diagnostics on load
+        window.addEventListener('load', runDiagnostics);
+    </script>
+</body>
+
+</html>

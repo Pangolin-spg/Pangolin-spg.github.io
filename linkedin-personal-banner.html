@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Personal Banner - Amazon API & E-commerce Data Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .banner-container {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            /* Official Website Background */
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(255, 153, 0, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 153, 0, 0.25) 0%, transparent 50%),
+                linear-gradient(135deg, #1a3a7d 0%, #2b4bd3 50%, #3d5fdb 100%);
+            background-size: 100% 100%, 100% 100%, 200% 200%;
+            animation: dataPulse 8s ease infinite;
+        }
+
+        @keyframes dataPulse {
+
+            0%,
+            100% {
+                background-position: 0% 0%, 0% 0%, 0% 50%;
+            }
+
+            50% {
+                background-position: 0% 0%, 0% 0%, 100% 50%;
+            }
+        }
+
+        /* Data Grid Effect */
+        .banner-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 153, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 153, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 0 100px 0 450px;
+            /* Left padding for profile photo space */
+            text-align: right;
+        }
+
+        /* Main Title */
+        .main-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .title-highlight {
+            background: linear-gradient(135deg, #ffa726, #ff6f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-size: 28px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Decorative Elements */
+        .deco-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffa726, transparent);
+            width: 100%;
+            top: 50%;
+            left: 0;
+            opacity: 0.3;
+            animation: lineMove 3s ease-in-out infinite;
+        }
+
+        @keyframes lineMove {
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Data Visualization Dots */
+        .data-dots {
+            position: absolute;
+            bottom: 40px;
+            right: 100px;
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 167, 38, 0.6);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .dot:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .dot:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* Download Button */
+        .download-section {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #2b4bd3, #3d5fdb);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(43, 75, 211, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(43, 75, 211, 0.4);
+            background: linear-gradient(135deg, #3d5fdb, #2b4bd3);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .info-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-text strong {
+            color: #333;
+        }
+
+        /* Version Selector */
+        .version-selector {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .version-selector h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .version-btn {
+            display: block;
+            width: 100%;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .version-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .version-btn.active {
+            background: linear-gradient(135deg, #2b4bd3, #3d5fdb);
+            color: white;
+            border-color: #2b4bd3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Version Selector -->
+    <div class="version-selector">
+        <h3>Choose Your Style:</h3>
+        <button class="version-btn active" onclick="changeVersion(1)">
+            🎯 Amazon API Expert
+        </button>
+        <button class="version-btn" onclick="changeVersion(2)">
+            💼 E-commerce Data Leader
+        </button>
+        <button class="version-btn" onclick="changeVersion(3)">
+            🚀 Data Intelligence Pro
+        </button>
+    </div>
+
+    <div class="banner-container" id="banner">
+        <!-- Decorative Line -->
+        <div class="deco-line"></div>
+
+        <!-- Main Content -->
+        <div class="content" id="content">
+            <!-- Version 1: Amazon API Expert -->
+            <div class="version-content" id="version1">
+                <div class="main-title">
+                    Amazon API & <span class="title-highlight">Data Intelligence</span>
+                </div>
+                <div class="subtitle">
+                    Empowering E-commerce with Real-time Product Data & Pricing Intelligence
+                </div>
+                <div class="tags">
+                    <div class="tag">Amazon Scraping API</div>
+                    <div class="tag">E-commerce Analytics</div>
+                    <div class="tag">Product Data Expert</div>
+                    <div class="tag">Competitive Intelligence</div>
+                </div>
+            </div>
+
+            <!-- Version 2: E-commerce Data Leader -->
+            <div class="version-content" id="version2" style="display: none;">
+                <div class="main-title">
+                    E-commerce <span class="title-highlight">Data Leader</span>
+                </div>
+                <div class="subtitle">
+                    Building Scalable Data Solutions for 2,000+ Global Businesses
+                </div>
+                <div class="tags">
+                    <div class="tag">Data Intelligence</div>
+                    <div class="tag">API Architecture</div>
+                    <div class="tag">Market Research</div>
+                    <div class="tag">Business Growth</div>
+                </div>
+            </div>
+
+            <!-- Version 3: Data Intelligence Pro -->
+            <div class="version-content" id="version3" style="display: none;">
+                <div class="main-title">
+                    Data Intelligence <span class="title-highlight">Professional</span>
+                </div>
+                <div class="subtitle">
+                    Transforming E-commerce Data into Actionable Business Insights
+                </div>
+                <div class="tags">
+                    <div class="tag">Amazon SERP API</div>
+                    <div class="tag">Price Monitoring</div>
+                    <div class="tag">Data Analytics</div>
+                    <div class="tag">SaaS Platform</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Dots -->
+        <div class="data-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Download Section -->
+    <div class="download-section">
+        <button class="download-btn" id="downloadBtn" onclick="downloadBanner()">
+            <span>📥</span>
+            <span>Download Banner</span>
+        </button>
+    </div>
+
+    <div class="info-text">
+        <strong>LinkedIn Personal Profile Banner</strong><br>
+        Size: 1584 x 396 pixels | Format: PNG<br>
+        Choose your preferred style and click download
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // Change version
+        function changeVersion(versionNum) {
+            // Hide all versions
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`version${i}`).style.display = 'none';
+            }
+
+            // Show selected version
+            document.getElementById(`version${versionNum}`).style.display = 'block';
+
+            // Update button states
+            const buttons = document.querySelectorAll('.version-btn');
+            buttons.forEach((btn, index) => {
+                if (index + 1 === versionNum) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        async function downloadBanner() {
+            const banner = document.getElementById('banner');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Show loading state
+            downloadBtn.innerHTML = '<span>⏳</span><span>Generating...</span>';
+            downloadBtn.disabled = true;
+
+            try {
+                // Wait a bit for animations to settle
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const canvas = await html2canvas(banner, {
+                    width: 1584,
+                    height: 396,
+                    scale: 2,
+                    backgroundColor: '#2b4bd3',
+                    logging: false,
+                    useCORS: true,
+                    allowTaint: false
+                });
+
+                // Get active version
+                let versionName = 'amazon-api-expert';
+                if (document.getElementById('version2').style.display !== 'none') {
+                    versionName = 'ecommerce-data-leader';
+                } else if (document.getElementById('version3').style.display !== 'none') {
+                    versionName = 'data-intelligence-pro';
+                }
+
+                // Convert to blob and download
+                canvas.toBlob(function (blob) {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    const timestamp = new Date().getTime();
+                    link.download = `linkedin-personal-banner-${versionName}-${timestamp}.png`;
+                    link.href = url;
+                    link.click();
+                    URL.revokeObjectURL(url);
+
+                    // Reset button
+                    downloadBtn.innerHTML = '<span>✅</span><span>Downloaded!</span>';
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = '<span>📥</span><span>Download Banner</span>';
+                        downloadBtn.disabled = false;
+                    }, 2000);
+                }, 'image/png');
+            } catch (error) {
+                console.error('Error generating banner:', error);
+                alert('Error generating banner. Please try taking a screenshot instead.');
+                downloadBtn.innerHTML = '<span>📥</span><span>Download Banner</span>';
+                downloadBtn.disabled = false;
+            }
+        }
+
+        // Auto-adjust for different screen sizes
+        window.addEventListener('load', () => {
+            const container = document.querySelector('.banner-container');
+            const windowWidth = window.innerWidth - 40;
+            const scale = Math.min(1, windowWidth / 1584);
+            if (scale < 1) {
+                container.style.transform = `scale(${scale})`;
+                container.style.transformOrigin = 'top center';
+            }
+        });
+    </script>
+</body>
+
+</html>

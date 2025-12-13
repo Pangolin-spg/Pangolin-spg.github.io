@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Getting Started with Amazon Scraping API for Product Data Extraction | Pangolin Guide</title>
+    <meta name="description"
+        content="Complete guide to Amazon product data extraction using Pangolin Scraping API. Learn how to extract product details, pricing, reviews, and inventory data with practical code examples and best practices.">
+    <meta name="keywords"
+        content="Amazon Scraping API, Amazon Product Data Extraction, Amazon API Tutorial, E-commerce Data Scraping, Pangolin API Guide, Amazon Price Monitoring, Product Data API">
+    <meta name="author" content="Pangolin Scrape API">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Getting Started with Amazon Scraping API for Product Data Extraction">
+    <meta property="og:description"
+        content="Complete guide to extracting Amazon product data using Pangolin Scraping API with practical examples.">
+    <meta property="og:url" content="https://pangolin-spg.github.io/articles/getting-started-amazon-scraping-api.html">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Getting Started with Amazon Scraping API for Product Data Extraction">
+    <meta name="twitter:description"
+        content="Complete guide to extracting Amazon product data using Pangolin Scraping API.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" content="https://pangolin-spg.github.io/articles/getting-started-amazon-scraping-api.html">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Getting Started with Amazon Scraping API for Product Data Extraction",
+      "description": "Complete guide to Amazon product data extraction using Pangolin Scraping API",
+      "author": {
+        "@type": "Organization",
+        "name": "Pangolin Scrape API"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangolin Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+        }
+      },
+      "datePublished": "2025-12-12",
+      "dateModified": "2025-12-12"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Styles */
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        /* Table of Contents Styles */
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* Sticky Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Code Copy Button */
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="../index.html#home" class="nav-link hover:text-white transition">Home</a>
+                <a href="../index.html#solutions" class="nav-link hover:text-white transition">Solutions</a>
+                <a href="../index.html#use-cases" class="nav-link hover:text-white transition">Use Cases</a>
+                <a href="../index.html#articles" class="nav-link hover:text-white transition">Blog</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">Docs</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                    class="nav-link hover:text-white transition">Pricing</a>
+            </div>
+            <a href="https://tool.pangolinfo.com/"
+                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                Try Free
+            </a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="relative pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase">
+                <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
+                Amazon API Tutorial
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Getting Started with Amazon Scraping API for Product Data Extraction
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Learn how to leverage Pangolin's Amazon scraping API to extract comprehensive product data, pricing, and
+                reviews from Amazon marketplace
+            </p>
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-clock mr-2"></i>15 min read</span>
+                <span><i class="far fa-user mr-2"></i>Pangolin Team</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebar -->
+    <section class="relative px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Main Article Content (2/3 width) -->
+                <div class="lg:col-span-2">
+                    <article class="glass-card rounded-3xl p-8 md:p-12">
+
+                        <p class="text-xl text-gray-300 font-medium mb-8">
+                            Amazon product data extraction has become essential for e-commerce businesses, market
+                            researchers, and data analysts. Whether you're monitoring competitor pricing, conducting
+                            product research, or building a price comparison tool, having reliable access to Amazon's
+                            vast product catalog is crucial. This comprehensive guide will walk you through everything
+                            you need to know about using Pangolin's Amazon Scraping API to extract product data
+                            efficiently and at scale.
+                        </p>
+
+                        <h2 id="why-matters">Why Amazon Product Data Extraction Matters</h2>
+
+                        <p>
+                            Amazon hosts over 350 million products across multiple marketplaces worldwide. For
+                            businesses operating in the e-commerce space, access to this data provides invaluable
+                            insights:
+                        </p>
+
+                        <ul>
+                            <li><strong>Competitive Intelligence</strong>: Track competitor pricing strategies, product
+                                launches, and inventory levels in real-time</li>
+                            <li><strong>Market Research</strong>: Identify trending products, analyze customer sentiment
+                                through reviews, and discover market gaps</li>
+                            <li><strong>Dynamic Pricing</strong>: Adjust your pricing strategy based on real-time market
+                                data to maximize profitability</li>
+                            <li><strong>Product Selection</strong>: Make data-driven decisions about which products to
+                                sell based on demand, competition, and profitability metrics</li>
+                            <li><strong>Inventory Management</strong>: Monitor stock levels and availability patterns to
+                                optimize your own inventory</li>
+                        </ul>
+
+                        <p>
+                            However, extracting this data manually is impractical at scale. Amazon's website structure
+                            is complex, frequently changes, and implements sophisticated anti-bot measures. This is
+                            where Pangolin's Amazon Scraping API becomes invaluable.
+                        </p>
+
+                        <h2 id="understanding-api">Understanding Pangolin's Amazon Scraping API</h2>
+
+                        <p>
+                            Pangolin's Amazon Scraping API is a professional-grade solution designed specifically for
+                            Amazon data extraction. Unlike basic web scrapers, it handles all the complexities of
+                            Amazon's infrastructure:
+                        </p>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan">Key Features</h4>
+                            <ul class="mb-0">
+                                <li><strong>99.9% Success Rate</strong>: Advanced anti-detection technology ensures
+                                    reliable data extraction</li>
+                                <li><strong>Multi-Marketplace Support</strong>: Extract data from Amazon.com,
+                                    Amazon.co.uk, Amazon.de, and 15+ other marketplaces</li>
+                                <li><strong>Comprehensive Data Fields</strong>: Access product details, pricing,
+                                    reviews, ratings, images, variants, and more</li>
+                                <li><strong>Real-time Data</strong>: Get fresh, up-to-date information with sub-second
+                                    response times</li>
+                                <li><strong>Scalable Infrastructure</strong>: Handle millions of requests with
+                                    enterprise-grade reliability</li>
+                            </ul>
+                        </div>
+
+                        <h2 id="prerequisites">Getting Started: Prerequisites</h2>
+
+                        <p>Before diving into code, you'll need:</p>
+
+                        <ol>
+                            <li><strong>Pangolin API Account</strong>: Sign up at <a href="https://tool.pangolinfo.com/"
+                                    class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> to get your API
+                                credentials</li>
+                            <li><strong>API Key</strong>: Obtain your authentication key from the dashboard (you'll get
+                                1,000 free credits to start)</li>
+                            <li><strong>Development Environment</strong>: Python 3.7+, Node.js 14+, or any language that
+                                can make HTTP requests</li>
+                            <li><strong>Basic Programming Knowledge</strong>: Familiarity with REST APIs and JSON data
+                                structures</li>
+                        </ol>
+
+                        <h2 id="authentication">Authentication and API Basics</h2>
+
+                        <p>
+                            Pangolin's API uses Bearer token authentication. Every request must include your API key in
+                            the Authorization header. Here's the basic structure:
+                        </p>
+
+                        <pre><code class="language-bash">curl -X POST "https://scrapeapi.pangolinfo.com/api/v1/scrape" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://www.amazon.com/dp/PRODUCT_ASIN",
+    "parserName": "amzProductDetail",
+    "format": "json",
+    "bizContext": {
+      "zipcode": "10041"
+    }
+  }'</code></pre>
+
+                        <div class="warning-box">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
+                                    class="fas fa-exclamation-triangle mr-2"></i>Security Best Practice</h4>
+                            <p class="mb-0">Never hardcode your API key in client-side code or commit it to version
+                                control. Use environment variables or secure key management systems.</p>
+                        </div>
+
+                        <h2 id="step-by-step">Extracting Product Data: Step-by-Step Guide</h2>
+
+                        <h3 id="basic-extraction">1. Basic Product Information Extraction</h3>
+
+                        <p>
+                            Let's start with extracting basic product information. The most common use case is fetching
+                            data from a product detail page using the ASIN (Amazon Standard Identification Number).
+                        </p>
+
+                        <p><strong>Python Example:</strong></p>
+
+                        <pre><code class="language-python">import requests
+import json
+
+# Your Pangolin API credentials
+API_KEY = "your_api_key_here"
+API_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
+
+# Product ASIN you want to scrape
+product_asin = "B0DYTF8L2W"
+amazon_url = f"https://www.amazon.com/dp/{product_asin}"
+
+# Request headers
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+# Request payload
+payload = {
+    "url": amazon_url,
+    "parserName": "amzProductDetail",
+    "format": "json",
+    "bizContext": {
+        "zipcode": "10041"  # US zipcode (required for Amazon)
+    }
+}
+
+# Make the API request
+response = requests.post(API_ENDPOINT, headers=headers, json=payload)
+
+# Check if request was successful
+if response.status_code == 200:
+    result = response.json()
+    
+    # Extract product information from the response structure
+    if result.get('code') == 0:
+        data = result.get('data', {})
+        json_data = data.get('json', [{}])[0]
+        
+        if json_data.get('code') == 0:
+            product_results = json_data.get('data', {}).get('results', [])
+            
+            if product_results:
+                product = product_results[0]
+                
+                print(f"Product Title: {product.get('title')}")
+                print(f"Price: {product.get('price')}")
+                print(f"Rating: {product.get('star')} stars")
+                print(f"Number of Reviews: {product.get('rating')}")
+                print(f"Brand: {product.get('brand')}")
+                print(f"Sales: {product.get('sales')}")
+                
+                # Save to file
+                with open(f'product_{product_asin}.json', 'w') as f:
+                    json.dump(product, f, indent=2)
+            else:
+                print("No product data found")
+        else:
+            print(f"Parser error: {json_data.get('message')}")
+    else:
+        print(f"API error: {result.get('message')}")
+else:
+    print(f"HTTP Error: {response.status_code}")
+    print(response.text)</code></pre>
+
+                        <h3 id="response-structure">2. Understanding the Response Structure</h3>
+
+                        <p>
+                            When you set <code>format: "json"</code>, Pangolin returns structured JSON data with the
+                            following structure:
+                        </p>
+
+                        <pre><code class="language-json">{
+  "code": 0,
+  "message": "ok",
+  "data": {
+    "json": [
+      {
+        "code": 0,
+        "data": {
+          "results": [
+            {
+              "asin": "B0DYTF8L2W",
+              "title": "Sweetcrispy Convertible Sectional Sofa Couch...",
+              "price": "$599.99",
+              "star": "4.4",
+              "rating": "22",
+              "image": "https://m.media-amazon.com/images/I/...",
+              "images": ["https://...", "..."],
+              "brand": "Sweetcrispy",
+              "description": "Product description...",
+              "sales": "50+ bought in past month",
+              "seller": "Amazon.com",
+              "shipper": "Amazon",
+              "merchant_id": "null",
+              "color": "Beige",
+              "size": "126.77\"W",
+              "has_cart": false,
+              "otherAsins": ["B0DYTF8XXX"],
+              "coupon": "null",
+              "category_id": "3733551",
+              "category_name": "Sofas & Couches",
+              "product_dims": "20.07\"D x 126.77\"W x 24.01\"H",
+              "pkg_dims": "20.07\"D x 126.77\"W x 24.01\"H",
+              "product_weight": "47.4 Pounds",
+              "reviews": {...},
+              "customerReviews": "...",
+              "first_date": "2024-01-15",
+              "deliveryTime": "Dec 15 - Dec 18",
+              "additional_details": false
+            }
+          ]
+        },
+        "message": "ok"
+      }
+    ],
+    "url": "https://www.amazon.com/dp/B0DYTF8L2W",
+    "taskId": "45403c7fd7c148f280d0f4f7284bc9e9"
+  }
+}</code></pre>
+
+                        <h3 id="price-monitoring">3. Building a Price Monitoring System</h3>
+
+                        <p>
+                            Price monitoring is one of the most valuable applications of Amazon data extraction. Here's
+                            a complete example:
+                        </p>
+
+                        <pre><code class="language-python">import time
+from datetime import datetime
+import sqlite3
+
+class AmazonPriceTracker:
+    def __init__(self, api_key, db_path='price_history.db'):
+        self.api_key = api_key
+        self.db_path = db_path
+        self.setup_database()
+    
+    def setup_database(self):
+        """Create database table for price history"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS price_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                asin TEXT NOT NULL,
+                title TEXT,
+                price TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        conn.commit()
+        conn.close()
+    
+    def track_price(self, asin):
+        """Fetch current price and save to database"""
+        url = f"https://www.amazon.com/dp/{asin}"
+        
+        payload = {
+            "url": url,
+            "parserName": "amzProductDetail",
+            "format": "json",
+            "bizContext": {"zipcode": "10041"}
+        }
+        
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        response = requests.post(API_ENDPOINT, headers=headers, json=payload)
+        
+        if response.status_code == 200:
+            data = response.json()
+            product = data.get('data', {}).get('json', [{}])[0].get('data', {}).get('results', [{}])[0]
+            
+            # Save to database
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO price_history (asin, title, price)
+                VALUES (?, ?, ?)
+            ''', (asin, product.get('title'), product.get('price')))
+            conn.commit()
+            conn.close()
+            
+            return product
+        return None
+
+# Usage
+tracker = AmazonPriceTracker(API_KEY)
+product = tracker.track_price('B08N5WRWNW')
+print(f"Tracked: {product.get('title')} - {product.get('price')}")</code></pre>
+
+                        <h2 id="best-practices">Best Practices and Optimization</h2>
+
+                        <h3 id="rate-limiting">Rate Limiting and Error Handling</h3>
+
+                        <p>
+                            Implementing proper rate limiting and error handling ensures reliable, long-term operation:
+                        </p>
+
+                        <pre><code class="language-python">import time
+from functools import wraps
+
+def rate_limit(calls_per_second=10):
+    """Decorator to rate limit API calls"""
+    min_interval = 1.0 / calls_per_second
+    last_called = [0.0]
+    
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            elapsed = time.time() - last_called[0]
+            left_to_wait = min_interval - elapsed
+            
+            if left_to_wait > 0:
+                time.sleep(left_to_wait)
+            
+            ret = func(*args, **kwargs)
+            last_called[0] = time.time()
+            return ret
+        return wrapper
+    return decorator
+
+@rate_limit(calls_per_second=5)
+def scrape_with_safety(asin):
+    """Scrape with rate limiting"""
+    # Your scraping code here
+    pass</code></pre>
+
+                        <h2 id="conclusion">Conclusion</h2>
+
+                        <p>
+                            Amazon product data extraction is a powerful capability that can transform your e-commerce
+                            business strategy. With Pangolin's Amazon Scraping API, you have access to enterprise-grade
+                            infrastructure that handles all the complexities of data extraction, allowing you to focus
+                            on deriving insights and making data-driven decisions.
+                        </p>
+
+                        <div class="success-box mt-8">
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i
+                                    class="fas fa-check-circle mr-2"></i>Next Steps</h4>
+                            <ul class="mb-0">
+                                <li><strong>Sign up for Pangolin</strong>: Get your free API key at <a
+                                        href="https://tool.pangolinfo.com/"
+                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
+                                <li><strong>Explore the Documentation</strong>: Visit <a
+                                        href="https://docs.pangolinfo.com/en-index"
+                                        class="text-accent-cyan hover:underline">docs.pangolinfo.com</a> for complete
+                                    API reference</li>
+                                <li><strong>Test in the Playground</strong>: Try the interactive API Playground</li>
+                                <li><strong>Join the Community</strong>: Connect with other developers and share your
+                                    use cases</li>
+                            </ul>
+                        </div>
+
+                    </article>
+
+                    <!-- CTA -->
+                    <div class="glass-card rounded-3xl p-12 mt-8 text-center">
+                        <h3 class="text-3xl font-bold mb-4">Ready to Start Extracting Amazon Data?</h3>
+                        <p class="text-gray-400 mb-6">Get 1,000 free API credits and start building today</p>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="https://tool.pangolinfo.com/"
+                                class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
+                                Start Free Trial
+                            </a>
+                            <a href="https://docs.pangolinfo.com/en-index"
+                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
+                                View Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar (1/3 width) -->
+                <div class="lg:col-span-1">
+                    <div class="sidebar-sticky space-y-6">
+
+                        <!-- Table of Contents -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-lg font-bold mb-4 text-white">Table of Contents</h3>
+                            <nav class="space-y-1">
+                                <a href="#why-matters" class="toc-link">Why Amazon Data Extraction Matters</a>
+                                <a href="#understanding-api" class="toc-link">Understanding Pangolin's API</a>
+                                <a href="#prerequisites" class="toc-link">Getting Started: Prerequisites</a>
+                                <a href="#authentication" class="toc-link">Authentication and API Basics</a>
+                                <a href="#step-by-step" class="toc-link">Step-by-Step Guide</a>
+                                <a href="#basic-extraction" class="toc-link toc-link-sub">1. Basic Product
+                                    Extraction</a>
+                                <a href="#response-structure" class="toc-link toc-link-sub">2. Response Structure</a>
+                                <a href="#price-monitoring" class="toc-link toc-link-sub">3. Price Monitoring</a>
+                                <a href="#best-practices" class="toc-link">Best Practices</a>
+                                <a href="#rate-limiting" class="toc-link toc-link-sub">Rate Limiting</a>
+                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                            </nav>
+                        </div>
+
+                        <!-- Pangolin Scrape API Product Card -->
+                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-rocket text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
+                                Pangolin Scrape API</h4>
+                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
+                                with 99.9% uptime</p>
+                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                                <span>Learn More</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- AMZ Data Tracker Product Card -->
+                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
+                                AMZ Data Tracker</h4>
+                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
+                                alerts and Excel export</p>
+                            <div class="flex items-center text-accent-purple text-sm font-semibold">
+                                <span>Learn More</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- Chrome Extension Card -->
+                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=zh-CN&authuser=0"
+                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-chrome text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
+                                Browser Extension</h4>
+                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome extension for instant Amazon
+                                product analysis</p>
+                            <div class="flex items-center text-green-400 text-sm font-semibold">
+                                <span>Install Extension</span>
+                                <i
+                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOLIN</span>
+                </div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Products</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">Pricing</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Resources</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API Documentation</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="../index.html#articles" class="hover:text-white">Blog Articles</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Company</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">Official Website</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">Console</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white">Amazon Solutions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangolin Scrape API. All rights reserved.</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <script>
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.setAttribute('data-code-index', index);
+
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+
+</html>
