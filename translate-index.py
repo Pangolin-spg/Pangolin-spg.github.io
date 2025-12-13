@@ -1,0 +1,394 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+中文首页翻译脚本
+将英文首页翻译为中文版本
+"""
+
+import re
+
+# 读取复制的中文首页
+with open('zh/index.html', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# 1. 修改 lang 属性
+content = content.replace('<html lang="en">', '<html lang="zh-CN">')
+
+# 2. 修改 SEO Meta Tags
+content = content.replace(
+    '<title>Amazon Scraping API Blog | E-commerce Data Extraction Tutorials</title>',
+    '<title>Amazon 数据抓取 API 博客 | 电商数据提取教程</title>'
+)
+
+content = content.replace(
+    'Expert Amazon scraping API tutorials and e-commerce data extraction guides. Learn product data intelligence, price monitoring, and competitive analysis with Pangol Info API.',
+    '专业的 Amazon API 教程和电商数据提取指南。学习产品数据智能分析、价格监控和竞争分析，使用 Pangol Info API 提升业务。'
+)
+
+content = content.replace(
+    'Amazon Scraping API, E-commerce Data Extraction, Amazon Product Data, Price Monitoring API, Amazon SERP API',
+    'Amazon 数据抓取 API, 电商数据提取, Amazon 产品数据, 价格监控 API, Amazon SERP API'
+)
+
+# 3. 修改 Open Graph 标签
+content = content.replace(
+    'Amazon Scraping API & E-commerce Data Extraction | Pangolin Blog',
+    'Amazon 数据抓取 API 与电商数据提取 | Pangolin 博客'
+)
+
+content = content.replace(
+    'Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence. Real-time pricing, inventory tracking, and competitive analysis.',
+    '专业的 Amazon API 洞察、电商数据提取和产品智能分析。实时价格监控、库存追踪和竞争分析。'
+)
+
+content = content.replace(
+    'Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence.',
+    '专业的 Amazon API 洞察、电商数据提取和产品智能分析。'
+)
+
+# 4. 修改 Schema.org
+content = content.replace(
+    '"name": "Pangol Info Scrape API Blog"',
+    '"name": "Pangol Info 数据抓取 API 博客"'
+)
+
+content = content.replace(
+    '"description": "Expert insights on Amazon scraping API and e-commerce data extraction"',
+    '"description": "专业的 Amazon API 和电商数据提取洞察"'
+)
+
+# 5. 添加 Hreflang 标签（在 </head> 前）
+hreflang_tags = '''    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/index.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/index.html">
+
+'''
+
+content = content.replace('</head>', hreflang_tags + '</head>')
+
+# 6. 修改导航栏
+content = content.replace('>Home<', '>首页<')
+content = content.replace('>Solutions<', '>解决方案<')
+content = content.replace('>Use Cases<', '>应用场景<')
+content = content.replace('>Blog<', '>博客<')
+content = content.replace('>Docs<', '>文档<')
+content = content.replace('>Pricing<', '>定价<')
+content = content.replace('>Get API Key<', '>获取 API Key<')
+
+# 7. 修改语言切换器（中文页面显示 English）
+content = content.replace(
+    '<a href="/zh/index.html" class="language-btn">',
+    '<a href="/index.html" class="language-btn">'
+)
+content = content.replace(
+    '<span>🇨🇳</span>\n                        <span>中文</span>',
+    '<span>🇺🇸</span>\n                        <span>English</span>'
+)
+
+# 8. Hero Section 翻译
+content = content.replace(
+    'Amazon Scraping API',
+    'Amazon 数据抓取 API'
+)
+
+content = content.replace(
+    'E-commerce Data Extraction',
+    '电商数据提取'
+)
+
+content = content.replace(
+    'Real-time product data, pricing intelligence, and competitive insights from Amazon marketplace',
+    '从 Amazon 市场获取实时产品数据、价格智能和竞争洞察'
+)
+
+content = content.replace(
+    'Discover how Pangol Info\'s Amazon API empowers businesses with real-time pricing, inventory tracking, and',
+    '了解 Pangol Info 的 Amazon API 如何通过实时定价、库存跟踪和'
+)
+
+content = content.replace(
+    'competitive intelligence for data-driven decision making.',
+    '竞争情报为企业提供数据驱动的决策支持。'
+)
+
+content = content.replace(
+    'Start Free Trial',
+    '开始免费试用'
+)
+
+content = content.replace(
+    'View Documentation',
+    '查看文档'
+)
+
+# 9. Solutions Section
+content = content.replace(
+    'Pangolin Solutions Section',
+    'Pangolin 解决方案'
+)
+
+content = content.replace(
+    'Powerful Solutions for',
+    '强大的解决方案'
+)
+
+content = content.replace(
+    'E-commerce Success',
+    '助力电商成功'
+)
+
+content = content.replace(
+    'Comprehensive tools and APIs designed to give you a competitive edge in the Amazon marketplace',
+    '全面的工具和 API，旨在为您在 Amazon 市场提供竞争优势'
+)
+
+# 10. Product Data Extraction
+content = content.replace(
+    'Product Data Extraction',
+    '产品数据提取'
+)
+
+content = content.replace(
+    'Extract comprehensive product information including titles, prices, ratings, reviews, and specifications',
+    '提取全面的产品信息，包括标题、价格、评分、评论和规格'
+)
+
+# 11. Price Monitoring
+content = content.replace(
+    'Price Monitoring',
+    '价格监控'
+)
+
+content = content.replace(
+    'Track competitor pricing in real-time and optimize your pricing strategy for maximum profitability',
+    '实时跟踪竞争对手定价，优化您的定价策略以实现最大盈利'
+)
+
+# 12. SERP Analysis
+content = content.replace(
+    'SERP Analysis',
+    '搜索结果分析'
+)
+
+content = content.replace(
+    'Analyze search rankings, sponsored products, and keyword performance to improve visibility',
+    '分析搜索排名、赞助产品和关键词表现，提升可见度'
+)
+
+# 13. Inventory Tracking
+content = content.replace(
+    'Inventory Tracking',
+    '库存追踪'
+)
+
+content = content.replace(
+    'Monitor stock levels and availability across multiple sellers to prevent stockouts',
+    '监控多个卖家的库存水平和可用性，防止缺货'
+)
+
+# 14. Review Analytics
+content = content.replace(
+    'Review Analytics',
+    '评论分析'
+)
+
+content = content.replace(
+    'Gain insights from customer reviews and ratings to improve product quality and customer satisfaction',
+    '从客户评论和评分中获取洞察，提升产品质量和客户满意度'
+)
+
+# 15. Competitor Intelligence
+content = content.replace(
+    'Competitor Intelligence',
+    '竞争情报'
+)
+
+content = content.replace(
+    'Stay ahead with detailed competitor analysis including pricing, inventory, and market positioning',
+    '通过详细的竞争对手分析保持领先，包括定价、库存和市场定位'
+)
+
+# 16. Use Cases Section
+content = content.replace(
+    'Use Cases',
+    '应用场景'
+)
+
+content = content.replace(
+    'Real-World Applications',
+    '实际应用案例'
+)
+
+content = content.replace(
+    'See how businesses leverage Pangol Info\'s Amazon API for data-driven growth',
+    '了解企业如何利用 Pangol Info 的 Amazon API 实现数据驱动的增长'
+)
+
+# 17. Price Optimization
+content = content.replace(
+    'Price Optimization',
+    '价格优化'
+)
+
+content = content.replace(
+    'Dynamic pricing strategies based on real-time market data',
+    '基于实时市场数据的动态定价策略'
+)
+
+# 18. Product Research
+content = content.replace(
+    'Product Research',
+    '产品研究'
+)
+
+content = content.replace(
+    'Identify trending products and market opportunities',
+    '识别趋势产品和市场机会'
+)
+
+# 19. Market Analysis
+content = content.replace(
+    'Market Analysis',
+    '市场分析'
+)
+
+content = content.replace(
+    'Comprehensive market insights and competitive intelligence',
+    '全面的市场洞察和竞争情报'
+)
+
+# 20. Latest Articles Section
+content = content.replace(
+    'Latest Articles',
+    '最新文章'
+)
+
+content = content.replace(
+    'Expert Insights \u0026 Tutorials',
+    '专家洞察与教程'
+)
+
+content = content.replace(
+    'Learn from our comprehensive guides on Amazon API integration and data extraction',
+    '从我们关于 Amazon API 集成和数据提取的综合指南中学习'
+)
+
+content = content.replace(
+    'View All Articles',
+    '查看所有文章'
+)
+
+# 21. Newsletter Section
+content = content.replace(
+    'Stay Updated',
+    '保持更新'
+)
+
+content = content.replace(
+    'Subscribe to our newsletter for the latest Amazon API insights and tutorials',
+    '订阅我们的新闻通讯，获取最新的 Amazon API 洞察和教程'
+)
+
+content = content.replace(
+    'Enter your email',
+    '输入您的邮箱'
+)
+
+content = content.replace(
+    'Subscribe',
+    '订阅'
+)
+
+# 22. Footer
+content = content.replace(
+    'Quick Links',
+    '快速链接'
+)
+
+content = content.replace(
+    'Resources',
+    '资源'
+)
+
+content = content.replace(
+    'Documentation',
+    '文档'
+)
+
+content = content.replace(
+    'API Reference',
+    'API 参考'
+)
+
+content = content.replace(
+    'Tutorials',
+    '教程'
+)
+
+content = content.replace(
+    'Case Studies',
+    '案例研究'
+)
+
+content = content.replace(
+    'Legal',
+    '法律'
+)
+
+content = content.replace(
+    'Privacy Policy',
+    '隐私政策'
+)
+
+content = content.replace(
+    'Terms of Service',
+    '服务条款'
+)
+
+content = content.replace(
+    '© 2025 Pangol Info Scrape API. All rights reserved.',
+    '© 2025 Pangol Info Scrape API. 保留所有权利。'
+)
+
+# 23. 文章标题和摘要翻译
+article_translations = {
+    'Getting Started with Amazon Scraping API': 'Amazon 数据抓取 API 入门指南',
+    'Learn how to leverage Pangol Info\'s Amazon scraping API to extract comprehensive product data, pricing, and reviews from Amazon marketplace.': 
+    '学习如何利用 Pangol Info 的 Amazon API 从 Amazon 市场提取全面的产品数据、价格和评论。',
+    
+    'Advanced Amazon Data Extraction Best Practices': 'Amazon 数据提取高级最佳实践',
+    'Master advanced techniques for efficient data extraction, rate limiting, and error handling when working with Amazon APIs.':
+    '掌握使用 Amazon API 时的高效数据提取、速率限制和错误处理的高级技术。',
+    
+    'Amazon Product Selection: Using API Data to Find Winning Products': '使用 API 数据选择优质 Amazon 产品',
+    'Discover how to use API data to identify profitable products, analyze market trends, and make data-driven product selection decisions.':
+    '了解如何使用 API 数据识别盈利产品、分析市场趋势并做出数据驱动的产品选择决策。',
+    
+    'Amazon Sponsored Products: Monitor Competitor Ad Campaigns': '监控 Amazon 竞争对手广告活动',
+    'Track competitor advertising strategies, sponsored product placements, and optimize your own PPC campaigns with real-time data.':
+    '跟踪竞争对手的广告策略、赞助产品投放，并使用实时数据优化您自己的 PPC 活动。',
+    
+    'Building Real-Time Amazon Price Monitoring System': '构建实时 Amazon 价格监控系统',
+    'Step-by-step guide to creating an automated Amazon price tracking system using Pangol Info\'s e-commerce API.':
+    '使用 Pangol Info 的电商 API 创建自动化 Amazon 价格跟踪系统的分步指南。',
+    
+    'Scale Your Amazon Business with Data-Driven Product Intelligence': '通过数据驱动的产品智能扩展您的 Amazon 业务',
+    'How businesses leverage Pangol Info\'s Amazon API for data-driven growth':
+    '企业如何利用 Pangol Info 的 Amazon API 实现数据驱动的增长'
+}
+
+for en, zh in article_translations.items():
+    content = content.replace(en, zh)
+
+# 24. 其他常见词汇
+content = content.replace(' min read', ' 分钟阅读')
+content = content.replace('Read More', '阅读更多')
+
+# 保存翻译后的文件
+with open('zh/index.html', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("✅ 中文首页翻译完成！")
+print("📄 文件位置: zh/index.html")
