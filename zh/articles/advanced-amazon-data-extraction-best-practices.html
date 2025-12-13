@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Advanced Amazon Data Extraction Best Practices | E-commerce Intelligence</title>
+    <meta name="description"
+        content="Master advanced Amazon data extraction techniques for pricing intelligence, review analysis, and bulk scraping. Proven strategies for e-commerce data collection at scale.">
+    <meta name="keywords"
+        content="Amazon Data Extraction, E-commerce Intelligence, Pricing Intelligence, Bulk Data Scraping, Review Analysis">
+    <meta name="author" content="Pangol Info Scrape API">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence">
+    <meta property="og:description"
+        content="Proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale.">
+    <meta property="og:url"
+        content="https://pangolin-spg.github.io/articles/advanced-amazon-data-extraction-best-practices.html">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence">
+    <meta name="twitter:description"
+        content="Proven techniques for Amazon data extraction and e-commerce intelligence.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical"
+        content="https://pangolin-spg.github.io/articles/advanced-amazon-data-extraction-best-practices.html">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence",
+      "description": "Proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale",
+      "author": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+        }
+      },
+      "datePublished": "2025-12-12",
+      "dateModified": "2025-12-12"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Styles */
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        /* 目录 Styles */
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* Sticky Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Code Copy Button */
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+    </style>
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/advanced-amazon-data-extraction-best-practices.html">
+    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html">
+
+</head>
+
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="/zh/index.html#home" class="nav-link hover:text-white transition">首页</a>
+                <a href="/zh/index.html#solutions" class="nav-link hover:text-white transition">解决方案</a>
+                <a href="/zh/index.html#use-cases" class="nav-link hover:text-white transition">应用场景</a>
+                <a href="/zh/index.html#articles" class="nav-link hover:text-white transition">博客</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">文档</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                    class="nav-link hover:text-white transition">定价</a>
+            </div>
+            <a href="https://tool.pangolinfo.com/"
+                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                Get API Key
+            </a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="relative pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-purple tracking-wider uppercase">
+                <span class="w-2 h-2 bg-accent-purple rounded-full inline-block mr-2 animate-pulse"></span>
+                E-commerce Intelligence
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Discover proven techniques for Amazon product data extraction, pricing intelligence, and customer review
+                analysis at scale
+            </p>
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-clock mr-2"></i>20 分钟阅读</span>
+                <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebar -->
+    <section class="relative px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Main Article Content (2/3 width) -->
+                <div class="lg:col-span-2">
+                    <article class="glass-card rounded-3xl p-8 md:p-12">
+
+                        <p class="text-xl text-gray-300 font-medium mb-8">
+                            As e-commerce continues to dominate retail, the ability to extract and analyze Amazon data
+                            at scale has become a critical competitive advantage. This comprehensive guide explores
+                            advanced techniques for Amazon data extraction, covering everything from bulk product
+                            scraping to sophisticated pricing intelligence and review sentiment analysis. Whether you're
+                            managing a large catalog, conducting market research, or building data-driven applications,
+                            these best practices will help you maximize the value of Amazon's vast data ecosystem.
+                        </p>
+
+                        <h2 id="why-advanced">Why Advanced Data Extraction Matters</h2>
+
+                        <p>
+                            Basic product scraping gets you started, but advanced data extraction techniques unlock
+                            exponentially more value:
+                        </p>
+
+                        <ul>
+                            <li><strong>Scale</strong>: Process thousands of products simultaneously instead of one at a
+                                time</li>
+                            <li><strong>Efficiency</strong>: Reduce API costs by 50-70% through smart batching and
+                                caching</li>
+                            <li><strong>Intelligence</strong>: Extract deeper insights from reviews, pricing patterns,
+                                and competitive dynamics</li>
+                            <li><strong>Automation</strong>: Build self-maintaining data pipelines that adapt to market
+                                changes</li>
+                            <li><strong>Compliance</strong>: Implement proper rate limiting and error handling for
+                                sustainable operations</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
+                                    class="fas fa-lightbulb mr-2"></i>Real-World Impact</h4>
+                            <p class="mb-0">Companies using advanced Amazon data extraction report 3-5x faster
+                                time-to-market for new products, 40% reduction in pricing errors, and 60% improvement in
+                                inventory forecasting accuracy.</p>
+                        </div>
+
+                        <h2 id="async-scraping">Asynchronous Scraping for High-Volume Operations</h2>
+
+                        <p>
+                            When dealing with thousands of products, synchronous API calls become a bottleneck.
+                            Pangol Info's async API allows you to submit bulk requests and receive results via webhook,
+                            dramatically improving throughput.
+                        </p>
+
+                        <h3 id="async-setup">Setting Up Async Scraping</h3>
+
+                        <p>
+                            The async API requires a callback URL where Pangolin will send results. Here's a complete
+                            implementation:
+                        </p>
+
+                        <pre><code class="language-python">import requests
+from flask import Flask, request, jsonify
+import threading
+import queue
+
+# Flask app to receive async results
+app = Flask(__name__)
+results_queue = queue.Queue()
+
+@app.route('/pangolin/callback', methods=['POST'])
+def receive_data():
+    """Webhook endpoint to receive async scraping results"""
+    data = request.json
+    results_queue.put(data)
+    return jsonify({"status": "received"}), 200
+
+def start_webhook_server():
+    """Start webhook server in background thread"""
+    app.run(host='0.0.0.0', port=5000, debug=False)
+
+# Start webhook server
+webhook_thread = threading.Thread(target=start_webhook_server, daemon=True)
+webhook_thread.start()
+
+# Submit async scraping tasks
+API_KEY = "your_api_key_here"
+ASYNC_ENDPOINT = "https://extapi.pangolinfo.com/api/v1/scrape/async"
+CALLBACK_URL = "https://your-domain.com/pangolin/callback"
+
+def submit_async_task(asin, zipcode="10041"):
+    """Submit async scraping task"""
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "url": f"https://www.amazon.com/dp/{asin}",
+        "callbackUrl": CALLBACK_URL,
+        "bizKey": "amzProductDetail",
+        "zipcode": zipcode
+    }
+    
+    response = requests.post(ASYNC_ENDPOINT, headers=headers, json=payload)
+    
+    if response.status_code == 200:
+        result = response.json()
+        if result.get('code') == 0:
+            task_id = result.get('data', {}).get('data')
+            print(f"Task submitted: {task_id} for ASIN {asin}")
+            return task_id
+    return None
+
+# Submit bulk tasks
+asins = ["B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW"]
+task_ids = []
+
+for asin in asins:
+    task_id = submit_async_task(asin)
+    if task_id:
+        task_ids.append(task_id)
+
+print(f"Submitted {len(task_ids)} tasks")
+
+# Process results as they arrive
+import time
+processed = 0
+while processed < len(task_ids):
+    try:
+        result = results_queue.get(timeout=60)
+        # Process the result
+        print(f"Received result: {result}")
+        processed += 1
+    except queue.Empty:
+        print("Waiting for results...")
+        time.sleep(5)</code></pre>
+
+                        <div class="warning-box">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
+                                    class="fas fa-exclamation-triangle mr-2"></i>Production Deployment</h4>
+                            <p class="mb-0">For production use, deploy your webhook endpoint with HTTPS, implement
+                                authentication, and use a message queue (Redis, RabbitMQ) instead of in-memory queues
+                                for reliability.</p>
+                        </div>
+
+                        <h2 id="bulk-processing">Bulk Product Processing Strategies</h2>
+
+                        <h3 id="batch-optimization">Batch Optimization</h3>
+
+                        <p>
+                            The batch API allows you to scrape multiple products in a single request, reducing overhead
+                            and improving efficiency:
+                        </p>
+
+                        <pre><code class="language-python">import requests
+import concurrent.futures
+from typing import List, Dict
+
+class BulkAmazonScraper:
+    def __init__(self, api_key: str, batch_size: int = 50):
+        self.api_key = api_key
+        self.endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape/batch"
+        self.batch_size = batch_size
+        
+    def scrape_products(self, asins: List[str], zipcode: str = "10041") -> List[Dict]:
+        """Scrape multiple products efficiently"""
+        all_results = []
+        
+        # Split into batches
+        for i in range(0, len(asins), self.batch_size):
+            batch = asins[i:i + self.batch_size]
+            urls = [f"https://www.amazon.com/dp/{asin}" for asin in batch]
+            
+            payload = {
+                "urls": urls,
+                "format": "rawHtml"  # Use rawHtml for batch API
+            }
+            
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json"
+            }
+            
+            response = requests.post(self.endpoint, headers=headers, json=payload)
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('code') == 0:
+                    batch_results = result.get('data', [])
+                    all_results.extend(batch_results)
+                    print(f"Processed batch {i//self.batch_size + 1}: {len(batch)} products")
+            else:
+                print(f"Error in batch {i//self.batch_size + 1}: {response.status_code}")
+        
+        return all_results
+
+# Usage
+scraper = BulkAmazonScraper(API_KEY, batch_size=50)
+
+# Scrape 500 products
+asins = [f"B0{i:08d}" for i in range(500)]  # Example ASINs
+results = scraper.scrape_products(asins)
+
+print(f"Successfully scraped {len(results)} products")</code></pre>
+
+                        <h3 id="parallel-processing">Parallel Processing with Thread Pools</h3>
+
+                        <p>
+                            For maximum throughput, combine batching with parallel processing:
+                        </p>
+
+                        <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+
+class ParallelAmazonScraper:
+    def __init__(self, api_key: str, max_workers: int = 10):
+        self.api_key = api_key
+        self.endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
+        self.max_workers = max_workers
+        
+    def scrape_single_product(self, asin: str, zipcode: str = "10041") -> Dict:
+        """Scrape a single product"""
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "url": f"https://www.amazon.com/dp/{asin}",
+            "parserName": "amzProductDetail",
+            "format": "json",
+            "bizContext": {"zipcode": zipcode}
+        }
+        
+        try:
+            response = requests.post(self.endpoint, headers=headers, json=payload, timeout=30)
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('code') == 0:
+                    data = result.get('data', {})
+                    json_data = data.get('json', [{}])[0]
+                    if json_data.get('code') == 0:
+                        products = json_data.get('data', {}).get('results', [])
+                        if products:
+                            return {"asin": asin, "status": "success", "data": products[0]}
+            
+            return {"asin": asin, "status": "failed", "error": "No data"}
+        except Exception as e:
+            return {"asin": asin, "status": "error", "error": str(e)}
+    
+    def scrape_products_parallel(self, asins: List[str]) -> List[Dict]:
+        """Scrape multiple products in parallel"""
+        results = []
+        
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            # Submit all tasks
+            future_to_asin = {
+                executor.submit(self.scrape_single_product, asin): asin 
+                for asin in asins
+            }
+            
+            # Collect results as they complete
+            for future in as_completed(future_to_asin):
+                asin = future_to_asin[future]
+                try:
+                    result = future.result()
+                    results.append(result)
+                    
+                    if result['status'] == 'success':
+                        print(f"✓ {asin}: {result['data'].get('title', 'N/A')[:50]}")
+                    else:
+                        print(f"✗ {asin}: {result.get('error', 'Unknown error')}")
+                except Exception as e:
+                    print(f"✗ {asin}: Exception - {str(e)}")
+                    results.append({"asin": asin, "status": "exception", "error": str(e)})
+        
+        return results
+
+# Usage
+scraper = ParallelAmazonScraper(API_KEY, max_workers=20)
+asins = ["B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW"] * 10  # 30 products
+
+start_time = time.time()
+results = scraper.scrape_products_parallel(asins)
+elapsed = time.time() - start_time
+
+successful = sum(1 for r in results if r['status'] == 'success')
+print(f"\nCompleted {successful}/{len(asins)} in {elapsed:.2f}s ({len(asins)/elapsed:.2f} products/sec)")</code></pre>
+
+                        <h2 id="pricing-intelligence">Pricing Intelligence and Monitoring</h2>
+
+                        <h3 id="competitive-pricing">Competitive Pricing Analysis</h3>
+
+                        <p>
+                            Build a sophisticated pricing intelligence system that tracks competitors and identifies
+                            pricing opportunities:
+                        </p>
+
+                        <pre><code class="language-python">import sqlite3
+from datetime import datetime, timedelta
+import statistics
+
+class PricingIntelligence:
+    def __init__(self, api_key: str, db_path: str = 'pricing.db'):
+        self.api_key = api_key
+        self.db_path = db_path
+        self.setup_database()
+    
+    def setup_database(self):
+        """Create comprehensive pricing database"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS price_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                asin TEXT NOT NULL,
+                title TEXT,
+                price REAL,
+                seller TEXT,
+                availability TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_asin_timestamp (asin, timestamp)
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS price_alerts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                asin TEXT NOT NULL UNIQUE,
+                target_price REAL,
+                alert_threshold REAL,
+                last_alert DATETIME
+            )
+        ''')
+        
+        conn.commit()
+        conn.close()
+    
+    def analyze_price_trends(self, asin: str, days: int = 30) -> Dict:
+        """Analyze pricing trends for a product"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT price, timestamp
+            FROM price_history
+            WHERE asin = ? AND timestamp >= datetime('now', '-' || ? || ' days')
+            ORDER BY timestamp ASC
+        ''', (asin, days))
+        
+        history = cursor.fetchall()
+        conn.close()
+        
+        if not history:
+            return {"error": "No price history found"}
+        
+        prices = [float(p[0]) for p in history if p[0]]
+        
+        if not prices:
+            return {"error": "No valid prices"}
+        
+        current_price = prices[-1]
+        avg_price = statistics.mean(prices)
+        min_price = min(prices)
+        max_price = max(prices)
+        
+        # Calculate price volatility
+        if len(prices) > 1:
+            volatility = statistics.stdev(prices)
+        else:
+            volatility = 0
+        
+        # Detect trend
+        if len(prices) >= 7:
+            recent_avg = statistics.mean(prices[-7:])
+            older_avg = statistics.mean(prices[:-7])
+            trend = "increasing" if recent_avg > older_avg else "decreasing"
+        else:
+            trend = "stable"
+        
+        return {
+            "asin": asin,
+            "current_price": current_price,
+            "average_price": round(avg_price, 2),
+            "min_price": min_price,
+            "max_price": max_price,
+            "volatility": round(volatility, 2),
+            "trend": trend,
+            "data_points": len(prices),
+            "savings_opportunity": round(((current_price - min_price) / current_price) * 100, 1) if current_price > 0 else 0
+        }
+    
+    def find_pricing_opportunities(self, asins: List[str]) -> List[Dict]:
+        """Identify products with significant price drops"""
+        opportunities = []
+        
+        for asin in asins:
+            analysis = self.analyze_price_trends(asin, days=7)
+            
+            if 'error' not in analysis:
+                # Flag if current price is near historical minimum
+                if analysis['current_price'] <= analysis['min_price'] * 1.05:
+                    opportunities.append({
+                        "asin": asin,
+                        "current_price": analysis['current_price'],
+                        "min_price": analysis['min_price'],
+                        "opportunity_score": analysis['savings_opportunity'],
+                        "trend": analysis['trend']
+                    })
+        
+        # Sort by opportunity score
+        opportunities.sort(key=lambda x: x['opportunity_score'], reverse=True)
+        return opportunities
+
+# Usage
+pricing = PricingIntelligence(API_KEY)
+
+# Analyze a product
+analysis = pricing.analyze_price_trends("B0DYTF8L2W", days=30)
+print(f"Price Analysis: {analysis}")
+
+# Find opportunities across catalog
+asins = ["B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW"]
+opportunities = pricing.find_pricing_opportunities(asins)
+
+print("\nTop Pricing Opportunities:")
+for opp in opportunities[:5]:
+    print(f"  {opp['asin']}: ${opp['current_price']} (Save {opp['opportunity_score']}%)")</code></pre>
+
+                        <h2 id="review-analysis">Customer Review Analysis at Scale</h2>
+
+                        <h3 id="sentiment-analysis">Sentiment Analysis and Insights</h3>
+
+                        <p>
+                            Extract actionable insights from customer reviews using natural language processing:
+                        </p>
+
+                        <pre><code class="language-python">from collections import Counter
+import re
+
+class ReviewAnalyzer:
+    def __init__(self):
+        # Simple sentiment keywords (in production, use NLP libraries like TextBlob or VADER)
+        self.positive_words = {'great', 'excellent', 'amazing', 'perfect', 'love', 'best', 'good', 'quality'}
+        self.negative_words = {'bad', 'terrible', 'poor', 'worst', 'hate', 'disappointing', 'broken', 'defective'}
+    
+    def analyze_reviews(self, reviews: List[Dict]) -> Dict:
+        """Analyze customer reviews for insights"""
+        if not reviews:
+            return {"error": "No reviews to analyze"}
+        
+        total_reviews = len(reviews)
+        ratings = [float(r.get('rating', 0)) for r in reviews if r.get('rating')]
+        
+        # Sentiment analysis
+        positive_count = 0
+        negative_count = 0
+        neutral_count = 0
+        
+        # Common themes
+        all_text = ' '.join([r.get('text', '').lower() for r in reviews])
+        words = re.findall(r'\b\w+\b', all_text)
+        word_freq = Counter(words)
+        
+        for review in reviews:
+            text = review.get('text', '').lower()
+            pos_score = sum(1 for word in self.positive_words if word in text)
+            neg_score = sum(1 for word in self.negative_words if word in text)
+            
+            if pos_score > neg_score:
+                positive_count += 1
+            elif neg_score > pos_score:
+                negative_count += 1
+            else:
+                neutral_count += 1
+        
+        # Verified purchase ratio
+        verified = sum(1 for r in reviews if r.get('verified_purchase', False))
+        
+        return {
+            "total_reviews": total_reviews,
+            "average_rating": round(statistics.mean(ratings), 2) if ratings else 0,
+            "sentiment": {
+                "positive": round((positive_count / total_reviews) * 100, 1),
+                "negative": round((negative_count / total_reviews) * 100, 1),
+                "neutral": round((neutral_count / total_reviews) * 100, 1)
+            },
+            "verified_purchase_rate": round((verified / total_reviews) * 100, 1),
+            "common_themes": [word for word, count in word_freq.most_common(10) 
+                            if len(word) > 4 and word not in {'product', 'amazon', 'purchase'}]
+        }
+
+# Usage example
+reviews = [
+    {"rating": "5", "text": "Great product! Excellent quality and fast shipping.", "verified_purchase": True},
+    {"rating": "4", "text": "Good value for money, works as expected.", "verified_purchase": True},
+    {"rating": "2", "text": "Poor quality, broke after one week.", "verified_purchase": False},
+]
+
+analyzer = ReviewAnalyzer()
+insights = analyzer.analyze_reviews(reviews)
+print(f"Review Insights: {insights}")</code></pre>
+
+                        <h2 id="best-practices">Production Best Practices</h2>
+
+                        <h3 id="error-handling">Robust Error Handling</h3>
+
+                        <p>
+                            Implement comprehensive error handling and retry logic for production reliability:
+                        </p>
+
+                        <pre><code class="language-python">import time
+from functools import wraps
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def retry_with_backoff(max_retries=3, backoff_factor=2):
+    """Decorator for exponential backoff retry logic"""
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except requests.exceptions.RequestException as e:
+                    if attempt == max_retries - 1:
+                        logger.error(f"Max retries reached for {func.__name__}: {e}")
+                        raise
+                    
+                    wait_time = backoff_factor ** attempt
+                    logger.warning(f"Attempt {attempt + 1} failed, retrying in {wait_time}s: {e}")
+                    time.sleep(wait_time)
+            return None
+        return wrapper
+    return decorator
+
+@retry_with_backoff(max_retries=3, backoff_factor=2)
+def scrape_with_retry(asin: str) -> Dict:
+    """Scrape product with automatic retry"""
+    # Your scraping code here
+    pass</code></pre>
+
+                        <h3 id="rate-limiting">Smart Rate Limiting</h3>
+
+                        <pre><code class="language-python">import time
+from collections import deque
+
+class RateLimiter:
+    def __init__(self, max_calls: int, time_window: int):
+        self.max_calls = max_calls
+        self.time_window = time_window
+        self.calls = deque()
+    
+    def wait_if_needed(self):
+        """Wait if rate limit would be exceeded"""
+        now = time.time()
+        
+        # Remove calls outside the time window
+        while self.calls and self.calls[0] < now - self.time_window:
+            self.calls.popleft()
+        
+        # Wait if at limit
+        if len(self.calls) >= self.max_calls:
+            sleep_time = self.time_window - (now - self.calls[0])
+            if sleep_time > 0:
+                time.sleep(sleep_time)
+                self.calls.popleft()
+        
+        self.calls.append(time.time())
+
+# Usage: 100 calls per minute
+limiter = RateLimiter(max_calls=100, time_window=60)
+
+for asin in asins:
+    limiter.wait_if_needed()
+    scrape_product(asin)</code></pre>
+
+                        <h2 id="conclusion">Conclusion</h2>
+
+                        <p>
+                            Advanced Amazon data extraction is about more than just collecting data—it's about building
+                            intelligent, scalable systems that provide actionable insights. By implementing async
+                            scraping, bulk processing, pricing intelligence, and review analysis, you can create a
+                            competitive advantage that drives real business results.
+                        </p>
+
+                        <div class="success-box mt-8">
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Take
+                                Your E-commerce Intelligence Further</h4>
+                            <ul class="mb-0">
+                                <li><strong>Start with Pangol Info API</strong>: Get 1,000 free credits at <a
+                                        href="https://tool.pangolinfo.com/"
+                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
+                                <li><strong>Explore Advanced Features</strong>: Check out the <a
+                                        href="https://docs.pangolinfo.com/en-index"
+                                        class="text-accent-cyan hover:underline">complete API documentation</a></li>
+                                <li><strong>Join the Community</strong>: Share your use cases and learn from other
+                                    developers</li>
+                                <li><strong>Scale with Confidence</strong>: Enterprise plans available for high-volume
+                                    operations</li>
+                            </ul>
+                        </div>
+
+                    </article>
+
+                    <!-- CTA -->
+                    <div class="glass-card rounded-3xl p-12 mt-8 text-center">
+                        <h3 class="text-3xl font-bold mb-4">Ready to Build Your E-commerce Intelligence Platform?</h3>
+                        <p class="text-gray-400 mb-6">Start extracting Amazon data at scale with enterprise-grade
+                            reliability</p>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="https://tool.pangolinfo.com/"
+                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
+                                开始免费试用
+                            </a>
+                            <a href="https://docs.pangolinfo.com/en-index"
+                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
+                                查看文档
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar (1/3 width) -->
+                <div class="lg:col-span-1">
+                    <div class="sidebar-sticky space-y-6">
+
+                        <!-- 目录 -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
+                            <nav class="space-y-1">
+                                <a href="#why-advanced" class="toc-link">Why Advanced Extraction Matters</a>
+                                <a href="#async-scraping" class="toc-link">Asynchronous Scraping</a>
+                                <a href="#async-setup" class="toc-link toc-link-sub">Setting Up Async</a>
+                                <a href="#bulk-processing" class="toc-link">Bulk Product Processing</a>
+                                <a href="#batch-optimization" class="toc-link toc-link-sub">Batch Optimization</a>
+                                <a href="#parallel-processing" class="toc-link toc-link-sub">Parallel Processing</a>
+                                <a href="#pricing-intelligence" class="toc-link">Pricing Intelligence</a>
+                                <a href="#competitive-pricing" class="toc-link toc-link-sub">Competitive Analysis</a>
+                                <a href="#review-analysis" class="toc-link">Review Analysis</a>
+                                <a href="#sentiment-analysis" class="toc-link toc-link-sub">Sentiment Analysis</a>
+                                <a href="#best-practices" class="toc-link">Production Best Practices</a>
+                                <a href="#error-handling" class="toc-link toc-link-sub">Error Handling</a>
+                                <a href="#rate-limiting" class="toc-link toc-link-sub">Rate Limiting</a>
+                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                            </nav>
+                        </div>
+
+                        <!-- Pangolin Scrape API Product Card -->
+                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-rocket text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
+                                Pangolin Scrape API</h4>
+                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
+                                with 99.9% uptime</p>
+                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                                <span>了解更多</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- AMZ Data Tracker Product Card -->
+                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
+                                AMZ Data Tracker</h4>
+                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
+                                alerts and Excel export</p>
+                            <div class="flex items-center text-accent-purple text-sm font-semibold">
+                                <span>了解更多</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- Chrome Extension Card -->
+                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=zh-CN&authuser=0"
+                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-chrome text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
+                                Browser Extension</h4>
+                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome extension for instant Amazon
+                                product analysis</p>
+                            <div class="flex items-center text-green-400 text-sm font-semibold">
+                                <span>Install Extension</span>
+                                <i
+                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOLIN</span>
+                </div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">产品</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">定价</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">资源</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API 文档</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="/zh/index.html#articles" class="hover:text-white">博客文章</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">公司</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">官方网站</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">控制台</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white">Amazon 解决方案</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. 保留所有权利。</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <script>
+        // 目录 Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.setAttribute('data-code-index', index);
+
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API | Pangolin Guide</title>
+    <meta name="description"
+        content="Monitor Amazon sponsored products and competitor ad strategies with SERP API. Track PPC campaigns, keyword targeting, and advertising intelligence for better ROI.">
+    <meta name="keywords"
+        content="Amazon Sponsored 产品, Amazon Ads Monitoring, Competitor Ad Analysis, Amazon SERP API, PPC Campaign Tracking">
+    <meta name="author" content="Pangol Info Scrape API">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API">
+    <meta property="og:description"
+        content="Track competitor advertising strategies and optimize your Amazon PPC campaigns with data-driven insights.">
+    <meta property="og:url"
+        content="https://pangolin-spg.github.io/articles/amazon-sponsored-products-ad-monitoring.html">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API">
+    <meta name="twitter:description" content="Track competitor advertising strategies with Amazon SERP API.">
+
+    <link rel="canonical"
+        content="https://pangolin-spg.github.io/articles/amazon-sponsored-products-ad-monitoring.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API",
+      "description": "Track Amazon sponsored product placements and advertising strategies using SERP API",
+      "author": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+        }
+      },
+      "datePublished": "2025-12-12",
+      "dateModified": "2025-12-12"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+    </style>
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-sponsored-products-ad-monitoring.html">
+    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html">
+
+</head>
+
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="/zh/index.html#home" class="nav-link hover:text-white transition">首页</a>
+                <a href="/zh/index.html#solutions" class="nav-link hover:text-white transition">解决方案</a>
+                <a href="/zh/index.html#use-cases" class="nav-link hover:text-white transition">应用场景</a>
+                <a href="/zh/index.html#articles" class="nav-link hover:text-white transition">博客</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">文档</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                    class="nav-link hover:text-white transition">定价</a>
+            </div>
+            <a href="https://tool.pangolinfo.com/"
+                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                Get API Key
+            </a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="relative pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-pink tracking-wider uppercase">
+                <span class="w-2 h-2 bg-accent-pink rounded-full inline-block mr-2 animate-pulse"></span>
+                Amazon Ads
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Amazon Sponsored 产品: Monitor Competitor Ad Campaigns with API
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Track Amazon sponsored product placements, advertising strategies, and promotional campaigns using
+                Amazon SERP API
+            </p>
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-clock mr-2"></i>20 分钟阅读</span>
+                <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebar -->
+    <section class="relative px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Main Article Content (2/3 width) -->
+                <div class="lg:col-span-2">
+                    <article class="glass-card rounded-3xl p-8 md:p-12">
+
+                        <p class="text-xl text-gray-300 font-medium mb-8">
+                            In the competitive world of Amazon selling, understanding your competitors' advertising
+                            strategies can be the difference between profitable growth and wasted ad spend. Amazon
+                            Sponsored 产品 ads account for over 70% of all Amazon advertising revenue, making them
+                            the primary battleground for visibility and sales. This comprehensive guide will show you
+                            how to use Pangol Info's Amazon SERP API to monitor competitor ad campaigns, extract actionable
+                            intelligence, and optimize your own advertising strategy based on real market data.
+                        </p>
+
+                        <p>
+                            Every day, sellers spend millions of dollars on Amazon PPC (Pay-Per-Click) advertising,
+                            often without knowing what their competitors are doing. Are they bidding on your brand
+                            terms? Which keywords are they targeting? How much are they spending? What ad copy converts
+                            best? These questions are critical to your success, and the answers are hiding in plain
+                            sight—in Amazon's search results. By systematically tracking sponsored product placements,
+                            you can reverse-engineer successful advertising strategies and avoid costly mistakes.
+                        </p>
+
+                        <h2 id="why-monitor">Why Monitor Competitor Ads</h2>
+
+                        <p>
+                            Before we dive into the technical implementation, let's understand why competitive ad
+                            monitoring is so valuable. This isn't just about curiosity—it's about gaining strategic
+                            advantages that directly impact your bottom line:
+                        </p>
+
+                        <p>
+                            <strong>Discover High-Converting Keywords</strong>: When a competitor consistently
+                            advertises on a specific keyword, they're telling you something important: that keyword
+                            converts. They wouldn't keep spending money on it otherwise. By tracking which keywords your
+                            competitors bid on most frequently, you can identify proven, high-ROI keywords without the
+                            expensive trial-and-error process. I've seen sellers cut their keyword research time by 60%
+                            and improve their ACoS (Advertising Cost of Sale) by 25% just by focusing on
+                            competitor-validated keywords.
+                        </p>
+
+                        <p>
+                            <strong>Optimize Your Ad Spend</strong>: Advertising on Amazon is an auction. If you know
+                            when your competitors are advertising heavily (and when they're not), you can adjust your
+                            bids accordingly. For example, if you notice a major competitor stops advertising on
+                            weekends, that's your opportunity to dominate those search results at a lower cost.
+                            Conversely, if multiple competitors are bidding aggressively on a keyword, you might decide
+                            it's too expensive and focus your budget elsewhere.
+                        </p>
+
+                        <p>
+                            <strong>Protect Your Brand</strong>: One of the most frustrating experiences for Amazon
+                            sellers is seeing competitors advertise on your brand name. When someone searches for your
+                            brand, you want your products to appear first—not your competitors'. By monitoring brand
+                            term advertising, you can quickly identify when competitors are targeting your brand and
+                            respond appropriately. Some sellers have reduced brand defense costs by 40% by using data to
+                            bid more strategically on their own brand terms.
+                        </p>
+
+                        <p>
+                            <strong>Identify Market Trends Early</strong>: When you see multiple competitors suddenly
+                            advertising on new keywords or product categories, that's often a signal of emerging trends.
+                            Maybe there's a new product type gaining traction, or a seasonal opportunity you haven't
+                            considered. This early warning system can help you pivot your strategy before the market
+                            becomes saturated.
+                        </p>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
+                                    class="fas fa-lightbulb mr-2"></i>Real-World Impact</h4>
+                            <p class="mb-0">Sellers who actively monitor competitor advertising report 30-50%
+                                improvements in ad efficiency within 3 months. More importantly, they avoid the #1
+                                mistake in Amazon advertising: bidding on keywords that don't convert. By following
+                                proven winners, you dramatically reduce risk while accelerating results.</p>
+                        </div>
+
+                        <h2 id="understanding-landscape">Understanding Amazon's Advertising Landscape</h2>
+
+                        <p>
+                            To effectively monitor competitor ads, you need to understand how Amazon's advertising
+                            ecosystem works. Amazon offers several ad types, but we'll focus on Sponsored 产品—the
+                            most common and often most effective format for most sellers.
+                        </p>
+
+                        <h3 id="ad-types">Sponsored 产品 vs. Other Ad Types</h3>
+
+                        <p>
+                            <strong>Sponsored 产品</strong> are the ads that appear directly in search results and
+                            on product pages, looking almost identical to organic listings except for a small
+                            "Sponsored" label. These are cost-per-click (CPC) ads, meaning you only pay when someone
+                            clicks. They're the workhorse of Amazon advertising because they capture high-intent
+                            shoppers actively searching for products.
+                        </p>
+
+                        <p>
+                            <strong>Sponsored Brands</strong> (formerly Headline Search Ads) appear at the top of search
+                            results and feature your brand logo, a custom headline, and multiple products. These are
+                            more expensive but great for brand awareness.
+                        </p>
+
+                        <p>
+                            <strong>Sponsored Display</strong> ads appear on and off Amazon, targeting shoppers based on
+                            their browsing behavior. These are useful for retargeting but less critical for most
+                            sellers.
+                        </p>
+
+                        <p>
+                            For this guide, we'll focus on Sponsored 产品 because they represent 70-80% of most
+                            sellers' ad spend and are the easiest to track and analyze using SERP data.
+                        </p>
+
+                        <h3 id="ad-placement">How Ad Placement Works</h3>
+
+                        <p>
+                            Amazon's ad auction is complex, but here's what you need to know: When someone searches for
+                            a keyword, Amazon runs an instant auction among all advertisers bidding on that keyword. The
+                            winners get their products displayed as sponsored results. The auction considers two main
+                            factors:
+                        </p>
+
+                        <p>
+                            <strong>1. Your Bid</strong>: How much you're willing to pay per click. Higher bids
+                            generally mean better placement, but it's not the only factor.
+                        </p>
+
+                        <p>
+                            <strong>2. Ad Relevance</strong>: Amazon wants to show ads that are likely to convert
+                            because they make money on the sale, not just the click. So a highly relevant product with a
+                            lower bid might beat an irrelevant product with a higher bid.
+                        </p>
+
+                        <p>
+                            This is why tracking competitor ad positions over time is so valuable. If a competitor
+                            consistently appears in top positions, they've found the sweet spot of bid price and
+                            relevance. You can learn from their success.
+                        </p>
+
+                        <h2 id="tracking-api">Tracking Sponsored 产品 with API</h2>
+
+                        <p>
+                            Now let's get practical. To track competitor ads systematically, you need to extract
+                            sponsored product data from Amazon search results. This is where Pangol Info's Amazon SERP API
+                            becomes invaluable. Instead of manually searching keywords and recording results, you can
+                            automate the entire process.
+                        </p>
+
+                        <h3 id="basic-tracker">Building a Basic Ad Tracker</h3>
+
+                        <p>
+                            Our first script will search for a keyword, identify which products are sponsored, and
+                            record their positions. This gives you a snapshot of the competitive landscape for any
+                            keyword at any time. Let's build it step by step:
+                        </p>
+
+                        <pre><code class="language-python">import requests
+import json
+from datetime import datetime
+from typing import List, Dict
+
+class SponsoredProductTracker:
+    """
+    Track Amazon Sponsored 产品 in search results.
+    
+    This class helps you monitor which products are advertising on specific
+    keywords, their ad positions, and how the competitive landscape changes
+    over time.
+    """
+    
+    def __init__(self, api_key: str):
+        """Initialize tracker with Pangol Info API key"""
+        self.api_key = api_key
+        self.endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
+    
+    def search_keyword(self, keyword: str, page: int = 1) -> Dict:
+        """
+        Search for a keyword and extract all products including sponsored ones.
+        
+        Args:
+            keyword: The search term to track
+            page: Which page of results to fetch (1-10)
+        
+        Returns:
+            Dictionary containing search results with sponsored product data
+        """
+        # Construct Amazon search URL
+        url = f"https://www.amazon.com/s?k={keyword.replace(' ', '+')}&page={page}"
+        
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "url": url,
+            "parserName": "amzKeyword",  # Use keyword search parser
+            "format": "json",
+            "bizContext": {"zipcode": "10041"}
+        }
+        
+        try:
+            response = requests.post(self.endpoint, headers=headers, json=payload, timeout=30)
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('code') == 0:
+                    data = result.get('data', {})
+                    json_data = data.get('json', [{}])[0]
+                    if json_data.get('code') == 0:
+                        return json_data.get('data', {})
+            return None
+        except Exception as e:
+            print(f"Error searching keyword '{keyword}': {str(e)}")
+            return None
+    
+    def extract_sponsored_products(self, search_results: Dict) -> List[Dict]:
+        """
+        Extract only sponsored products from search results.
+        
+        Sponsored products are identified by the 'sponsored' flag in the data.
+        We track their position, ASIN, title, price, and other key metrics.
+        
+        Returns:
+            List of sponsored product dictionaries
+        """
+        if not search_results:
+            return []
+        
+        all_products = search_results.get('results', [])
+        sponsored = []
+        
+        for position, product in enumerate(all_products, 1):
+            # Check if this is a sponsored product
+            if product.get('sponsored', False) or product.get('isSponsored', False):
+                sponsored.append({
+                    'position': position,
+                    'asin': product.get('asin'),
+                    'title': product.get('title'),
+                    'price': product.get('price'),
+                    'rating': product.get('star'),
+                    'reviews': product.get('rating'),
+                    'brand': product.get('brand'),
+                    'image': product.get('image'),
+                    'timestamp': datetime.now().isoformat()
+                })
+        
+        return sponsored
+    
+    def track_keyword(self, keyword: str, pages: int = 1) -> Dict:
+        """
+        Complete tracking for a keyword across multiple pages.
+        
+        This method searches the keyword, extracts sponsored products,
+        and returns a comprehensive report.
+        
+        Args:
+            keyword: Keyword to track
+            pages: Number of pages to scan (1-5 recommended)
+        
+        Returns:
+            Dictionary with tracking results and analysis
+        """
+        print(f"Tracking keyword: '{keyword}'")
+        all_sponsored = []
+        
+        for page in range(1, pages + 1):
+            print(f"  Scanning page {page}...")
+            results = self.search_keyword(keyword, page)
+            
+            if results:
+                sponsored = self.extract_sponsored_products(results)
+                all_sponsored.extend(sponsored)
+                print(f"  Found {len(sponsored)} sponsored products on page {page}")
+        
+        # Analyze the results
+        unique_asins = set(p['asin'] for p in all_sponsored if p['asin'])
+        unique_brands = set(p['brand'] for p in all_sponsored if p['brand'])
+        
+        return {
+            'keyword': keyword,
+            'timestamp': datetime.now().isoformat(),
+            'total_sponsored': len(all_sponsored),
+            'unique_products': len(unique_asins),
+            'unique_brands': len(unique_brands),
+            'sponsored_products': all_sponsored,
+            'top_advertisers': self._get_top_advertisers(all_sponsored)
+        }
+    
+    def _get_top_advertisers(self, sponsored_products: List[Dict]) -> List[Dict]:
+        """
+        Identify which brands/sellers are advertising most heavily.
+        
+        Returns list of brands sorted by number of ad placements.
+        """
+        brand_counts = {}
+        
+        for product in sponsored_products:
+            brand = product.get('brand', 'Unknown')
+            if brand not in brand_counts:
+                brand_counts[brand] = {
+                    'brand': brand,
+                    'ad_count': 0,
+                    'asins': set()
+                }
+            brand_counts[brand]['ad_count'] += 1
+            brand_counts[brand]['asins'].add(product.get('asin'))
+        
+        # Convert to list and sort by ad count
+        top_advertisers = [
+            {
+                'brand': data['brand'],
+                'ad_placements': data['ad_count'],
+                'unique_products': len(data['asins'])
+            }
+            for data in brand_counts.values()
+        ]
+        
+        top_advertisers.sort(key=lambda x: x['ad_placements'], reverse=True)
+        return top_advertisers[:10]  # Top 10
+    
+    def generate_report(self, tracking_data: Dict):
+        """Generate a formatted report of tracking results"""
+        print(f"\n{'='*70}")
+        print(f"SPONSORED PRODUCT TRACKING REPORT")
+        print(f"{'='*70}")
+        print(f"Keyword: {tracking_data['keyword']}")
+        print(f"Timestamp: {tracking_data['timestamp']}")
+        print(f"\nSummary:")
+        print(f"  Total sponsored placements: {tracking_data['total_sponsored']}")
+        print(f"  Unique products advertising: {tracking_data['unique_products']}")
+        print(f"  Unique brands advertising: {tracking_data['unique_brands']}")
+        
+        print(f"\nTop Advertisers:")
+        for i, advertiser in enumerate(tracking_data['top_advertisers'][:5], 1):
+            print(f"  {i}. {advertiser['brand']}")
+            print(f"     Ad placements: {advertiser['ad_placements']}")
+            print(f"     Unique products: {advertiser['unique_products']}")
+        
+        print(f"\nTop 5 Sponsored 产品:")
+        for i, product in enumerate(tracking_data['sponsored_products'][:5], 1):
+            print(f"  {i}. Position #{product['position']}")
+            print(f"     {product['title'][:60]}...")
+            print(f"     ASIN: {product['asin']} | Price: {product['price']}")
+            print(f"     Brand: {product['brand']}")
+        
+        print(f"\n{'='*70}\n")
+
+# Example usage
+if __name__ == "__main__":
+    # Initialize tracker
+    tracker = SponsoredProductTracker("your_api_key_here")
+    
+    # Track a keyword
+    results = tracker.track_keyword("wireless earbuds", pages=2)
+    
+    # Generate report
+    tracker.generate_report(results)
+    
+    # Save to file
+    with open(f"ad_tracking_{results['keyword'].replace(' ', '_')}.json", 'w') as f:
+        # Convert sets to lists for JSON serialization
+        results_copy = results.copy()
+        json.dump(results_copy, f, indent=2, default=str)</code></pre>
+
+                        <p>
+                            This tracker gives you a comprehensive view of the advertising landscape for any keyword.
+                            When you run it, you'll see exactly which products are advertising, where they appear, and
+                            which brands are spending the most on ads. But the real power comes from running this
+                            tracker regularly—daily or weekly—to see how the competitive landscape changes over time.
+                        </p>
+
+                        <p>
+                            For example, if you notice a new competitor suddenly appearing in top ad positions, that
+                            might signal they've launched a new product or increased their ad budget. Or if a longtime
+                            advertiser disappears, they might have run out of stock or decided the keyword isn't
+                            profitable. These insights help you make smarter decisions about your own advertising.
+                        </p>
+
+                        <h2 id="competitive-intelligence">Competitive Intelligence Strategies</h2>
+
+                        <p>
+                            Now that you can track sponsored products, let's explore advanced strategies for extracting
+                            competitive intelligence. The goal isn't just to collect data—it's to turn that data into
+                            actionable insights that improve your advertising ROI.
+                        </p>
+
+                        <h3 id="keyword-coverage">Keyword Coverage Analysis</h3>
+
+                        <p>
+                            One of the most valuable analyses you can perform is keyword coverage: which keywords are
+                            your competitors advertising on that you're not? This reveals gaps in your advertising
+                            strategy and opportunities to capture additional traffic.
+                        </p>
+
+                        <p>
+                            Here's how it works: Create a list of 50-100 relevant keywords for your product category.
+                            Run the tracker on all of them. Then analyze which competitors appear most frequently across
+                            all keywords. If a competitor is advertising on 30 keywords and you're only on 10, you're
+                            missing out on 20 potential traffic sources.
+                        </p>
+
+                        <p>
+                            More importantly, look at which specific keywords they're targeting that you're not. These
+                            are your low-hanging fruit—keywords that are proven to work (because competitors are
+                            spending money on them) but where you have no presence. Prioritize adding these to your
+                            campaigns.
+                        </p>
+
+                        <h3 id="ad-spend-estimation">Estimating Competitor Ad Spend</h3>
+
+                        <p>
+                            While you can't see exactly how much competitors are spending, you can make educated
+                            estimates based on their ad frequency and positions. Here's the logic:
+                        </p>
+
+                        <p>
+                            If a competitor appears in sponsored positions for a keyword 90% of the time you check (say,
+                            27 out of 30 daily checks), they're likely bidding aggressively and spending significantly.
+                            If they only appear 20% of the time, they might have a lower budget or be using dayparting
+                            (advertising only during specific hours).
+                        </p>
+
+                        <p>
+                            Combine this frequency data with estimated click-through rates (CTR) and average
+                            cost-per-click (CPC) for the keyword, and you can estimate their monthly spend. For example:
+                            If a keyword gets 10,000 searches/month, sponsored products get a 3% CTR, and the average
+                            CPC is $1.50, a competitor appearing 80% of the time is probably spending around $360/month
+                            on that one keyword (10,000 × 0.03 × 0.80 × $1.50).
+                        </p>
+
+                        <p>
+                            This isn't perfect, but it gives you a ballpark figure that helps you understand the
+                            competitive intensity and budget requirements for different keywords.
+                        </p>
+
+                        <h2 id="optimization">Optimization Strategies Based on Competitor Data</h2>
+
+                        <p>
+                            Collecting competitive intelligence is only valuable if you act on it. Here are proven
+                            strategies for optimizing your advertising based on competitor data:
+                        </p>
+
+                        <h3 id="smart-bidding">Smart Bidding Strategies</h3>
+
+                        <p>
+                            <strong>The Gap Strategy</strong>: Look for keywords where competitors advertise
+                            inconsistently. If you notice a major competitor only advertises Monday-Friday, increase
+                            your bids on weekends to capture that traffic at a lower cost. I've seen sellers reduce
+                            their ACoS by 15-20% just by identifying these timing gaps.
+                        </p>
+
+                        <p>
+                            <strong>The Underdog Strategy</strong>: Find keywords where there are only 1-2 advertisers.
+                            These often have lower CPCs because there's less competition, but they can still drive
+                            significant sales. They're especially valuable for sellers with smaller budgets who can't
+                            compete on high-traffic, high-competition keywords.
+                        </p>
+
+                        <p>
+                            <strong>The Defensive Strategy</strong>: If competitors are advertising on your brand terms,
+                            you need to defend. But don't just blindly bid high—track how often they appear and adjust
+                            your bids to stay above them while minimizing spend. Sometimes a modest bid increase is
+                            enough to push them down the page.
+                        </p>
+
+                        <h3 id="keyword-discovery">New Keyword Discovery</h3>
+
+                        <p>
+                            Use competitor ad tracking as a keyword research tool. Every keyword a successful competitor
+                            advertises on is a potential opportunity for you. Create a spreadsheet of all keywords where
+                            competitors appear, ranked by:
+                        </p>
+
+                        <ul>
+                            <li>Number of different competitors advertising (more = validated demand)</li>
+                            <li>Frequency of ads (higher = likely profitable)</li>
+                            <li>Your current presence (prioritize keywords where you're absent)</li>
+                        </ul>
+
+                        <p>
+                            This gives you a prioritized list of keywords to test, dramatically reducing the
+                            trial-and-error phase of keyword research.
+                        </p>
+
+                        <div class="warning-box">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
+                                    class="fas fa-exclamation-triangle mr-2"></i>Common Mistakes to Avoid</h4>
+                            <p><strong>Copying Blindly</strong>: Just because a competitor advertises on a keyword
+                                doesn't mean it's profitable for them—or for you. Always test new keywords with small
+                                budgets first.</p>
+                            <p><strong>Ignoring Relevance</strong>: Don't bid on keywords just because competitors do.
+                                If the keyword isn't relevant to your product, you'll waste money on clicks that don't
+                                convert.</p>
+                            <p class="mb-0"><strong>Forgetting Your Unique Value</strong>: Competitor data should inform
+                                your strategy, not dictate it. You might have advantages (better price, unique features,
+                                superior reviews) that allow you to succeed where others fail.</p>
+                        </div>
+
+                        <h2 id="action-plan">Your 30-Day Ad Intelligence Action Plan</h2>
+
+                        <p>
+                            Here's a practical plan to start using competitive ad intelligence to improve your Amazon
+                            advertising:
+                        </p>
+
+                        <p>
+                            <strong>Week 1: Setup and Baseline</strong>
+                        </p>
+                        <ul>
+                            <li>Set up the SponsoredProductTracker with your API key</li>
+                            <li>Identify your top 20 most important keywords</li>
+                            <li>Run initial tracking on all keywords to establish baseline</li>
+                            <li>Identify your top 3-5 competitors based on ad frequency</li>
+                        </ul>
+
+                        <p>
+                            <strong>Week 2: Daily Monitoring</strong>
+                        </p>
+                        <ul>
+                            <li>Track your top 10 keywords daily (automated with cron job or scheduler)</li>
+                            <li>Note any changes in competitor ad positions or new advertisers</li>
+                            <li>Start building a database of historical ad data</li>
+                            <li>Identify 5 new keyword opportunities based on competitor coverage</li>
+                        </ul>
+
+                        <p>
+                            <strong>Week 3: Analysis and Testing</strong>
+                        </p>
+                        <ul>
+                            <li>Analyze which competitors appear most consistently</li>
+                            <li>Estimate their ad spend on key terms</li>
+                            <li>Launch test campaigns on 3-5 competitor-validated keywords</li>
+                            <li>Adjust bids on existing campaigns based on competitive intensity</li>
+                        </ul>
+
+                        <p>
+                            <strong>Week 4: Optimization</strong>
+                        </p>
+                        <ul>
+                            <li>Review performance of new keyword tests</li>
+                            <li>Identify timing gaps in competitor advertising</li>
+                            <li>Implement dayparting or bid adjustments based on findings</li>
+                            <li>Document your learnings and plan next month's strategy</li>
+                        </ul>
+
+                        <h2 id="conclusion">Conclusion: From Data to Advertising Dominance</h2>
+
+                        <p>
+                            Monitoring competitor advertising isn't about copying what others do—it's about learning
+                            from the market's collective wisdom. Every dollar your competitors spend on advertising is a
+                            data point you can learn from. Every keyword they test is an experiment you don't have to
+                            run yourself. Every positioning strategy they try gives you insights into what works and
+                            what doesn't.
+                        </p>
+
+                        <p>
+                            The most successful Amazon advertisers I know use competitive intelligence as one pillar of
+                            their strategy, combined with their own testing and optimization. They don't blindly follow
+                            competitors, but they also don't ignore the valuable signals that competitor behavior
+                            provides.
+                        </p>
+
+                        <p>
+                            Start small. Pick your top 10 keywords and track them for a month. See what patterns emerge.
+                            Notice which competitors are consistent and which are erratic. Identify opportunities where
+                            you can gain an edge. Then gradually expand your monitoring to cover more keywords and more
+                            competitors.
+                        </p>
+
+                        <p>
+                            Remember: in Amazon advertising, information is power. The more you know about what's
+                            working in your market, the better decisions you can make. And better decisions lead to
+                            better ROI, which leads to more budget for advertising, which leads to more sales. It's a
+                            virtuous cycle, and it starts with understanding the competitive landscape.
+                        </p>
+
+                        <div class="success-box mt-8">
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Ready to
+                                Gain Advertising Intelligence?</h4>
+                            <p>Stop guessing what your competitors are doing and start knowing. Pangol Info's Amazon SERP
+                                API gives you the data you need to make smarter advertising decisions, reduce wasted
+                                spend, and maximize your ROI.</p>
+                            <ul class="mb-4">
+                                <li><strong>Track Competitor Ads</strong>: See exactly who's advertising on which
+                                    keywords</li>
+                                <li><strong>Discover Winning Keywords</strong>: Find proven keywords your competitors
+                                    are using</li>
+                                <li><strong>Optimize Your Spend</strong>: Bid smarter based on competitive intelligence
+                                </li>
+                                <li><strong>Stay Ahead</strong>: Get alerts when competitors change their strategies
+                                </li>
+                            </ul>
+                            <div class="flex gap-4 mt-4">
+                                <a href="https://tool.pangolinfo.com/"
+                                    class="inline-block px-6 py-3 bg-gradient-to-r from-accent-pink to-accent-purple rounded-full font-bold text-white hover:shadow-lg transition">
+                                    开始免费试用 →
+                                </a>
+                                <a href="https://docs.pangolinfo.com/en-index"
+                                    class="inline-block px-6 py-3 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
+                                    View API Docs
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <!-- CTA Section -->
+                    <div class="glass-card rounded-3xl p-12 mt-8 text-center">
+                        <h3 class="text-3xl font-bold mb-4">Transform Your Amazon Advertising Strategy</h3>
+                        <p class="text-gray-400 mb-6 max-w-2xl mx-auto">Join successful sellers who use competitive
+                            intelligence to reduce ad costs, discover profitable keywords, and dominate their markets.
+                        </p>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="https://tool.pangolinfo.com/"
+                                class="px-8 py-4 bg-gradient-to-r from-accent-pink to-accent-purple rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
+                                Get 1,000 Free Credits
+                            </a>
+                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
+                                View Pricing
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar (1/3 width) -->
+                <div class="lg:col-span-1">
+                    <div class="sidebar-sticky space-y-6">
+
+                        <!-- 目录 -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
+                            <nav class="space-y-1">
+                                <a href="#why-monitor" class="toc-link">Why Monitor Competitor Ads</a>
+                                <a href="#understanding-landscape" class="toc-link">Understanding Ad Landscape</a>
+                                <a href="#ad-types" class="toc-link toc-link-sub">Ad Types</a>
+                                <a href="#ad-placement" class="toc-link toc-link-sub">How Placement Works</a>
+                                <a href="#tracking-api" class="toc-link">Tracking with API</a>
+                                <a href="#basic-tracker" class="toc-link toc-link-sub">Basic Ad Tracker</a>
+                                <a href="#competitive-intelligence" class="toc-link">Competitive Intelligence</a>
+                                <a href="#keyword-coverage" class="toc-link toc-link-sub">Keyword Coverage</a>
+                                <a href="#ad-spend-estimation" class="toc-link toc-link-sub">Ad Spend Estimation</a>
+                                <a href="#optimization" class="toc-link">Optimization Strategies</a>
+                                <a href="#smart-bidding" class="toc-link toc-link-sub">Smart Bidding</a>
+                                <a href="#keyword-discovery" class="toc-link toc-link-sub">Keyword Discovery</a>
+                                <a href="#action-plan" class="toc-link">30-Day Action Plan</a>
+                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                            </nav>
+                        </div>
+
+                        <!-- Pangolin Scrape API Product Card -->
+                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-rocket text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
+                                Pangolin Scrape API</h4>
+                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
+                                with 99.9% uptime</p>
+                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                                <span>了解更多</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- AMZ Data Tracker Product Card -->
+                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                            class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
+                                AMZ Data Tracker</h4>
+                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
+                                alerts and Excel export</p>
+                            <div class="flex items-center text-accent-purple text-sm font-semibold">
+                                <span>了解更多</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- Chrome Extension Card -->
+                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=zh-CN&authuser=0"
+                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-chrome text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
+                                Browser Extension</h4>
+                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome extension for instant Amazon
+                                product analysis</p>
+                            <div class="flex items-center text-green-400 text-sm font-semibold">
+                                <span>Install Extension</span>
+                                <i
+                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOLIN</span>
+                </div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">产品</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white">定价</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">资源</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/en-index" class="hover:text-white">API 文档</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="/zh/index.html#articles" class="hover:text-white">博客文章</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">公司</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white">官方网站</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">控制台</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white">Amazon 解决方案</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. 保留所有权利。</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <script>
+        // 目录 Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+
+</html>

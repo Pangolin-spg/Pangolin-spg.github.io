@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Building Real-time Amazon Price Monitoring with Scraping API | Pangolin Guide</title>
+    <meta name="description"
+        content="Step-by-step guide to creating an automated Amazon price tracking system using Pangol Info's e-commerce API. Learn to build price trackers, analyzers, and dynamic pricing algorithms.">
+    <meta name="keywords"
+        content="Amazon Price Monitoring, Price Tracking API, Dynamic Pricing, Competitor Analysis, E-commerce Scraping, Python Price Tracker, Amazon Repricer">
+    <meta name="author" content="Pangol Info Scrape API">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building Real-time Amazon Price Monitoring with Scraping API">
+    <meta property="og:description"
+        content="Master Amazon price tracking: meaningful insights, automated monitoring, and dynamic pricing strategies with complete Python code examples.">
+    <meta property="og:url" content="https://pangolin-spg.github.io/articles/amazon-price-monitoring-system.html">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Real-time Amazon Price Monitoring with Scraping API">
+    <meta name="twitter:description" content="Build your own Amazon price tracker with Python and Scrape API.">
+
+    <link rel="canonical" content="https://pangolin-spg.github.io/articles/amazon-price-monitoring-system.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Building Real-time Amazon Price Monitoring with Scraping API",
+      "description": "Comprehensive guide to building an automated price monitoring system for Amazon products using Python and Scrape API.",
+      "author": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+        }
+      },
+      "datePublished": "2025-12-12",
+      "dateModified": "2025-12-12"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+    </style>
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-price-monitoring-system.html">
+    <link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html">
+
+</head>
+
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="/zh/index.html" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOLIN</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="/zh/index.html#home" class="nav-link hover:text-white transition">首页</a>
+                <a href="/zh/index.html#solutions" class="nav-link hover:text-white transition">解决方案</a>
+                <a href="/zh/index.html#use-cases" class="nav-link hover:text-white transition">应用场景</a>
+                <a href="/zh/index.html#articles" class="nav-link hover:text-white transition">博客</a>
+                <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">文档</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/"
+                    class="nav-link hover:text-white transition">定价</a>
+            </div>
+            <a href="https://tool.pangolinfo.com/"
+                class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                Get API Key
+            </a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="relative pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-pink tracking-wider uppercase">
+                <span class="w-2 h-2 bg-accent-pink rounded-full inline-block mr-2 animate-pulse"></span>
+                Price Tracking
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Building Real-time Amazon Price Monitoring with Scraping API
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Step-by-step guide to creating an automated Amazon price tracking system using Pangol Info's e-commerce API
+            </p>
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <span><i class="far fa-calendar mr-2"></i>December 12, 2025</span>
+                <span><i class="far fa-clock mr-2"></i>22 分钟阅读</span>
+                <span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebar -->
+    <section class="relative px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Main Article Content (2/3 width) -->
+                <div class="lg:col-span-2">
+                    <article class="glass-card rounded-3xl p-8 md:p-12">
+
+                        <!-- Introduction -->
+                        <p class="text-xl text-gray-300 font-medium mb-8">
+                            In the fast-paced ecosystem of Amazon e-commerce, prices fluctuate millions of times a day.
+                            For serious sellers, the 'set it and forget it' pricing strategy is a one-way ticket to
+                            obscurity.
+                            To stay competitive, maintain the Buy Box, and protect your profit margins, you need a
+                            robust,
+                            real-time price monitoring system. This guide provides a complete technical walkthrough for
+                            building your own automated price tracker from scratch, using Python and the Pangolin
+                            Scraping API.
+                        </p>
+
+                        <p>
+                            Unlike off-the-shelf tools that can be expensive and inflexible, a custom solution gives you
+                            complete control over data granularity, update frequency, and integration with your backend
+                            systems.
+                            Whether you are a private label seller protecting your brand value or a reseller fighting
+                            for the
+                            Buy Box, the system we build today will become the backbone of your pricing intelligence
+                            operations.
+                        </p>
+
+                        <!-- Section 1: Why Price Monitoring Matters -->
+                        <h2 id="why-monitor-prices">Why Real-time Price Monitoring is Non-Negotiable</h2>
+
+                        <p>
+                            Dynamic pricing is the heartbeat of Amazon. The days of static price tags are long gone,
+                            replaced by sophisticated algorithms that adjust prices based on demand, competition, and
+                            inventory levels. If you aren't monitoring these changes in real-time, you're flying blind.
+                        </p>
+
+                        <p>
+                            <strong>The Buy Box Battle:</strong> The Amazon Buy Box (the "Add to Cart" button) drives
+                            over 82% of all sales. Amazon's algorithm awards the Buy Box based heavily on price
+                            competitiveness. A difference of just a few cents can win or lose you the sale. Automated
+                            monitoring ensures you know exactly when you lose the Buy Box and why, allowing for
+                            immediate corrective action.
+                        </p>
+
+                        <p>
+                            <strong>Competitor Strategy Decoding:</strong> Your competitors are testing strategies
+                            constantly. Are they lowering prices at night? Are they running flash sales on weekends? By
+                            collecting continuous price data points, you can reverse-engineer their strategies. For
+                            instance, you might discover that a major competitor systematically drops prices by 5% every
+                            Tuesday—knowledge that allows you to preemptively adjust your strategy.
+                        </p>
+
+                        <p>
+                            <strong>Profit Maximization vs. Revenue:</strong> It's not always about the lowest price.
+                            Sometimes, competitors run out of stock or raise their prices. In these moments, a smart
+                            system detects the opportunity to <em>raise</em> your prices while still maintaining the Buy
+                            Box, significantly boosting your profit margins. We've seen sellers increase their net
+                            profit by 15-20% simply by capturing these "high-price" windows that manual checking would
+                            miss.
+                        </p>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
+                                    class="fas fa-chart-line mr-2"></i>Data Insight</h4>
+                            <p class="mb-0">
+                                According to recent market analysis, sellers utilizing automated repricing strategies
+                                based on real-time data see an average sales increase of 42% within the first three
+                                months compared to those using manual or static pricing.
+                            </p>
+                        </div>
+
+                        <!-- Section 2: Price Monitoring Fundamentals -->
+                        <h2 id="monitoring-fundamentals">Price Monitoring Fundamentals</h2>
+
+                        <p>
+                            Before writing code, we must understand the data points that constitute a "price" on Amazon.
+                            It isn't just a single number. To build an effective tracker, you need to capture the
+                            following attributes for every snapshot:
+                        </p>
+
+                        <ul>
+                            <li><strong>Current Buy Box Price:</strong> The price customers pay when they click "Buy
+                                Now". This is your most critical metric.</li>
+                            <li><strong>List Price:</strong> The strikethrough price, important for calculating
+                                discounts.</li>
+                            <li><strong>Shipping Cost:</strong> Often hidden, but part of the total landing price.</li>
+                            <li><strong>Seller ID:</strong> Who is winning the Buy Box? Is it Amazon (Sold by Amazon) or
+                                a 3rd party?</li>
+                            <li><strong>Availability:</strong> Is the product in stock? Back-ordered?</li>
+                            <li><strong>Offer Count:</strong> How many other sellers are on this listing?</li>
+                        </ul>
+
+                        <h3 id="tracking-strategy">Tracking Strategy & Frequency</h3>
+
+                        <p>
+                            How often should you check prices? Over-checking wastes API credits; under-checking misses
+                            critical movements.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                            <div class="glass-card p-6 rounded-xl border-l-4 border-l-pangolin-500">
+                                <h4 class="font-bold text-white mb-2">High-Velocity 产品</h4>
+                                <p class="text-sm text-gray-400 mb-0">Check every 15-30 minutes. These items (top 1%
+                                    BSR) have aggressive repricers running constantly.</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-xl border-l-4 border-l-accent-purple">
+                                <h4 class="font-bold text-white mb-2">Long-Tail 产品</h4>
+                                <p class="text-sm text-gray-400 mb-0">Check every 6-12 hours. Prices are stickier and
+                                    change less frequently.</p>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Building the Core Tracking System -->
+                        <h2 id="building-core-tracker">Building the Core Tracking System</h2>
+
+                        <p>
+                            Now, let's build the engine. We will use Python with the <code>requests</code> library to
+                            interact with Pangol Info's Scrape API, and <code>sqlite3</code> for a lightweight, serverless
+                            database to store our price history.
+                        </p>
+
+                        <p>
+                            The <code>PriceTracker</code> class below handles three main functions:
+                        <ol>
+                            <li><strong>Database Initialization:</strong> Sets up a table to store price history.</li>
+                            <li><strong>Data Scraping:</strong> Sends a request to the API to get the latest product
+                                data.</li>
+                            <li><strong>Data Persistence:</strong> Saves the parsed data into our database.</li>
+                        </ol>
+                        </p>
+
+                        <pre><code class="language-python">import requests
+import sqlite3
+import json
+from datetime import datetime
+from typing import Dict, Optional
+
+class PriceTracker:
+    """
+    Core engine for tracking Amazon product prices via Pangol Info API.
+    Handles data extraction and persistence to SQLite.
+    """
+    
+    def __init__(self, api_key: str, db_path: str = "price_history.db"):
+        self.api_key = api_key
+        self.api_endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
+        self.db_path = db_path
+        self._init_db()
+
+    def _init_db(self):
+        """Initialize the SQLite database schema."""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS prices (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                asin TEXT NOT NULL,
+                timestamp DATETIME NOT NULL,
+                price REAL,
+                currency TEXT,
+                seller_name TEXT,
+                is_amazon_sold BOOLEAN,
+                availability TEXT,
+                rating REAL,
+                reviews_count INTEGER
+            )
+        ''')
+        # Index for faster queries later
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_asin ON prices(asin)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_time ON prices(timestamp)')
+        conn.commit()
+        conn.close()
+
+    def get_product_data(self, asin: str) -> Optional[Dict]:
+        """
+        Fetch real-time product data from Amazon via API.
+        
+        Args:
+            asin: Amazon Standard Identification Number
+            
+        Returns:
+            Dictionary containing parsed product details or None if failed.
+        """
+        payload = {
+            "url": f"https://www.amazon.com/dp/{asin}",
+            "parserName": "amzDetail",  # Use dedicated detail page parser
+            "format": "json",
+            "bizContext": {
+                "zipcode": "10001"  # Check prices for NY delivery
+            }
+        }
+        
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+
+        try:
+            response = requests.post(self.api_endpoint, json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                result = response.json()
+                # Navigate through the API response structure
+                if result.get("code") == 0 and result.get("data"):
+                    return result["data"]["json"][0]["data"]
+            
+            print(f"Failed to fetch data for {asin}: {response.text}")
+            return None
+            
+        except Exception as e:
+            print(f"Error requesting {asin}: {str(e)}")
+            return None
+
+    def store_price_point(self, asin: str, data: Dict):
+        """Save a single price snapshot to the database."""
+        if not data:
+            return
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        # safely extract numerical price
+        raw_price = data.get("price", 0)
+        
+        cursor.execute('''
+            INSERT INTO prices (
+                asin, timestamp, price, currency, seller_name, 
+                is_amazon_sold, availability, rating, reviews_count
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            asin,
+            datetime.now().isoformat(),
+            raw_price,
+            data.get("currency", "USD"),
+            data.get("seller_name", "Unknown"),
+            data.get("seller_name", "").lower() == "amazon.com",
+            data.get("availability", "Unknown"),
+            data.get("star", 0.0),
+            data.get("rating_count", 0)
+        ))
+        
+        conn.commit()
+        conn.close()
+        print(f"✅ Stored price for {asin}: ${raw_price}")
+
+    def run_check(self, asins: list):
+        """Batch process a list of ASINs."""
+        print(f"Starting price check for {len(asins)} products...")
+        for asin in asins:
+            data = self.get_product_data(asin)
+            if data:
+                self.store_price_point(asin, data)
+        print("Batch check complete.")
+
+# Usage Example
+if __name__ == "__main__":
+    tracker = PriceTracker(api_key="YOUR_API_KEY_HERE")
+    my_products = ["B08N5WRWNW", "B09G9F5T3R"] # Example ASINs
+    tracker.run_check(my_products)</code></pre>
+
+                        <p>
+                            This <code>PriceTracker</code> is robust because it handles the variability of web data.
+                            It stores not just the price, but context—who is selling (Sold by Amazon?) and availability.
+                            If a competitor's price drops to $0.01 but they are "Currently Unavailable", your system
+                            shouldn't panic.
+                            Context is key.
+                        </p>
+
+                        <!-- Price Monitoring Fundamentals -->
+                        <!-- Building the Core Tracking System -->
+                        <!-- Section 4: Advanced Price Analysis -->
+                        <h2 id="advanced-price-analysis">Advanced Price Analysis</h2>
+
+                        <p>
+                            Raw data is useless without interpretation. Is a $20 price good or bad? It depends on the
+                            history.
+                            The <code>PriceAnalyzer</code> class queries our SQLite database to find trends, volatility,
+                            and competitive positioning.
+                        </p>
+
+                        <pre><code class="language-python">import pandas as pd
+import sqlite3
+import numpy as np
+
+class PriceAnalyzer:
+    """
+    Analyzes historical price data to find trends and compute statistics.
+    Uses pandas for efficient data manipulation.
+    """
+    
+    def __init__(self, db_path: str = "price_history.db"):
+        self.db_path = db_path
+
+    def get_price_history_df(self, asin: str, days: int = 30) -> pd.DataFrame:
+        """Load price history for an ASIN into a pandas DataFrame."""
+        conn = sqlite3.connect(self.db_path)
+        query = f"""
+            SELECT timestamp, price, seller_name, is_amazon_sold 
+            FROM prices 
+            WHERE asin = '{asin}' 
+            AND timestamp >= datetime('now', '-{days} days')
+            ORDER BY timestamp ASC
+        """
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        
+        if not df.empty:
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df.set_index('timestamp', inplace=True)
+        return df
+
+    def analyze_volatility(self, asin: str) -> dict:
+        """
+        Calculate price volatility metrics.
+        High std_dev means the price fluctuates frequently.
+        """
+        df = self.get_price_history_df(asin)
+        if df.empty:
+            return {}
+
+        current_price = df['price'].iloc[-1]
+        mean_price = df['price'].mean()
+        min_price = df['price'].min()
+        max_price = df['price'].max()
+        std_dev = df['price'].std()
+        
+        # Calculate price momentum (simple moving average crossover)
+        short_ma = df['price'].rolling(window=3).mean().iloc[-1]
+        long_ma = df['price'].rolling(window=10).mean().iloc[-1]
+        trend = "UP" if short_ma > long_ma else "DOWN"
+
+        return {
+            "asin": asin,
+            "current_price": current_price,
+            "mean_price": round(mean_price, 2),
+            "volatility_index": round(std_dev, 2),
+            "price_range": (min_price, max_price),
+            "trend": trend,
+            "is_amazon_dominating": self._check_amazon_dominance(df)
+        }
+
+    def _check_amazon_dominance(self, df: pd.DataFrame) -> bool:
+        """Check if Amazon accounts for >50% of the Buy Box history."""
+        amazon_wins = df[df['is_amazon_sold'] == 1].shape[0]
+        total_checks = df.shape[0]
+        return (amazon_wins / total_checks) > 0.5 if total_checks > 0 else False
+
+    def compare_competitors(self, my_asin: str, competitor_asins: list) -> dict:
+        """Compare my product price against a basket of competitors."""
+        my_stats = self.analyze_volatility(my_asin)
+        if not my_stats:
+            return {"error": "No data for my ASIN"}
+
+        my_price = my_stats['current_price']
+        competitor_prices = []
+
+        for comp_asin in competitor_asins:
+            comp_stats = self.analyze_volatility(comp_asin)
+            if comp_stats:
+                competitor_prices.append(comp_stats['current_price'])
+
+        if not competitor_prices:
+            return {"position": "UNKNOWN"}
+
+        avg_market_price = np.mean(competitor_prices)
+        
+        position = "PREMIUM"
+        if my_price < avg_market_price * 0.95:
+            position = "VALUE"
+        elif my_price <= avg_market_price * 1.05:
+            position = "COMPETITIVE"
+
+        return {
+            "my_price": my_price,
+            "market_average": round(avg_market_price, 2),
+            "price_index": round((my_price / avg_market_price) * 100, 1),
+            "market_position": position
+        }</code></pre>
+
+                        <p>
+                            Using <code>compare_competitors</code>, you can programmatically define your market
+                            position.
+                            Are you a luxury brand ("PREMIUM") or a budget choice ("VALUE")? If you are priced like a
+                            luxury brand but your reviews say "cheap quality",
+                            you have a problem. This data aligns your pricing with reality.
+                        </p>
+
+                        <!-- Section 5: Automation and Alerts -->
+                        <h2 id="automation-alerts">Automation and Alerts</h2>
+
+                        <p>
+                            You can't stare at a dashboard all day. We need an <code>AlertSystem</code> that pushes
+                            critical information to you via Email or Slack.
+                            We will implement a system that triggers when:
+                        <ul>
+                            <li><strong>Buy Box Loss:</strong> You are no longer the winner.</li>
+                            <li><strong>Price War:</strong> A competitor undercuts you by more than 10%.</li>
+                            <li><strong>Amazon Entry:</strong> Amazon suddenly starts selling on the listing (a huge red
+                                flag).</li>
+                        </ul>
+                        </p>
+
+                        <pre><code class="language-python">import smtplib
+from email.mime.text import MIMEText
+import requests
+
+class AlertSystem:
+    """
+    Sends notifications to external channels based on price events.
+    Supports Email (SMTP) and Slack Webhooks.
+    """
+    
+    def __init__(self, smtp_config: dict, slack_webhook: str = None):
+        self.smtp_config = smtp_config
+        self.slack_webhook = slack_webhook
+
+    def send_email(self, subject: str, message: str):
+        """Send an email alert."""
+        msg = MIMEText(message)
+        msg['Subject'] = f"[Price Alert] {subject}"
+        msg['From'] = self.smtp_config['sender']
+        msg['To'] = self.smtp_config['recipient']
+
+        try:
+            with smtplib.SMTP_SSL(self.smtp_config['host'], 465) as server:
+                server.login(self.smtp_config['user'], self.smtp_config['password'])
+                server.send_message(msg)
+            print("✉️ Email alert sent.")
+        except Exception as e:
+            print(f"Failed to send email: {e}")
+
+    def send_slack(self, message: str):
+        """Send a Slack notification."""
+        if not self.slack_webhook:
+            return
+        
+        payload = {"text": f"🚨 {message}"}
+        try:
+            requests.post(self.slack_webhook, json=payload)
+            print("💬 Slack alert sent.")
+        except Exception as e:
+            print(f"Failed to send to Slack: {e}")
+
+    def check_conditions(self, asin: str, previous_data: dict, current_data: dict):
+        """
+        Evaluate business rules and trigger alerts.
+        """
+        # Rule 1: Buy Box Loss
+        if previous_data.get("seller_name") == "MyStore" and current_data.get("seller_name") != "MyStore":
+            self.send_slack(f"⚠️ Buy Box LOST for {asin}! Winner: {current_data.get('seller_name')} @ ${current_data.get('price')}")
+
+        # Rule 2: Significant Price Drop (>10%)
+        prev_price = previous_data.get("price", 0)
+        curr_price = current_data.get("price", 0)
+        
+        if prev_price > 0 and curr_price < prev_price * 0.9:
+            drop_pct = round((1 - curr_price/prev_price) * 100, 1)
+            self.send_email(
+                subject=f"Price Crash Alert: {asin}",
+                message=f"Price dropped by {drop_pct}% from ${prev_price} to ${curr_price}. Check competitor activity immediately."
+            )
+
+        # Rule 3: Amazon entering the listing
+        if not previous_data.get("is_amazon_sold") and current_data.get("is_amazon_sold"):
+            self.send_slack(f"😱 DANGER: Amazon is now selling on {asin}. Expect aggressive pricing.")</code></pre>
+
+                        <!-- Section 6: Dynamic Pricing Strategies -->
+                        <h2 id="dynamic-pricing">Dynamic Pricing Strategies</h2>
+
+                        <p>
+                            Monitoring is passive; repricing is active. With accurate data, you can implement dynamic
+                            pricing strategies similar to what airlines use.
+                            Be careful: automated repricing carries risk. You must always have a "floor price" (minimum
+                            acceptable price) to prevent selling at a loss.
+                        </p>
+
+                        <pre><code class="language-python">class DynamicPricer:
+    """
+    Calculates optimal pricing based on competitive landscape and business rules.
+    does NOT automatically update Amazon (safety first), but suggests changes.
+    """
+
+    def __init__(self, floor_margin: float = 0.15):
+        self.floor_margin = floor_margin  # Minimum 15% profit margin
+
+    def get_optimal_price(self, my_cost: float, competitor_price: float, strategy: str = "MATCH") -> float:
+        """
+        Determine the best price.
+        
+        Strategies:
+        - MATCH: Match the Buy Box price.
+        - UNDERCUT: Pency-drop under the competitor.
+        - PREMIUM: Stay 10% above (for brand perception).
+        """
+        floor_price = my_cost * (1 + self.floor_margin)
+        suggested_price = floor_price
+
+        if strategy == "MATCH":
+            suggested_price = competitor_price
+        
+        elif strategy == "UNDERCUT":
+            suggested_price = competitor_price - 0.01
+        
+        elif strategy == "PREMIUM":
+            suggested_price = competitor_price * 1.10
+
+        # SAFETY CHECK: Never go below floor price
+        if suggested_price < floor_price:
+            print(f"⚠️ Strategy {strategy} would breach floor price ${floor_price}. Capping at floor.")
+            return floor_price
+            
+        return round(suggested_price, 2)
+
+    def simulate_repricing(self, products: list):
+        """Run a simulation to see how strategies would perform."""
+        print("--- Repricing Simulation ---")
+        for p in products:
+            new_price = self.get_optimal_price(p['cost'], p['competitor_price'], p['strategy'])
+            print(f"Product {p['asin']}: Current ${p['competitor_price']} -> Suggest ${new_price} ({p['strategy']})")</code></pre>
+
+                        <h3 id="strategies-explained">Strategy Breakdown</h3>
+
+                        <p><strong>1. The Penny Dropper (Undercut):</strong> Good for commodity items where price is the
+                            only differentiator. Be wary of "Race to the Bottom" wars.</p>
+
+                        <p><strong>2. The Premium Anchor (Premium):</strong> If you have better reviews (4.5 vs 4.0
+                            stars), you <em>should</em> charge more. Customers pay for quality. Use the API to check
+                            your review count relative to competitors before applying this.</p>
+
+                        <p><strong>3. The Inventory Cleaner:</strong> If availability < 5 units, increase price to slow
+                                down sales and prevent stock-out (which hurts organic ranking). If inventory> 1000,
+                                switch to aggressive undercutting to liquidate.</p>
+
+                        <!-- Section 7: Real-world Implementation -->
+                        <h2 id="implementation">Real-world Implementation</h2>
+
+                        <p>
+                            To take this from a script to a production system, you need infrastructure.
+                        </p>
+
+                        <ul>
+                            <li><strong>Cloud Hosting:</strong> Run your <code>PriceTracker</code> cron job on an AWS
+                                EC2 micro instance or a $5/month DigitalOcean droplet. Do not run it on your laptop.
+                            </li>
+                            <li><strong>Proxies & IP Rotation:</strong> Amazon is aggressive about blocking scrapers.
+                                This is why we use Pangolin Scrape API. It handles IP rotation, headers, and CAPTCHAs
+                                automatically, ensuring 99.9% success rate without you managing a proxy pool.</li>
+                            <li><strong>Database:</strong> SQLite is great for <1GB of data. If you track 10,000+
+                                    products, migrate to PostgreSQL or Amazon RDS.</li>
+                        </ul>
+
+                        <!-- Section 8: 30-Day Plan -->
+                        <h2 id="plan">30-Day Implementation Plan</h2>
+
+                        <div class="space-y-4 my-8">
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 bg-pangolin-500/20 text-pangolin-500 rounded-full flex items-center justify-center font-bold shrink-0">
+                                    W1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-200">Week 1: Data Accumulation</h4>
+                                    <p class="text-gray-400 text-sm">Do not reprice yet. Run the tracker silently to
+                                        build a baseline of price history. Understand the volatility.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 bg-pangolin-500/20 text-pangolin-500 rounded-full flex items-center justify-center font-bold shrink-0">
+                                    W2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-200">Week 2: Analysis & Segmentation</h4>
+                                    <p class="text-gray-400 text-sm">Use <code>PriceAnalyzer</code> to segment products
+                                        into "Volatile" vs "Stable". Identify your main competitors.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 bg-pangolin-500/20 text-pangolin-500 rounded-full flex items-center justify-center font-bold shrink-0">
+                                    W3</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-200">Week 3: Alert Customization</h4>
+                                    <p class="text-gray-400 text-sm">Tune your <code>AlertSystem</code> thresholds.
+                                        Reduce noise. Only get alerted for actionable events.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 bg-pangolin-500/20 text-pangolin-500 rounded-full flex items-center justify-center font-bold shrink-0">
+                                    W4</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-200">Week 4: Automated Repricing</h4>
+                                    <p class="text-gray-400 text-sm">Turn on the <code>DynamicPricer</code> logic for a
+                                        small batch involving 5-10 products. Monitor closely.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 9: Conclusion -->
+                        <h2 id="conclusion">Conclusion</h2>
+
+                        <p>
+                            Price is the single most powerful lever you have in e-commerce. By building this automated
+                            monitoring system, you transform pricing from a guessing game into a data science. You stop
+                            leaving money on the table.
+                        </p>
+
+                        <p>
+                            Remember, the goal isn't just to react, but to predict. With enough history stored in your
+                            database, you can start forecasting competitor moves before they happen. Start small, track
+                            your best-sellers, and scale your intelligence as you grow.
+                        </p>
+
+
+
+                    </article>
+
+                    <!-- Bottom CTA -->
+                    <div class="glass-card rounded-3xl p-8 mt-12 text-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-pangolin-600/20 to-accent-purple/20 opacity-0 group-hover:opacity-100 transition duration-500">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">Ready to Build Your Tracker?</h3>
+                        <p class="text-gray-300 mb-8 max-w-lg mx-auto relative z-10">
+                            Get your free API key today and start monitoring up to 1,000 requests for free. No credit
+                            card required.
+                        </p>
+                        <a href="https://tool.pangolinfo.com/"
+                            class="inline-block bg-gradient-to-r from-pangolin-500 to-accent-cyan text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pangolin-500/30 hover:shadow-pangolin-500/50 transform hover:-translate-y-1 transition duration-300 relative z-10">
+                            Get Free API Key <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sidebar (1/3 width) -->
+                <div class="hidden lg:block lg:col-span-1">
+                    <div class="sidebar-sticky">
+                        <!-- 目录 -->
+                        <div class="glass-card rounded-2xl p-6 mb-6">
+                            <h4 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Table of
+                                Contents</h4>
+                            <nav id="toc">
+                                <!-- TOC will be generated by JS -->
+                            </nav>
+                        </div>
+
+                        <!-- Product Card 1: Scrape API -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-pangolin-500 to-pangolin-700 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Scrape API</h4>
+                                    <span class="text-xs text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">Best
+                                        Seller</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">
+                                Professional Amazon scraping API with 99.9% uptime and automatic captcha handling.
+                            </p>
+                            <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                                class="block w-full text-center py-2 rounded-lg border border-pangolin-500 text-pangolin-400 hover:bg-pangolin-500 hover:text-white transition">
+                                了解更多
+                            </a>
+                        </div>
+
+                        <!-- Product Card 2: AMZ Data Tracker -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-purple to-pink-600 flex items-center justify-center text-white text-xl">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">AMZ Tracker</h4>
+                                    <span
+                                        class="text-xs text-accent-purple bg-accent-purple/10 px-2 py-0.5 rounded">New</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">
+                                Visual dashboard for tracking ASIN performance, keywords, and BSR history.
+                            </p>
+                            <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                                class="block w-full text-center py-2 rounded-lg border border-accent-purple text-accent-purple hover:bg-accent-purple hover:text-white transition">
+                                View Demo
+                            </a>
+                        </div>
+
+                        <!-- Product Card 3: Chrome Extension -->
+                        <div class="glass-card rounded-2xl p-6 mb-6 product-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white text-xl">
+                                    <i class="fab fa-chrome"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Extension</h4>
+                                    <span class="text-xs text-gray-400 bg-gray-800 px-2 py-0.5 rounded">Free</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">
+                                Free Chrome extension for quick data extraction directly from your browser.
+                            </p>
+                            <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf"
+                                class="block w-full text-center py-2 rounded-lg border border-gray-600 text-gray-400 hover:bg-gray-700 hover:text-white transition">
+                                Install Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-black/40 backdrop-blur-md pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-8">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Logo" class="w-12 h-12 mx-auto rounded-lg mb-4 opacity-80" />
+                <p class="text-gray-500">Empowering Amazon sellers with enterprise-grade data infrastructure.</p>
+            </div>
+            <div class="text-sm text-gray-600">
+                &copy; 2025 Pangolin Scrape API. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        // Copy Code Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate TOC
+            const toc = document.getElementById('toc');
+            const headers = document.querySelectorAll('article h2, article h3');
+
+            headers.forEach(header => {
+                const link = document.createElement('a');
+                link.href = '#' + header.id;
+                link.textContent = header.textContent;
+                link.className = header.tagName === 'H2' ? 'toc-link' : 'toc-link toc-link-sub';
+                toc.appendChild(link);
+            });
+
+            // Sticky Navbar
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-lg', 'bg-black/40');
+                } else {
+                    navbar.classList.remove('shadow-lg', 'bg-black/20');
+                }
+            });
+
+            // Highlight TOC on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('.toc-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            headers.forEach(header => observer.observe(header));
+
+            // Setup Code Copy Buttons
+            document.querySelectorAll('pre').forEach(pre => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                const btn = document.createElement('button');
+                btn.className = 'copy-code-btn';
+                btn.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+                btn.addEventListener('click', () => {
+                    const code = pre.querySelector('code').innerText;
+                    navigator.clipboard.writeText(code);
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="far fa-copy"></i> Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+
+                wrapper.appendChild(btn);
+            });
+        });
+    </script>
+</body>
+
+</html>
