@@ -7,10 +7,8 @@
 
     <!-- SEO Meta Tags -->
     <title>Amazon Scraping API Tutorial: Product Data Extraction Guide 2025</title>
-    <meta name="description"
-        content="Complete Amazon scraping API tutorial with code examples. Learn to extract product data, pricing, reviews, and inventory using Pangol Info API. Step-by-step guide for beginners.">
-    <meta name="keywords"
-        content="Amazon Scraping API Tutorial, Product Data Extraction, Amazon API Guide, E-commerce Data Scraping, Pangol Info API">
+    <meta name="description" content="学习如何使用 Pangol Info 的 Amazon 数据抓取 API 提取产品数据、价格和评论。完整的入门指南，包含代码示例和最佳实践。">
+    <meta name="keywords" content="Amazon API, 数据抓取, 产品数据提取, Amazon 爬虫, 电商数据, API 教程">
     <meta name="author" content="Pangol Info Scrape API">
     <meta name="robots" content="index, follow">
 
@@ -347,6 +345,33 @@
         .copy-code-btn i {
             font-size: 14px;
         }
+    
+        /* Language Switcher */
+        .language-switcher {
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-1px);
+        }
     </style>
     <!-- Hreflang Tags -->
     <link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html">
@@ -482,7 +507,7 @@
                             </ul>
                         </div>
 
-                        <h2 id="prerequisites">Getting Started: Prerequisites</h2>
+                        <h2 id="prerequisites">入门准备：前置条件</h2>
 
                         <p>Before diving into code, you'll need:</p>
 
@@ -498,7 +523,7 @@
                                 structures</li>
                         </ol>
 
-                        <h2 id="authentication">Authentication and API Basics</h2>
+                        <h2 id="authentication">身份验证和 API 基础</h2>
 
                         <p>
                             Pangol Info's API uses Bearer token authentication. Every request must include your API key in
@@ -777,7 +802,7 @@ def scrape_with_safety(asin):
 
                         <div class="success-box mt-8">
                             <h4 class="font-bold text-lg mb-3 text-green-500"><i
-                                    class="fas fa-check-circle mr-2"></i>Next Steps</h4>
+                                    class="fas fa-check-circle mr-2"></i>下一步</h4>
                             <ul class="mb-0">
                                 <li><strong>Sign up for Pangolin</strong>: Get your free API key at <a
                                         href="https://tool.pangolinfo.com/"
@@ -819,17 +844,17 @@ def scrape_with_safety(asin):
                         <div class="glass-card rounded-2xl p-6">
                             <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
                             <nav class="space-y-1">
-                                <a href="#why-matters" class="toc-link">Why Amazon Data Extraction Matters</a>
-                                <a href="#understanding-api" class="toc-link">Understanding Pangol Info's API</a>
-                                <a href="#prerequisites" class="toc-link">Getting Started: Prerequisites</a>
-                                <a href="#authentication" class="toc-link">Authentication and API Basics</a>
-                                <a href="#step-by-step" class="toc-link">Step-by-Step Guide</a>
+                                <a href="#why-matters" class="toc-link">为什么 Amazon 数据提取很重要</a>
+                                <a href="#understanding-api" class="toc-link">了解 Pangol Info 的 API</a>
+                                <a href="#prerequisites" class="toc-link">入门准备：前置条件</a>
+                                <a href="#authentication" class="toc-link">身份验证和 API 基础</a>
+                                <a href="#step-by-step" class="toc-link">分步指南</a>
                                 <a href="#basic-extraction" class="toc-link toc-link-sub">1. Basic Product
                                     Extraction</a>
                                 <a href="#response-structure" class="toc-link toc-link-sub">2. Response Structure</a>
                                 <a href="#price-monitoring" class="toc-link toc-link-sub">3. Price Monitoring</a>
-                                <a href="#best-practices" class="toc-link">Best Practices</a>
-                                <a href="#rate-limiting" class="toc-link toc-link-sub">Rate Limiting</a>
+                                <a href="#best-practices" class="toc-link">最佳实践</a>
+                                <a href="#rate-limiting" class="toc-link toc-link-sub">速率限制</a>
                                 <a href="#conclusion" class="toc-link">Conclusion</a>
                             </nav>
                         </div>
