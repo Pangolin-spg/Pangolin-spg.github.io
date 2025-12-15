@@ -439,377 +439,184 @@
                     <article class="glass-card rounded-3xl p-8 md:p-12">
 
                         <p class="text-xl text-gray-300 font-medium mb-8">
-                            In the rapidly evolving landscape of e-commerce data intelligence from 2024 to 2025, a
-                            silent yet intense technological arms race is underway. As Amazon continuously upgrades its
-                            anti-scraping defense systems—from traditional IP rate limiting to TLS fingerprinting,
-                            behavioral biometrics, and AI-generated content injection—traditional data collection
-                            methods face unprecedented challenges. This comprehensive guide examines the leading Amazon
-                            scraping API solutions and provides strategic insights for data-driven decision makers.
+                            在2024年至2025年的全球电商数据智能领域，一场静悄悄却惊心动魄的技术军备竞赛正在进行。随着亚马逊（Amazon）不断升级其反爬虫防御体系——从传统的IP频率限制演进为基于TLS指纹识别（TLS Fingerprinting）、行为生物识别（Behavioral Biometrics）以及AI生成内容（如"Customer Says"）的动态注入机制，传统的数据采集模式正面临前所未有的失效危机。本份指南将全方位审计当前市场上的主流解决方案，为决策者提供深度技术洞察。
                         </p>
 
-                        <h2 id="executive-summary">Executive Summary</h2>
+                        <h2 id="executive-summary">执行摘要 (Executive Summary)</h2>
 
                         <p>
-                            For SEO experts, advertising managers, and data engineers who depend on high-precision
-                            market intelligence, the challenge is no longer simply "how to access a URL," but rather how
-                            to extract structured, actionable data from Amazon's constantly evolving dynamic DOM
-                            structure. This guide provides an atomic-level comparison of industry newcomer
-                            <strong>Pangolin Scrape API</strong> and its core Data Pilot component against industry
-                            giants <strong>Bright Data</strong>, <strong>Oxylabs</strong>, and developer favorite
-                            <strong>ScraperAPI</strong>.
+                            对于依赖高精度市场情报的SEO专家、广告投放经理及数据工程师而言，挑战已不再仅仅是“如何访问一个URL”，而是如何从瞬息万变的动态DOM结构中，精准提取出能够驱动决策的结构化数据。本深度技术评测报告将重点剖析行业新晋挑战者 <strong>Pangolin Scrape API</strong> 及其核心组件 Data Pilot，并将其与行业巨头 <strong>Bright Data</strong>、<strong>Oxylabs</strong> 及开发者首选的 <strong>ScraperAPI</strong> 进行原子级的对比分析。
                         </p>
 
                         <div class="info-box">
-                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
-                                    class="fas fa-lightbulb mr-2"></i>Market Insight</h4>
-                            <p class="mb-0">The market is experiencing significant differentiation: while
-                                general-purpose giants maintain advantages in infrastructure scale, vertical specialists
-                                like Pangolin are establishing new technical standards in Amazon-specific business
-                                logic—particularly in Amazon ad collection (Sponsored Products), AI review summaries
-                                (Customer Says), and real-time competitive intelligence.</p>
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i class="fas fa-lightbulb mr-2"></i>市场洞察</h4>
+                            <p class="mb-0">市场正在发生显著的分化：通用型巨头依然在基础设施规模上占据优势，但在针对亚马逊特定业务逻辑——特别是亚马逊广告采集（Sponsored Products）、AI评论摘要（Customer Says）及实时竞价情报——的深度解析上，Pangolin 等垂直领域专家正在建立新的技术标准。</p>
                         </div>
 
-                        <h2 id="amazon-ecosystem-evolution">Chapter 1: Amazon Data Collection Ecosystem Evolution</h2>
+                        <h2 id="amazon-ecosystem-evolution">第一章：2025年亚马逊数据采集的生态演变与技术挑战</h2>
 
                         <p>
-                            To understand the true value of Amazon Scrape APIs, we must first deeply analyze the
-                            "hostile environment" they operate in. In 2025, collecting Amazon data is essentially a
-                            probabilistic game against algorithms.
+                            要理解 Amazon Scrape API 的真正价值，首先必须深入剖析它们所处的“敌对环境”。在2025年，采集亚马逊数据本质上是一场针对算法概率的博弈。
                         </p>
 
-                        <h3 id="paradigm-shift">From Static HTML to Dynamic AI Content</h3>
+                        <h3 id="paradigm-shift">1.1 从静态HTML到动态AI内容的范式转移</h3>
 
                         <p>
-                            Five years ago, writing an Amazon scraper required only Python's requests library and
-                            BeautifulSoup parser. Today's Amazon pages are complex, JavaScript-driven Single Page
-                            Application (SPA) variants with three critical challenges:
+                            五年前，编写一个亚马逊爬虫只需要简单的 Python requests 库和 BeautifulSoup 解析器。然而，今天的亚马逊页面是一个复杂的、由 JavaScript 驱动的单页应用（SPA）变体，面临三大核心挑战：
                         </p>
 
                         <ul>
-                            <li><strong>Asynchronous Loading & AJAX Injection:</strong> Core data points are no longer
-                                contained in the initial HTML document. For example, the highly valuable "Customer Says"
-                                (customer feedback summary) module is generated in real-time by AI models and loaded
-                                through asynchronous AJAX requests (typically pointing to /hz/reviews-render/ajax/
-                                endpoints). Traditional static scrapers often capture only empty shells, missing the
-                                most valuable semantic data.</li>
-                            <li><strong>"Ghost" DOM Structure Changes:</strong> To combat CSS selector-based scrapers,
-                                Amazon frequently randomizes HTML element class names. A product container originally
-                                marked as <code>s-result-item</code> might become a meaningless random character hash on
-                                the next refresh. This devastates engineering teams maintaining internal scraper
-                                systems—previously stable parsing scripts can fail overnight.</li>
-                            <li><strong>Ad Camouflage:</strong> Distinguishing organic rankings from paid ads (Sponsored
-                                Products) has become increasingly difficult. Amazon buries ad identifiers deep in Shadow
-                                DOM or renders them through complex CSS pseudo-classes, making accurate Share of Voice
-                                (SOV) calculations exceptionally complex.</li>
+                            <li><strong>异步加载与 AJAX 注入：</strong> 核心数据点不再包含在初始的 HTML 文档中。例如，极具价值的“Customer Says”（客户反馈摘要）模块，是由 AI 模型实时生成，并通过异步的 AJAX 请求加载的。传统的静态爬虫往往只能抓取到空壳。</li>
+                            <li><strong>DOM 结构的“幽灵”变化：</strong> 为了对抗基于 CSS 选择器的爬虫，亚马逊频繁随机化其 HTML 元素的类名。一个原本标记为 <code>s-result-item</code> 的商品容器，可能在下一次刷新中变成一串毫无意义的随机字符哈希值，这对维护内部爬虫系统的工程团队造成了毁灭性的打击。</li>
+                            <li><strong>广告位的伪装：</strong> 区分自然排名（Organic Ranking）和付费广告（Sponsored Products）变得愈发困难。亚马逊将广告标识符深埋在 Shadow DOM 或通过复杂的 CSS 伪类进行渲染，使得计算真实的广告占有率（Share of Voice）变得异常复杂。</li>
                         </ul>
 
-                        <h3 id="anti-scraping-defense">Anti-Scraping Defense System Upgrades</h3>
+                        <h3 id="anti-scraping-defense">1.2 反爬虫防御体系的代际升级</h3>
 
                         <p>
-                            Amazon's AWS WAF (Web Application Firewall) combined with Bot Control advanced strategies
-                            has built three nearly insurmountable defense lines:
+                            亚马逊部署的 AWS WAF 结合 Bot Control 高级策略，构建了三道难以逾越的防线：
                         </p>
 
                         <ol>
-                            <li><strong>Network Layer Fingerprinting (TLS Fingerprinting):</strong> Amazon servers check
-                                ClientHello packets during SSL handshake. If a client claims to be Chrome 120 but its
-                                cipher suite arrangement or extension fields don't match standard Chrome, the connection
-                                is immediately terminated or flagged as a bot. This makes many default Python or Node.js
-                                HTTP libraries instantly detectable.</li>
-                            <li><strong>Behavioral Biometrics:</strong> Systems monitor mouse movement trajectories,
-                                scroll acceleration, and click intervals. The key insight is that human operations have
-                                "entropy"—uncertainty and micro-jitters—while scripts are typically linear and perfect.
-                                Requests lacking this "human touch" are ruthlessly blocked.</li>
-                            <li><strong>Browser Consistency Checks:</strong> Detection techniques for Headless Chrome
-                                are highly mature. Amazon checks Canvas fingerprints, WebGL rendering parameters, and
-                                even AudioContext to determine if the current environment is a real graphical browser.
-                            </li>
+                            <li><strong>网络层指纹识别 (TLS Fingerprinting)：</strong> 亚马逊服务器在 SSL 握手阶段会检查 ClientHello 数据包。如果密码套件排列与标准浏览器不符，连接将被立即掐断。这使得大量默认 HTTP 库直接被识别。</li>
+                            <li><strong>行为生物识别：</strong> 系统会监控鼠标移动轨迹、滚动加速度和点击间隔。真正的红利在于人类操作的“熵”（不确定性），而脚本往往是线性的。缺乏“人味”的请求会被拦截。</li>
+                            <li><strong>浏览器一致性检查：</strong> 针对 Headless Chrome 的检测技术非常成熟。亚马逊通过 Canvas 指纹、WebGL 渲染参数甚至音频上下文来判断环境真实性。</li>
                         </ol>
 
                         <div class="warning-box">
-                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
-                                    class="fas fa-exclamation-triangle mr-2"></i>Economic Tipping Point</h4>
-                            <p class="mb-0">Facing these technical barriers, the TCO (Total Cost of Ownership) of
-                                maintaining an in-house scraping system has skyrocketed. Proxy pool costs, engineering
-                                maintenance expenses, and opportunity costs from data interruptions make the market
-                                trend irreversibly shift toward Managed Scrape APIs that encapsulate proxy rotation,
-                                fingerprint spoofing, CAPTCHA solving, and HTML parsing behind simple RESTful
-                                interfaces.</p>
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i class="fas fa-exclamation-triangle mr-2"></i>经济学拐点</h4>
+                            <p class="mb-0">面对上述技术壁垒，企业内部维护爬虫系统的 TCO（总拥有成本）急剧上升。IP池成本、工程维护费用以及数据中断带来的机会成本，使得市场趋势不可逆转地转向了托管式采集 API (Managed Scrape API)，将复杂的基础设施封装在简单的 RESTful 接口之后。</p>
                         </div>
 
-                        <h2 id="pangolin-deep-dive">Chapter 2: Pangolin Scrape API & Data Pilot Deep Technical Analysis
-                        </h2>
+                        <h2 id="pangolin-deep-dive">第二章：Pangolin Scrape API 与 Data Pilot 深度技术解构</h2>
 
                         <p>
-                            Among numerous general-purpose collection tools, Pangolin positions itself as an "Amazon
-                            Data Intelligence Layer" rather than a mere proxy provider. Its core architecture is deeply
-                            optimized for e-commerce logic, particularly its <strong>Data Pilot</strong> engine, which
-                            represents a new generation of structured data collection.
+                            在众多通用型采集工具中，Pangolin 将自身定位为“亚马逊数据智能层”。其核心架构针对电商逻辑进行了深度优化，特别是其 <strong>Data Pilot</strong> 引擎，代表了新一代结构化数据采集的方向。
                         </p>
 
-                        <h3 id="core-architecture">Core Architecture: Pangolin Scrape API</h3>
+                        <h3 id="core-architecture">2.1 核心架构：Pangolin Scrape API</h3>
 
                         <p>
-                            Pangolin Scrape API's design philosophy is "results-oriented." Unlike competitors who
-                            typically charge by bandwidth, Pangolin uses a per-successful-request (Credits) billing
-                            model, directly aligning with users' core need—obtaining data.
+                            Pangolin Scrape API 的设计哲学是“结果导向”。与竞品通常按带宽计费不同，Pangolin 采用按成功请求次数（Credits）计费的模式，直接对齐用户的核心诉求。
                         </p>
 
                         <div class="text-center my-8">
-                            <img src="../Pangolin Scrape API 架构设计.webp" alt="Pangolin Scrape API Architecture Design"
+                            <img src="../../Pangolin Scrape API 架构设计.webp" alt="Pangolin Scrape API 架构设计"
                                 class="rounded-2xl shadow-2xl mx-auto max-w-full" style="max-height: 500px;">
-                            <p class="text-sm text-gray-400 mt-4">Pangolin Scrape API Architecture: Intelligent routing,
-                                full-stack browser rendering, and geo-targeting capabilities</p>
+                            <p class="text-sm text-gray-400 mt-4">Pangolin Scrape API 架构：智能路由、全栈浏览器渲染与地理位置定向</p>
                         </div>
 
-                        <p><strong>Key Technical Features:</strong></p>
+                        <p><strong>关键技术特性：</strong></p>
 
                         <ul>
-                            <li><strong>Intelligent Routing & Retry Mechanism:</strong> The API internally integrates
-                                multi-layer proxy networks. When a request is sent, Pangolin automatically selects the
-                                optimal IP type (ISP static residential IP or dynamic mobile IP) based on target URL
-                                characteristics. If encountering CAPTCHAs or 503 errors, the system automatically
-                                switches nodes and retries at millisecond speed until successfully returning data. For
-                                users, this is an atomic operation requiring no complex retry loops.</li>
-                            <li><strong>Full-Stack Browser Rendering:</strong> For Amazon's dynamic content, Pangolin
-                                has built-in high-concurrency Headless browser clusters. This means it can execute
-                                JavaScript on pages, wait for asynchronous AJAX loading to complete (such as waiting for
-                                the "Customer Says" module to render), then extract the DOM. This process is transparent
-                                to users, who only need to wait for the final JSON response.</li>
-                            <li><strong>Geo-Location Precision Targeting (Zip-Code Targeting):</strong> This is a
-                                crucial feature for advertisers. Amazon's search results and ad displays have strong
-                                geographic relevance. Users in New York and Texas may see completely different product
-                                rankings and ads. Pangolin allows users to specify exact postal codes (Zip Code) in API
-                                requests, simulating real user perspectives from specific regions to obtain the most
-                                accurate localized market intelligence.</li>
+                            <li><strong>智能路由与重试机制：</strong> API 内部集成了多层代理网络。Pangolin 会根据目标 URL 特征自动选择最优 IP 类型（ISP 静态或动态移动 IP）。遇到验证码或 503 错误时，系统会在毫秒级内自动切换节点重试，对用户而言这是一个原子操作。</li>
+                            <li><strong>全栈浏览器渲染：</strong> 针对动态内容，Pangolin 内置高并发 Headless 浏览器集群。它可以执行页面 JavaScript，等待异步 AJAX 加载完成（如 Customer Says 模块），再提取 DOM。</li>
+                            <li><strong>地理位置精准定位 (Zip-Code Targeting)：</strong> 对广告主至关重要。Pangolin 允许指定具体邮政编码，模拟特定地区真实用户视角，获取最精准的本地化市场情报（如纽约 vs 德克萨斯的搜索结果差异）。</li>
                         </ul>
 
-                        <h3 id="data-pilot">Data Pilot: The Parsing Engine Revolution</h3>
+                        <h3 id="data-pilot">2.2 Data Pilot：解析引擎的革命</h3>
 
                         <p>
-                            <strong>Data Pilot</strong> is the crown jewel of Pangolin's technology stack. It's an
-                            intelligent parsing layer that transforms chaotic raw HTML into clean, standardized
-                            structured JSON data.
+                            <strong>Data Pilot</strong> 是 Pangolin 技术栈的皇冠明珠，由于其是一个智能解析层，能将杂乱的原始 HTML 转化为清洁的结构化 JSON 数据。
                         </p>
 
-                        <p><strong>Data Pilot's Core Capabilities in the Amazon Ecosystem:</strong></p>
+                        <p><strong>在亚马逊生态中的核心能力：</strong></p>
 
                         <ul>
-                            <li><strong>Pixel-Level Ad Data Identification:</strong> In Amazon search results pages
-                                (SERP), distinguishing organic results from ads is extremely difficult. Amazon uses
-                                various obfuscation techniques, such as mixing random class names into ad elements,
-                                rendering "Sponsored" labels as images rather than text, and dynamically adjusting ad
-                                positions on pages. Data Pilot has a constantly updated feature library that can
-                                precisely identify Sponsored Brand, Sponsored Products, and Video Ads. It not only tells
-                                you there's an ad but also returns its absolute and relative positions on the
-                                page—critical for calculating Share of Voice (SOV) metrics.</li>
-                            <li><strong>"Customer Says" & AI Summary Extraction:</strong> This is Pangolin's biggest
-                                differentiation advantage over general competitors. Amazon's "Customer Says" module is
-                                based on large language model summaries of thousands of reviews, containing sentiment
-                                tendencies across core dimensions like "quality," "ease of use," and "value for money."
-                                Since this module is asynchronously loaded with strong anti-scraping measures, ordinary
-                                HTML parsers cannot access it. Data Pilot successfully intercepts this AJAX response by
-                                simulating the browser's complete interaction chain—including necessary Cookie injection
-                                and CSRF Token exchange—and structures it into easily analyzable JSON objects (including
-                                sentiment tags, mention frequency, etc.). This provides brands with a god's-eye view for
-                                SWOT analysis.</li>
-                            <li><strong>Deep Variation Parsing:</strong> For listings with multiple color and size
-                                combinations, Data Pilot can recursively scrape all variation information, including not
-                                just prices and inventory but also specific ASIN codes for different variations. This is
-                                essential for fine-grained SKU-level competitive monitoring.</li>
+                            <li><strong>广告数据的像素级识别：</strong> Data Pilot 拥有不断更新的特征库，能精准识别 Sponsored Brand、Sponsored Products 及 Video Ads。它不仅能识别广告，还能返回其在页面中的绝对和相对位置，这对于计算 Share of Voice (SOV) 至关重要。</li>
+                            <li><strong>"Customer Says" 与 AI 摘要提取：</strong> 这是 Pangolin 最大的差异化优势。Data Pilot 通过模拟完整交互链条（包括 Cookie 注入和 CSRF Token 交换），成功截获 Customer Says 的 AJAX 响应，并解析为包含情感标签和提及频率的 JSON 对象，为品牌 SWOT 分析提供上帝视角。</li>
+                            <li><strong>变体 (Variations) 深度解析：</strong> 对于多颜色、尺寸的 Listing，Data Pilot 能递归抓取所有变体信息，包括特定变体的 ASIN 码，这对于精细化的 SKU 级竞品监控必不可少。</li>
                         </ul>
 
-                        <h2 id="competitive-analysis">Chapter 3: Global Competitor Deep Analysis & Benchmarking</h2>
+                        <h2 id="competitive-analysis">第三章：全球竞品深度剖析与横向测评</h2>
 
                         <p>
-                            To objectively assess Pangolin's market position, we must compare it across all dimensions
-                            with the industry's "Big Three"—Bright Data, Oxylabs, and ScraperAPI.
+                            为了客观评估市场地位，我们将 Pangolin 与行业“三巨头”——Bright Data、Oxylabs 和 ScraperAPI 进行全维度对标。
                         </p>
 
-                        <h3 id="bright-data">Bright Data: Enterprise Infrastructure Giant</h3>
+                        <h3 id="bright-data">3.1 Bright Data：企业级基础设施的巨无霸</h3>
 
                         <p>
-                            Bright Data (formerly Luminati) is the world's largest proxy network provider, with over 72
-                            million IP addresses covering 195 countries globally.
+                            Bright Data（原 Luminati）是全球最大的代理网络提供商，拥有超过 7200 万个 IP，覆盖全球 195 个国家。
                         </p>
 
-                        <p><strong>Technical Advantages:</strong></p>
-                        <ul>
-                            <li><strong>Network Scale:</strong> Its massive P2P residential proxy network means it
-                                almost never runs out of IP resources, ideal for scenarios requiring extremely high
-                                concurrency (like full-web indexing).</li>
-                            <li><strong>Scraping Browser:</strong> Provides Puppeteer/Playwright-compatible browser API,
-                                allowing developers to write custom automation scripts and run them on their cloud
-                                browsers.</li>
-                            <li><strong>Web Unlocker:</strong> Automatically handles Cookie management and fingerprint
-                                spoofing with extremely high success rates.</li>
-                        </ul>
+                        <p><strong>技术优势：</strong> 网络规模庞大，适合极高并发场景；Scraping Browser 支持自定义脚本；Web Unlocker 解锁率极高。</p>
+                        <p><strong>痛点：</strong> 计费模式复杂（带宽+请求），对于包含高清图片的亚马逊页面，成本极易失控；通用性强但针对亚马逊特定新模块（如 AI 摘要）的更新速度不如垂直型竞品；配置复杂度高。</p>
 
-                        <p><strong>Disadvantages & Pain Points:</strong></p>
-                        <ul>
-                            <li><strong>Cost Structure Complexity:</strong> Bright Data's billing model typically mixes
-                                bandwidth (GB) and requests (CPM). When collecting image-rich, large HTML e-commerce
-                                sites like Amazon, bandwidth costs can easily spiral out of control. For analysts
-                                focused on text data, paying for high-resolution product image traffic is a huge waste.
-                            </li>
-                            <li><strong>Generality vs. Specialization:</strong> While its general parsing capabilities
-                                are powerful, immediate parsing support for Amazon-specific modules (like the latest AI
-                                review summaries) often lags behind vertical specialists like Pangolin.</li>
-                            <li><strong>Learning Curve:</strong> Its platform features are extremely rich, but for users
-                                who just need "input keyword, output Excel," configuration complexity is excessive.</li>
-                        </ul>
-
-                        <h3 id="oxylabs">Oxylabs: AI-Driven Proxy Leader</h3>
+                        <h3 id="oxylabs">3.2 Oxylabs：AI 驱动的代理领袖</h3>
 
                         <p>
-                            Oxylabs is known for its high-quality proxy pool and OxyCopilot AI assistant, primarily
-                            serving high-end enterprise clients.
+                            Oxylabs 以高质量代理池和 OxyCopilot AI 助手著称，服务于高端企业客户。
                         </p>
 
-                        <p><strong>Technical Advantages:</strong></p>
-                        <ul>
-                            <li><strong>OxyCopilot:</strong> Uses large language models to convert natural language
-                                instructions into scraper code, lowering development barriers.</li>
-                            <li><strong>E-commerce Scraper API:</strong> Provides interfaces specifically for e-commerce
-                                scenarios, supporting multi-platform collection.</li>
-                            <li><strong>Stability:</strong> Its data center and ISP proxy stability is industry-leading.
-                            </li>
-                        </ul>
+                        <p><strong>技术优势：</strong> OxyCopilot 降低开发门槛；专用的电商采集 API；代理稳定性行业领先。</p>
+                        <p><strong>痛点：</strong> 价格门槛高，缺乏灵活的小额套餐；由于复杂的合规过滤层，平均响应时间（3.5s - 5.5s）在某些轻量任务上略逊一筹。</p>
 
-                        <p><strong>Disadvantages & Pain Points:</strong></p>
-                        <ul>
-                            <li><strong>Price Barrier:</strong> Oxylabs' pricing strategy clearly favors large clients,
-                                with high entry barriers and lack of flexible small packages, unfriendly to small and
-                                medium teams.</li>
-                            <li><strong>Response Latency:</strong> According to multiple third-party benchmarks, due to
-                                complex compliance filtering and proxy routing layers, Oxylabs' average response time
-                                (3.5s - 5.5s) slightly lags behind speed-optimized competitors in some lightweight
-                                tasks.</li>
-                        </ul>
-
-                        <h3 id="scraperapi">ScraperAPI: Developer's Swiss Army Knife</h3>
+                        <h3 id="scraperapi">3.3 ScraperAPI：开发者的瑞士军刀</h3>
 
                         <p>
-                            ScraperAPI focuses on extreme ease of use, aiming to solve proxy rotation problems with one
-                            line of code.
+                            ScraperAPI 专注于极致易用性，旨在通过一行代码解决代理轮换。
                         </p>
 
-                        <p><strong>Technical Advantages:</strong></p>
-                        <ul>
-                            <li><strong>Easy Integration:</strong> Simply append the target URL after the API Key,
-                                extremely developer-friendly.</li>
-                            <li><strong>Free Quota:</strong> Provides generous free call quotas, the first choice for
-                                individual developers and early-stage projects.</li>
-                        </ul>
+                        <p><strong>技术优势：</strong> 集成极其简便；提供慷慨的免费额度。</p>
+                        <p><strong>痛点：</strong> 结构化数据解析能力相对薄弱（尤其是复杂的广告嵌套）；面对高难度反爬时依赖重试，导致响应时间可能飙升至 9 秒以上，不适合实时调价等应用。</p>
 
-                        <p><strong>Disadvantages & Pain Points:</strong></p>
-                        <ul>
-                            <li><strong>Insufficient Deep Parsing:</strong> While supporting HTML retrieval,
-                                capabilities in structured data parsing (especially complex Amazon ad nested structures)
-                                are relatively weak.</li>
-                            <li><strong>Speed Bottleneck:</strong> When facing high-difficulty Amazon anti-scraping,
-                                ScraperAPI often relies on continuous retries to find available proxies, causing average
-                                response times to potentially spike to 9 seconds or longer, unsuitable for real-time
-                                applications (like real-time repricing).</li>
-                        </ul>
-
-                        <h2 id="pangolin-advantages">Chapter 4: Pangolin's Core Advantages</h2>
+                        <h2 id="pangolin-advantages">第四章：Pangolin 的核心优势：广告、实时性与成本</h2>
 
                         <p>
-                            In the three critical dimensions of Amazon ad collection, real-time responsiveness, and cost
-                            structure, Pangolin demonstrates overwhelming advantages for e-commerce scenarios.
+                            在亚马逊广告采集、实时性响应及成本结构三个关键维度上，Pangolin 展现出针对电商场景的压倒性优势。
                         </p>
 
-                        <h3 id="ad-intelligence">Dimension 1: Amazon Ad Collection Precision</h3>
+                        <h3 id="ad-intelligence">维度一：亚马逊广告采集的精确性 (Ad Intelligence)</h3>
 
                         <p>
-                            Ad data is the core of Amazon seller competitive intelligence. However, collecting ad data
-                            faces "personalization" challenges due to geo-fencing and dynamic injection.
+                            广告数据面临“千人千面”挑战。Pangolin 提供<strong>邮编级定位</strong>来模拟特定城市用户，且 Data Pilot 专门针对广告训练，能精确区分 SP 与 SB 广告，并返回精确排名归因，让 SOV 计算变得简单。
                         </p>
 
-                        <p><strong>Pangolin's Solution:</strong></p>
-                        <ul>
-                            <li>Provides <strong>zip-code level</strong> targeting, allowing users to simulate consumers
-                                in specific cities</li>
-                            <li>Data Pilot's parsing logic is specifically trained for ads, distinguishing SP (Sponsored
-                                Products) from SB (Sponsored Brands)</li>
-                            <li>Returns precise ranking attribution (e.g., "Page 1, Row 3, Position 2")</li>
-                            <li>Enables easy Share of Voice (SOV) calculation: "Under the keyword 'running shoes,' Nike
-                                occupies what percentage of ad positions vs. Adidas"</li>
-                        </ul>
-
-                        <h3 id="real-time-performance">Dimension 2: Real-Time Performance & Burstiness</h3>
+                        <h3 id="real-time-performance">维度二：实时性与高节奏感 (Burstiness)</h3>
 
                         <p>
-                            In e-commerce, speed is money. Especially during Prime Day or Black Friday, price and
-                            ranking changes occur by the minute.
+                            Pangolin 针对高并发设计，支持瞬间突发流量。平均响应时间控制在 3-5 秒（含完整渲染），显著快于竞品。这对于<strong>实时调价 (Repricing)</strong> 至关重要，能帮助卖家比对手更快捕捉价格变动并抢占 Buy Box。
                         </p>
 
-                        <p><strong>Latency Comparison:</strong></p>
-                        <ul>
-                            <li><strong>Pangolin:</strong> Average response time controlled at 3-5 seconds (including
-                                full rendering)</li>
-                            <li><strong>ScraperAPI:</strong> Due to retry mechanisms, complex pages often require 9-12
-                                seconds</li>
-                            <li><strong>Bright Data:</strong> Depends on configuration, but with full-stack browser mode
-                                enabled, latency typically 5-8 seconds</li>
-                        </ul>
+                        <h3 id="cost-efficiency">维度三：成本效益与 TCO 模型</h3>
 
-                        <div class="success-box">
-                            <h4 class="font-bold text-lg mb-3 text-green-500"><i
-                                    class="fas fa-check-circle mr-2"></i>Real-Time Advantage</h4>
-                            <p class="mb-0">For sellers needing <strong>real-time repricing</strong>, Pangolin's low
-                                latency means capturing price changes faster than competitors and reacting accordingly,
-                                thereby seizing the Buy Box (golden shopping cart).</p>
-                        </div>
-
-                        <h3 id="cost-efficiency">Dimension 3: Cost Efficiency & TCO Model</h3>
-
-                        <p><strong>Billing Model Comparison:</strong></p>
-                        <ul>
-                            <li><strong>Bright Data:</strong> Charges by "bandwidth + requests." Amazon product detail
-                                pages contain numerous high-resolution images and scripts, loading once may consume
-                                several MB of traffic. This makes large-scale collection costs unpredictable and
-                                expensive.</li>
-                            <li><strong>Pangolin:</strong> Uses <strong>"Credit" model</strong>. Regardless of page
-                                size, scraping one Amazon product page typically consumes a fixed 1 Credit (or slightly
-                                adjusted based on difficulty).</li>
-                        </ul>
-
-                        <p><strong>Actual Scenario TCO Calculation:</strong></p>
-                        <p>Assume the task is daily monitoring of 100,000 ASINs (products) for prices and ad rankings.
+                        <p>
+                            <strong>计费陷阱：</strong> Bright Data 按“带宽+请求”计费，亚马逊高清图片会导致成本不可控。
+                            <br>
+                            <strong>Pangolin 模式：</strong> 采用 <strong>Credit 模式</strong>，无论页面大小，采集一个详情页通常只消耗固定的 1 Credit，成本可预测且更低。
                         </p>
 
                         <table class="comparison-table">
                             <thead>
                                 <tr>
-                                    <th>Cost Item</th>
+                                    <th>成本项目</th>
                                     <th>Pangolin</th>
                                     <th>Bright Data</th>
-                                    <th>In-house Scraper</th>
+                                    <th>自建爬虫</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>API/Proxy Fees</td>
-                                    <td>~$1,500 (Expert Plan)</td>
-                                    <td>~$2,000+ (bandwidth fluctuation)</td>
-                                    <td>~$500 (pure IP cost)</td>
+                                    <td>API/代理费用</td>
+                                    <td>~$1,500 (企业版)</td>
+                                    <td>~$2,000+ (带宽波动)</td>
+                                    <td>~$500 (纯IP成本)</td>
                                 </tr>
                                 <tr>
-                                    <td>Maintenance Labor</td>
-                                    <td>$0 (fully managed)</td>
-                                    <td>$2,000 (partial maintenance)</td>
-                                    <td>$15,000 (full-time engineer)</td>
+                                    <td>维护人力成本</td>
+                                    <td>$0 (全托管)</td>
+                                    <td>$2,000 (部分维护)</td>
+                                    <td>$15,000 (全职工程师)</td>
                                 </tr>
                                 <tr>
-                                    <td>Parsing Server Cost</td>
-                                    <td>$0 (included in API)</td>
-                                    <td>$200 (need self-built parsing)</td>
-                                    <td>$500 (Headless cluster)</td>
+                                    <td>解析服务器成本</td>
+                                    <td>$0 (包含)</td>
+                                    <td>$200 (需自建)</td>
+                                    <td>$500 (Headless集群)</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Monthly Total TCO</strong></td>
+                                    <td><strong>月度总 TCO</strong></td>
                                     <td><strong>~$1,500</strong></td>
                                     <td><strong>~$4,200+</strong></td>
                                     <td><strong>~$16,000</strong></td>
@@ -817,81 +624,35 @@
                             </tbody>
                         </table>
 
-                        <p class="text-sm text-gray-400 mt-4">
-                            <em>Note: Data based on industry average estimates; actual situations may vary based on
-                                specific business logic.</em>
-                        </p>
-
-                        <h2 id="seo-strategy">Chapter 5: SEO Keyword Strategy & Data-Driven Content Optimization</h2>
+                        <h2 id="seo-strategy">第五章：SEO 关键词策略与数据驱动的内容优化</h2>
 
                         <p>
-                            Pangolin is not just a data collection tool but a nuclear weapon for SEO content marketing.
-                            Based on its unique data capabilities, we can build a high-dimensional SEO keyword strategy.
+                            Pangolin 不仅是采集工具，更是 SEO 内容营销的核武器。利用 Customer Says 数据，可以挖掘出传统 SEO 工具无法发现的长尾关键词（如“吸猫毛不缠绕”），并将其植入 Listing 中以提升排名。同时，通过分析竞品 Listing 的关键词分布，可以反向工程出该品类的“黄金密度模型”。
                         </p>
 
-                        <h3 id="long-tail-keywords">Using "Customer Says" to Mine Long-Tail Keywords</h3>
+                        <h2 id="implementation-guide">第六章：实施指南与代码集成</h2>
 
                         <p>
-                            Traditional SEO tools (like Ahrefs, SEMrush) often have lagging data and cannot delve into
-                            Amazon's internal search intent. Pangolin's scraped Customer Says data contains consumers'
-                            most authentic language habits.
-                        </p>
-
-                        <div class="info-box">
-                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
-                                    class="fas fa-search mr-2"></i>Strategy Case Study</h4>
-                            <p><strong>Scenario:</strong> You're selling a "cordless vacuum cleaner"</p>
-                            <ul class="mb-0">
-                                <li><strong>Conventional Keywords:</strong> "cordless vacuum," "handheld vacuum"</li>
-                                <li><strong>Pangolin Insight:</strong> Analyzing competitors' Customer Says reveals
-                                    numerous positive reviews mentioning "tangle-free for cat hair"</li>
-                                <li><strong>SEO Action:</strong> This is a high-conversion long-tail keyword.
-                                    Immediately plant "tangle-free for cat hair" in your Listing title, bullet points,
-                                    and A+ pages. This not only improves Amazon internal search rankings but also
-                                    captures precise search traffic on Google targeting this pain point.</li>
-                            </ul>
-                        </div>
-
-                        <h3 id="keyword-density">Keyword Density Optimization & HTML Structured Output</h3>
-
-                        <p>
-                            To gain high weight in Google and Amazon algorithms, content keyword density should be
-                            controlled at 1.5% - 2.5%. Too low leads to insufficient relevance, too high is judged as
-                            keyword stuffing.
-                        </p>
-
-                        <p>
-                            Using Pangolin to collect Top 10 competitor Listings and analyze their core keyword
-                            distribution density allows reverse engineering of the category's "golden density model."
-                        </p>
-
-                        <h2 id="implementation-guide">Chapter 6: Implementation Guide & Code Integration</h2>
-
-                        <p>
-                            To help technical peers more intuitively understand the integration process, here's a
-                            standard integration example based on Python, showing how to use Pangolin to extract search
-                            results with ads and review summaries.
+                            以下是基于 Python 的集成示例，展示如何使用 Pangolin 提取带有广告和评论摘要的搜索结果：
                         </p>
 
                         <pre><code class="language-python">import requests
 import json
 
-# Pangolin API endpoint configuration
+# Pangolin API 配置
 API_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
 API_TOKEN = "YOUR_ACCESS_TOKEN_HERE"
 
 def fetch_amazon_data(keyword, zip_code):
-    """
-    Collect Amazon search results, including ad data and AI review summaries
-    """
+    # 采集亚马逊搜索结果，包含广告数据和AI评论摘要
     payload = {
         "url": f"https://www.amazon.com/s?k={keyword}",
         "parserName": "amzSearchResult",
         "format": "json",
         "bizContext": {
-            "zipcode": zip_code,  # Zip-code level targeting for precise ad data
-            "extract_sponsored": True,  # Enable ad extraction
-            "extract_customer_says": True  # Enable AI review summary extraction
+            "zipcode": zip_code,  # 邮编级定位，确保广告数据精准
+            "extract_sponsored": True,  # 开启广告提取
+            "extract_customer_says": True  # 开启AI评论摘要提取
         }
     }
     
@@ -906,105 +667,74 @@ def fetch_amazon_data(keyword, zip_code):
         
         data = response.json()
         
-        # Process organic results
+        # 处理自然排名结果
         organic_results = [item for item in data.get('results', []) 
                           if not item.get('is_sponsored')]
         
-        # Process sponsored results
+        # 处理广告结果
         sponsored_results = [item for item in data.get('results', []) 
                             if item.get('is_sponsored')]
         
-        print(f"Successfully collected keyword '{keyword}' (Zip: {zip_code})")
-        print(f"Organic results: {len(organic_results)}")
-        print(f"Sponsored results: {len(sponsored_results)}")
+        print(f"成功采集关键词 '{keyword}' (Zip: {zip_code})")
+        print(f"自然结果数量: {len(organic_results)}")
+        print(f"广告结果数量: {len(sponsored_results)}")
         
-        # Output first ad's detailed information
+        # 输出第一个广告的详细信息
         if sponsored_results:
             first_ad = sponsored_results[0]
-            print(f"Top 1 Ad ASIN: {first_ad.get('asin')}")
-            print(f"Ad Position: {first_ad.get('position_info')}")
+            print(f"Top 1 广告 ASIN: {first_ad.get('asin')}")
+            print(f"广告排名信息: {first_ad.get('position_info')}")
 
         return data
 
     except requests.exceptions.RequestException as e:
-        print(f"Collection failed: {e}")
+        print(f"采集失败: {e}")
         return None
 
-# Execute collection: Search "wireless headphones" for New York area (10001)
+# 执行采集：针对纽约地区 (10001) 搜索 "wireless headphones"
 if __name__ == "__main__":
     fetch_amazon_data("wireless headphones", "10001")</code></pre>
 
-                        <p>
-                            This code snippet demonstrates Pangolin's simplicity: no need to handle proxy rotation, no
-                            need to load Headless browsers, no need to write parsing rules. All complexity is
-                            encapsulated by the API, and developers receive pure business data.
-                        </p>
-
-                        <h2 id="conclusion">Conclusion & Strategic Recommendations</h2>
+                        <h2 id="conclusion">结论与战略建议</h2>
 
                         <p>
-                            The 2025 Amazon data collection market has shifted from a "resource war" (who has more IPs)
-                            to an "intelligence war" (who better understands data).
+                            2025年的亚马逊数据采集市场，已经从“资源战”转向了“智能战”。
                         </p>
 
                         <ul>
-                            <li><strong>For enterprises pursuing extreme scale and full-web coverage:</strong> Bright
-                                Data remains an unshakeable foundation, with powerful infrastructure suitable for
-                                building comprehensive data lakes covering Google, Facebook, Amazon, and other
-                                multi-platform sources.</li>
-                            <li><strong>For startups with limited technical resources:</strong> ScraperAPI provides the
-                                lowest entry barrier, ideal for validating MVP (Minimum Viable Product).</li>
-                            <li><strong>For brands and agencies focused on Amazon e-commerce business growth:</strong>
-                                Pangolin Scrape API, with its unique advantages in Data Pilot intelligent parsing,
-                                Customer Says deep extraction, and ad data attribution, has become the optimal solution
-                                in the current market. It's not just a data collection tool but a ready-made e-commerce
-                                intelligence system that can significantly reduce TCO and improve decision-making
-                                efficiency.</li>
+                            <li><strong>追求极致规模：</strong> Bright Data 依然是基石，适合多平台综合数据湖。</li>
+                            <li><strong>初创团队 MVP：</strong> ScraperAPI 提供最低准入门槛。</li>
+                            <li><strong>亚马逊电商增长：</strong> <strong>Pangolin Scrape API</strong> 凭借 Data Pilot 智能解析、Customer Says 提取及广告数据归因，是当前的最优解。它是现成的电商情报系统，能显著降低 TCO 并提升决策效率。</li>
                         </ul>
 
                         <div class="success-box mt-8">
-                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Next
-                                Steps</h4>
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>后续步骤</h4>
                             <ul class="mb-0">
-                                <li><strong>Start with Pangolin:</strong> Get up to 1,000 free credits at <a
-                                        href="https://tool.pangolinfo.com/"
-                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
-                                <li><strong>Explore Advanced Features:</strong> Check out the <a
-                                        href="https://docs.pangolinfo.com/cn-index"
-                                        class="text-accent-cyan hover:underline">complete API documentation</a></li>
-                                <li><strong>Join the Community:</strong> Share your use cases and learn from other
-                                    developers</li>
-                                <li><strong>Scale with Confidence:</strong> Enterprise plans available for high-volume
-                                    operations</li>
+                                <li><strong>开始使用 Pangolin：</strong> 在 <a href="https://tool.pangolinfo.com/" class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 领取至高 1,000 个免费积分</li>
+                                <li><strong>探索高级功能：</strong> 查看 <a href="https://docs.pangolinfo.com/cn-index" class="text-accent-cyan hover:underline">完整 API 文档</a></li>
+                                <li><strong>加入社区：</strong> 分享您的使用案例并从其他开发者处学习</li>
+                                <li><strong>规模化扩展：</strong> 为高容量业务提供企业级方案</li>
                             </ul>
                         </div>
-
-                        <p class="mt-8">
-                            In today's increasingly complex algorithmic landscape, choosing an API that understands your
-                            business, rather than just a proxy pool, can better build a solid moat for your enterprise.
-                            For sellers hoping to break through Amazon's red ocean, embracing vertically deep technology
-                            stacks like Pangolin may be the key step to achieving differentiated competition.
-                        </p>
 
                     </article>
 
                     <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
-                        <h3 class="text-3xl font-bold mb-4">Ready to Build Your 电商情报 Platform?</h3>
-                        <p class="text-gray-400 mb-6">Get up to 1,000 free Amazon API credits. No credit card required.
-                            Start extracting Amazon product data in minutes.</p>
+                        <h3 class="text-3xl font-bold mb-4">准备好构建您的电商情报平台了吗？</h3>
+                        <p class="text-gray-400 mb-6">获取至高 1,000 个免费 Amazon API 积分。无需信用卡。几分钟内开始提取 Amazon 产品数据。</p>
                         <div class="flex gap-4 justify-center flex-wrap">
                             <a href="https://tool.pangolinfo.com/"
                                 class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
-                                Start Free Trial
+                                开始免费试用
                             </a>
                             <a href="https://docs.pangolinfo.com/cn-index"
                                 class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
-                                View Documentation
+                                查看 API 文档
                             </a>
                         </div>
                     </div>
-                </div>
+</div>
 
                 <!-- Sidebar (1/3 width) -->
                 <div class="lg:col-span-1">
@@ -1012,26 +742,26 @@ if __name__ == "__main__":
 
                         <!-- Table of Contents -->
                         <div class="glass-card rounded-2xl p-6">
-                            <h3 class="text-lg font-bold mb-4 text-white">Table of Contents</h3>
+                            <h3 class="text-lg font-bold mb-4 text-white">目录</h3>
                             <nav class="space-y-1">
-                                <a href="#executive-summary" class="toc-link">Executive Summary</a>
-                                <a href="#amazon-ecosystem-evolution" class="toc-link">Amazon Ecosystem Evolution</a>
-                                <a href="#paradigm-shift" class="toc-link toc-link-sub">Paradigm Shift</a>
-                                <a href="#anti-scraping-defense" class="toc-link toc-link-sub">Anti-Scraping Defense</a>
-                                <a href="#pangolin-deep-dive" class="toc-link">Pangolin Deep Dive</a>
-                                <a href="#core-architecture" class="toc-link toc-link-sub">Core Architecture</a>
-                                <a href="#data-pilot" class="toc-link toc-link-sub">Data Pilot Engine</a>
-                                <a href="#competitive-analysis" class="toc-link">Competitive Analysis</a>
+                                <a href="#executive-summary" class="toc-link">执行摘要</a>
+                                <a href="#amazon-ecosystem-evolution" class="toc-link">生态演变与挑战</a>
+                                <a href="#paradigm-shift" class="toc-link toc-link-sub">范式转移</a>
+                                <a href="#anti-scraping-defense" class="toc-link toc-link-sub">反爬虫防御</a>
+                                <a href="#pangolin-deep-dive" class="toc-link">Pangolin 深度解析</a>
+                                <a href="#core-architecture" class="toc-link toc-link-sub">核心架构</a>
+                                <a href="#data-pilot" class="toc-link toc-link-sub">Data Pilot 引擎</a>
+                                <a href="#competitive-analysis" class="toc-link">竞品深度分析</a>
                                 <a href="#bright-data" class="toc-link toc-link-sub">Bright Data</a>
                                 <a href="#oxylabs" class="toc-link toc-link-sub">Oxylabs</a>
                                 <a href="#scraperapi" class="toc-link toc-link-sub">ScraperAPI</a>
-                                <a href="#pangolin-advantages" class="toc-link">Pangolin Advantages</a>
-                                <a href="#ad-intelligence" class="toc-link toc-link-sub">Ad Intelligence</a>
-                                <a href="#real-time-performance" class="toc-link toc-link-sub">Real-Time Performance</a>
-                                <a href="#cost-efficiency" class="toc-link toc-link-sub">Cost Efficiency</a>
-                                <a href="#seo-strategy" class="toc-link">SEO Strategy</a>
-                                <a href="#implementation-guide" class="toc-link">Implementation Guide</a>
-                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                                <a href="#pangolin-advantages" class="toc-link">Pangolin 核心优势</a>
+                                <a href="#ad-intelligence" class="toc-link toc-link-sub">广告情报精度</a>
+                                <a href="#real-time-performance" class="toc-link toc-link-sub">实时性与并发</a>
+                                <a href="#cost-efficiency" class="toc-link toc-link-sub">成本效益 (TCO)</a>
+                                <a href="#seo-strategy" class="toc-link">SEO 策略</a>
+                                <a href="#implementation-guide" class="toc-link">实施指南</a>
+                                <a href="#conclusion" class="toc-link">结论与建议</a>
                             </nav>
                         </div>
 
@@ -1045,10 +775,9 @@ if __name__ == "__main__":
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
                                 Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
-                                with 99.9% uptime</p>
+                            <p class="text-gray-400 text-sm mb-4">专业的亚马逊及电商数据采集 API，99.9% 在线率</p>
                             <div class="flex items-center text-accent-cyan text-sm font-semibold">
-                                <span>Learn More</span>
+                                <span>了解更多</span>
                                 <i
                                     class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                             </div>
@@ -1064,10 +793,9 @@ if __name__ == "__main__":
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
                                 AMZ Data Tracker</h4>
-                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
-                                alerts and Excel export</p>
+                            <p class="text-gray-400 text-sm mb-4">零代码亚马逊竞品追踪，自动价格预警与 Excel 导出</p>
                             <div class="flex items-center text-accent-purple text-sm font-semibold">
-                                <span>Learn More</span>
+                                <span>了解更多</span>
                                 <i
                                     class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                             </div>
@@ -1081,24 +809,22 @@ if __name__ == "__main__":
                                 <i class="fab fa-chrome text-white text-2xl"></i>
                             </div>
                             <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
-                                Browser Extension</h4>
-                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome extension for instant Amazon
-                                product analysis</p>
+                                浏览器插件</h4>
+                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome 插件，即时亚马逊产品分析</p>
                             <div class="flex items-center text-green-400 text-sm font-semibold">
-                                <span>Install Extension</span>
+                                <span>安装插件</span>
                                 <i
                                     class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                             </div>
                         </a>
 
                     </div>
-                </div>
+</div>
 
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
