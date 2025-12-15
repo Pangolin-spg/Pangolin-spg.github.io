@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>2025年亚马逊数据采集终极指南：Pangolin vs Bright Data、Oxylabs 深度技术对比 | 电商情报解决方案</title>
+    <meta name="description"
+        content="2025年亚马逊数据采集API深度技术对比：Pangolin Scrape API、Bright Data、Oxylabs、ScraperAPI 全方位评测。涵盖广告情报采集、实时数据提取、成本优化及SEO策略。">
+    <meta name="keywords"
+        content="亚马逊数据采集,Pangolin API,Bright Data,Oxylabs,ScraperAPI,电商数据提取,亚马逊广告情报,网页爬虫2025,Data Pilot,Customer Says提取,亚马逊API对比">
+    <meta name="author" content="Pangol Info Scrape API">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="2025年亚马逊数据采集终极指南：Pangolin vs Bright Data 深度技术对比">
+    <meta property="og:description"
+        content="Deep dive into Amazon scraping APIs: Pangolin, Bright Data, Oxylabs, ScraperAPI. Learn about ad intelligence, real-time data extraction, and cost optimization.">
+    <meta property="og:url"
+        content="https://pangolin-spg.github.io/articles/amazon-scraping-api-comprehensive-guide-2025.html">
+    <meta property="og:image"
+        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2025年亚马逊数据采集指南：完整技术对比">
+    <meta name="twitter:description"
+        content="Expert analysis of top Amazon scraping APIs for e-commerce intelligence and SEO optimization.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical"
+        href="https://pangolin-spg.github.io/articles/amazon-scraping-api-comprehensive-guide-2025.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../Pangolin.ico">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "2025年亚马逊数据采集终极指南：Pangolin vs Bright Data、Oxylabs 深度对比",
+      "description": "领先亚马逊数据采集API的全面技术对比，助力电商数据提取和竞争情报",
+      "author": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pangol Info Scrape API",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+        }
+      },
+      "datePublished": "2025-12-15",
+      "dateModified": "2025-12-15"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+    <div class="liquid-wrapper">
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+        </div>
+        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-3">
+                <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                    alt="Pangolin Amazon Scraping API Logo"
+                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
+                <span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="../../index.html#home" class="nav-link hover:text-white transition">Home</a>
+                <a href="../../index.html#solutions" class="nav-link hover:text-white transition">Solutions</a>
+                <a href="https://www.pangolinfo.com/scrape-api-case-studies/"
+                    class="nav-link hover:text-white transition" target="_blank">Use Cases</a>
+                <a href="../../blog.html" class="nav-link hover:text-white transition">Blog</a>
+                <a href="https://docs.pangolinfo.com/cn-index" class="nav-link hover:text-white transition">Docs</a>
+                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="nav-link hover:text-white transition"
+                    target="_blank">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <a href="../../articles/amazon-scraping-api-comprehensive-guide-2025.html" class="language-btn">
+                        <span>🇺🇸</span>
+                        <span>English</span>
+                    </a>
+                </div>
+                <!-- Get API Key Button -->
+                <a href="https://tool.pangolinfo.com/"
+                    class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20">
+                    Get API Key
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="relative pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div
+                class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-purple tracking-wider uppercase">
+                <span class="w-2 h-2 bg-accent-purple rounded-full inline-block mr-2 animate-pulse"></span>
+                电商情报
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Amazon Scraping API Ultimate Guide 2025:<br>
+                <span
+                    class="text-gradient bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink bg-clip-text text-transparent">
+                    Technical Comparison & Best Practices
+                </span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                In-depth analysis of Pangolin Scrape API, Bright Data, Oxylabs, and ScraperAPI for Amazon data
+                extraction, ad intelligence, and SEO optimization
+            </p>
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <span><i class="far fa-calendar mr-2"></i>2025年12月15日</span>
+                <span><i class="far fa-clock mr-2"></i>25分钟阅读</span>
+                <span><i class="far fa-user mr-2"></i>Pangol Info 团队</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebar -->
+    <section class="relative px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Main Article Content (2/3 width) -->
+                <div class="lg:col-span-2">
+                    <article class="glass-card rounded-3xl p-8 md:p-12">
+
+                        <p class="text-xl text-gray-300 font-medium mb-8">
+                            In the rapidly evolving landscape of e-commerce data intelligence from 2024 to 2025, a
+                            silent yet intense technological arms race is underway. As Amazon continuously upgrades its
+                            anti-scraping defense systems—from traditional IP rate limiting to TLS fingerprinting,
+                            behavioral biometrics, and AI-generated content injection—traditional data collection
+                            methods face unprecedented challenges. This comprehensive guide examines the leading Amazon
+                            scraping API solutions and provides strategic insights for data-driven decision makers.
+                        </p>
+
+                        <h2 id="executive-summary">Executive Summary</h2>
+
+                        <p>
+                            For SEO experts, advertising managers, and data engineers who depend on high-precision
+                            market intelligence, the challenge is no longer simply "how to access a URL," but rather how
+                            to extract structured, actionable data from Amazon's constantly evolving dynamic DOM
+                            structure. This guide provides an atomic-level comparison of industry newcomer
+                            <strong>Pangolin Scrape API</strong> and its core Data Pilot component against industry
+                            giants <strong>Bright Data</strong>, <strong>Oxylabs</strong>, and developer favorite
+                            <strong>ScraperAPI</strong>.
+                        </p>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
+                                    class="fas fa-lightbulb mr-2"></i>Market Insight</h4>
+                            <p class="mb-0">The market is experiencing significant differentiation: while
+                                general-purpose giants maintain advantages in infrastructure scale, vertical specialists
+                                like Pangolin are establishing new technical standards in Amazon-specific business
+                                logic—particularly in Amazon ad collection (Sponsored Products), AI review summaries
+                                (Customer Says), and real-time competitive intelligence.</p>
+                        </div>
+
+                        <h2 id="amazon-ecosystem-evolution">Chapter 1: Amazon Data Collection Ecosystem Evolution</h2>
+
+                        <p>
+                            To understand the true value of Amazon Scrape APIs, we must first deeply analyze the
+                            "hostile environment" they operate in. In 2025, collecting Amazon data is essentially a
+                            probabilistic game against algorithms.
+                        </p>
+
+                        <h3 id="paradigm-shift">From Static HTML to Dynamic AI Content</h3>
+
+                        <p>
+                            Five years ago, writing an Amazon scraper required only Python's requests library and
+                            BeautifulSoup parser. Today's Amazon pages are complex, JavaScript-driven Single Page
+                            Application (SPA) variants with three critical challenges:
+                        </p>
+
+                        <ul>
+                            <li><strong>Asynchronous Loading & AJAX Injection:</strong> Core data points are no longer
+                                contained in the initial HTML document. For example, the highly valuable "Customer Says"
+                                (customer feedback summary) module is generated in real-time by AI models and loaded
+                                through asynchronous AJAX requests (typically pointing to /hz/reviews-render/ajax/
+                                endpoints). Traditional static scrapers often capture only empty shells, missing the
+                                most valuable semantic data.</li>
+                            <li><strong>"Ghost" DOM Structure Changes:</strong> To combat CSS selector-based scrapers,
+                                Amazon frequently randomizes HTML element class names. A product container originally
+                                marked as <code>s-result-item</code> might become a meaningless random character hash on
+                                the next refresh. This devastates engineering teams maintaining internal scraper
+                                systems—previously stable parsing scripts can fail overnight.</li>
+                            <li><strong>Ad Camouflage:</strong> Distinguishing organic rankings from paid ads (Sponsored
+                                Products) has become increasingly difficult. Amazon buries ad identifiers deep in Shadow
+                                DOM or renders them through complex CSS pseudo-classes, making accurate Share of Voice
+                                (SOV) calculations exceptionally complex.</li>
+                        </ul>
+
+                        <h3 id="anti-scraping-defense">Anti-Scraping Defense System Upgrades</h3>
+
+                        <p>
+                            Amazon's AWS WAF (Web Application Firewall) combined with Bot Control advanced strategies
+                            has built three nearly insurmountable defense lines:
+                        </p>
+
+                        <ol>
+                            <li><strong>Network Layer Fingerprinting (TLS Fingerprinting):</strong> Amazon servers check
+                                ClientHello packets during SSL handshake. If a client claims to be Chrome 120 but its
+                                cipher suite arrangement or extension fields don't match standard Chrome, the connection
+                                is immediately terminated or flagged as a bot. This makes many default Python or Node.js
+                                HTTP libraries instantly detectable.</li>
+                            <li><strong>Behavioral Biometrics:</strong> Systems monitor mouse movement trajectories,
+                                scroll acceleration, and click intervals. The key insight is that human operations have
+                                "entropy"—uncertainty and micro-jitters—while scripts are typically linear and perfect.
+                                Requests lacking this "human touch" are ruthlessly blocked.</li>
+                            <li><strong>Browser Consistency Checks:</strong> Detection techniques for Headless Chrome
+                                are highly mature. Amazon checks Canvas fingerprints, WebGL rendering parameters, and
+                                even AudioContext to determine if the current environment is a real graphical browser.
+                            </li>
+                        </ol>
+
+                        <div class="warning-box">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-500"><i
+                                    class="fas fa-exclamation-triangle mr-2"></i>Economic Tipping Point</h4>
+                            <p class="mb-0">Facing these technical barriers, the TCO (Total Cost of Ownership) of
+                                maintaining an in-house scraping system has skyrocketed. Proxy pool costs, engineering
+                                maintenance expenses, and opportunity costs from data interruptions make the market
+                                trend irreversibly shift toward Managed Scrape APIs that encapsulate proxy rotation,
+                                fingerprint spoofing, CAPTCHA solving, and HTML parsing behind simple RESTful
+                                interfaces.</p>
+                        </div>
+
+                        <h2 id="pangolin-deep-dive">Chapter 2: Pangolin Scrape API & Data Pilot Deep Technical Analysis
+                        </h2>
+
+                        <p>
+                            Among numerous general-purpose collection tools, Pangolin positions itself as an "Amazon
+                            Data Intelligence Layer" rather than a mere proxy provider. Its core architecture is deeply
+                            optimized for e-commerce logic, particularly its <strong>Data Pilot</strong> engine, which
+                            represents a new generation of structured data collection.
+                        </p>
+
+                        <h3 id="core-architecture">Core Architecture: Pangolin Scrape API</h3>
+
+                        <p>
+                            Pangolin Scrape API's design philosophy is "results-oriented." Unlike competitors who
+                            typically charge by bandwidth, Pangolin uses a per-successful-request (Credits) billing
+                            model, directly aligning with users' core need—obtaining data.
+                        </p>
+
+                        <div class="text-center my-8">
+                            <img src="../Pangolin Scrape API 架构设计.webp" alt="Pangolin Scrape API Architecture Design"
+                                class="rounded-2xl shadow-2xl mx-auto max-w-full" style="max-height: 500px;">
+                            <p class="text-sm text-gray-400 mt-4">Pangolin Scrape API Architecture: Intelligent routing,
+                                full-stack browser rendering, and geo-targeting capabilities</p>
+                        </div>
+
+                        <p><strong>Key Technical Features:</strong></p>
+
+                        <ul>
+                            <li><strong>Intelligent Routing & Retry Mechanism:</strong> The API internally integrates
+                                multi-layer proxy networks. When a request is sent, Pangolin automatically selects the
+                                optimal IP type (ISP static residential IP or dynamic mobile IP) based on target URL
+                                characteristics. If encountering CAPTCHAs or 503 errors, the system automatically
+                                switches nodes and retries at millisecond speed until successfully returning data. For
+                                users, this is an atomic operation requiring no complex retry loops.</li>
+                            <li><strong>Full-Stack Browser Rendering:</strong> For Amazon's dynamic content, Pangolin
+                                has built-in high-concurrency Headless browser clusters. This means it can execute
+                                JavaScript on pages, wait for asynchronous AJAX loading to complete (such as waiting for
+                                the "Customer Says" module to render), then extract the DOM. This process is transparent
+                                to users, who only need to wait for the final JSON response.</li>
+                            <li><strong>Geo-Location Precision Targeting (Zip-Code Targeting):</strong> This is a
+                                crucial feature for advertisers. Amazon's search results and ad displays have strong
+                                geographic relevance. Users in New York and Texas may see completely different product
+                                rankings and ads. Pangolin allows users to specify exact postal codes (Zip Code) in API
+                                requests, simulating real user perspectives from specific regions to obtain the most
+                                accurate localized market intelligence.</li>
+                        </ul>
+
+                        <h3 id="data-pilot">Data Pilot: The Parsing Engine Revolution</h3>
+
+                        <p>
+                            <strong>Data Pilot</strong> is the crown jewel of Pangolin's technology stack. It's an
+                            intelligent parsing layer that transforms chaotic raw HTML into clean, standardized
+                            structured JSON data.
+                        </p>
+
+                        <p><strong>Data Pilot's Core Capabilities in the Amazon Ecosystem:</strong></p>
+
+                        <ul>
+                            <li><strong>Pixel-Level Ad Data Identification:</strong> In Amazon search results pages
+                                (SERP), distinguishing organic results from ads is extremely difficult. Amazon uses
+                                various obfuscation techniques, such as mixing random class names into ad elements,
+                                rendering "Sponsored" labels as images rather than text, and dynamically adjusting ad
+                                positions on pages. Data Pilot has a constantly updated feature library that can
+                                precisely identify Sponsored Brand, Sponsored Products, and Video Ads. It not only tells
+                                you there's an ad but also returns its absolute and relative positions on the
+                                page—critical for calculating Share of Voice (SOV) metrics.</li>
+                            <li><strong>"Customer Says" & AI Summary Extraction:</strong> This is Pangolin's biggest
+                                differentiation advantage over general competitors. Amazon's "Customer Says" module is
+                                based on large language model summaries of thousands of reviews, containing sentiment
+                                tendencies across core dimensions like "quality," "ease of use," and "value for money."
+                                Since this module is asynchronously loaded with strong anti-scraping measures, ordinary
+                                HTML parsers cannot access it. Data Pilot successfully intercepts this AJAX response by
+                                simulating the browser's complete interaction chain—including necessary Cookie injection
+                                and CSRF Token exchange—and structures it into easily analyzable JSON objects (including
+                                sentiment tags, mention frequency, etc.). This provides brands with a god's-eye view for
+                                SWOT analysis.</li>
+                            <li><strong>Deep Variation Parsing:</strong> For listings with multiple color and size
+                                combinations, Data Pilot can recursively scrape all variation information, including not
+                                just prices and inventory but also specific ASIN codes for different variations. This is
+                                essential for fine-grained SKU-level competitive monitoring.</li>
+                        </ul>
+
+                        <h2 id="competitive-analysis">Chapter 3: Global Competitor Deep Analysis & Benchmarking</h2>
+
+                        <p>
+                            To objectively assess Pangolin's market position, we must compare it across all dimensions
+                            with the industry's "Big Three"—Bright Data, Oxylabs, and ScraperAPI.
+                        </p>
+
+                        <h3 id="bright-data">Bright Data: Enterprise Infrastructure Giant</h3>
+
+                        <p>
+                            Bright Data (formerly Luminati) is the world's largest proxy network provider, with over 72
+                            million IP addresses covering 195 countries globally.
+                        </p>
+
+                        <p><strong>Technical Advantages:</strong></p>
+                        <ul>
+                            <li><strong>Network Scale:</strong> Its massive P2P residential proxy network means it
+                                almost never runs out of IP resources, ideal for scenarios requiring extremely high
+                                concurrency (like full-web indexing).</li>
+                            <li><strong>Scraping Browser:</strong> Provides Puppeteer/Playwright-compatible browser API,
+                                allowing developers to write custom automation scripts and run them on their cloud
+                                browsers.</li>
+                            <li><strong>Web Unlocker:</strong> Automatically handles Cookie management and fingerprint
+                                spoofing with extremely high success rates.</li>
+                        </ul>
+
+                        <p><strong>Disadvantages & Pain Points:</strong></p>
+                        <ul>
+                            <li><strong>Cost Structure Complexity:</strong> Bright Data's billing model typically mixes
+                                bandwidth (GB) and requests (CPM). When collecting image-rich, large HTML e-commerce
+                                sites like Amazon, bandwidth costs can easily spiral out of control. For analysts
+                                focused on text data, paying for high-resolution product image traffic is a huge waste.
+                            </li>
+                            <li><strong>Generality vs. Specialization:</strong> While its general parsing capabilities
+                                are powerful, immediate parsing support for Amazon-specific modules (like the latest AI
+                                review summaries) often lags behind vertical specialists like Pangolin.</li>
+                            <li><strong>Learning Curve:</strong> Its platform features are extremely rich, but for users
+                                who just need "input keyword, output Excel," configuration complexity is excessive.</li>
+                        </ul>
+
+                        <h3 id="oxylabs">Oxylabs: AI-Driven Proxy Leader</h3>
+
+                        <p>
+                            Oxylabs is known for its high-quality proxy pool and OxyCopilot AI assistant, primarily
+                            serving high-end enterprise clients.
+                        </p>
+
+                        <p><strong>Technical Advantages:</strong></p>
+                        <ul>
+                            <li><strong>OxyCopilot:</strong> Uses large language models to convert natural language
+                                instructions into scraper code, lowering development barriers.</li>
+                            <li><strong>E-commerce Scraper API:</strong> Provides interfaces specifically for e-commerce
+                                scenarios, supporting multi-platform collection.</li>
+                            <li><strong>Stability:</strong> Its data center and ISP proxy stability is industry-leading.
+                            </li>
+                        </ul>
+
+                        <p><strong>Disadvantages & Pain Points:</strong></p>
+                        <ul>
+                            <li><strong>Price Barrier:</strong> Oxylabs' pricing strategy clearly favors large clients,
+                                with high entry barriers and lack of flexible small packages, unfriendly to small and
+                                medium teams.</li>
+                            <li><strong>Response Latency:</strong> According to multiple third-party benchmarks, due to
+                                complex compliance filtering and proxy routing layers, Oxylabs' average response time
+                                (3.5s - 5.5s) slightly lags behind speed-optimized competitors in some lightweight
+                                tasks.</li>
+                        </ul>
+
+                        <h3 id="scraperapi">ScraperAPI: Developer's Swiss Army Knife</h3>
+
+                        <p>
+                            ScraperAPI focuses on extreme ease of use, aiming to solve proxy rotation problems with one
+                            line of code.
+                        </p>
+
+                        <p><strong>Technical Advantages:</strong></p>
+                        <ul>
+                            <li><strong>Easy Integration:</strong> Simply append the target URL after the API Key,
+                                extremely developer-friendly.</li>
+                            <li><strong>Free Quota:</strong> Provides generous free call quotas, the first choice for
+                                individual developers and early-stage projects.</li>
+                        </ul>
+
+                        <p><strong>Disadvantages & Pain Points:</strong></p>
+                        <ul>
+                            <li><strong>Insufficient Deep Parsing:</strong> While supporting HTML retrieval,
+                                capabilities in structured data parsing (especially complex Amazon ad nested structures)
+                                are relatively weak.</li>
+                            <li><strong>Speed Bottleneck:</strong> When facing high-difficulty Amazon anti-scraping,
+                                ScraperAPI often relies on continuous retries to find available proxies, causing average
+                                response times to potentially spike to 9 seconds or longer, unsuitable for real-time
+                                applications (like real-time repricing).</li>
+                        </ul>
+
+                        <h2 id="pangolin-advantages">Chapter 4: Pangolin's Core Advantages</h2>
+
+                        <p>
+                            In the three critical dimensions of Amazon ad collection, real-time responsiveness, and cost
+                            structure, Pangolin demonstrates overwhelming advantages for e-commerce scenarios.
+                        </p>
+
+                        <h3 id="ad-intelligence">Dimension 1: Amazon Ad Collection Precision</h3>
+
+                        <p>
+                            Ad data is the core of Amazon seller competitive intelligence. However, collecting ad data
+                            faces "personalization" challenges due to geo-fencing and dynamic injection.
+                        </p>
+
+                        <p><strong>Pangolin's Solution:</strong></p>
+                        <ul>
+                            <li>Provides <strong>zip-code level</strong> targeting, allowing users to simulate consumers
+                                in specific cities</li>
+                            <li>Data Pilot's parsing logic is specifically trained for ads, distinguishing SP (Sponsored
+                                Products) from SB (Sponsored Brands)</li>
+                            <li>Returns precise ranking attribution (e.g., "Page 1, Row 3, Position 2")</li>
+                            <li>Enables easy Share of Voice (SOV) calculation: "Under the keyword 'running shoes,' Nike
+                                occupies what percentage of ad positions vs. Adidas"</li>
+                        </ul>
+
+                        <h3 id="real-time-performance">Dimension 2: Real-Time Performance & Burstiness</h3>
+
+                        <p>
+                            In e-commerce, speed is money. Especially during Prime Day or Black Friday, price and
+                            ranking changes occur by the minute.
+                        </p>
+
+                        <p><strong>Latency Comparison:</strong></p>
+                        <ul>
+                            <li><strong>Pangolin:</strong> Average response time controlled at 3-5 seconds (including
+                                full rendering)</li>
+                            <li><strong>ScraperAPI:</strong> Due to retry mechanisms, complex pages often require 9-12
+                                seconds</li>
+                            <li><strong>Bright Data:</strong> Depends on configuration, but with full-stack browser mode
+                                enabled, latency typically 5-8 seconds</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i
+                                    class="fas fa-check-circle mr-2"></i>Real-Time Advantage</h4>
+                            <p class="mb-0">For sellers needing <strong>real-time repricing</strong>, Pangolin's low
+                                latency means capturing price changes faster than competitors and reacting accordingly,
+                                thereby seizing the Buy Box (golden shopping cart).</p>
+                        </div>
+
+                        <h3 id="cost-efficiency">Dimension 3: Cost Efficiency & TCO Model</h3>
+
+                        <p><strong>Billing Model Comparison:</strong></p>
+                        <ul>
+                            <li><strong>Bright Data:</strong> Charges by "bandwidth + requests." Amazon product detail
+                                pages contain numerous high-resolution images and scripts, loading once may consume
+                                several MB of traffic. This makes large-scale collection costs unpredictable and
+                                expensive.</li>
+                            <li><strong>Pangolin:</strong> Uses <strong>"Credit" model</strong>. Regardless of page
+                                size, scraping one Amazon product page typically consumes a fixed 1 Credit (or slightly
+                                adjusted based on difficulty).</li>
+                        </ul>
+
+                        <p><strong>Actual Scenario TCO Calculation:</strong></p>
+                        <p>Assume the task is daily monitoring of 100,000 ASINs (products) for prices and ad rankings.
+                        </p>
+
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Cost Item</th>
+                                    <th>Pangolin</th>
+                                    <th>Bright Data</th>
+                                    <th>In-house Scraper</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>API/Proxy Fees</td>
+                                    <td>~$1,500 (Expert Plan)</td>
+                                    <td>~$2,000+ (bandwidth fluctuation)</td>
+                                    <td>~$500 (pure IP cost)</td>
+                                </tr>
+                                <tr>
+                                    <td>Maintenance Labor</td>
+                                    <td>$0 (fully managed)</td>
+                                    <td>$2,000 (partial maintenance)</td>
+                                    <td>$15,000 (full-time engineer)</td>
+                                </tr>
+                                <tr>
+                                    <td>Parsing Server Cost</td>
+                                    <td>$0 (included in API)</td>
+                                    <td>$200 (need self-built parsing)</td>
+                                    <td>$500 (Headless cluster)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Monthly Total TCO</strong></td>
+                                    <td><strong>~$1,500</strong></td>
+                                    <td><strong>~$4,200+</strong></td>
+                                    <td><strong>~$16,000</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="text-sm text-gray-400 mt-4">
+                            <em>Note: Data based on industry average estimates; actual situations may vary based on
+                                specific business logic.</em>
+                        </p>
+
+                        <h2 id="seo-strategy">Chapter 5: SEO Keyword Strategy & Data-Driven Content Optimization</h2>
+
+                        <p>
+                            Pangolin is not just a data collection tool but a nuclear weapon for SEO content marketing.
+                            Based on its unique data capabilities, we can build a high-dimensional SEO keyword strategy.
+                        </p>
+
+                        <h3 id="long-tail-keywords">Using "Customer Says" to Mine Long-Tail Keywords</h3>
+
+                        <p>
+                            Traditional SEO tools (like Ahrefs, SEMrush) often have lagging data and cannot delve into
+                            Amazon's internal search intent. Pangolin's scraped Customer Says data contains consumers'
+                            most authentic language habits.
+                        </p>
+
+                        <div class="info-box">
+                            <h4 class="font-bold text-lg mb-2 text-accent-cyan"><i
+                                    class="fas fa-search mr-2"></i>Strategy Case Study</h4>
+                            <p><strong>Scenario:</strong> You're selling a "cordless vacuum cleaner"</p>
+                            <ul class="mb-0">
+                                <li><strong>Conventional Keywords:</strong> "cordless vacuum," "handheld vacuum"</li>
+                                <li><strong>Pangolin Insight:</strong> Analyzing competitors' Customer Says reveals
+                                    numerous positive reviews mentioning "tangle-free for cat hair"</li>
+                                <li><strong>SEO Action:</strong> This is a high-conversion long-tail keyword.
+                                    Immediately plant "tangle-free for cat hair" in your Listing title, bullet points,
+                                    and A+ pages. This not only improves Amazon internal search rankings but also
+                                    captures precise search traffic on Google targeting this pain point.</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="keyword-density">Keyword Density Optimization & HTML Structured Output</h3>
+
+                        <p>
+                            To gain high weight in Google and Amazon algorithms, content keyword density should be
+                            controlled at 1.5% - 2.5%. Too low leads to insufficient relevance, too high is judged as
+                            keyword stuffing.
+                        </p>
+
+                        <p>
+                            Using Pangolin to collect Top 10 competitor Listings and analyze their core keyword
+                            distribution density allows reverse engineering of the category's "golden density model."
+                        </p>
+
+                        <h2 id="implementation-guide">Chapter 6: Implementation Guide & Code Integration</h2>
+
+                        <p>
+                            To help technical peers more intuitively understand the integration process, here's a
+                            standard integration example based on Python, showing how to use Pangolin to extract search
+                            results with ads and review summaries.
+                        </p>
+
+                        <pre><code class="language-python">import requests
+import json
+
+# Pangolin API endpoint configuration
+API_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
+API_TOKEN = "YOUR_ACCESS_TOKEN_HERE"
+
+def fetch_amazon_data(keyword, zip_code):
+    """
+    Collect Amazon search results, including ad data and AI review summaries
+    """
+    payload = {
+        "url": f"https://www.amazon.com/s?k={keyword}",
+        "parserName": "amzSearchResult",
+        "format": "json",
+        "bizContext": {
+            "zipcode": zip_code,  # Zip-code level targeting for precise ad data
+            "extract_sponsored": True,  # Enable ad extraction
+            "extract_customer_says": True  # Enable AI review summary extraction
+        }
+    }
+    
+    headers = {
+        "Authorization": f"Bearer {API_TOKEN}",
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.post(API_ENDPOINT, json=payload, headers=headers, timeout=30)
+        response.raise_for_status()
+        
+        data = response.json()
+        
+        # Process organic results
+        organic_results = [item for item in data.get('results', []) 
+                          if not item.get('is_sponsored')]
+        
+        # Process sponsored results
+        sponsored_results = [item for item in data.get('results', []) 
+                            if item.get('is_sponsored')]
+        
+        print(f"Successfully collected keyword '{keyword}' (Zip: {zip_code})")
+        print(f"Organic results: {len(organic_results)}")
+        print(f"Sponsored results: {len(sponsored_results)}")
+        
+        # Output first ad's detailed information
+        if sponsored_results:
+            first_ad = sponsored_results[0]
+            print(f"Top 1 Ad ASIN: {first_ad.get('asin')}")
+            print(f"Ad Position: {first_ad.get('position_info')}")
+
+        return data
+
+    except requests.exceptions.RequestException as e:
+        print(f"Collection failed: {e}")
+        return None
+
+# Execute collection: Search "wireless headphones" for New York area (10001)
+if __name__ == "__main__":
+    fetch_amazon_data("wireless headphones", "10001")</code></pre>
+
+                        <p>
+                            This code snippet demonstrates Pangolin's simplicity: no need to handle proxy rotation, no
+                            need to load Headless browsers, no need to write parsing rules. All complexity is
+                            encapsulated by the API, and developers receive pure business data.
+                        </p>
+
+                        <h2 id="conclusion">Conclusion & Strategic Recommendations</h2>
+
+                        <p>
+                            The 2025 Amazon data collection market has shifted from a "resource war" (who has more IPs)
+                            to an "intelligence war" (who better understands data).
+                        </p>
+
+                        <ul>
+                            <li><strong>For enterprises pursuing extreme scale and full-web coverage:</strong> Bright
+                                Data remains an unshakeable foundation, with powerful infrastructure suitable for
+                                building comprehensive data lakes covering Google, Facebook, Amazon, and other
+                                multi-platform sources.</li>
+                            <li><strong>For startups with limited technical resources:</strong> ScraperAPI provides the
+                                lowest entry barrier, ideal for validating MVP (Minimum Viable Product).</li>
+                            <li><strong>For brands and agencies focused on Amazon e-commerce business growth:</strong>
+                                Pangolin Scrape API, with its unique advantages in Data Pilot intelligent parsing,
+                                Customer Says deep extraction, and ad data attribution, has become the optimal solution
+                                in the current market. It's not just a data collection tool but a ready-made e-commerce
+                                intelligence system that can significantly reduce TCO and improve decision-making
+                                efficiency.</li>
+                        </ul>
+
+                        <div class="success-box mt-8">
+                            <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Next
+                                Steps</h4>
+                            <ul class="mb-0">
+                                <li><strong>Start with Pangolin:</strong> Get up to 1,000 free credits at <a
+                                        href="https://tool.pangolinfo.com/"
+                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
+                                <li><strong>Explore Advanced Features:</strong> Check out the <a
+                                        href="https://docs.pangolinfo.com/cn-index"
+                                        class="text-accent-cyan hover:underline">complete API documentation</a></li>
+                                <li><strong>Join the Community:</strong> Share your use cases and learn from other
+                                    developers</li>
+                                <li><strong>Scale with Confidence:</strong> Enterprise plans available for high-volume
+                                    operations</li>
+                            </ul>
+                        </div>
+
+                        <p class="mt-8">
+                            In today's increasingly complex algorithmic landscape, choosing an API that understands your
+                            business, rather than just a proxy pool, can better build a solid moat for your enterprise.
+                            For sellers hoping to break through Amazon's red ocean, embracing vertically deep technology
+                            stacks like Pangolin may be the key step to achieving differentiated competition.
+                        </p>
+
+                    </article>
+
+                    <!-- CTA -->
+                    <div class="glass-card rounded-3xl p-12 mt-8 text-center">
+                        <h3 class="text-3xl font-bold mb-4">Ready to Build Your 电商情报 Platform?</h3>
+                        <p class="text-gray-400 mb-6">Get up to 1,000 free Amazon API credits. No credit card required.
+                            Start extracting Amazon product data in minutes.</p>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="https://tool.pangolinfo.com/"
+                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
+                                Start Free Trial
+                            </a>
+                            <a href="https://docs.pangolinfo.com/cn-index"
+                                class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
+                                View Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar (1/3 width) -->
+                <div class="lg:col-span-1">
+                    <div class="sidebar-sticky space-y-6">
+
+                        <!-- Table of Contents -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-lg font-bold mb-4 text-white">Table of Contents</h3>
+                            <nav class="space-y-1">
+                                <a href="#executive-summary" class="toc-link">Executive Summary</a>
+                                <a href="#amazon-ecosystem-evolution" class="toc-link">Amazon Ecosystem Evolution</a>
+                                <a href="#paradigm-shift" class="toc-link toc-link-sub">Paradigm Shift</a>
+                                <a href="#anti-scraping-defense" class="toc-link toc-link-sub">Anti-Scraping Defense</a>
+                                <a href="#pangolin-deep-dive" class="toc-link">Pangolin Deep Dive</a>
+                                <a href="#core-architecture" class="toc-link toc-link-sub">Core Architecture</a>
+                                <a href="#data-pilot" class="toc-link toc-link-sub">Data Pilot Engine</a>
+                                <a href="#competitive-analysis" class="toc-link">Competitive Analysis</a>
+                                <a href="#bright-data" class="toc-link toc-link-sub">Bright Data</a>
+                                <a href="#oxylabs" class="toc-link toc-link-sub">Oxylabs</a>
+                                <a href="#scraperapi" class="toc-link toc-link-sub">ScraperAPI</a>
+                                <a href="#pangolin-advantages" class="toc-link">Pangolin Advantages</a>
+                                <a href="#ad-intelligence" class="toc-link toc-link-sub">Ad Intelligence</a>
+                                <a href="#real-time-performance" class="toc-link toc-link-sub">Real-Time Performance</a>
+                                <a href="#cost-efficiency" class="toc-link toc-link-sub">Cost Efficiency</a>
+                                <a href="#seo-strategy" class="toc-link">SEO Strategy</a>
+                                <a href="#implementation-guide" class="toc-link">Implementation Guide</a>
+                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                            </nav>
+                        </div>
+
+                        <!-- Pangolin Scrape API Product Card -->
+                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="glass-card rounded-2xl p-6 block product-card group" target="_blank">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-rocket text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
+                                Pangolin Scrape API</h4>
+                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
+                                with 99.9% uptime</p>
+                            <div class="flex items-center text-accent-cyan text-sm font-semibold">
+                                <span>Learn More</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- AMZ Data Tracker Product Card -->
+                        <a href="https://www.pangolinfo.com/amz-data-tracker/"
+                            class="glass-card rounded-2xl p-6 block product-card group" target="_blank">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold mb-2 text-white group-hover:text-accent-purple transition-colors">
+                                AMZ Data Tracker</h4>
+                            <p class="text-gray-400 text-sm mb-4">Zero-code Amazon product tracking with automated price
+                                alerts and Excel export</p>
+                            <div class="flex items-center text-accent-purple text-sm font-semibold">
+                                <span>Learn More</span>
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                        <!-- Chrome Extension Card -->
+                        <a href="https://chromewebstore.google.com/detail/pangolin-scrapper/jlddckimppfpdlplmhhkggpbddanjbbf?hl=en&authuser=0"
+                            target="_blank" class="glass-card rounded-2xl p-6 block product-card group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-chrome text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
+                                Browser Extension</h4>
+                            <p class="text-gray-400 text-sm mb-4">AMZ Data Tracker Chrome extension for instant Amazon
+                                product analysis</p>
+                            <div class="flex items-center text-green-400 text-sm font-semibold">
+                                <span>Install Extension</span>
+                                <i
+                                    class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+                        alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" />
+                    <span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
+                </div>
+                <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Products</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                            class="hover:text-white" target="_blank">Amazon Scraping API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white"
+                            target="_blank">AMZ Data
+                            Tracker</a></li>
+                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white"
+                            target="_blank">Pricing</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Resources</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://docs.pangolinfo.com/cn-index" class="hover:text-white">API Documentation</a>
+                    </li>
+                    <li><a href="https://docs.pangolinfo.com/cn-api-reference/authApi/auth?playground=open"
+                            class="hover:text-white">API Playground</a></li>
+                    <li><a href="../../index.html#articles" class="hover:text-white">Blog Articles</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="font-semibold text-white mb-3">Company</div>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.pangolinfo.com/" class="hover:text-white" target="_blank">Official
+                            Website</a></li>
+                    <li><a href="https://tool.pangolinfo.com/" class="hover:text-white">Console</a></li>
+                    <li><a href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/"
+                            class="hover:text-white" target="_blank">Amazon Solutions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. All rights reserved.</div>
+            <div class="text-gray-600 text-sm">Amazon Scraping API & E-commerce Data Intelligence</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <script>
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
