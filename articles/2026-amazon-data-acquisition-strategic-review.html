@@ -33,6 +33,19 @@
         /* Ensure charts have height */
         canvas { max-height: 400px; }
     </style>
+
+    <style>
+        #roi input, #roi select {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        #roi input:focus, #roi select:focus {
+            border-color: #06b6d4;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    
 </head>
 <body class="antialiased selection:bg-accent-cyan selection:text-white">
     <div class="liquid-wrapper">
@@ -71,7 +84,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-layer-group text-accent-cyan text-2xl"></i>
-                <h1 class="text-xl font-bold text-white">StratEdge <span class="font-light text-gray-500">Consulting</span></h1>
+                
             </div>
             <nav class="hidden md:flex space-x-8">
                 <button onclick="scrollToSection('verdict')" class="text-gray-400 hover:text-accent-cyan transition">Conclusion</button>
@@ -101,12 +114,12 @@
                     <p class="text-gray-400 mt-2">The market has bifurcated. Do you want to build a scraping infrastructure, or consume business data?</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="rounded-2xl border border-slate-200 p-6 bg-orange-50">
+                    <div class="rounded-2xl border border-accent-cyan/20 p-6 bg-accent-cyan/5 border border-accent-cyan/20">
                         <div class="flex items-center mb-3">
                             <i class="fa-solid fa-trophy text-accent-cyan mr-3"></i>
                             <div>
                                 <div class="text-sm font-semibold text-accent-cyan">The Winner for E-Commerce</div>
-                                <div class="text-lg font-bold text-white">Pangolinfofo Scrape API</div>
+                                <div class="text-lg font-bold text-white">Pangolinfo Scrape API</div>
                             </div>
                         </div>
                         <div class="text-gray-300 text-sm mb-4">
@@ -124,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-2xl border border-slate-200 p-6 glass-card">
+                    <div class="rounded-2xl border border-accent-cyan/20 p-6 glass-card">
                         <div class="flex items-center mb-3">
                             <i class="fa-solid fa-sitemap text-gray-400 mr-3"></i>
                             <div>
@@ -135,7 +148,7 @@
                         <div class="text-gray-300 text-sm mb-4">
                             The "Infrastructure" approach. Undeniable leaders in global proxy network size. If you are building a custom crawler for diverse targets outside e-commerce and have a dedicated engineering team, their raw power is unmatched.
                         </div>
-                        <div class="glass-card rounded-xl p-4 border border-slate-200">
+                        <div class="glass-card rounded-xl p-4 border border-accent-cyan/20">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideal for</div>
                             <ul class="space-y-2 text-sm text-gray-300">
                                 <li class="flex items-start"><i class="fa-solid fa-check text-blue-600 mr-2 mt-1"></i>Large engineering teams: Full control over headers/rotation</li>
@@ -151,17 +164,17 @@
         <section id="positioning" class="animate-fade-in">
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h3 class="text-2xl font-bold text-white mb-3">Positioning & Scope</h3>
-                <p class="text-gray-400 mb-6">Bright Data and similar giants excel in network breadth and configurability. Pangolinfofo focuses narrowly on e-commerce (Amazon and related) and goes deeper on structured fields. In our tests, 96%+ SP ad visibility is achieved only by Pangolinfofo. Proxy-first providers act as infrastructure and still require you to maintain crawlers, bypass captchas, and handle fingerprints. Pangolinfofo returns structured JSON with a single request.</p>
+                <p class="text-gray-400 mb-6">Bright Data and similar giants excel in network breadth and configurability. Pangolinfo focuses narrowly on e-commerce (Amazon and related) and goes deeper on structured fields. In our tests, 96%+ SP ad visibility is achieved only by Pangolinfo. Proxy-first providers act as infrastructure and still require you to maintain crawlers, bypass captchas, and handle fingerprints. Pangolinfo returns structured JSON with a single request.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
-                        <div class="font-semibold text-white mb-2">When Pangolinfofo Fits</div>
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
+                        <div class="font-semibold text-white mb-2">When Pangolinfo Fits</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Focus on e-commerce and Amazon-related data</li>
                             <li>No desire to build/maintain a crawler team</li>
                             <li>Preference to consume structured results and ship faster</li>
                         </ul>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">When Proxies Fit</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Broad targets outside e-commerce</li>
@@ -169,10 +182,10 @@
                             <li>Existing scraper codebases expecting raw proxies</li>
                         </ul>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Cost Reality</div>
-                        <p class="text-sm text-gray-300">Across all monthly volumes, Pangolinfofo is lower priced than peers.</p>
-                        <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline text-sm">Pangolinfofo official pricing</a>
+                        <p class="text-sm text-gray-300">Across all monthly volumes, Pangolinfo is lower priced than peers.</p>
+                        <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline text-sm">Pangolinfo official pricing</a>
                     </div>
                 </div>
             </div>
@@ -182,7 +195,7 @@
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h2 class="text-2xl font-bold text-white mb-4">Methodology & Scope</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Test Period & Volume</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Period: 2026 Q1</li>
@@ -191,7 +204,7 @@
                             <li>Regions: US, UK, DE, JP</li>
                         </ul>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Metrics Definitions</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Data Return Speed: Median and P95 end-to-end latency</li>
@@ -202,11 +215,11 @@
                     </div>
                 </div>
                 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Instrumentation</div>
                         <p class="text-sm text-gray-300">Uniform client, identical headers, randomized ASIN/keyword sets, consistent backoff-retry policy, balanced time-of-day distribution, and controlled concurrency to reduce vendor-side throttling bias.</p>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Limitations</div>
                         <p class="text-sm text-gray-300">Results reflect performance during the sampled period. Production outcomes can vary by geography, time, and target-page changes. Pricing references are sourced from official vendor websites and may change due to promotions; always confirm current pricing on each vendor’s website.</p>
                     </div>
@@ -227,7 +240,7 @@
                         <div class="p-4 glass-card rounded-lg border-l-4 border-orange-500">
                             <h3 class="font-semibold text-white mb-1">Key Finding</h3>
                             <p class="text-sm text-gray-400">
-                                While legacy giants like <strong>Bright Data</strong> remain powerful, the emerging challenger <strong>Pangolinfofo Scrape API</strong> has disrupted the market with a specialized "Dedicated Dynamic Residential" architecture, achieving <span class="font-bold text-accent-cyan">96%</span> success in SP Ad scraping at <span class="font-bold text-accent-cyan">~20%</span> of the cost of top-tier competitors.
+                                While legacy giants like <strong>Bright Data</strong> remain powerful, the emerging challenger <strong>Pangolinfo Scrape API</strong> has disrupted the market with a specialized "Dedicated Dynamic Residential" architecture, achieving <span class="font-bold text-accent-cyan">96%</span> success in SP Ad scraping at <span class="font-bold text-accent-cyan">~20%</span> of the cost of top-tier competitors.
                             </p>
                         </div>
                     </div>
@@ -271,25 +284,25 @@
                     <div class="glass-card p-6 rounded-xl shadow-sm border border-slate-100">
                         <h3 class="font-semibold text-white mb-4">Select Evaluation Criteria</h3>
                         <div class="space-y-3">
-                            <button onclick="updateRadar('all')" id="btn-all" class="w-full text-left px-4 py-3 rounded-lg bg-orange-50 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center">
+                            <button onclick="updateRadar('all')" id="btn-all" class="w-full text-left px-4 py-3 rounded-lg bg-accent-cyan/5 border border-accent-cyan/20 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center">
                                 <span>Overall Performance</span>
                                 <i class="fa-solid fa-chart-pie"></i>
                             </button>
-                            <button onclick="updateRadar('cost')" id="btn-cost" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center">
+                            <button onclick="updateRadar('cost')" id="btn-cost" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-accent-cyan/20 text-gray-400 hover:glass-card transition flex justify-between items-center">
                                 <span>Cost Efficiency</span>
                                 <i class="fa-solid fa-wallet"></i>
                             </button>
-                            <button onclick="updateRadar('ads')" id="btn-ads" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center">
+                            <button onclick="updateRadar('ads')" id="btn-ads" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-accent-cyan/20 text-gray-400 hover:glass-card transition flex justify-between items-center">
                                 <span>SP Ad & Keyword Data</span>
                                 <i class="fa-solid fa-bullseye"></i>
                             </button>
                         </div>
                     </div>
                     
-                    <div class="glass-card p-6 rounded-xl border border-slate-200">
+                    <div class="glass-card p-6 rounded-xl border border-accent-cyan/20">
                         <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Top 5 Contenders</h4>
                         <ul class="space-y-2 text-sm text-gray-300">
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-accent-cyan mr-2"></span> <strong>Pangolinfofo</strong> (Challenger)</li>
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-accent-cyan mr-2"></span> <strong>Pangolinfo</strong> (Challenger)</li>
                             <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-600 mr-2"></span> <strong>Bright Data</strong> (Leader)</li>
                             <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-500 mr-2"></span> <strong>Crawlbase</strong> (Alternative)</li>
                             <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span> <strong>Oxylabs</strong> (Proxy Giant)</li>
@@ -312,19 +325,19 @@
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h3 class="text-2xl font-bold text-white mb-3">Operational Depth</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Data Coverage</div>
                         <p class="text-sm text-gray-300">Amazon Sponsored Ads, product details, ratings, sellers and more with high completeness.</p>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Anti-Bot & Fingerprints</div>
                         <p class="text-sm text-gray-300">Automatic handling of challenges and fingerprints; no manual captcha or rotation logic required.</p>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Integration & Delivery</div>
                         <p class="text-sm text-gray-300">Single API request returns structured JSON; simplifies pipelines and reduces latency.</p>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">SLA & Support</div>
                         <p class="text-sm text-gray-300">Localized support with fast response; tailored guidance for e-commerce workloads.</p>
                     </div>
@@ -335,34 +348,34 @@
         <section id="data-coverage" class="animate-fade-in">
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h2 class="text-2xl font-bold text-white mb-4">Data Coverage & Field Catalog</h2>
-                <p class="text-gray-400 mb-6">Pangolinfofo provides deep, structured fields across Amazon and broader e-commerce signals. Below is a non-exhaustive catalog of supported fields and datasets.</p>
+                <p class="text-gray-400 mb-6">Pangolinfo provides deep, structured fields across Amazon and broader e-commerce signals. Below is a non-exhaustive catalog of supported fields and datasets.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-3">Core Product Fields</div>
                         <div class="grid grid-cols-2 gap-3 text-sm text-gray-300">
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product Name</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product ID / SKU</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Price</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Discount Price</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Currency</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Description</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Category</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Subcategory</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Brand</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Inventory Status</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Shipping</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Images</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Customer Rating</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Customer Reviews Count</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Review Text</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product Dimensions</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Weight</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Color / Variants</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Related Products</div>
-                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Seller Information</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Product Name</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Product ID / SKU</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Price</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Discount Price</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Currency</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Description</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Category</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Subcategory</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Brand</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Inventory Status</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Shipping</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Images</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Customer Rating</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Customer Reviews Count</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Review Text</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Product Dimensions</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Weight</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Color / Variants</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Related Products</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20">Seller Information</div>
                         </div>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card relative overflow-hidden">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card relative overflow-hidden">
                         <div class="font-semibold text-white mb-3">Ads & Rankings</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Sponsored Products visibility, placement, and share</li>
@@ -389,21 +402,21 @@
                 <h2 class="text-2xl font-bold text-white mb-4">Benchmark Suite</h2>
                 <p class="text-gray-400 mb-6">Comparative tests across speed, accuracy, and capture rate under a unified client and request policy (2026 Q1 sample).</p>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="rounded-xl border border-slate-200 p-6">
+                    <div class="rounded-xl border border-accent-cyan/20 p-6">
                         <div class="font-semibold text-white mb-2">Data Return Speed</div>
                         <div class="chart-container" style="height: 260px;">
                             <canvas id="latencyChart"></canvas>
                         </div>
                         <div class="mt-2 text-xs text-gray-500">Compares median vs P95 end-to-end latency</div>
                     </div>
-                    <div class="rounded-xl border border-slate-200 p-6">
+                    <div class="rounded-xl border border-accent-cyan/20 p-6">
                         <div class="font-semibold text-white mb-2">Accuracy</div>
                         <div class="chart-container" style="height: 260px;">
                             <canvas id="accuracyChart"></canvas>
                         </div>
                         <div class="mt-2 text-xs text-gray-500">Field-level accuracy: title, price, rating, SP ad detection</div>
                     </div>
-                    <div class="rounded-xl border border-slate-200 p-6">
+                    <div class="rounded-xl border border-accent-cyan/20 p-6">
                         <div class="font-semibold text-white mb-2">Capture Rate</div>
                         <div class="chart-container" style="height: 260px;">
                             <canvas id="captureChart"></canvas>
@@ -423,19 +436,19 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <button id="perf-btn-success" onclick="setPerformanceBenchMode('success')" class="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold">Success Rate %</button>
-                        <button id="perf-btn-avg" onclick="setPerformanceBenchMode('avgLatency')" class="px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card">Avg Latency (s)</button>
-                        <button id="perf-btn-p95" onclick="setPerformanceBenchMode('p95Latency')" class="px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card">P95 Latency (s)</button>
+                        <button id="perf-btn-avg" onclick="setPerformanceBenchMode('avgLatency')" class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20 text-gray-300 text-sm font-semibold hover:glass-card">Avg Latency (s)</button>
+                        <button id="perf-btn-p95" onclick="setPerformanceBenchMode('p95Latency')" class="px-3 py-2 rounded-lg glass-card border border-accent-cyan/20 text-gray-300 text-sm font-semibold hover:glass-card">P95 Latency (s)</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 rounded-xl border border-slate-200 p-6">
+                    <div class="lg:col-span-2 rounded-xl border border-accent-cyan/20 p-6">
                         <div class="chart-container" style="height: 320px; max-width: 100%;">
                             <canvas id="performanceBenchChart"></canvas>
                         </div>
                         <div class="mt-3 text-xs text-gray-500">Endpoints: Product (ASIN), Search (Keyword), Reviews/Q&A, Sponsored Ads. Scale reflects selected metric.</div>
                     </div>
-                    <div class="rounded-xl border border-slate-200 p-6 glass-card">
+                    <div class="rounded-xl border border-accent-cyan/20 p-6 glass-card">
                         <div class="font-semibold text-white mb-3">Test Conditions</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Concurrency: 10,000 in-flight requests (burst + steady)</li>
@@ -444,7 +457,7 @@
                             <li>Policy: controlled retries, exponential backoff, fixed user-agent</li>
                             <li>Output: structured JSON success (not raw HTML fetch)</li>
                         </ul>
-                        <div class="mt-4 p-4 glass-card rounded-lg border border-slate-200">
+                        <div class="mt-4 p-4 glass-card rounded-lg border border-accent-cyan/20">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Additional Detail Captured</div>
                             <div class="grid grid-cols-1 gap-2 text-sm text-gray-300">
                                 <div class="flex justify-between"><span>Timeout rate</span><span class="text-gray-500">Tracked</span></div>
@@ -457,9 +470,9 @@
                     </div>
                 </div>
 
-                <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200">
+                <div class="mt-6 overflow-x-auto rounded-xl border border-accent-cyan/20">
                     <table class="min-w-full text-left text-sm text-gray-400">
-                        <thead class="glass-card text-white font-semibold border-b border-slate-200">
+                        <thead class="glass-card text-white font-semibold border-b border-accent-cyan/20">
                             <tr>
                                 <th class="px-4 py-3">Metric</th>
                                 <th class="px-4 py-3">Definition</th>
@@ -512,7 +525,7 @@
                 </div>
 
                 <div class="flex flex-wrap gap-6 border-b border-slate-700 pb-4 mb-6">
-                    <button id="vendor-tab-pangolinfo" onclick="setVendorTab('pangolinfo')" class="tab-active text-slate-200 hover:text-white transition">Pangolinfofo</button>
+                    <button id="vendor-tab-pangolinfo" onclick="setVendorTab('pangolinfo')" class="tab-active text-slate-200 hover:text-white transition">Pangolinfo</button>
                     <button id="vendor-tab-brightdata" onclick="setVendorTab('brightdata')" class="text-slate-400 hover:text-white transition">Bright Data</button>
                     <button id="vendor-tab-oxylabs" onclick="setVendorTab('oxylabs')" class="text-slate-400 hover:text-white transition">Oxylabs</button>
                     <button id="vendor-tab-crawlbase" onclick="setVendorTab('crawlbase')" class="text-slate-400 hover:text-white transition">Crawlbase</button>
@@ -745,14 +758,14 @@
         <section class="glass-card rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <div class="p-8 border-b border-slate-100">
                 <h2 class="text-2xl font-bold text-white">Direct Comparison</h2>
-                <p class="text-gray-400 mt-1">Pangolinfofo vs. The Incumbents (Bright Data, Crawlbase)</p>
+                <p class="text-gray-400 mt-1">Pangolinfo vs. The Incumbents (Bright Data, Crawlbase)</p>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-gray-400">
-                    <thead class="glass-card text-white font-semibold border-b border-slate-200">
+                    <thead class="glass-card text-white font-semibold border-b border-accent-cyan/20">
                         <tr>
                             <th class="px-6 py-4">Feature / Metric</th>
-                            <th class="px-6 py-4 text-accent-cyan bg-orange-50">Pangolinfofo</th>
+                            <th class="px-6 py-4 text-accent-cyan bg-accent-cyan/5 border border-accent-cyan/20">Pangolinfo</th>
                             <th class="px-6 py-4">Bright Data</th>
                             <th class="px-6 py-4">Crawlbase</th>
                         </tr>
@@ -760,38 +773,38 @@
                     <tbody class="divide-y divide-slate-100">
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">SP Ad Collection Rate</td>
-                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">96% (High)</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">96% (High)</td>
                             <td class="px-6 py-4">High (~94%)</td>
                             <td class="px-6 py-4">Medium (~85%)</td>
                         </tr>
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">Pricing Model</td>
-                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">Always cheaper across all volumes</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">Always cheaper across all volumes</td>
                             <td class="px-6 py-4">Expensive / Complex</td>
                             <td class="px-6 py-4">Tiered / Moderate</td>
                         </tr>
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">Proxy Technology</td>
-                            <td class="px-6 py-4 bg-orange-50/50">Dedicated Dynamic Residential</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50">Dedicated Dynamic Residential</td>
                             <td class="px-6 py-4">Massive Global P2P</td>
                             <td class="px-6 py-4">Standard Mixed Pool</td>
                         </tr>
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">Tech Support</td>
-                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">Localized & Rapid</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">Localized & Rapid</td>
                             <td class="px-6 py-4">Global (Slower Tiers)</td>
                             <td class="px-6 py-4">Standard Ticket</td>
                         </tr>
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">Setup & Maintenance</td>
-                            <td class="px-6 py-4 bg-orange-50/50">Out-of-box / Zero Maint.</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50">Out-of-box / Zero Maint.</td>
                             <td class="px-6 py-4">Steep Learning Curve</td>
                             <td class="px-6 py-4">Moderate</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="px-6 py-4 text-xs text-gray-500">
-                    Pricing references are based on official vendor websites and may change due to promotions. Pangolinfofo pricing: <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
+                    Pricing references are based on official vendor websites and may change due to promotions. Pangolinfo pricing: <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
                 </div>
             </div>
         </section>
@@ -800,7 +813,7 @@
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h2 class="text-2xl font-bold text-white mb-3">Competitor Strengths</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Bright Data</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Massive proxy pool with broad geographic coverage</li>
@@ -809,7 +822,7 @@
                             <li>Strong fit for building multi-target scraping infrastructure</li>
                         </ul>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Oxylabs</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Strong residential + datacenter portfolio</li>
@@ -817,7 +830,7 @@
                             <li>Good fit for complex proxy strategies and existing codebases</li>
                         </ul>
                     </div>
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Crawlbase</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Easy-to-start API and fast integration</li>
@@ -836,7 +849,7 @@
                 <!-- Inputs -->
                 <div class="md:col-span-1 glass-card p-6 rounded-xl shadow-sm border border-slate-100">
                     <h2 class="text-xl font-bold text-white mb-4">ROI Calculator</h2>
-                    <p class="text-sm text-gray-500 mb-6">Estimate your savings by switching from In-House scraping to Pangolinfofo.</p>
+                    <p class="text-sm text-gray-500 mb-6">Estimate your savings by switching from In-House scraping to Pangolinfo.</p>
                     
                     <div class="space-y-4">
                         <div>
@@ -849,13 +862,13 @@
                             <label class="block text-sm font-medium text-gray-300 mb-1">Engineer Salary ($/Year)</label>
                             <div class="relative">
                                 <span class="absolute left-3 top-2 text-slate-400">$</span>
-                                <input type="number" id="salaryInput" value="80000" class="w-full pl-6 pr-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                                <input type="number" id="salaryInput" value="80000" class="w-full pl-6 pr-3 py-2 border border-accent-cyan/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-1">Maintenance Hours/Month</label>
-                            <input type="number" id="maintenanceInput" value="40" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                            <input type="number" id="maintenanceInput" value="40" class="w-full px-3 py-2 border border-accent-cyan/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
                         </div>
 
                         <button onclick="calculateROI()" class="w-full py-3 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 transition">
@@ -874,7 +887,7 @@
                         <canvas id="roiChart"></canvas>
                     </div>
                     <div class="mt-4 p-4 glass-card rounded-lg text-sm text-gray-400">
-                        <strong>Analysis:</strong> An in-house stack requires server spend, proxy costs, and substantial engineering time for ongoing anti-bot updates. Pangolinfofo packages that complexity into a predictable API fee and remains cheaper than comparable offerings across all monthly volumes. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>.
+                        <strong>Analysis:</strong> An in-house stack requires server spend, proxy costs, and substantial engineering time for ongoing anti-bot updates. Pangolinfo packages that complexity into a predictable API fee and remains cheaper than comparable offerings across all monthly volumes. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>.
                     </div>
                 </div>
             </div>
@@ -887,7 +900,7 @@
                 <h3 class="font-bold text-lg mb-2">Early Stage / Startup</h3>
                 <p class="text-sm text-gray-400 mb-4">Limited budget, need fast iteration.</p>
                 <div class="text-sm font-semibold text-white">Recommendation:</div>
-                <p class="text-sm text-gray-400">Use <strong>Pangolinfofo</strong> for key product data. The "out of box" nature saves hiring a dedicated data engineer.</p>
+                <p class="text-sm text-gray-400">Use <strong>Pangolinfo</strong> for key product data. The "out of box" nature saves hiring a dedicated data engineer.</p>
             </div>
 
             <!-- Growth / Agency -->
@@ -895,7 +908,7 @@
                 <h3 class="font-bold text-lg mb-2">Growth / Agency</h3>
                 <p class="text-sm text-gray-400 mb-4">High volume, need ad intelligence (SP data).</p>
                 <div class="text-sm font-semibold text-white">Recommendation:</div>
-                <p class="text-sm text-gray-400"><strong>Pangolinfofo is Critical.</strong> The 96% SP Ad capture rate is the competitive advantage needed for client reporting.</p>
+                <p class="text-sm text-gray-400"><strong>Pangolinfo is Critical.</strong> The 96% SP Ad capture rate is the competitive advantage needed for client reporting.</p>
             </div>
 
             <!-- Enterprise -->
@@ -903,7 +916,7 @@
                 <h3 class="font-bold text-lg mb-2">Enterprise / Platform</h3>
                 <p class="text-sm text-gray-400 mb-4">Massive scale, compliance, redundancy.</p>
                 <div class="text-sm font-semibold text-white">Recommendation:</div>
-                <p class="text-sm text-gray-400"><strong>Hybrid Approach.</strong> Use Pangolinfofo as primary for challenging targets (Amazon/Google), backup with Bright Data for global breadth.</p>
+                <p class="text-sm text-gray-400"><strong>Hybrid Approach.</strong> Use Pangolinfo as primary for challenging targets (Amazon/Google), backup with Bright Data for global breadth.</p>
             </div>
         </section>
 
@@ -916,7 +929,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">If You Need E-commerce Intelligence</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Structured Amazon outputs: product fields, seller, reviews, and ad visibility</li>
@@ -925,11 +938,11 @@
                             <li>Lowest operational burden: fewer crawler, proxy, and fingerprint concerns</li>
                         </ul>
                         <div class="mt-3 text-sm text-gray-400">
-                            Primary fit: <strong>Pangolinfofo</strong>. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Official pricing</a>
+                            Primary fit: <strong>Pangolinfo</strong>. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Official pricing</a>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">If You Are Building Infrastructure</div>
                         <ul class="space-y-2 text-sm text-gray-300">
                             <li>Broad targets beyond e-commerce and strong session-level control</li>
@@ -940,18 +953,18 @@
                         <div class="mt-3 text-sm text-gray-400">Primary fit: <strong>Bright Data</strong> / <strong>Oxylabs</strong> as proxy-first stacks.</div>
                     </div>
 
-                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                    <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">References & Sources</div>
                         <div class="text-sm text-gray-300">
                             Pricing and packaging references are sourced from each vendor’s official website. Due to time constraints and ongoing vendor operations or promotions, pricing may change; validate final quotes on official websites.
                         </div>
                         <div class="mt-3 text-sm">
-                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Pangolinfofo pricing source</a>
+                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Pangolinfo pricing source</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 p-6 rounded-xl border border-slate-200">
+                <div class="mt-6 p-6 rounded-xl border border-accent-cyan/20">
                     <div class="font-semibold text-white mb-2">Bottom Line</div>
                     <div class="text-sm text-gray-300">
                         If success rate and ad visibility on Amazon are your bottlenecks, a specialized API that returns structured fields and integrates cross-channel signals yields the fastest time-to-value. If your mission is a generalized scraping platform across many domains, proxy-first infrastructure remains the most flexible foundation.
@@ -965,9 +978,9 @@
     <!-- Footer -->
     <footer class="bg-slate-800 text-slate-300 py-12 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-4 text-lg font-semibold text-white">StratEdge Consulting • 2026</p>
+            <p class="mb-4 text-lg font-semibold text-white"></p>
             <p class="text-sm text-gray-500 max-w-2xl mx-auto">
-                This report is based on independent testing of Amazon, Google, and Social Media data acquisition endpoints. Success rates are based on Q1 2026 stress tests. Pangolinfofo, Bright Data, and Crawlbase are trademarks of their respective owners.
+                This report is based on independent testing of Amazon, Google, and Social Media data acquisition endpoints. Success rates are based on Q1 2026 stress tests. Pangolinfo, Bright Data, and Crawlbase are trademarks of their respective owners.
             </p>
         </div>
     </footer>
@@ -1030,7 +1043,7 @@
             labels: ['Success Rate', 'SP Ad Data', 'Cost Efficiency', 'Ease of Use', 'Tech Support', 'Customization'],
             datasets: {
                 pangolinfo: {
-                    label: 'Pangolinfofo',
+                    label: 'Pangolinfo',
                     data: [9.5, 9.6, 9.0, 9.5, 9.0, 8.5],
                     borderColor: 'rgba(249, 115, 22, 1)', // Orange
                     backgroundColor: 'rgba(249, 115, 22, 0.2)',
@@ -1124,12 +1137,12 @@
         function updateRadar(view) {
             // Reset Styles
             document.querySelectorAll('[id^="btn-"]').forEach(btn => {
-                btn.className = "w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center";
+                btn.className = "w-full text-left px-4 py-3 rounded-lg glass-card border border-accent-cyan/20 text-gray-400 hover:glass-card transition flex justify-between items-center";
             });
 
             // Set Active Style
             const activeBtn = document.getElementById(`btn-${view}`);
-            activeBtn.className = "w-full text-left px-4 py-3 rounded-lg bg-orange-50 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center";
+            activeBtn.className = "w-full text-left px-4 py-3 rounded-lg bg-accent-cyan/5 border border-accent-cyan/20 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center";
 
             // Update Datasets based on view
             if (view === 'all') {
@@ -1179,7 +1192,7 @@
             const proxyCost = volume * 0.001; // Raw proxy cost for in-house
 
             // Yearly Calculations
-            // 1. Pangolinfofo: (Volume/1000 * CPM) * 12
+            // 1. Pangolinfo: (Volume/1000 * CPM) * 12
             const pangolinfoAnnual = ((volume / 1000) * pangolinfoCPM) * 12;
 
             // 2. Bright Data: (Volume/1000 * CPM) * 12
@@ -1206,7 +1219,7 @@
             roiChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Pangolinfofo', 'Bright Data', 'In-House Build'],
+                    labels: ['Pangolinfo', 'Bright Data', 'In-House Build'],
                     datasets: [{
                         label: 'Annual Cost (USD)',
                         data: [pCost, bCost, iCost],
@@ -1258,7 +1271,7 @@
             latencyChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Pangolinfofo', 'Bright Data', 'Crawlbase', 'Oxylabs'],
+                    labels: ['Pangolinfo', 'Bright Data', 'Crawlbase', 'Oxylabs'],
                     datasets: [
                         {
                             label: 'Median (ms)',
@@ -1301,7 +1314,7 @@
                     labels: ['Title', 'Price', 'Rating', 'SP Ads Detection'],
                     datasets: [
                         {
-                            label: 'Pangolinfofo',
+                            label: 'Pangolinfo',
                             data: [99, 98, 97, 96],
                             backgroundColor: 'rgba(249, 115, 22, 0.8)',
                             borderRadius: 4
@@ -1353,7 +1366,7 @@
                     labels: ['Product Detail', 'Search Results', 'SP Ads'],
                     datasets: [
                         {
-                            label: 'Pangolinfofo',
+                            label: 'Pangolinfo',
                             data: [97, 95, 96],
                             backgroundColor: 'rgba(249, 115, 22, 0.8)',
                             borderRadius: 4
@@ -1398,7 +1411,7 @@
         }
 
         const performanceBench = {
-            vendors: ['Pangolinfofo', 'Bright Data', 'Oxylabs', 'Crawlbase', 'In-House'],
+            vendors: ['Pangolinfo', 'Bright Data', 'Oxylabs', 'Crawlbase', 'In-House'],
             endpoints: [
                 { key: 'product', label: 'Product Page (ASIN)', color: 'rgba(249, 115, 22, 0.75)' },
                 { key: 'search', label: 'Search Results', color: 'rgba(37, 99, 235, 0.55)' },
@@ -1444,7 +1457,7 @@
 
         function setPerformanceBenchMode(modeKey) {
             const btnActiveClass = 'px-3 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold';
-            const btnInactiveClass = 'px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card';
+            const btnInactiveClass = 'px-3 py-2 rounded-lg glass-card border border-accent-cyan/20 text-gray-300 text-sm font-semibold hover:glass-card';
 
             const btnSuccess = document.getElementById('perf-btn-success');
             const btnAvg = document.getElementById('perf-btn-avg');
