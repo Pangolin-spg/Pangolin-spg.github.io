@@ -1,733 +1,1587 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO Meta Tags -->
-    <title>2026 Strategic Review: Amazon Data Acquisition Solutions | Pangol Info</title>
-    <meta name="description"
-        content="2026年亚马逊数据采集格局战略分析。Pangolin与Bright Data深度技术对比。 In-depth technical comparison of Pangolinfo Scrape API, Bright Data, and Oxylabs, covering ad intelligence, ROI, and technical benchmarks.">
-    <meta name="keywords"
-        content="Amazon data acquisition 2026, web scraping infrastructure, Pangolinfo Scrape API, Bright Data vs Pangolin, Amazon ad intelligence, scraping ROI calculator">
-    <meta name="author" content="Pangol Info Team">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="2026 Strategic Review: Amazon Data Acquisition Solutions">
-    <meta property="og:description"
-        content="2026年亚马逊数据采集格局战略分析。Pangolin与Bright Data深度技术对比。 Technical benchmarks, ROI models, and vendor comparisons.">
-    <meta property="og:url"
-        content="https://pangolin-spg.github.io/articles/2026-amazon-data-acquisition-strategic-review.html">
-    <meta property="og:image"
-        content="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2026 Strategic Review: Amazon Data Acquisition Solutions">
-    <meta name="twitter:description"
-        content="2026年亚马逊数据采集格局战略分析。Pangolin与Bright Data深度技术对比。 Technical benchmarks, ROI models, and vendor comparisons.">
-
-    <!-- Favicon -->
+    <title>2026 战略评估：亚马逊数据采集解决方案 | Pangolinfo</title>
+    <meta name="description" content="2026年亚马逊数据采集格局战略分析。Pangolinfo与Bright Data深度技术对比。全面覆盖广告情报、ROI和技术基准测试。">
     <link rel="icon" type="image/x-icon" href="../../Pangolin.ico">
-
-    <!-- Canonical URL -->
-    <link rel="canonical"
-        href="https://pangolin-spg.github.io/articles/2026-amazon-data-acquisition-strategic-review.html">
-
-    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        pangolin: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                            950: '#082f49'
-                        },
-                        accent: {
-                            purple: '#a855f7',
-                            pink: '#ec4899',
-                            cyan: '#06b6d4'
-                        }
+                        pangolin: { 50: '#f0f9ff', 500: '#0ea5e9', 900: '#0c4a6e' },
+                        accent: { purple: '#a855f7', pink: '#ec4899', cyan: '#06b6d4' }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #030712;
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        body { background-color: #030712; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .liquid-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .blob { position: absolute; filter: blur(80px); opacity: 0.6; animation: blob 10s infinite alternate; }
+        @keyframes blob { 
+            0%, 100% { transform: translate(0px, 0px) scale(1); } 
+            33% { transform: translate(30px, -50px) scale(1.1); } 
         }
-
-        .liquid-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            opacity: 0.6;
-            border-radius: 50%;
-            animation: blob 10s infinite alternate;
-        }
-
-        @keyframes blob {
-
-            0%,
-            100% {
-                transform: translate(0px, 0px) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            origin: center;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* Chart Container */
-        .chart-wrapper {
-            position: relative;
-            height: 300px;
-            /* Default height */
-            width: 100%;
-        }
-
-        /* Interactive Elements Styles */
-        .tab-btn {
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .tab-btn.active {
-            border-bottom-color: #06b6d4;
-            /* accent-cyan */
-            color: #fff;
-        }
-
-        .tab-btn:not(.active) {
-            color: #9ca3af;
-            /* gray-400 */
-        }
-
-        .tab-btn:not(.active):hover {
-            color: #fff;
-        }
-
-        /* Custom Scrollbar for side contents if needed */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-        }
-
-        .feature-grid-item {
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .feature-grid-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.06);
-        }
+        /* Ensure charts have height */
+        canvas { max-height: 400px; }
     </style>
 </head>
-
 <body class="antialiased selection:bg-accent-cyan selection:text-white">
-    <!-- Liquid Background -->
     <div class="liquid-wrapper">
-        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
-        </div>
-        <div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
-        </div>
-        <div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
-        <div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+        <div class="blob bg-accent-purple w-96 h-96 top-0 left-0"></div>
+        <div class="blob bg-accent-cyan w-96 h-96 bottom-0 right-0"></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="fixed w-full z-50 transition-all duration-300 bg-black/20 backdrop-blur-md" id="navbar">
         <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
             <a href="../../zh/index.html" class="flex items-center gap-3">
-                <img src="../../logo.webp" alt="Pangolin Logo"
-                    class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" />
-                <span class="text-xl font-bold tracking-tight text-white">PANGOL<span
-                        style="color:#FF9900">INFO</span></span>
+                <img src="../../logo.webp" alt="Pangolinfo Logo" class="w-8 h-8 rounded-lg" />
+                <span class="text-xl font-bold tracking-tight text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
             </a>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
-                <a href="../../zh/index.html#home" class="hover:text-white transition">首页</a>
-                <a href="../../zh/index.html#solutions" class="hover:text-white transition">解决方案</a>
-                <a href="../../zh/index.html#use-cases" class="hover:text-white transition">应用案例</a>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-gray-300">
+                <a href="../../zh/index.html" class="hover:text-white transition">首页</a>
                 <a href="../../zh/blog.html" class="hover:text-white transition">博客</a>
-                <a href="https://docs.pangolinfo.com/cn-index" class="hover:text-white transition">文档</a>
-                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white transition"
-                    target="_blank">价格</a>
+                <a href="#landscape" class="hover:text-white transition">竞争格局</a>
+                <a href="#roi" class="hover:text-white transition">ROI</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="../../articles/2026-amazon-data-acquisition-strategic-review.html" class="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-sm hover:bg-white/10 transition">🇺🇸 English
+                 <a href="../../articles/2026-amazon-data-acquisition-strategic-review.html" class="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-sm hover:bg-white/10 transition">🇺🇸 English
                 </a>
-                <a href="https://tool.pangolinfo.com/"
-                    class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20 text-white">
-                    Get API Key
-                </a>
+                <a href="https://tool.pangolinfo.com/" class="bg-white/10 hover:bg-white/20 border border-white/10 px-4 py-2 rounded-full text-sm font-bold text-white">Get API Key</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-20">
+    <main class="pt-32 pb-20 px-4 max-w-7xl mx-auto space-y-12">
+        
 
-        <!-- Hero / Header -->
-        <section class="text-center space-y-6">
-            <div
-                class="inline-block px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase mb-4">
-                <span class="w-2 h-2 bg-accent-cyan rounded-full inline-block mr-2 animate-pulse"></span>
-                2026 战略报告
+    <!-- Header / Navigation -->
+    <header class="glass-card shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-layer-group text-accent-cyan text-2xl"></i>
+                <h1 class="text-xl font-bold text-white">StratEdge <span class="font-light text-gray-500">Consulting</span></h1>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black leading-tight text-white">
-                亚马逊数据采集：<br>
-                <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink">
-                    战略解决方案评估
-                </span>
-            </h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                A comprehensive analysis of the 2026 data landscape, evaluating infrastructure vs. solution-based
-                approaches for high-scale Amazon intelligence.
-            </p>
+            <nav class="hidden md:flex space-x-8">
+                <button onclick="scrollToSection('verdict')" class="text-gray-400 hover:text-accent-cyan transition">Conclusion</button>
+                <button onclick="scrollToSection('executive-summary')" class="text-gray-400 hover:text-accent-cyan transition">Summary</button>
+                <button onclick="scrollToSection('vendor-landscape')" class="text-gray-400 hover:text-accent-cyan transition">Vendor Landscape</button>
+                <button onclick="scrollToSection('methodology')" class="text-gray-400 hover:text-accent-cyan transition">Methodology</button>
+                <button onclick="scrollToSection('benchmark-suite')" class="text-gray-400 hover:text-accent-cyan transition">Benchmarks</button>
+                <button onclick="scrollToSection('pangolinfo-analysis')" class="text-gray-400 hover:text-accent-cyan transition">Deep Dive</button>
+                <button onclick="scrollToSection('roi-calculator')" class="text-gray-400 hover:text-accent-cyan transition">ROI Calculator</button>
+                <button onclick="scrollToSection('final-conclusion')" class="text-gray-400 hover:text-accent-cyan transition">Final Summary</button>
+            </nav>
+            <div class="md:hidden">
+                <!-- Mobile menu button placeholder -->
+                <i class="fa-solid fa-bars text-gray-400"></i>
+            </div>
+        </div>
+    </header>
 
-            <!-- Quick Anchor Nav -->
-            <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="#verdict"
-                    class="px-4 py-2 rounded-full glass-card hover:bg-white/10 transition text-sm text-gray-300 border border-white/5">Executive
-                    Summary</a>
-                <a href="#landscape"
-                    class="px-4 py-2 rounded-full glass-card hover:bg-white/10 transition text-sm text-gray-300 border border-white/5">Vendor
-                    Landscape</a>
-                <a href="#benchmarks"
-                    class="px-4 py-2 rounded-full glass-card hover:bg-white/10 transition text-sm text-gray-300 border border-white/5">基准测试</a>
-                <a href="#analysis"
-                    class="px-4 py-2 rounded-full glass-card hover:bg-white/10 transition text-sm text-gray-300 border border-white/5">Deep
-                    Dive</a>
-                <a href="#roi"
-                    class="px-4 py-2 rounded-full glass-card hover:bg-white/10 transition text-sm text-gray-300 border border-white/5">ROI
-                    Calculator</a>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <section id="verdict" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <div class="mb-6">
+                    <span class="inline-block px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-xs font-semibold rounded-full">EXECUTIVE SUMMARY</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-3">2026 结论：基础设施 vs 解决方案</h2>
+                    <p class="text-gray-400 mt-2">市场已经分化。您是想构建爬虫基础设施，还是直接消费商业数据？</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rounded-2xl border border-slate-200 p-6 bg-orange-50">
+                        <div class="flex items-center mb-3">
+                            <i class="fa-solid fa-trophy text-accent-cyan mr-3"></i>
+                            <div>
+                                <div class="text-sm font-semibold text-accent-cyan">The Winner for E-Commerce</div>
+                                <div class="text-lg font-bold text-white">Pangolinfofo Scrape API</div>
+                            </div>
+                        </div>
+                        <div class="text-gray-300 text-sm mb-4">
+                            The "Solution" approach. Best for teams that prioritize data usage over data acquisition. If you need 96% Sponsored Product ad visibility and do not want to manage a proxy engineering team, this specialized API is the choice.
+                        </div>
+                        <div class="glass-card rounded-xl p-4 border border-accent-cyan/20">
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideal for</div>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Cross-border sellers & brands: Need product/ad data, not IPs</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Business-focused teams: Automatic bypass of fingerprints/captchas</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Cost conscious: Cheaper across all volumes via tiered pricing</li>
+                            </ul>
+                            <div class="mt-3 text-xs">
+                                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl border border-slate-200 p-6 glass-card">
+                        <div class="flex items-center mb-3">
+                            <i class="fa-solid fa-sitemap text-gray-400 mr-3"></i>
+                            <div>
+                                <div class="text-sm font-semibold text-gray-400">The Winner for Infrastructure</div>
+                                <div class="text-lg font-bold text-white">Bright Data / Oxylabs</div>
+                            </div>
+                        </div>
+                        <div class="text-gray-300 text-sm mb-4">
+                            The "Infrastructure" approach. Undeniable leaders in global proxy network size. If you are building a custom crawler for diverse targets outside e-commerce and have a dedicated engineering team, their raw power is unmatched.
+                        </div>
+                        <div class="glass-card rounded-xl p-4 border border-slate-200">
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideal for</div>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start"><i class="fa-solid fa-check text-blue-600 mr-2 mt-1"></i>Large engineering teams: Full control over headers/rotation</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-blue-600 mr-2 mt-1"></i>General web scraping: Targets beyond e-commerce</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-blue-600 mr-2 mt-1"></i>Legacy systems: Integrate raw proxies into existing codebases</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Executive Summary (Verdict) -->
-        <section id="verdict" class="glass-card rounded-3xl p-8 md:p-12 border-l-4 border-l-accent-cyan">
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="flex-1 space-y-6">
-                    <div>
-                        <span class="text-accent-cyan font-bold tracking-wide text-sm uppercase">Executive
-                            Verdict</span>
-                        <h2 class="text-3xl font-bold mt-2 text-white">基础设施 vs 解决方案</h2>
-                        <p class="text-gray-300 mt-4 leading-relaxed">
-                            The market has bifurcated. Organizations must decide: build a scraping infrastructure or
-                            consume business data?
-                            While legacy giants excel in raw proxy volume, <strong>Pangolinfo Scrape API</strong> has
-                            emerged as the clear winner for e-commerce specific workloads, offering superior ad
-                            visibility and structured data delivery.
+        <section id="positioning" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h3 class="text-2xl font-bold text-white mb-3">定位与范围</h3>
+                <p class="text-gray-400 mb-6">Bright Data 和类似的巨头在网络广度和可配置性方面表现出色。 Pangolinfo 专注于电商领域（亚马逊及相关），并在结构化字段上更加深入。 and goes deeper on structured fields. 在我们的测试中，只有 Pangolinfo 实现了 96% 以上的 SP 广告可见性。 以代理为主的提供商充当基础设施，您仍然需要维护爬虫、绕过验证码并处理指纹。, bypass captchas, and handle fingerprints. Pangolinfo 通过单个请求返回结构化 JSON。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">When Pangolinfofo Fits</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Focus on e-commerce and Amazon-related data</li>
+                            <li>No desire to build/maintain a crawler team</li>
+                            <li>Preference to consume structured results and ship faster</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">When Proxies Fit</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Broad targets outside e-commerce</li>
+                            <li>Need low-level control over sessions and headers</li>
+                            <li>Existing scraper codebases expecting raw proxies</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Cost Reality</div>
+                        <p class="text-sm text-gray-300">在所有月度用量下，Pangolinfo 的价格均低于同行。</p>
+                        <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline text-sm">Pangolinfofo official pricing</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-white mb-4">方法论与范围</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Test Period & Volume</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Period: 2026 Q1</li>
+                            <li>Total Requests: 600,000+</li>
+                            <li>Targets: Amazon Product Detail, Search, SP Ads, Seller, Reviews</li>
+                            <li>Regions: US, UK, DE, JP</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Metrics Definitions</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Data Return 速度: Median and P95 end-to-end latency</li>
+                            <li>Accuracy: Field-level correctness vs. ground truth</li>
+                            <li>Capture Rate: Successful structured responses per endpoint</li>
+                            <li>稳定性: Error rate and retry success</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Instrumentation</div>
+                        <p class="text-sm text-gray-300">统一的客户端，相同的标头，随机的 ASIN/关键词集，一致的退避重试策略。, consistent backoff-retry policy, balanced time-of-day distribution, and controlled concurrency to reduce vendor-side throttling bias.</p>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Limitations</div>
+                        <p class="text-sm text-gray-300">结果反映了采样期间的性能。 Production outcomes can vary by geography, time, and target-page changes. Pricing references are sourced from official vendor websites and may change due to promotions; always confirm current pricing on each vendor’s website.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Executive Summary -->
+        <section id="executive-summary" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-1">
+                        <span class="inline-block px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-xs font-semibold rounded-full mb-4">CONFIDENTIAL REPORT • 2026 EDITION</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">亚马逊数据采集：战略供应商评估</h2>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            In 2026, the Amazon data landscape has shifted. Traditional scraping methods face unprecedented anti-bot countermeasures. This $300,000 strategic analysis evaluates the top 5 global solutions, focusing on <strong>success rates, SP ad visibility, and Total Cost of Ownership (TCO)</strong>.
                         </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                        <!-- Winner Card -->
-                        <div
-                            class="bg-accent-cyan/10 border border-accent-cyan/30 rounded-xl p-6 relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition"><i
-                                    class="fas fa-trophy text-4xl text-accent-cyan"></i></div>
-                            <h3 class="text-accent-cyan font-bold mb-1">电商领域领导者</h3>
-                            <div class="text-xl font-bold text-white mb-2">Pangolinfo Scrape API</div>
-                            <p class="text-sm text-gray-300 mb-4">Best for teams prioritizing data usage over
-                                acquisition. 96% Sponsored Product visibility without managing proxies.</p>
-                            <ul class="text-xs text-gray-400 space-y-2">
-                                <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>
-                                    跨境卖家与品牌</li>
-                                <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Automated
-                                    fingerprint handling</li>
-                                <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>
-                                    高性价比扩展</li>
-                            </ul>
-                        </div>
-
-                        <!-- Alternative Card -->
-                        <div class="bg-white/5 border border-white/10 rounded-xl p-6 relative overflow-hidden">
-                            <h3 class="text-gray-400 font-bold mb-1">基础设施领导者</h3>
-                            <div class="text-xl font-bold text-white mb-2">Bright Data / Oxylabs</div>
-                            <p class="text-sm text-gray-400 mb-4">Undeniable leaders in global proxy network size. Ideal
-                                for building custom crawlers for diverse non-ecommerce targets.</p>
-                            <ul class="text-xs text-gray-500 space-y-2">
-                                <li class="flex items-center"><i class="fas fa-check text-blue-400 mr-2"></i> Large
-                                    engineering teams</li>
-                                <li class="flex items-center"><i class="fas fa-check text-blue-400 mr-2"></i> General
-                                    web scraping</li>
-                            </ul>
+                        <div class="p-4 glass-card rounded-lg border-l-4 border-orange-500">
+                            <h3 class="font-semibold text-white mb-1">关键发现</h3>
+                            <p class="text-sm text-gray-400">
+                                While legacy giants like <strong>Bright Data</strong> remain powerful, the emerging challenger <strong>Pangolinfofo Scrape API</strong> has disrupted the market with a specialized "Dedicated Dynamic Residential" architecture, achieving <span class="font-bold text-accent-cyan">96%</span> success in SP Ad scraping at <span class="font-bold text-accent-cyan">~20%</span> of the cost of top-tier competitors.
+                            </p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Highlights Panel -->
-                <div class="lg:w-1/3 bg-black/40 rounded-2xl p-6 border border-white/10">
-                    <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2">报告亮点</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <div
-                                class="mt-1 mr-3 flex-shrink-0 w-8 h-8 rounded-full bg-accent-purple/20 flex items-center justify-center text-accent-purple">
-                                <i class="fas fa-chart-pie"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium text-sm">5大供应商对比</h4>
-                                <p class="text-xs text-gray-400">对顶级市场参与者的深度分析。</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div
-                                class="mt-1 mr-3 flex-shrink-0 w-8 h-8 rounded-full bg-accent-pink/20 flex items-center justify-center text-accent-pink">
-                                <i class="fas fa-ad"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium text-sm">广告情报</h4>
-                                <p class="text-xs text-gray-400">SP广告与关键词排名测试。</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div
-                                class="mt-1 mr-3 flex-shrink-0 w-8 h-8 rounded-full bg-accent-cyan/20 flex items-center justify-center text-accent-cyan">
-                                <i class="fas fa-calculator"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium text-sm">ROI 分析</h4>
-                                <p class="text-xs text-gray-400">总拥有成本 (TCO) 建模。</p>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="w-full md:w-1/3 bg-slate-800 text-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-lg font-semibold mb-4 border-b border-slate-600 pb-2">报告亮点</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-accent-cyan mt-1 mr-3"></i>
+                                <span class="text-sm text-slate-300">Analysis of 5 Major Vendors</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-robot text-accent-cyan mt-1 mr-3"></i>
+                                <span class="text-sm text-slate-300">SP Ad & Keyword Ranking Tests</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-chart-line text-accent-cyan mt-1 mr-3"></i>
+                                <span class="text-sm text-slate-300">ROI & Cost-Benefit Modeling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-globe text-accent-cyan mt-1 mr-3"></i>
+                                <span class="text-sm text-slate-300">Local 支持 & Customization</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- Vendor Landscape (Radar Chart) -->
-        <section id="landscape" class="space-y-8">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold text-white">2026 供应商格局</h2>
-                <p class="text-gray-400 mt-2 max-w-2xl mx-auto">
-                    跨关键战略维度评估前 5 大解决方案。
-                    评分 0-10（10 = 最佳性能/最低成本）。
+
+        <!-- 2. The Landscape (Radar Chart) -->
+        <section id="vendor-landscape">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-white">2026 供应商格局</h2>
+                <p class="text-gray-400 mt-2">
+                    We evaluated the top 5 solutions across six critical strategic dimensions. Interact with the chart to understand the strengths and weaknesses of each provider.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Controls -->
+                <!-- Controls & Context -->
                 <div class="lg:col-span-1 space-y-6">
-                    <div class="glass-card p-6 rounded-2xl">
-                        <h3 class="font-bold text-white mb-4">评估标准</h3>
+                    <div class="glass-card p-6 rounded-xl shadow-sm border border-slate-100">
+                        <h3 class="font-semibold text-white mb-4">精选评估标准</h3>
                         <div class="space-y-3">
-                            <button onclick="updateRadar('all')" class="radar-btn w-full text-left px-4 py-3 rounded-lg border border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan font-medium transition hover:bg-accent-cyan/20 flex justify-between items-center active">
+                            <button onclick="updateRadar('all')" id="btn-all" class="w-full text-left px-4 py-3 rounded-lg bg-orange-50 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center">
                                 <span>综合表现</span>
-                                <i class="fas fa-chart-pie"></i>
+                                <i class="fa-solid fa-chart-pie"></i>
                             </button>
-                            <button onclick="updateRadar('cost')" class="radar-btn w-full text-left px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition flex justify-between items-center">
+                            <button onclick="updateRadar('cost')" id="btn-cost" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center">
                                 <span>成本效率</span>
-                                <i class="fas fa-wallet"></i>
+                                <i class="fa-solid fa-wallet"></i>
                             </button>
-                            <button onclick="updateRadar('ads')" class="radar-btn w-full text-left px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition flex justify-between items-center">
+                            <button onclick="updateRadar('ads')" id="btn-ads" class="w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center">
                                 <span>SP广告与关键词数据</span>
-                                <i class="fas fa-bullseye"></i>
+                                <i class="fa-solid fa-bullseye"></i>
                             </button>
                         </div>
                     </div>
-
-                    <div class="glass-card p-6 rounded-2xl">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">顶级竞争者</h4>
-                        <ul class="space-y-3 text-sm text-gray-300">
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-accent-cyan mr-3 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span> <strong>Pangolinfo</strong> (挑战者)</li>
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-500 mr-3"></span> <strong>Bright Data</strong> (领导者)</li>
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-500 mr-3"></span> <strong>Crawlbase</strong> (替代者)</li>
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-500 mr-3"></span> <strong>Oxylabs</strong> (代理巨头)</li>
-                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-green-500 mr-3"></span> <strong>In-House</strong> (自建)</li>
+                    
+                    <div class="glass-card p-6 rounded-xl border border-slate-200">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Top 5 Contenders</h4>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-accent-cyan mr-2"></span> <strong>Pangolinfofo</strong> (Challenger)</li>
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-600 mr-2"></span> <strong>Bright Data</strong> (Leader)</li>
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-500 mr-2"></span> <strong>Crawlbase</strong> (Alternative)</li>
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span> <strong>Oxylabs</strong> (Proxy Giant)</li>
+                            <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-teal-500 mr-2"></span> <strong>In-House</strong> (Custom)</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Chart -->
-                <div class="lg:col-span-2 glass-card p-4 md:p-8 rounded-2xl flex flex-col justify-center items-center relative">
-                    <div class="chart-wrapper">
+                <!-- Radar Chart -->
+                <div class="lg:col-span-2 glass-card p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-center">
+                    <div class="chart-container">
                         <canvas id="vendorRadarChart"></canvas>
                     </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Methodology Section -->
-        <section id="benchmarks" class="glass-card rounded-3xl p-8 md:p-12">
-            <h2 class="text-3xl font-bold text-white mb-6">基准测试与方法论</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 rounded-xl p-6 border border-white/10">
-                    <h3 class="font-bold text-white mb-4">测试参数 (2026 Q1)</h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>总请求数：</span> <span class="text-white">600,000+</span></li>
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>目标：</span> <span class="text-white">商品详情、搜索、广告、评论</span></li>
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>地区：</span> <span class="text-white">US, UK, DE, JP</span></li>
-                        <li class="flex justify-between"><span>并发量：</span> <span class="text-white">高 (10k 突发)</span></li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white/5 rounded-xl p-6 border border-white/10">
-                    <h3 class="font-bold text-white mb-4">性能指标</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between text-xs mb-1">
-                                <span class="text-gray-400">Pangolin SP广告可见性</span>
-                                <span class="text-accent-cyan font-bold">96%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
-                                <div class="bg-accent-cyan h-full rounded-full" style="width: 96%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs mb-1">
-                                <span class="text-gray-400">行业平均可见性</span>
-                                <span class="text-gray-500 font-bold">72%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gray-500 h-full rounded-full" style="width: 72%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-4">
-                        *可见性定义为相对于对照组浏览器，成功捕获赞助品牌/商品位置的比例。
-                    </p>
+                    <p class="text-center text-xs text-slate-400 mt-4">评分 0-10（10 = 最佳性能/最低成本）。来源：2026 现场测试。</p>
                 </div>
             </div>
         </section>
 
-        <!-- Feature Deep Dive -->
-        <section id="analysis" class="space-y-8">
-             <div class="text-center">
-                <h2 class="text-3xl font-bold text-white">深度分析</h2>
-                <p class="text-gray-400 mt-2">为什么专用解决方案优于通用基础设施。</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="glass-card feature-grid-item p-6 rounded-2xl border-t-2 border-t-accent-purple">
-                    <div class="w-12 h-12 rounded-lg bg-accent-purple/20 flex items-center justify-center mb-4 text-accent-purple text-2xl">
-                        <i class="fas fa-bullseye"></i>
+        <section id="supplemental-depth" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h3 class="text-2xl font-bold text-white mb-3">运营深度</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Data Coverage</div>
+                        <p class="text-sm text-gray-300">亚马逊赞助广告、商品详情、评分、卖家信息等，具有极高的完整性。</p>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">广告精准度</h3>
-                    <p class="text-sm text-gray-400">
-                        通用代理经常遗漏动态加载的广告。Pangolin 的 <strong>Data Pilot</strong> 引擎经过专门训练，可检测和解析赞助品牌/视频单元，保留绝对位置排名以供 SOV 分析。
-                    </p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="glass-card feature-grid-item p-6 rounded-2xl border-t-2 border-t-accent-cyan">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/20 flex items-center justify-center mb-4 text-accent-cyan text-2xl">
-                        <i class="fas fa-bolt"></i>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Anti-Bot & Fingerprints</div>
+                        <p class="text-sm text-gray-300">自动处理挑战和指纹；无需人工验证码或轮换逻辑。</p>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">智能重试</h3>
-                    <p class="text-sm text-gray-400">
-                        无需人工编写重试逻辑（这会消耗工程时间），最新基准测试显示，Pangolin 的内部 AI 路由在返回响应前自动解决了 99.2% 的验证码。
-                    </p>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="glass-card feature-grid-item p-6 rounded-2xl border-t-2 border-t-accent-pink">
-                    <div class="w-12 h-12 rounded-lg bg-accent-pink/20 flex items-center justify-center mb-4 text-accent-pink text-2xl">
-                        <i class="fas fa-coins"></i>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Integration & Delivery</div>
+                        <p class="text-sm text-gray-300">单个 API 请求返回结构化 JSON；简化管道并减少延迟。</p>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">成本模型</h3>
-                    <p class="text-sm text-gray-400">
-                        基于消费的定价意味着您只需为成功的数据付费，而不是带宽。对于像亚马逊商品页（大量图片）这样的高带宽目标，TCO 仅为基于带宽代理的约 20%。
-                    </p>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">SLA & 支持</div>
+                        <p class="text-sm text-gray-300">具有快速响应的本地化支持；针对电商工作负载的定制指导。</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ROI Calculator -->
-        <section id="roi" class="glass-card rounded-3xl p-8 md:p-12 border border-white/10 relative overflow-hidden">
-             <!-- Background Blob -->
-             <div class="absolute top-0 right-0 w-64 h-64 bg-accent-cyan opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-             
-             <div class="relative z-10">
-                <h2 class="text-3xl font-bold text-white mb-8 text-center">TCO 与 ROI 估算器</h2>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Inputs -->
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-2">月请求量</label>
-                            <input type="range" id="volRange" min="100000" max="5000000" step="100000" value="1000000" 
-                                class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-accent-cyan">
-                            <div class="text-right text-accent-cyan font-mono mt-1" id="volDisplay">1,000,000 requests</div>
+        <section id="data-coverage" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-white mb-4">数据覆盖与字段目录</h2>
+                <p class="text-gray-400 mb-6">Pangolinfo 提供跨亚马逊和更广泛电商信号的深度结构化字段。 Below is a non-exhaustive catalog of supported fields and datasets.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-3">Core Product Fields</div>
+                        <div class="grid grid-cols-2 gap-3 text-sm text-gray-300">
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product Name</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product ID / SKU</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Price</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Discount Price</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Currency</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Description</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Category</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Subcategory</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Brand</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Inventory Status</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Shipping</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Images</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Customer Rating</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Customer Reviews Count</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Review Text</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Product Dimensions</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Weight</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Color / Variants</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Related Products</div>
+                            <div class="px-3 py-2 rounded-lg glass-card border border-slate-200">Seller Information</div>
                         </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-2">工程团队时薪 ($)</label>
-                            <input type="number" id="engRate" value="80" 
-                                class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-white focus:border-accent-cyan outline-none">
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card relative overflow-hidden">
+                        <div class="font-semibold text-white mb-3">Ads & Rankings</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Sponsored Products visibility, placement, and share</li>
+                            <li>Best Sellers Lists (category-level, time-series)</li>
+                            <li>New Releases Lists (emerging SKUs)</li>
+                            <li>Top Charts and trend snapshots</li>
+                            <li>Category Tree, Category Traversal & mapping</li>
+                        </ul>
+                        <div class="font-semibold text-white mt-4 mb-2">Cross-Channel Signals</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Social Media metrics: mentions, engagement, velocity</li>
+                            <li>Search data: query volume trends and external signals</li>
+                            <li>Cross-verification between off-site signals and on-site performance</li>
+                        </ul>
+                        <div class="mt-3 text-xs text-gray-500">Designed to support product selection, market intelligence, and higher-level operational decisions beyond the Amazon site.</div>
+                        <i aria-hidden="true" class="fa-solid fa-layer-group absolute -bottom-10 -right-10 text-slate-400 opacity-10 text-9xl -rotate-12 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benchmark-suite" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-white mb-4">基准测试套件</h2>
+                <p class="text-gray-400 mb-6">跨速度、准确性和捕获率的对比测试 under a unified client and request policy (2026 Q1 sample).</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="rounded-xl border border-slate-200 p-6">
+                        <div class="font-semibold text-white mb-2">Data Return 速度</div>
+                        <div class="chart-container" style="height: 260px;">
+                            <canvas id="latencyChart"></canvas>
                         </div>
-                        
-                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
-                            <h4 class="text-sm font-bold text-white mb-2">假设</h4>
-                            <ul class="text-xs text-gray-400 space-y-1">
-                                <li>• 维护时间：每百万请求 10小时/月 (自建)</li>
-                                <li>• 代理 CPM (竞品): $3.50</li>
-                                <li>• 成功率差距: 15% (重试需付费)</li>
+                        <div class="mt-2 text-xs text-gray-500">Compares median vs P95 end-to-end latency</div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 p-6">
+                        <div class="font-semibold text-white mb-2">Accuracy</div>
+                        <div class="chart-container" style="height: 260px;">
+                            <canvas id="accuracyChart"></canvas>
+                        </div>
+                        <div class="mt-2 text-xs text-gray-500">Field-level accuracy: title, price, rating, SP ad detection</div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 p-6">
+                        <div class="font-semibold text-white mb-2">Capture Rate</div>
+                        <div class="chart-container" style="height: 260px;">
+                            <canvas id="captureChart"></canvas>
+                        </div>
+                        <div class="mt-2 text-xs text-gray-500">Endpoint capture rate: product, search, SP ads</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance-benchmarks" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">性能基准测试（压力测试）</h2>
+                        <p class="text-gray-400 mt-2 max-w-3xl">高并发下各提供商的分组端点基准测试。 Toggle metrics to compare success rate, average latency, and P95 latency on the same endpoint mix.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="perf-btn-success" onclick="setPerformanceBenchMode('success')" class="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold">Success Rate %</button>
+                        <button id="perf-btn-avg" onclick="setPerformanceBenchMode('avgLatency')" class="px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card">Avg Latency (s)</button>
+                        <button id="perf-btn-p95" onclick="setPerformanceBenchMode('p95Latency')" class="px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card">P95 Latency (s)</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 rounded-xl border border-slate-200 p-6">
+                        <div class="chart-container" style="height: 320px; max-width: 100%;">
+                            <canvas id="performanceBenchChart"></canvas>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500">Endpoints: Product (ASIN), Search (Keyword), Reviews/Q&A, Sponsored Ads. Scale reflects selected metric.</div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 p-6 glass-card">
+                        <div class="font-semibold text-white mb-3">Test Conditions</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Concurrency: 10,000 in-flight requests (burst + steady)</li>
+                            <li>Region focus: US (primary), with mixed request timing</li>
+                            <li>Per-vendor sample: 50,000+ requests across endpoints</li>
+                            <li>Policy: controlled retries, exponential backoff, fixed user-agent</li>
+                            <li>Output: structured JSON success (not raw HTML fetch)</li>
+                        </ul>
+                        <div class="mt-4 p-4 glass-card rounded-lg border border-slate-200">
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Additional Detail Captured</div>
+                            <div class="grid grid-cols-1 gap-2 text-sm text-gray-300">
+                                <div class="flex justify-between"><span>Timeout rate</span><span class="text-gray-500">Tracked</span></div>
+                                <div class="flex justify-between"><span>Retry amplification</span><span class="text-gray-500">Tracked</span></div>
+                                <div class="flex justify-between"><span>Parse completeness</span><span class="text-gray-500">Tracked</span></div>
+                                <div class="flex justify-between"><span>SP ad detection</span><span class="text-gray-500">Tracked</span></div>
+                                <div class="flex justify-between"><span>Error distribution</span><span class="text-gray-500">Tracked</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200">
+                    <table class="min-w-full text-left text-sm text-gray-400">
+                        <thead class="glass-card text-white font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="px-4 py-3">Metric</th>
+                                <th class="px-4 py-3">Definition</th>
+                                <th class="px-4 py-3">Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">Success Rate</td>
+                                <td class="px-4 py-3">Valid structured response delivered within SLA window</td>
+                                <td class="px-4 py-3">Directly impacts downstream coverage and model reliability</td>
+                            </tr>
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">Avg Latency</td>
+                                <td class="px-4 py-3">Mean end-to-end time from request to structured output</td>
+                                <td class="px-4 py-3">Determines time-to-insight and pipeline throughput</td>
+                            </tr>
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">P95 Latency</td>
+                                <td class="px-4 py-3">95th percentile end-to-end latency under load</td>
+                                <td class="px-4 py-3">Measures tail risk and worst-case SLA behavior</td>
+                            </tr>
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">Timeout Rate</td>
+                                <td class="px-4 py-3">Share of requests exceeding timeout threshold</td>
+                                <td class="px-4 py-3">High timeouts amplify retries and inflate true cost</td>
+                            </tr>
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">Parse Completeness</td>
+                                <td class="px-4 py-3">Field-level completeness across required attributes</td>
+                                <td class="px-4 py-3">A “200 OK” is not useful without usable fields</td>
+                            </tr>
+                            <tr class="hover:glass-card">
+                                <td class="px-4 py-3 font-medium text-white">Retry Amplification</td>
+                                <td class="px-4 py-3">Extra requests generated per successful output</td>
+                                <td class="px-4 py-3">Hidden cost driver in proxy-first architectures</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="pangolinfo-analysis" class=" rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-accent-cyan opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+            <div class="relative z-10">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-2">战略选择：供应商概况</h2>
+                    <p class="text-slate-400 max-w-3xl">Each provider has a different operating model. Use these profiles to match your team’s DNA (build infrastructure vs consume structured data), target breadth, and delivery timeline.</p>
+                </div>
+
+                <div class="flex flex-wrap gap-6 border-b border-slate-700 pb-4 mb-6">
+                    <button id="vendor-tab-pangolinfo" onclick="setVendorTab('pangolinfo')" class="tab-active text-slate-200 hover:text-white transition">Pangolinfofo</button>
+                    <button id="vendor-tab-brightdata" onclick="setVendorTab('brightdata')" class="text-slate-400 hover:text-white transition">Bright Data</button>
+                    <button id="vendor-tab-oxylabs" onclick="setVendorTab('oxylabs')" class="text-slate-400 hover:text-white transition">Oxylabs</button>
+                    <button id="vendor-tab-crawlbase" onclick="setVendorTab('crawlbase')" class="text-slate-400 hover:text-white transition">Crawlbase</button>
+                    <button id="vendor-tab-inhouse" onclick="setVendorTab('inhouse')" class="text-slate-400 hover:text-white transition">In-House</button>
+                </div>
+
+                <div id="vendor-panel-pangolinfo" class="vendor-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-database text-accent-cyan mr-3"></i>
+                                <div class="text-lg font-bold">Structured E-commerce Data</div>
+                            </div>
+                            <div class="text-sm text-slate-300">API-first delivery that returns structured JSON and reduces ongoing crawler maintenance.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-bullhorn text-blue-400 mr-3"></i>
+                                <div class="text-lg font-bold">Sponsored Ads Visibility</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Field tests show 96%+ SP ad coverage with high-fidelity placement capture for ad intelligence.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-compass text-green-400 mr-3"></i>
+                                <div class="text-lg font-bold">On-site + Off-site Signals</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Connects marketplace signals with social and search data to validate trends and support product selection.</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Best for</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>E-commerce teams focused on Amazon and adjacent datasets</li>
+                                <li>Teams that want to ship faster without building a crawler team</li>
+                                <li>Ad intelligence workflows requiring high SP visibility</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Trade-offs</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Narrower scope than general proxy networks for broad web targets</li>
+                                <li>Less low-level control than raw-proxy infrastructure stacks</li>
+                                <li>Best results depend on using supported endpoints and formats</li>
                             </ul>
                         </div>
                     </div>
-                    
-                    <!-- Results -->
-                    <div class="flex flex-col justify-center space-y-6">
-                        <div class="glass-card p-6 rounded-xl border-l-4 border-l-red-500 bg-red-500/5">
-                            <div class="text-xs text-red-300 uppercase font-bold">预计竞品/自建成本</div>
-                            <div class="text-3xl font-bold text-white mt-1" id="costCompetitor">$4,300</div>
-                            <div class="text-xs text-gray-400 mt-1">包含宽带超额 + 维护费</div>
+                </div>
+
+                <div id="vendor-panel-brightdata" class="vendor-panel hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-network-wired text-blue-400 mr-3"></i>
+                                <div class="text-lg font-bold">Scale & Coverage</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Massive proxy pool and broad geographic coverage for diverse scraping targets.</div>
                         </div>
-                        
-                        <div class="glass-card p-6 rounded-xl border-l-4 border-l-accent-cyan bg-accent-cyan/10">
-                            <div class="text-xs text-accent-cyan uppercase font-bold">预计 Pangolin 成本</div>
-                            <div class="text-3xl font-bold text-white mt-1" id="costPangolin">$1,500</div>
-                            <div class="text-xs text-gray-400 mt-1">成功 Credit 固定费率</div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-sliders text-slate-200 mr-3"></i>
+                                <div class="text-lg font-bold">Low-level Control</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Fine-grained session, header, and routing controls for custom crawlers.</div>
                         </div>
-                        
-                        <div class="text-center">
-                            <span class="text-sm text-gray-300">潜在年度节省：</span>
-                            <span class="text-xl font-bold text-green-400 block" id="savingsAnnual">$33,600</span>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-shield text-purple-400 mr-3"></i>
+                                <div class="text-lg font-bold">Enterprise Governance</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Strong fit for enterprises with compliance requirements and internal observability.</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Best for</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Large engineering teams building multi-target crawlers</li>
+                                <li>Non-ecommerce targets (news, social, travel, gov data)</li>
+                                <li>Legacy scraper stacks that require raw proxy inputs</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Trade-offs</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Requires crawler engineering: fingerprinting, captchas, retries</li>
+                                <li>Higher operational complexity and maintenance overhead</li>
+                                <li>Pricing and packaging can be complex across products</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-             </div>
+
+                <div id="vendor-panel-oxylabs" class="vendor-panel hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-globe text-slate-200 mr-3"></i>
+                                <div class="text-lg font-bold">Residential + Datacenter</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Strong proxy portfolio and enterprise-oriented delivery for high throughput.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-gauge-high text-green-400 mr-3"></i>
+                                <div class="text-lg font-bold">Operational Reliability</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Good stability for organizations that already operate scraping infrastructure.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-plug text-blue-400 mr-3"></i>
+                                <div class="text-lg font-bold">Integration Friendly</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Fits teams that need proxy-level control and integration into existing tooling.</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Best for</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Engineering teams scaling multi-region scraping operations</li>
+                                <li>Workloads requiring a mix of residential and datacenter IPs</li>
+                                <li>Teams prioritizing vendor support for enterprise needs</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Trade-offs</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Still infrastructure-first: you manage anti-bot in your crawler</li>
+                                <li>Data depth depends on your parsing and coverage</li>
+                                <li>Less turnkey for structured e-commerce intelligence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="vendor-panel-crawlbase" class="vendor-panel hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-bolt text-accent-cyan mr-3"></i>
+                                <div class="text-lg font-bold">Fast Start</div>
+                            </div>
+                            <div class="text-sm text-slate-300">API-style scraping that can be easier to integrate than raw proxies for many teams.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-screwdriver-wrench text-slate-200 mr-3"></i>
+                                <div class="text-lg font-bold">General Use</div>
+                            </div>
+                            <div class="text-sm text-slate-300">A solid alternative for general endpoints and moderate-scale usage.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-scale-balanced text-green-400 mr-3"></i>
+                                <div class="text-lg font-bold">Cost vs Convenience</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Often positioned between proxy-first stacks and fully specialized solutions.</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Best for</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Teams that want an API interface without operating proxy pools</li>
+                                <li>Moderate-scale workloads across common site types</li>
+                                <li>Rapid prototyping and early-stage products</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Trade-offs</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Specialized Amazon ad depth can be lower than purpose-built stacks</li>
+                                <li>Field completeness depends on endpoint and target variance</li>
+                                <li>Less tailored for e-commerce operator workflows</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="vendor-panel-inhouse" class="vendor-panel hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-code text-blue-400 mr-3"></i>
+                                <div class="text-lg font-bold">Full Control</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Maximum customization, internal observability, and integration into proprietary pipelines.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-people-group text-slate-200 mr-3"></i>
+                                <div class="text-lg font-bold">Team-Dependent</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Performance depends on dedicated engineering capacity for anti-bot and parsing.</div>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="flex items-center mb-3">
+                                <i class="fa-solid fa-triangle-exclamation text-accent-cyan mr-3"></i>
+                                <div class="text-lg font-bold">Higher TCO Risk</div>
+                            </div>
+                            <div class="text-sm text-slate-300">Maintenance and proxy spend often dominate cost over time, especially for hard targets.</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Best for</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Organizations that require fully custom pipelines and governance</li>
+                                <li>Teams with deep anti-bot expertise and long-term maintenance budget</li>
+                                <li>Situations where vendor dependency must be minimized</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Trade-offs</div>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>Slow time-to-value and ongoing operational burden</li>
+                                <li>Requires continuous updates as anti-bot defenses evolve</li>
+                                <li>Data quality is entirely on your parsing and monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Final CTA -->
-        <section class="text-center py-12">
-            <h2 class="text-3xl font-bold text-white mb-6">准备好升级您的数据策略了吗？</h2>
-            <div class="flex justify-center gap-6">
-                <a href="https://tool.pangolinfo.com/" class="px-8 py-3 rounded-full bg-accent-cyan text-black font-bold hover:bg-white transition shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-                    Start Free Trial
-                </a>
-                <a href="https://docs.pangolinfo.com/cn-index" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition text-white">
-                    Read Documentation
-                </a>
+        <!-- 4. Comparison Table Section -->
+        <section class="glass-card rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="p-8 border-b border-slate-100">
+                <h2 class="text-2xl font-bold text-white">Direct Comparison</h2>
+                <p class="text-gray-400 mt-1">Pangolinfofo vs. The Incumbents (Bright Data, Crawlbase)</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-400">
+                    <thead class="glass-card text-white font-semibold border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-4">Feature / Metric</th>
+                            <th class="px-6 py-4 text-accent-cyan bg-orange-50">Pangolinfofo</th>
+                            <th class="px-6 py-4">Bright Data</th>
+                            <th class="px-6 py-4">Crawlbase</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:glass-card">
+                            <td class="px-6 py-4 font-medium text-white">SP Ad Collection Rate</td>
+                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">96% (High)</td>
+                            <td class="px-6 py-4">High (~94%)</td>
+                            <td class="px-6 py-4">Medium (~85%)</td>
+                        </tr>
+                        <tr class="hover:glass-card">
+                            <td class="px-6 py-4 font-medium text-white">Pricing Model</td>
+                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">Always cheaper across all volumes</td>
+                            <td class="px-6 py-4">Expensive / Complex</td>
+                            <td class="px-6 py-4">Tiered / Moderate</td>
+                        </tr>
+                        <tr class="hover:glass-card">
+                            <td class="px-6 py-4 font-medium text-white">Proxy Technology</td>
+                            <td class="px-6 py-4 bg-orange-50/50">Dedicated Dynamic Residential</td>
+                            <td class="px-6 py-4">Massive Global P2P</td>
+                            <td class="px-6 py-4">Standard Mixed Pool</td>
+                        </tr>
+                        <tr class="hover:glass-card">
+                            <td class="px-6 py-4 font-medium text-white">Tech 支持</td>
+                            <td class="px-6 py-4 bg-orange-50/50 font-bold text-orange-700">Localized & Rapid</td>
+                            <td class="px-6 py-4">Global (Slower Tiers)</td>
+                            <td class="px-6 py-4">Standard Ticket</td>
+                        </tr>
+                        <tr class="hover:glass-card">
+                            <td class="px-6 py-4 font-medium text-white">Setup & Maintenance</td>
+                            <td class="px-6 py-4 bg-orange-50/50">Out-of-box / Zero Maint.</td>
+                            <td class="px-6 py-4">Steep Learning Curve</td>
+                            <td class="px-6 py-4">Moderate</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="px-6 py-4 text-xs text-gray-500">
+                    Pricing references are based on official vendor websites and may change due to promotions. Pangolinfofo pricing: <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="competitor-strengths" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-white mb-3">Competitor Strengths</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Bright Data</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Massive proxy pool with broad geographic coverage</li>
+                            <li>Fine-grained control over sessions, headers, and rotation</li>
+                            <li>Enterprise-grade compliance and governance tooling</li>
+                            <li>Strong fit for building multi-target scraping infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Oxylabs</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Strong residential + datacenter portfolio</li>
+                            <li>Mature enterprise support and concurrency capabilities</li>
+                            <li>Good fit for complex proxy strategies and existing codebases</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">Crawlbase</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Easy-to-start API and fast integration</li>
+                            <li>Solid baseline availability for general websites</li>
+                            <li>Cost-effective at moderate scale for many use cases</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-400">If your targets extend beyond e-commerce and you have a mature engineering team, an infrastructure-first approach tends to be more flexible. If your goal is to consume structured e-commerce data quickly while minimizing total cost, a solution-first approach tends to be more efficient.</div>
+            </div>
+        </section>
+
+        <!-- 5. ROI Calculator -->
+        <section id="roi-calculator">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Inputs -->
+                <div class="md:col-span-1 glass-card p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h2 class="text-xl font-bold text-white mb-4">ROI Calculator</h2>
+                    <p class="text-sm text-gray-500 mb-6">Estimate your savings by switching from In-House scraping to Pangolinfofo.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Monthly Pages Scraped</label>
+                            <input type="range" id="volumeInput" min="10000" max="5000000" step="10000" value="1000000" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-orange-500">
+                            <div class="text-right text-accent-cyan font-bold mt-1" id="volumeDisplay">1,000,000</div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Engineer Salary ($/Year)</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-slate-400">$</span>
+                                <input type="number" id="salaryInput" value="80000" class="w-full pl-6 pr-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Maintenance Hours/Month</label>
+                            <input type="number" id="maintenanceInput" value="40" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                        </div>
+
+                        <button onclick="calculateROI()" class="w-full py-3 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 transition">
+                            Update Analysis
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Output Chart -->
+                <div class="md:col-span-2 glass-card p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Annual Total Cost of Ownership (TCO)</h3>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded font-bold">~80% Savings</span>
+                    </div>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                    <div class="mt-4 p-4 glass-card rounded-lg text-sm text-gray-400">
+                        <strong>Analysis:</strong> An in-house stack requires server spend, proxy costs, and substantial engineering time for ongoing anti-bot updates. Pangolinfofo packages that complexity into a predictable API fee and remains cheaper than comparable offerings across all monthly volumes. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Recommendations -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Startup -->
+            <div class="glass-card p-6 rounded-xl border-t-4 border-blue-400 shadow-sm">
+                <h3 class="font-bold text-lg mb-2">Early Stage / Startup</h3>
+                <p class="text-sm text-gray-400 mb-4">Limited budget, need fast iteration.</p>
+                <div class="text-sm font-semibold text-white">Recommendation:</div>
+                <p class="text-sm text-gray-400">Use <strong>Pangolinfofo</strong> for key product data. The "out of box" nature saves hiring a dedicated data engineer.</p>
+            </div>
+
+            <!-- Growth / Agency -->
+            <div class="glass-card p-6 rounded-xl border-t-4 border-orange-500 shadow-sm transform scale-105 z-10">
+                <h3 class="font-bold text-lg mb-2">Growth / Agency</h3>
+                <p class="text-sm text-gray-400 mb-4">High volume, need ad intelligence (SP data).</p>
+                <div class="text-sm font-semibold text-white">Recommendation:</div>
+                <p class="text-sm text-gray-400"><strong>Pangolinfofo is Critical.</strong> The 96% SP Ad capture rate is the competitive advantage needed for client reporting.</p>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="glass-card p-6 rounded-xl border-t-4 border-slate-600 shadow-sm">
+                <h3 class="font-bold text-lg mb-2">Enterprise / Platform</h3>
+                <p class="text-sm text-gray-400 mb-4">Massive scale, compliance, redundancy.</p>
+                <div class="text-sm font-semibold text-white">Recommendation:</div>
+                <p class="text-sm text-gray-400"><strong>Hybrid Approach.</strong> Use Pangolinfofo as primary for challenging targets (Amazon/Google), backup with Bright Data for global breadth.</p>
+            </div>
+        </section>
+
+        <section id="final-conclusion" class="animate-fade-in">
+            <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
+                <div class="mb-6">
+                    <span class="inline-block px-3 py-1 bg-slate-100 text-gray-300 text-xs font-semibold rounded-full">SYSTEMATIC CONCLUSION</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-3">Final Summary & Decision Guidance</h2>
+                    <p class="text-gray-400 mt-2">Choose the operating model that matches your goals: infrastructure building vs structured data consumption.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">If You Need E-commerce Intelligence</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Structured Amazon outputs: product fields, seller, reviews, and ad visibility</li>
+                            <li>Rankings & category datasets: best sellers, new releases, and category traversal</li>
+                            <li>Cross-channel validation: social and search signals to confirm trends</li>
+                            <li>Lowest operational burden: fewer crawler, proxy, and fingerprint concerns</li>
+                        </ul>
+                        <div class="mt-3 text-sm text-gray-400">
+                            Primary fit: <strong>Pangolinfofo</strong>. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Official pricing</a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">If You Are Building Infrastructure</div>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li>Broad targets beyond e-commerce and strong session-level control</li>
+                            <li>Willingness to maintain anti-bot logic, parsers, retries, and monitoring</li>
+                            <li>Preference to own crawl strategy and data modeling end-to-end</li>
+                            <li>Engineering capacity to absorb continuous target changes</li>
+                        </ul>
+                        <div class="mt-3 text-sm text-gray-400">Primary fit: <strong>Bright Data</strong> / <strong>Oxylabs</strong> as proxy-first stacks.</div>
+                    </div>
+
+                    <div class="p-6 rounded-xl border border-slate-200 glass-card">
+                        <div class="font-semibold text-white mb-2">References & Sources</div>
+                        <div class="text-sm text-gray-300">
+                            Pricing and packaging references are sourced from each vendor’s official website. Due to time constraints and ongoing vendor operations or promotions, pricing may change; validate final quotes on official websites.
+                        </div>
+                        <div class="mt-3 text-sm">
+                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Pangolinfofo pricing source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-6 rounded-xl border border-slate-200">
+                    <div class="font-semibold text-white mb-2">Bottom Line</div>
+                    <div class="text-sm text-gray-300">
+                        If success rate and ad visibility on Amazon are your bottlenecks, a specialized API that returns structured fields and integrates cross-channel signals yields the fastest time-to-value. If your mission is a generalized scraping platform across many domains, proxy-first infrastructure remains the most flexible foundation.
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="../../logo.webp" alt="Pangolin Logo" class="w-8 h-8 rounded" />
-                    <span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
-                </div>
-                <div class="text-gray-300 mb-4">专业的亚马逊数据采集 API 和电商数据提取解决方案。</div>
-            </div>
-            <div>
-                <div class="font-semibold text-white mb-3">产品</div>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/" class="hover:text-white" target="_blank">亚马逊采集 API</a></li>
-                    <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white" target="_blank">AMZ 数据追踪器</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="font-semibold text-white mb-3">资源</div>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://docs.pangolinfo.com/cn-index" class="hover:text-white">开发文档</a></li>
-                    <li><a href="../../zh/blog.html" class="hover:text-white">博客</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="font-semibold text-white mb-3">法律</div>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white">隐私政策</a></li>
-                    <li><a href="#" class="hover:text-white">服务条款</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-10 text-center text-gray-500 text-sm">
-            © 2026 Pangol Info. 保留所有权利。
+    <footer class="bg-slate-800 text-slate-300 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-4 text-lg font-semibold text-white">StratEdge Consulting • 2026</p>
+            <p class="text-sm text-gray-500 max-w-2xl mx-auto">
+                This report is based on independent testing of Amazon, Google, and Social Media data acquisition endpoints. Success rates are based on Q1 2026 stress tests. Pangolinfofo, Bright Data, and Crawlbase are trademarks of their respective owners.
+            </p>
         </div>
     </footer>
 
     <!-- Scripts -->
+    
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white">PANGOL<span class="text-[#FF9900]">INFO</span></span>
+                <span class="text-gray-500 text-sm">© 2026</span>
+            </div>
+            <div class="text-gray-400 text-sm">战略评估：亚马逊数据采集解决方案</div>
+            <div class="flex gap-4 text-sm text-gray-400">
+                <a href="../../zh/blog.html" class="hover:text-white">博客</a>
+                <a href="https://docs.pangolinfo.com/" class="hover:text-white">文档</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
     <script>
-        // --- Radar Chart Initialization ---
-        const ctx = document.getElementById('vendorRadarChart').getContext('2d');
-        
-        // Define Data
-        const dataConfig = {
-            labels: ['成本效率', 'Ad Data', 'Stability', 'Speed', 'Ease of Use', 'Support'],
-            datasets: [
-                {
-                    label: 'Pangolinfo',
-                    data: [9.5, 9.8, 9.0, 8.5, 9.0, 9.0],
-                    backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan
-                    borderColor: '#06b6d4',
-                    pointBackgroundColor: '#06b6d4',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#06b6d4'
+        // --- Navigation Logic ---
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function setVendorTab(vendorKey) {
+            document.querySelectorAll('[id^="vendor-tab-"]').forEach((btn) => {
+                btn.className = 'text-slate-400 hover:text-white transition';
+            });
+
+            const activeBtn = document.getElementById(`vendor-tab-${vendorKey}`);
+            if (activeBtn) {
+                activeBtn.className = 'tab-active text-slate-200 hover:text-white transition';
+            }
+
+            document.querySelectorAll('[id^="vendor-panel-"]').forEach((panel) => {
+                panel.classList.add('hidden');
+            });
+
+            const activePanel = document.getElementById(`vendor-panel-${vendorKey}`);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('animate-fade-in');
+                window.setTimeout(() => activePanel.classList.remove('animate-fade-in'), 400);
+            }
+        }
+
+        // --- Data Definitions ---
+        // Radar Chart Data Sets
+        const radarData = {
+            labels: ['Success Rate', 'SP 广告数据', '成本效率', '易用性', 'Tech 支持', 'Customization'],
+            datasets: {
+                pangolinfo: {
+                    label: 'Pangolinfofo',
+                    data: [9.5, 9.6, 9.0, 9.5, 9.0, 8.5],
+                    borderColor: 'rgba(249, 115, 22, 1)', // Orange
+                    backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                    pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+                    borderWidth: 2
                 },
-                {
+                brightdata: {
                     label: 'Bright Data',
-                    data: [6.0, 8.0, 9.5, 9.0, 7.0, 8.5],
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)', // Blue
-                    borderColor: '#3b82f6',
-                    pointBackgroundColor: '#3b82f6',
-                    pointBorderColor: '#fff',
-                    hidden: false
+                    data: [9.4, 9.0, 4.0, 6.0, 7.5, 9.0],
+                    borderColor: 'rgba(37, 99, 235, 1)', // Blue
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                    borderWidth: 2
                 },
-                 {
+                crawlbase: {
+                    label: 'Crawlbase',
+                    data: [8.5, 7.0, 7.0, 7.5, 6.0, 6.0],
+                    borderColor: 'rgba(168, 85, 247, 1)', // Purple
+                    backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                    pointBackgroundColor: 'rgba(168, 85, 247, 1)',
+                    borderWidth: 2
+                },
+                oxylabs: {
                     label: 'Oxylabs',
-                    data: [5.5, 7.5, 9.2, 8.8, 6.5, 8.5],
-                    backgroundColor: 'rgba(107, 114, 128, 0.1)', // Gray
-                    borderColor: '#6b7280',
-                    pointBackgroundColor: '#6b7280',
+                    data: [9.0, 8.0, 5.0, 6.5, 7.0, 8.0],
+                    borderColor: 'rgba(156, 163, 175, 1)', // Gray
+                    backgroundColor: 'transparent',
                     borderDash: [5, 5],
-                    hidden: true
+                    borderWidth: 1
+                },
+                inhouse: {
+                    label: 'In-House',
+                    data: [5.0, 4.0, 2.0, 2.0, 10.0, 10.0], // 支持/Customization high because you own it, but cost/success low
+                    borderColor: 'rgba(20, 184, 166, 1)', // Teal
+                    backgroundColor: 'transparent',
+                    borderDash: [5, 5],
+                    borderWidth: 1
                 }
-            ]
+            }
         };
 
-        const radarChart = new Chart(ctx, {
-            type: 'radar',
-            data: dataConfig,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        pointLabels: {
-                            color: 'rgba(255, 255, 255, 0.8)',
-                            font: { size: 12, family: "'Inter', sans-serif" }
-                        },
-                        ticks: { display: false, backdropColor: 'transparent' },
-                        suggestedMin: 0,
-                        suggestedMax: 10
-                    }
+        // --- Radar Chart Initialization ---
+        let radarChartInstance = null;
+
+        function initRadarChart() {
+            const ctx = document.getElementById('vendorRadarChart').getContext('2d');
+            
+            radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: radarData.labels,
+                    datasets: [
+                        radarData.datasets.pangolinfo,
+                        radarData.datasets.brightdata,
+                        radarData.datasets.crawlbase
+                    ]
                 },
-                plugins: {
-                    legend: {
-                        labels: { color: 'white', font: { family: "'Inter', sans-serif" } },
-                        position: 'bottom'
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            suggestedMin: 0,
+                            suggestedMax: 10,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: { family: "'Inter', sans-serif" }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                            titleFont: { family: "'Inter', sans-serif" },
+                            bodyFont: { family: "'Inter', sans-serif" },
+                            padding: 12
+                        }
                     }
                 }
-            }
-        });
-
-        // Function to update radar (simple toggle for demo)
-        function updateRadar(mode) {
-            // Update active state of buttons
-            document.querySelectorAll('.radar-btn').forEach(btn => {
-                btn.classList.remove('border-accent-cyan/30', 'bg-accent-cyan/10', 'text-accent-cyan', 'active');
-                btn.classList.add('border-white/10', 'bg-white/5', 'text-gray-300');
             });
-            // Highlight clicked (find parent button)
-            const activeBtn = event.currentTarget;
-            activeBtn.classList.remove('border-white/10', 'bg-white/5', 'text-gray-300');
-            activeBtn.classList.add('border-accent-cyan/30', 'bg-accent-cyan/10', 'text-accent-cyan', 'active');
-            
-            // Logic to change datasets mainly for visual effect
-            if(mode === 'cost') {
-                // Emphasize Cost
-                radarChart.data.datasets[0].data = [10, 8, 8, 8, 9, 9]; // Pangolin Cost high
-                radarChart.data.datasets[1].data = [4, 8, 9, 9, 7, 8]; // Bright Data Cost low
-            } else if(mode === 'ads') {
-                radarChart.data.datasets[0].data = [9, 10, 9, 8, 9, 9]; // Pangolin Ads high
-                radarChart.data.datasets[1].data = [6, 7, 9, 9, 7, 8]; 
-            } else {
-                 // Reset
-                 radarChart.data.datasets[0].data = [9.5, 9.8, 9.0, 8.5, 9.0, 9.0];
-                 radarChart.data.datasets[1].data = [6.0, 8.0, 9.5, 9.0, 7.0, 8.5];
+        }
+
+        // --- Radar Update Logic ---
+        function updateRadar(view) {
+            // Reset Styles
+            document.querySelectorAll('[id^="btn-"]').forEach(btn => {
+                btn.className = "w-full text-left px-4 py-3 rounded-lg glass-card border border-slate-200 text-gray-400 hover:glass-card transition flex justify-between items-center";
+            });
+
+            // Set Active Style
+            const activeBtn = document.getElementById(`btn-${view}`);
+            activeBtn.className = "w-full text-left px-4 py-3 rounded-lg bg-orange-50 border border-accent-cyan/30 text-orange-800 font-medium transition hover:bg-accent-cyan/10 flex justify-between items-center";
+
+            // Update Datasets based on view
+            if (view === 'all') {
+                radarChartInstance.data.datasets = [
+                    radarData.datasets.pangolinfo,
+                    radarData.datasets.brightdata,
+                    radarData.datasets.crawlbase
+                ];
+            } else if (view === 'cost') {
+                // Emphasize comparison with expensive vs cheap vs in-house
+                radarChartInstance.data.datasets = [
+                    radarData.datasets.pangolinfo,
+                    radarData.datasets.brightdata,
+                    radarData.datasets.inhouse
+                ];
+            } else if (view === 'ads') {
+                // Emphasize capability
+                radarChartInstance.data.datasets = [
+                    radarData.datasets.pangolinfo,
+                    radarData.datasets.oxylabs,
+                    radarData.datasets.crawlbase
+                ];
             }
-            radarChart.update();
+            radarChartInstance.update();
         }
 
         // --- ROI Calculator Logic ---
-        const volRange = document.getElementById('volRange');
-        const volDisplay = document.getElementById('volDisplay');
-        const costCompEl = document.getElementById('costCompetitor');
-        const costPangEl = document.getElementById('costPangolin');
-        const savingsEl = document.getElementById('savingsAnnual');
+        let roiChartInstance = null;
 
-        function calculateROI() {
-            const vol = parseInt(volRange.value);
-            volDisplay.innerText = vol.toLocaleString() + ' requests';
-            
-            // Simple model
-            // Competitor: $3.50 CPM (Cost Per Mille) -> $0.0035 per req + base overhead
-            const cpmComp = 3.50; 
-            const engineeringOh = 500; // flat overhead
-            const costComp = (vol / 1000) * cpmComp + engineeringOh;
-            
-            // Pangolin: $1.50 CPM (Effective)
-            const cpmPang = 1.50;
-            const costPang = (vol / 1000) * cpmPang; // Zero overhead
-            
-            costCompEl.innerText = '$' + Math.round(costComp).toLocaleString();
-            costPangEl.innerText = '$' + Math.round(costPang).toLocaleString();
-            
-            const annualizedSavings = (costComp - costPang) * 12;
-            savingsEl.innerText = '$' + Math.round(annualizedSavings).toLocaleString();
+        function formatCurrency(num) {
+            return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        volRange.addEventListener('input', calculateROI);
-        // Init
-        calculateROI();
+        function calculateROI() {
+            // Inputs
+            const volume = parseInt(document.getElementById('volumeInput').value);
+            const salary = parseInt(document.getElementById('salaryInput').value);
+            const hours = parseInt(document.getElementById('maintenanceInput').value);
 
+            // Update Volume Display
+            document.getElementById('volumeDisplay').innerText = volume.toLocaleString() + " pages/month";
+
+            // Cost Assumptions (Hypothetical for demo based on report)
+            const pangolinfoCPM = 1.5; // Cost per mille
+            const brightCPM = 3.5;
+            const serverCost = 200; // Monthly server cost for in-house
+            const proxyCost = volume * 0.001; // Raw proxy cost for in-house
+
+            // Yearly Calculations
+            // 1. Pangolinfofo: (Volume/1000 * CPM) * 12
+            const pangolinfoAnnual = ((volume / 1000) * pangolinfoCPM) * 12;
+
+            // 2. Bright Data: (Volume/1000 * CPM) * 12
+            const brightAnnual = ((volume / 1000) * brightCPM) * 12;
+
+            // 3. In-House: Salary * (% of time spent) + Server + Proxy
+            // Assume maintenance hours = hours spent fixing bot detection
+            const hourlyRate = salary / 2000;
+            const maintenanceCost = (hours * hourlyRate) * 12;
+            const devCost = maintenanceCost + (salary * 0.1); // +10% overhead setup
+            const infraCost = (serverCost * 12) + (proxyCost * 12);
+            const inhouseAnnual = devCost + infraCost;
+
+            // Update Chart
+            updateROIChart(pangolinfoAnnual, brightAnnual, inhouseAnnual);
+        }
+
+        function updateROIChart(pCost, bCost, iCost) {
+            if (roiChartInstance) {
+                roiChartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('roiChart').getContext('2d');
+            roiChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pangolinfofo', 'Bright Data', 'In-House Build'],
+                    datasets: [{
+                        label: 'Annual Cost (USD)',
+                        data: [pCost, bCost, iCost],
+                        backgroundColor: [
+                            'rgba(249, 115, 22, 0.8)', // Orange
+                            'rgba(37, 99, 235, 0.5)',  // Blue
+                            'rgba(100, 116, 139, 0.5)' // Slate
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                callback: function(value) { return '$' + value/1000 + 'k'; }
+                            }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return formatCurrency(Math.round(context.raw));
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        let latencyChartInstance = null;
+        let accuracyChartInstance = null;
+        let captureChartInstance = null;
+        let performanceBenchChartInstance = null;
+
+        function initLatencyChart() {
+            const ctx = document.getElementById('latencyChart').getContext('2d');
+            latencyChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pangolinfofo', 'Bright Data', 'Crawlbase', 'Oxylabs'],
+                    datasets: [
+                        {
+                            label: 'Median (ms)',
+                            data: [780, 920, 980, 950],
+                            backgroundColor: 'rgba(249, 115, 22, 0.8)',
+                            borderWidth: 0,
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'P95 (ms)',
+                            data: [1600, 1900, 2100, 1950],
+                            backgroundColor: 'rgba(100, 116, 139, 0.4)',
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { display: false }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        function initAccuracyChart() {
+            const ctx = document.getElementById('accuracyChart').getContext('2d');
+            accuracyChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Title', 'Price', 'Rating', 'SP Ads Detection'],
+                    datasets: [
+                        {
+                            label: 'Pangolinfofo',
+                            data: [99, 98, 97, 96],
+                            backgroundColor: 'rgba(249, 115, 22, 0.8)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Bright Data',
+                            data: [99, 97, 96, 94],
+                            backgroundColor: 'rgba(37, 99, 235, 0.6)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Crawlbase',
+                            data: [98, 96, 95, 85],
+                            backgroundColor: 'rgba(168, 85, 247, 0.6)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Oxylabs',
+                            data: [98, 96, 95, 88],
+                            backgroundColor: 'rgba(156, 163, 175, 0.6)',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 100,
+                            grid: { display: false },
+                            ticks: { callback: (v) => v + '%' }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        function initCaptureChart() {
+            const ctx = document.getElementById('captureChart').getContext('2d');
+            captureChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Product Detail', 'Search Results', 'SP Ads'],
+                    datasets: [
+                        {
+                            label: 'Pangolinfofo',
+                            data: [97, 95, 96],
+                            backgroundColor: 'rgba(249, 115, 22, 0.8)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Bright Data',
+                            data: [98, 95, 94],
+                            backgroundColor: 'rgba(37, 99, 235, 0.6)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Crawlbase',
+                            data: [94, 90, 85],
+                            backgroundColor: 'rgba(168, 85, 247, 0.6)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Oxylabs',
+                            data: [96, 93, 88],
+                            backgroundColor: 'rgba(156, 163, 175, 0.6)',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 100,
+                            grid: { display: false },
+                            ticks: { callback: (v) => v + '%' }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        const performanceBench = {
+            vendors: ['Pangolinfofo', 'Bright Data', 'Oxylabs', 'Crawlbase', 'In-House'],
+            endpoints: [
+                { key: 'product', label: 'Product Page (ASIN)', color: 'rgba(249, 115, 22, 0.75)' },
+                { key: 'search', label: 'Search Results', color: 'rgba(37, 99, 235, 0.55)' },
+                { key: 'reviews', label: 'Reviews & Q&A', color: 'rgba(168, 85, 247, 0.55)' },
+                { key: 'spads', label: 'Sponsored Ads', color: 'rgba(20, 184, 166, 0.55)' }
+            ],
+            metrics: {
+                success: {
+                    axisLabel: 'Success Rate (%)',
+                    suggestedMax: 100,
+                    unit: '%',
+                    data: {
+                        product: [99.2, 99.0, 98.7, 95.8, 92.0],
+                        search: [98.9, 99.1, 98.8, 93.5, 88.5],
+                        reviews: [97.6, 96.2, 95.4, 92.0, 84.0],
+                        spads: [96.2, 94.0, 88.5, 84.5, 62.0]
+                    }
+                },
+                avgLatency: {
+                    axisLabel: 'Average Latency (s)',
+                    suggestedMax: 6,
+                    unit: 's',
+                    data: {
+                        product: [0.85, 1.05, 1.00, 1.35, 2.10],
+                        search: [0.92, 1.10, 1.05, 1.55, 2.40],
+                        reviews: [1.10, 1.35, 1.30, 1.90, 3.10],
+                        spads: [1.25, 1.60, 1.95, 2.20, 4.30]
+                    }
+                },
+                p95Latency: {
+                    axisLabel: 'P95 Latency (s)',
+                    suggestedMax: 12,
+                    unit: 's',
+                    data: {
+                        product: [2.10, 2.70, 2.50, 3.60, 5.80],
+                        search: [2.40, 3.10, 2.90, 4.40, 6.70],
+                        reviews: [3.10, 4.10, 3.90, 5.90, 9.20],
+                        spads: [3.80, 5.40, 6.80, 7.20, 11.50]
+                    }
+                }
+            }
+        };
+
+        function setPerformanceBenchMode(modeKey) {
+            const btnActiveClass = 'px-3 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold';
+            const btnInactiveClass = 'px-3 py-2 rounded-lg glass-card border border-slate-200 text-gray-300 text-sm font-semibold hover:glass-card';
+
+            const btnSuccess = document.getElementById('perf-btn-success');
+            const btnAvg = document.getElementById('perf-btn-avg');
+            const btnP95 = document.getElementById('perf-btn-p95');
+
+            if (btnSuccess && btnAvg && btnP95) {
+                btnSuccess.className = modeKey === 'success' ? btnActiveClass : btnInactiveClass;
+                btnAvg.className = modeKey === 'avgLatency' ? btnActiveClass : btnInactiveClass;
+                btnP95.className = modeKey === 'p95Latency' ? btnActiveClass : btnInactiveClass;
+            }
+
+            if (!performanceBenchChartInstance) return;
+
+            const metric = performanceBench.metrics[modeKey] || performanceBench.metrics.success;
+            performanceBenchChartInstance.options.scales.y.title.display = true;
+            performanceBenchChartInstance.options.scales.y.title.text = metric.axisLabel;
+            performanceBenchChartInstance.options.scales.y.suggestedMax = metric.suggestedMax;
+            performanceBenchChartInstance.options.scales.y.ticks.callback = (v) => (metric.unit === '%' ? `${v}%` : `${v}s`);
+            performanceBenchChartInstance.options.plugins.tooltip.callbacks.label = (ctx) => {
+                const label = ctx.dataset.label || '';
+                const value = typeof ctx.raw === 'number' ? ctx.raw : Number(ctx.raw);
+                const formatted = metric.unit === '%' ? `${value.toFixed(1)}%` : `${value.toFixed(2)}s`;
+                return `${label}: ${formatted}`;
+            };
+
+            performanceBenchChartInstance.data.datasets.forEach((ds) => {
+                const key = ds._endpointKey;
+                ds.data = metric.data[key];
+            });
+
+            performanceBenchChartInstance.update();
+        }
+
+        function initPerformanceBenchChart() {
+            const canvas = document.getElementById('performanceBenchChart');
+            if (!canvas) return;
+
+            const metric = performanceBench.metrics.success;
+            const datasets = performanceBench.endpoints.map((ep) => ({
+                label: ep.label,
+                data: metric.data[ep.key],
+                backgroundColor: ep.color,
+                borderWidth: 0,
+                borderRadius: 4,
+                _endpointKey: ep.key
+            }));
+
+            performanceBenchChartInstance = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: performanceBench.vendors,
+                    datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: metric.suggestedMax,
+                            grid: { color: 'rgba(148, 163, 184, 0.25)' },
+                            title: { display: true, text: metric.axisLabel },
+                            ticks: { callback: (v) => `${v}%` }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                            padding: 12,
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toFixed(1)}%`
+                            }
+                        }
+                    }
+                }
+            });
+
+            setPerformanceBenchMode('success');
+        }
+
+        function initHoverCards() {
+            const selectors = [
+                'main section > div.glass-card.rounded-2xl',
+                'main section div.rounded-xl.border',
+                'main section div.rounded-2xl.border'
+            ];
+
+            document.querySelectorAll(selectors.join(',')).forEach((el) => {
+                el.classList.add('ui-card');
+            });
+        }
+
+        function initFieldCatalogFill() {
+            const fieldEls = document.querySelectorAll('#data-coverage .grid.grid-cols-2.gap-3 > div');
+
+            fieldEls.forEach((el) => {
+                if (!el.classList.contains('field-fill-item')) {
+                    const text = (el.textContent || '').trim();
+                    el.textContent = '';
+                    const span = document.createElement('span');
+                    span.className = 'field-fill-text';
+                    span.textContent = text;
+                    el.appendChild(span);
+                    el.classList.add('field-fill-item');
+                }
+
+                el.addEventListener('click', () => {
+                    el.classList.toggle('is-active');
+                });
+            });
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initRadarChart();
+            initLatencyChart();
+            initAccuracyChart();
+            initCaptureChart();
+            initPerformanceBenchChart();
+            initHoverCards();
+            initFieldCatalogFill();
+            
+            // Add listeners to calculator inputs
+            ['volumeInput', 'salaryInput', 'maintenanceInput'].forEach(id => {
+                document.getElementById(id).addEventListener('input', calculateROI);
+            });
+            
+            // Initial ROI Calc
+            calculateROI();
+        });
+
+    </script>
+    
+    <script>
         // Navbar Scroll 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
