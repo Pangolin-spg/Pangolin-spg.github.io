@@ -383,7 +383,7 @@
                     class="nav-link hover:text-white transition" target="_blank">Use Cases</a>
                 <a href="../blog.html" class="nav-link hover:text-white transition">Blog</a>
                 <a href="https://docs.pangolinfo.com/en-index" class="nav-link hover:text-white transition">Docs</a>
-                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="nav-link hover:text-white transition"
+                <a href="https://www.pangolinfo.com/pricing/" class="nav-link hover:text-white transition"
                     target="_blank">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
@@ -551,9 +551,7 @@
                         <h3 id="core-architecture">Core Architecture: Pangolin Scrape API</h3>
 
                         <p>
-                            Pangolin Scrape API's design philosophy is "results-oriented." Unlike competitors who
-                            typically charge by bandwidth, Pangolin uses a per-successful-request (Credits) billing
-                            model, directly aligning with users' core need—obtaining data.
+                            Pangolinfo uses Credits, with current per-page rates depending on output format and API: structured JSON is 1 Credit per page, Raw HTML/Markdown is 0.75 Credit per page, and the separate Review API is 5 Credits per page. Failed or empty results are not billed. Check the <a href="https://www.pangolinfo.com/pricing/" target="_blank">live pricing page</a> for current plan and usage terms.
                         </p>
 
                         <div class="text-center my-8">
@@ -748,8 +746,7 @@
 
                         <p><strong>Latency Comparison:</strong></p>
                         <ul>
-                            <li><strong>Pangolin:</strong> Average response time controlled at 3-5 seconds (including
-                                full rendering)</li>
+                            <li><strong>Pangolinfo:</strong> The current official product page states an average response time under 3 seconds for live data. Actual timing varies by request and marketplace.</li>
                             <li><strong>ScraperAPI:</strong> Due to retry mechanisms, complex pages often require 9-12
                                 seconds</li>
                             <li><strong>Bright Data:</strong> Depends on configuration, but with full-stack browser mode
@@ -772,14 +769,11 @@
                                 pages contain numerous high-resolution images and scripts, loading once may consume
                                 several MB of traffic. This makes large-scale collection costs unpredictable and
                                 expensive.</li>
-                            <li><strong>Pangolin:</strong> Uses <strong>"Credit" model</strong>. Regardless of page
-                                size, scraping one Amazon product page typically consumes a fixed 1 Credit (or slightly
-                                adjusted based on difficulty).</li>
+                            <li><strong>Pangolinfo:</strong> Current rates depend on format and API: structured JSON uses 1 Credit per page; Raw HTML/Markdown uses 0.75 Credit per page; the separate Amazon Review API uses 5 Credits per page. See the <a href="https://www.pangolinfo.com/pricing/" target="_blank">current pricing page</a>.</li>
                         </ul>
 
-                        <p><strong>Actual Scenario TCO Calculation:</strong></p>
-                        <p>Assume the task is daily monitoring of 100,000 ASINs (products) for prices and ad rankings.
-                        </p>
+                        <p><strong>Illustrative Scenario TCO Model:</strong></p>
+                        <p>Assume the task is daily monitoring of 100,000 ASINs (products) for prices and ad rankings. The comparison below contains article-specific scenario estimates, not current provider quotes. As checked on 23 Nov 2026, Pangolinfo’s published monthly plans are Free: 60 Credits/$0; Starter: 9,600/$19; Professional: 60,000/$99; Expert: 240,000/$369. Above Expert, usage is tiered; calculate the workload on the <a href="https://www.pangolinfo.com/pricing/" target="_blank">current pricing page</a>.</p>
 
                         <table class="comparison-table">
                             <thead>
@@ -793,7 +787,7 @@
                             <tbody>
                                 <tr>
                                     <td>API/Proxy Fees</td>
-                                    <td>~$1,500 (Expert Plan)</td>
+                                    <td>Article scenario estimate: ~$1,500 (not current plan price)</td>
                                     <td>~$2,000+ (bandwidth fluctuation)</td>
                                     <td>~$500 (pure IP cost)</td>
                                 </tr>
@@ -811,7 +805,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Monthly Total TCO</strong></td>
-                                    <td><strong>~$1,500</strong></td>
+                                    <td><strong>Article scenario estimate: ~$1,500*</strong></td>
                                     <td><strong>~$4,200+</strong></td>
                                     <td><strong>~$16,000</strong></td>
                                 </tr>
@@ -819,8 +813,7 @@
                         </table>
 
                         <p class="text-sm text-gray-400 mt-4">
-                            <em>Note: Data based on industry average estimates; actual situations may vary based on
-                                specific business logic.</em>
+                            <em>Note: The non-Pangolinfo cost inputs are industry-average estimates; the Pangolinfo figure is this article’s scenario model, not the current Expert plan price or a current quote. Actual cost depends on current tiered rates, format, and workload.</em>
                         </p>
 
                         <h2 id="seo-strategy">Chapter 5: SEO Keyword Strategy & Data-Driven Content Optimization</h2>
@@ -967,7 +960,7 @@ if __name__ == "__main__":
                             <h4 class="font-bold text-lg mb-3 text-green-500"><i class="fas fa-rocket mr-2"></i>Next
                                 Steps</h4>
                             <ul class="mb-0">
-                                <li><strong>Start with Pangolin:</strong> Get up to 1,000 free credits at <a
+                                <li><strong>Start with Pangolin:</strong> Use 60 free credits every month with <a
                                         href="https://tool.pangolinfo.com/"
                                         class="text-accent-cyan hover:underline">tool.pangolinfo.com</a></li>
                                 <li><strong>Explore Advanced Features:</strong> Check out the <a
@@ -992,13 +985,11 @@ if __name__ == "__main__":
                     <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
                         <h3 class="text-3xl font-bold mb-4">Ready to Build Your E-commerce Intelligence Platform?</h3>
-                        <p class="text-gray-400 mb-6">Get up to 1,000 free Amazon API credits. No credit card required.
+                        <p class="text-gray-400 mb-6">Get 60 free Amazon API credits every month. No credit card is required.
                             Start extracting Amazon product data in minutes.</p>
                         <div class="flex gap-4 justify-center flex-wrap">
                             <a href="https://tool.pangolinfo.com/"
-                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
-                                Start Free Trial
-                            </a>
+                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">Start Free</a>
                             <a href="https://docs.pangolinfo.com/en-index"
                                 class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
                                 View Documentation
@@ -1037,7 +1028,7 @@ if __name__ == "__main__":
                         </div>
 
                         <!-- Pangolin Scrape API Product Card -->
-                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                        <a href="https://www.pangolinfo.com/amazon-scraper-api/"
                             class="glass-card rounded-2xl p-6 block product-card group" target="_blank">
                             <div
                                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -1046,8 +1037,7 @@ if __name__ == "__main__":
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
                                 Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">Professional Amazon & e-commerce data extraction API
-                                with 99.9% uptime</p>
+                            <p class="text-gray-400 text-sm mb-4">Amazon-native parsing with structured results and continuous data validation</p>
                             <div class="flex items-center text-accent-cyan text-sm font-semibold">
                                 <span>Learn More</span>
                                 <i
@@ -1114,12 +1104,12 @@ if __name__ == "__main__":
             <div>
                 <div class="font-semibold text-white mb-3">Products</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                    <li><a href="https://www.pangolinfo.com/amazon-scraper-api/"
                             class="hover:text-white" target="_blank">Amazon Scraping API</a></li>
                     <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white"
                             target="_blank">AMZ Data
                             Tracker</a></li>
-                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white"
+                    <li><a href="https://www.pangolinfo.com/pricing/" class="hover:text-white"
                             target="_blank">Pricing</a>
                     </li>
                 </ul>

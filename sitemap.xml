@@ -21,6 +21,15 @@
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+    <!-- Article: A JSON Response Is Not Yet a Product Record -->
+    <url>
+        <loc>https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html</loc>
+        <lastmod>2026-11-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
 
     <!-- Article 1: Getting Started with Amazon Scraping API -->
     <url>

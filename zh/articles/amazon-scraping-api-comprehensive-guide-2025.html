@@ -382,7 +382,7 @@
                     class="nav-link hover:text-white transition" target="_blank">应用案例</a>
                 <a href="../../blog.html" class="nav-link hover:text-white transition">博客</a>
                 <a href="https://docs.pangolinfo.com/cn-index" class="nav-link hover:text-white transition">文档</a>
-                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="nav-link hover:text-white transition"
+                <a href="https://www.pangolinfo.com/pricing/" class="nav-link hover:text-white transition"
                     target="_blank">价格</a>
             </div>
             <div class="flex items-center gap-4">
@@ -515,7 +515,7 @@
                         <h3 id="core-architecture">2.1 核心架构：Pangolin Scrape API</h3>
 
                         <p>
-                            Pangolin Scrape API 的设计哲学是“结果导向”。与竞品通常按带宽计费不同，Pangolin 采用按成功请求次数（Credits）计费的模式，直接对齐用户的核心诉求。
+                            Pangolinfo 以 Credits 计费，当前每页费率依输出格式与 API 而异：结构化 JSON 每页 1 Credit，Raw HTML/Markdown 每页 0.75 Credit；独立的 Review API 每页 5 Credits。失败或空结果不计费。当前月度套餐为 Free 60/$0、Starter 9,600/$19、Professional 60,000/$99、Expert 240,000/$369；超出 Expert 后按阶梯用量计价。套餐和用量条款以<a href="https://www.pangolinfo.com/pricing/" target="_blank">实时价格页</a>为准。
                         </p>
 
                         <div class="text-center my-8">
@@ -603,8 +603,7 @@
                         <h3 id="real-time-performance">维度二：实时性与高节奏感 (Burstiness)</h3>
 
                         <p>
-                            Pangolin 针对高并发设计，支持瞬间突发流量。平均响应时间控制在 3-5 秒（含完整渲染），显著快于竞品。这对于<strong>实时调价 (Repricing)</strong>
-                            至关重要，能帮助卖家比对手更快捕捉价格变动并抢占 Buy Box。
+                            Pangolinfo 当前官方产品页公布的实时数据平均响应时间为 3 秒以内。实际响应时间会随请求与站点而异；比较供应商时应使用相同工作负载和测试条件。这对于<strong>实时调价 (Repricing)</strong>至关重要。
                         </p>
 
                         <h3 id="cost-efficiency">维度三：成本效益与 TCO 模型</h3>
@@ -612,8 +611,7 @@
                         <p>
                             <strong>计费陷阱：</strong> Bright Data 按“带宽+请求”计费，亚马逊高清图片会导致成本不可控。
                             <br>
-                            <strong>Pangolin 模式：</strong> 采用 <strong>Credit 模式</strong>，无论页面大小，采集一个详情页通常只消耗固定的 1
-                            Credit，成本可预测且更低。
+                            <strong>Pangolinfo：</strong> 当前费率依输出格式与 API 而异：结构化 JSON 每页 1 Credit；Raw HTML/Markdown 每页 0.75 Credit；独立的 Amazon Review API 每页 5 Credits。请查看<a href="https://www.pangolinfo.com/pricing/" target="_blank">当前价格页</a>。
                         </p>
 
                         <table class="comparison-table">
@@ -628,7 +626,7 @@
                             <tbody>
                                 <tr>
                                     <td>API/代理费用</td>
-                                    <td>~$1,500 (企业版)</td>
+                                    <td>本文情景估算：约 $1,500（非当前套餐价）</td>
                                     <td>~$2,000+ (带宽波动)</td>
                                     <td>~$500 (纯IP成本)</td>
                                 </tr>
@@ -646,12 +644,14 @@
                                 </tr>
                                 <tr>
                                     <td><strong>月度总 TCO</strong></td>
-                                    <td><strong>~$1,500</strong></td>
+                                    <td><strong>本文情景估算：约 $1,500*</strong></td>
                                     <td><strong>~$4,200+</strong></td>
                                     <td><strong>~$16,000</strong></td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <p class="text-sm text-gray-400 mt-4"><em>注：此表为本文情景估算，并非当前供应商报价；Pangolinfo 的旧估算不代表当前套餐价。实际费用取决于格式、用量和当前阶梯价格，请使用官方价格计算器。</em></p>
 
                         <h2 id="seo-strategy">第五章：SEO 关键词策略与数据驱动的内容优化</h2>
 
@@ -743,8 +743,7 @@ if __name__ == "__main__":
                             </h4>
                             <ul class="mb-0">
                                 <li><strong>开始使用 Pangolin：</strong> 在 <a href="https://tool.pangolinfo.com/"
-                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 领取至高 1,000
-                                    个免费积分</li>
+                                        class="text-accent-cyan hover:underline">tool.pangolinfo.com</a> 每月可免费使用 60 个 Credits</li>
                                 <li><strong>探索高级功能：</strong> 查看 <a href="https://docs.pangolinfo.com/cn-index"
                                         class="text-accent-cyan hover:underline">完整 API 文档</a></li>
                                 <li><strong>加入社区：</strong> 分享您的使用案例并从其他开发者处学习</li>
@@ -757,12 +756,10 @@ if __name__ == "__main__":
                     <!-- CTA -->
                     <div class="glass-card rounded-3xl p-12 mt-8 text-center">
                         <h3 class="text-3xl font-bold mb-4">准备好构建您的电商情报平台了吗？</h3>
-                        <p class="text-gray-400 mb-6">获取至高 1,000 个免费 Amazon API 积分。无需信用卡。几分钟内开始提取 Amazon 产品数据。</p>
+                        <p class="text-gray-400 mb-6">每月可免费使用 60 个 Amazon API Credits，无需绑定信用卡。</p>
                         <div class="flex gap-4 justify-center flex-wrap">
                             <a href="https://tool.pangolinfo.com/"
-                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">
-                                开始免费试用
-                            </a>
+                                class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-pink rounded-full font-bold text-white shadow-lg hover:shadow-xl transition">开始免费使用</a>
                             <a href="https://docs.pangolinfo.com/cn-index"
                                 class="px-8 py-4 glass-card rounded-full font-bold text-white hover:bg-white/10 transition">
                                 查看 API 文档
@@ -801,7 +798,7 @@ if __name__ == "__main__":
                         </div>
 
                         <!-- Pangolin Scrape API Product Card -->
-                        <a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                        <a href="https://www.pangolinfo.com/amazon-scraper-api/"
                             class="glass-card rounded-2xl p-6 block product-card group" target="_blank">
                             <div
                                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -810,7 +807,7 @@ if __name__ == "__main__":
                             <h4
                                 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">
                                 Pangolin Scrape API</h4>
-                            <p class="text-gray-400 text-sm mb-4">专业的亚马逊及电商数据采集 API，99.9% 在线率</p>
+                            <p class="text-gray-400 text-sm mb-4">提供 Amazon 原生解析与结构化结果，并持续进行数据校验</p>
                             <div class="flex items-center text-accent-cyan text-sm font-semibold">
                                 <span>了解更多</span>
                                 <i
@@ -873,11 +870,11 @@ if __name__ == "__main__":
             <div>
                 <div class="font-semibold text-white mb-3">产品</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/"
+                    <li><a href="https://www.pangolinfo.com/amazon-scraper-api/"
                             class="hover:text-white" target="_blank">亚马逊采集 API</a></li>
                     <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white"
                             target="_blank">AMZ 数据追踪器</a></li>
-                    <li><a href="https://www.pangolinfo.com/scrape-api-pricing-2/" class="hover:text-white"
+                    <li><a href="https://www.pangolinfo.com/pricing/" class="hover:text-white"
                             target="_blank">价格</a>
                     </li>
                 </ul>

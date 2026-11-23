@@ -5,13 +5,25 @@
         <link>https://blog.pangolinfo.com/</link>
         <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
         <language>en-us</language>
-        <lastBuildDate>Fri, 13 Dec 2025 10:46:00 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 23 Nov 2026 09:10:00 +0800</lastBuildDate>
         <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
             <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
             <title>Pangol Info Scrape API Blog</title>
             <link>https://blog.pangolinfo.com/</link>
         </image>
+        <!-- Article: A JSON Response Is Not Yet a Product Record -->
+        <item>
+            <title>A JSON Response Is Not Yet a Product Record</title>
+            <link>https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html</link>
+            <guid>https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html</guid>
+            <pubDate>Mon, 23 Nov 2026 09:10:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>Validate API response envelopes and product fields before turning JSON into a decision, while preserving missing data and uncertainty.</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
+
+
 
         <!-- Article 1 -->
         <item>

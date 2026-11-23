@@ -111,17 +111,17 @@
                             </div>
                         </div>
                         <div class="text-gray-300 text-sm mb-4">
-                            The "Solution" approach. Best for teams that prioritize data usage over data acquisition. If you need 96% Sponsored Product ad visibility and do not want to manage a proxy engineering team, this specialized API is the choice.
+                            The "Solution" approach. Best for teams that prioritize data usage over data acquisition. If your work depends on Amazon sponsored-placement data and you do not want to maintain proxy and parser infrastructure, this Amazon-focused API may fit.
                         </div>
                         <div class="glass-card rounded-xl p-4 border border-accent-cyan/20">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideal for</div>
                             <ul class="space-y-2 text-sm text-gray-300">
                                 <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Cross-border sellers & brands: Need product/ad data, not IPs</li>
                                 <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Business-focused teams: Automatic bypass of fingerprints/captchas</li>
-                                <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Cost conscious: Cheaper across all volumes via tiered pricing</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mr-2 mt-1"></i>Cost depends on workload and format; compare in the current pricing calculator</li>
                             </ul>
                             <div class="mt-3 text-xs">
-                                <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
+                                <a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline">View pricing</a>
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
         <section id="positioning" class="animate-fade-in">
             <div class="glass-card rounded-2xl p-8 shadow-sm border border-slate-100">
                 <h3 class="text-2xl font-bold text-white mb-3">定位与范围</h3>
-                <p class="text-gray-400 mb-6">Bright Data 和类似的巨头在网络广度和可配置性方面表现出色。 Pangolinfo 专注于电商领域（亚马逊及相关），并在结构化字段上更加深入。 and goes deeper on structured fields. 在我们的测试中，只有 Pangolinfo 实现了 96% 以上的 SP 广告可见性。 以代理为主的提供商充当基础设施，您仍然需要维护爬虫、绕过验证码并处理指纹。, bypass captchas, and handle fingerprints. Pangolinfo 通过单个请求返回结构化 JSON。</p>
+                <p class="text-gray-400 mb-6">Bright Data 等通用供应商在网络广度和可配置性方面有优势。Pangolinfo 专注 Amazon 数据，提供原生解析器、结构化输出及站点和配送地区上下文。官方公布的监测 SP 广告位捕获指标为 90%+；实际结果会随关键词、站点、地区及 Amazon 实时结果变化。</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">When Pangolinfo Fits</div>
@@ -172,8 +172,8 @@
                     </div>
                     <div class="p-6 rounded-xl border border-accent-cyan/20 glass-card">
                         <div class="font-semibold text-white mb-2">Cost Reality</div>
-                        <p class="text-sm text-gray-300">在所有月度用量下，Pangolinfo 的价格均低于同行。</p>
-                        <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline text-sm">Pangolinfo official pricing</a>
+                        <p class="text-sm text-gray-300">Pangolinfo 的价格取决于用量、输出格式与套餐；请用当前价格计算器比较。</p>
+                        <a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline text-sm">Pangolinfo official pricing</a>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                         <div class="p-4 glass-card rounded-lg border-l-4 border-orange-500">
                             <h3 class="font-semibold text-white mb-1">关键发现</h3>
                             <p class="text-sm text-gray-400">
-                                While legacy giants like <strong>Bright Data</strong> remain powerful, the emerging challenger <strong>Pangolinfo Scrape API</strong> has disrupted the market with a specialized "Dedicated Dynamic Residential" architecture, achieving <span class="font-bold text-accent-cyan">96%</span> success in SP Ad scraping at <span class="font-bold text-accent-cyan">~20%</span> of the cost of top-tier competitors.
+                                Amazon Scraper API 面向需要 Amazon 原生结构化数据的团队。Pangolinfo 当前公布的监测 SP 广告位捕获指标为 90%+；实际结果会随关键词、站点、地区及 Amazon 实时结果变化。费用应按当前套餐、用量和输出格式比较。
                             </p>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                     <div class="chart-container">
                         <canvas id="vendorRadarChart"></canvas>
                     </div>
-                    <p class="text-center text-xs text-slate-400 mt-4">评分 0-10（10 = 最佳性能/最低成本）。来源：2026 现场测试。</p>
+                    <p class="text-center text-xs text-slate-400 mt-4">评分 0-10（10 = 最佳性能/最低成本）。这是本文的 2026 年对比，不是官方产品规格或当前价格报价。</p>
                 </div>
             </div>
         </section>
@@ -420,7 +420,7 @@
                 <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
                     <div>
                         <h2 class="text-2xl font-bold text-white">性能基准测试（压力测试）</h2>
-                        <p class="text-gray-400 mt-2 max-w-3xl">高并发下各提供商的分组端点基准测试。 Toggle metrics to compare success rate, average latency, and P95 latency on the same endpoint mix.</p>
+                        <p class="text-gray-400 mt-2 max-w-3xl">本文的示例比较模型，并非当前官方产品规格或独立核实的实时基准测试。数值取决于本文假设的端点和条件；当前已发布规格请以官方产品页为准。Toggle metrics to compare the modeled success rate, average latency, and P95 latency.</p>
                     </div>
                     <div class="flex items-center gap-2">
                         <button id="perf-btn-success" onclick="setPerformanceBenchMode('success')" class="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold">Success Rate %</button>
@@ -534,7 +534,7 @@
                                 <i class="fa-solid fa-bullhorn text-blue-400 mr-3"></i>
                                 <div class="text-lg font-bold">Sponsored Ads Visibility</div>
                             </div>
-                            <div class="text-sm text-slate-300">Field tests show 96%+ SP ad coverage with high-fidelity placement capture for ad intelligence.</div>
+                            <div class="text-sm text-slate-300">Pangolinfo reports a monitored 90%+ SP placement capture metric; actual visibility varies by keyword, marketplace, location, and live Amazon results.</div>
                         </div>
                         <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
                             <div class="flex items-center mb-3">
@@ -761,13 +761,13 @@
                     <tbody class="divide-y divide-slate-100">
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">SP Ad Collection Rate</td>
-                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">96% (High)</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">90%+</td>
                             <td class="px-6 py-4">High (~94%)</td>
                             <td class="px-6 py-4">Medium (~85%)</td>
                         </tr>
                         <tr class="hover:glass-card">
                             <td class="px-6 py-4 font-medium text-white">Pricing Model</td>
-                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">Always cheaper across all volumes</td>
+                            <td class="px-6 py-4 bg-accent-cyan/5 border border-accent-cyan/20/50 font-bold text-orange-700">Plan and usage-based pricing; check current quote</td>
                             <td class="px-6 py-4">Expensive / Complex</td>
                             <td class="px-6 py-4">Tiered / Moderate</td>
                         </tr>
@@ -792,7 +792,7 @@
                     </tbody>
                 </table>
                 <div class="px-6 py-4 text-xs text-gray-500">
-                    Pricing references are based on official vendor websites and may change due to promotions. Pangolinfo pricing: <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>
+                    Pangolinfo 的 90%+ 是当前公布的监测 SP 广告位捕获指标；实际可见性会随关键词、站点、地区及 Amazon 实时结果变化。Bright Data 与 Crawlbase 的数值是本文早期比较估算，本文未能确立其测量口径，因此不应视为可直接比较或当前实测结果。价格可能变化，请查看<a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline">Pangolinfo 当前价格</a>。
                 </div>
             </div>
         </section>
@@ -837,7 +837,7 @@
                 <!-- Inputs -->
                 <div class="md:col-span-1 glass-card p-6 rounded-xl shadow-sm border border-slate-100">
                     <h2 class="text-xl font-bold text-white mb-4">ROI Calculator</h2>
-                    <p class="text-sm text-gray-500 mb-6">Estimate your savings by switching from In-House scraping to Pangolinfo.</p>
+                    <p class="text-sm text-gray-500 mb-6">Illustrative scenario only—not a current quote. The flat-rate assumptions below do not match current plan and tiered usage pricing; compare actual needs in the live calculator.</p>
                     
                     <div class="space-y-4">
                         <div>
@@ -869,13 +869,13 @@
                 <div class="md:col-span-2 glass-card p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-white">Annual Total Cost of Ownership (TCO)</h3>
-                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded font-bold">~80% Savings</span>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded font-bold">Illustrative model</span>
                     </div>
                     <div class="chart-container" style="height: 300px;">
                         <canvas id="roiChart"></canvas>
                     </div>
                     <div class="mt-4 p-4 glass-card rounded-lg text-sm text-gray-400">
-                        <strong>Analysis:</strong> An in-house stack requires server spend, proxy costs, and substantial engineering time for ongoing anti-bot updates. Pangolinfo packages that complexity into a predictable API fee and remains cheaper than comparable offerings across all monthly volumes. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">View pricing</a>.
+                        <strong>Analysis:</strong> An in-house stack requires server spend, proxy costs, and engineering time for ongoing maintenance. Pangolinfo handles access infrastructure and Amazon-specific parsing. Current costs depend on volume, output format and usage tier; use the live pricing calculator for an estimate. <a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline">View pricing</a>.
                     </div>
                 </div>
             </div>
@@ -896,7 +896,7 @@
                 <h3 class="font-bold text-lg mb-2">Growth / Agency</h3>
                 <p class="text-sm text-gray-400 mb-4">High volume, need ad intelligence (SP data).</p>
                 <div class="text-sm font-semibold text-white">Recommendation:</div>
-                <p class="text-sm text-gray-400"><strong>Pangolinfo is Critical.</strong> The 96% SP Ad capture rate is the competitive advantage needed for client reporting.</p>
+                <p class="text-sm text-gray-400"><strong>Pangolinfo is Critical.</strong> The monitored SP placement capture metric is 90%+; actual visibility varies by keyword, marketplace, location, and live Amazon results.</p>
             </div>
 
             <!-- Enterprise -->
@@ -926,7 +926,7 @@
                             <li>Lowest operational burden: fewer crawler, proxy, and fingerprint concerns</li>
                         </ul>
                         <div class="mt-3 text-sm text-gray-400">
-                            Primary fit: <strong>Pangolinfo</strong>. <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Official pricing</a>
+                            Primary fit: <strong>Pangolinfo</strong>. <a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline">Official pricing</a>
                         </div>
                     </div>
 
@@ -947,7 +947,7 @@
                             Pricing and packaging references are sourced from each vendor’s official website. Due to time constraints and ongoing vendor operations or promotions, pricing may change; validate final quotes on official websites.
                         </div>
                         <div class="mt-3 text-sm">
-                            <a href="https://www.pangolinfo.com/scrape-api-pricing-2/" target="_blank" class="text-accent-cyan underline">Pangolinfo pricing source</a>
+                            <a href="https://www.pangolinfo.com/pricing/" target="_blank" class="text-accent-cyan underline">Pangolinfo pricing source</a>
                         </div>
                     </div>
                 </div>
@@ -1590,7 +1590,7 @@
             <div>
                 <div class="font-semibold text-white mb-3">产品</div>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="https://www.pangolinfo.com/pangolin-scrape-api-professional-web-data-crawling-service/" class="hover:text-white" target="_blank">Amazon 采集 API</a></li>
+                    <li><a href="https://www.pangolinfo.com/amazon-scraper-api/" class="hover:text-white" target="_blank">Amazon 采集 API</a></li>
                     <li><a href="https://www.pangolinfo.com/amz-data-tracker/" class="hover:text-white" target="_blank">AMZ 数据追踪器</a></li>
                 </ul>
             </div>

@@ -517,7 +517,7 @@ webhook_thread.start()
 
 # Submit async scraping tasks
 API_KEY = "your_api_key_here"
-ASYNC_ENDPOINT = "https://extapi.pangolinfo.com/api/v1/scrape/async"
+ASYNC_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
 CALLBACK_URL = "https://your-domain.com/pangolin/callback"
 
 def submit_async_task(asin, zipcode="10041"):
@@ -529,9 +529,12 @@ def submit_async_task(asin, zipcode="10041"):
     
     payload = {
         "url": f"https://www.amazon.com/dp/{asin}",
-        "callbackUrl": CALLBACK_URL,
-        "bizKey": "amzProductDetail",
-        "zipcode": zipcode
+        "parserName": "amzProductDetail",
+        "format": "json",
+        "bizContext": {
+            "callbackUrl": CALLBACK_URL,
+            "zipcode": zipcode
+        }
     }
     
     response = requests.post(ASYNC_ENDPOINT, headers=headers, json=payload)
@@ -539,7 +542,7 @@ def submit_async_task(asin, zipcode="10041"):
     if response.status_code == 200:
         result = response.json()
         if result.get('code') == 0:
-            task_id = result.get('data', {}).get('data')
+            task_id = result.get('data', {}).get('taskId')
             print(f"Task submitted: {task_id} for ASIN {asin}")
             return task_id
     return None
@@ -580,59 +583,40 @@ while processed < len(task_ids):
                         <h3 id="batch-optimization">批处理优化</h3>
 
                         <p>
-                            批量 API 允许您在单个请求中抓取多个产品，从而减少开销并提高效率：
+                            当前文档化的 Scraper API 每个请求提交一个目标。批量处理多个 ASIN 时，可分别发起请求并限制并发；需要回调交付时请使用上面的异步模式：
                         </p>
 
-                        <pre><code class="language-python">import requests
-import concurrent.futures
-from typing import List, Dict
+                        <pre><code class="language-python">import concurrent.futures
+import requests
+from typing import Dict, List
 
-class BulkAmazonScraper:
-    def __init__(self, api_key: str, batch_size: int = 50):
-        self.api_key = api_key
-        self.endpoint = "https://scrapeapi.pangolinfo.com/api/v1/scrape/batch"
-        self.batch_size = batch_size
-        
-    def scrape_products(self, asins: List[str], zipcode: str = "10041") -> List[Dict]:
-        """Scrape multiple products efficiently"""
-        all_results = []
-        
-        # Split into batches
-        for i in range(0, len(asins), self.batch_size):
-            batch = asins[i:i + self.batch_size]
-            urls = [f"https://www.amazon.com/dp/{asin}" for asin in batch]
-            
-            payload = {
-                "urls": urls,
-                "format": "rawHtml"  # Use rawHtml for batch API
-            }
-            
-            headers = {
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json"
-            }
-            
-            response = requests.post(self.endpoint, headers=headers, json=payload)
-            
-            if response.status_code == 200:
-                result = response.json()
-                if result.get('code') == 0:
-                    batch_results = result.get('data', [])
-                    all_results.extend(batch_results)
-                    print(f"Processed batch {i//self.batch_size + 1}: {len(batch)} products")
-            else:
-                print(f"Error in batch {i//self.batch_size + 1}: {response.status_code}")
-        
-        return all_results
+API_ENDPOINT = "https://scrapeapi.pangolinfo.com/api/v1/scrape"
 
-# Usage
-scraper = BulkAmazonScraper(API_KEY, batch_size=50)
+def scrape_one(api_key: str, asin: str, zipcode: str = "10041") -> Dict:
+    """提交一个文档化的商品详情请求。"""
+    response = requests.post(
+        API_ENDPOINT,
+        headers={"Authorization": f"Bearer {api_key}"},
+        json={
+            "url": f"https://www.amazon.com/dp/{asin}",
+            "parserName": "amzProductDetail",
+            "format": "json",
+            "bizContext": {"zipcode": zipcode},
+        },
+        timeout=60,
+    )
+    response.raise_for_status()
+    result = response.json()
+    if result.get("code") != 0:
+        raise ValueError(f"API error for {asin}: {result.get('message')}")
+    return result.get("data", {})
 
-# Scrape 500 products
-asins = [f"B0{i:08d}" for i in range(500)]  # Example ASINs
-results = scraper.scrape_products(asins)
+# 按账户和工作负载设置适当的并发数量。
+asins = ["B0DYTF8L2W", "B08N5WRWNW", "B0BSHF7WHW"]
+with concurrent.futures.ThreadPoolExecutor(max_workers=10) as pool:
+    results = list(pool.map(lambda asin: scrape_one(API_KEY, asin), asins))
 
-print(f"Successfully scraped {len(results)} products")</code></pre>
+print(f"Received {len(results)} responses")</code></pre>
 
                         <h3 id="parallel-processing">使用线程池的并行处理</h3>
 
@@ -859,7 +843,7 @@ class PricingIntelligence:
                                 </div>
                             </div>
                             <p class="text-sm text-gray-400 mb-4">
-                                具有 99.9% 正常运行时间和自动验证码处理功能的专业 Amazon 抓取 API。
+                                提供 Amazon 原生解析和结构化结果；Pangolinfo 负责访问、渲染及反爬基础设施。
                             </p>
                             <a href="https://www.pangolinfo.com/zh/anonymous-data-scraping-service/"
                                 class="block w-full text-center py-2 rounded-lg border border-pangolin-500 text-pangolin-400 hover:bg-pangolin-500 hover:text-white transition" target="_blank">
