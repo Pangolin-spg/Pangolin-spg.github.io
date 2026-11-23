@@ -375,6 +375,40 @@
                     data-category="Case Study">
                     Case Studies
                 </button>
+                <button
+                    class="category-filter px-6 py-2 rounded-full glass-card text-sm font-semibold border border-white/10"
+                    data-category="Strategy">
+                    Strategy
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topic clusters: crawlable pillar-and-supporting-page paths -->
+    <section class="px-6 pb-10 relative z-10" aria-labelledby="topic-clusters-title">
+        <div class="max-w-7xl mx-auto">
+            <h2 id="topic-clusters-title" class="text-3xl font-bold mb-2">Browse by topic cluster</h2>
+            <p class="text-gray-400 mb-6">Start with a pillar guide, then follow its closely related supporting articles.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card rounded-2xl p-6 border border-white/10">
+                    <p class="text-sm uppercase tracking-wider text-accent-cyan mb-2">Pillar guide · API &amp; data quality</p>
+                    <h3 class="text-xl font-bold mb-3"><a class="hover:text-accent-cyan" href="articles/amazon-scraping-api-comprehensive-guide-2025.html">Amazon Scraping API: the complete guide</a></h3>
+                    <ul class="space-y-2 text-gray-300 list-disc pl-5">
+                        <li><a class="hover:text-accent-cyan" href="articles/getting-started-amazon-scraping-api.html">Getting started with the API</a></li>
+                        <li><a class="hover:text-accent-cyan" href="articles/advanced-amazon-data-extraction-best-practices.html">Advanced data-extraction practices</a></li>
+                        <li><a class="hover:text-accent-cyan" href="articles/a-json-response-is-not-yet-a-product-record.html">Validating API responses as product records</a></li>
+                    </ul>
+                </div>
+                <div class="glass-card rounded-2xl p-6 border border-white/10">
+                    <p class="text-sm uppercase tracking-wider text-accent-cyan mb-2">Pillar page · market intelligence</p>
+                    <h3 class="text-xl font-bold mb-3"><a class="hover:text-accent-cyan" href="articles/2026-amazon-data-acquisition-strategic-review.html">Amazon data acquisition: strategic review</a></h3>
+                    <ul class="space-y-2 text-gray-300 list-disc pl-5">
+                        <li><a class="hover:text-accent-cyan" href="articles/amazon-product-selection-api-data.html">Data-driven product selection</a></li>
+                        <li><a class="hover:text-accent-cyan" href="articles/amazon-price-monitoring-system.html">Amazon price monitoring</a></li>
+                        <li><a class="hover:text-accent-cyan" href="articles/amazon-sponsored-products-ad-monitoring.html">Sponsored-product ad monitoring</a></li>
+                        <li><a class="hover:text-accent-cyan" href="articles/amazon-business-case-studies.html">Seller case studies</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -405,38 +439,6 @@
     <section class="py-20 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Strategic Review 2026 -->
-            <article class="glass-card p-8 rounded-3xl border border-white/10 hover:border-accent-cyan/30 transition group" data-category="Strategy">
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/3">
-                        <div class="aspect-video rounded-2xl bg-black/50 overflow-hidden relative border border-white/10">
-                             <div class="absolute inset-0 bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20"></div>
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-chart-pie text-5xl text-white/50 group-hover:text-accent-cyan transition duration-500"></i>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3">
-                        <div class="flex items-center gap-3 text-sm text-gray-400 mb-3">
-                            <span class="px-3 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Strategy</span>
-                            <span><i class="far fa-calendar-alt mr-2"></i>Jan 4, 2026</span>
-                            <span><i class="far fa-clock mr-2"></i>15 min read</span>
-                        </div>
-                        <h2 class="text-2xl font-bold mb-3 group-hover:text-accent-cyan transition">
-                            <a href="articles/2026-amazon-data-acquisition-strategic-review.html">2026 Strategic Review: Amazon Data Acquisition Solutions</a>
-                        </h2>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Infrastructure vs. Solution: A comprehensive technical comparison of Pangolin Scrape API, Bright Data, and Oxylabs. Includes 2026 benchmarks and interactive TCO calculator.
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <a href="articles/2026-amazon-data-acquisition-strategic-review.html" class="flex items-center text-accent-cyan font-semibold hover:gap-2 transition-all">
-                                Read Report <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </article>
 
                 <!-- Articles will be dynamically loaded here -->
             </div>
@@ -550,8 +552,22 @@
         // Articles data
         const articles = [
             {
+                title: "2026 Strategic Review: Amazon Data Acquisition Solutions",
+                category: "Strategy",
+                clusterLabel: "Market Intelligence",
+                clusterRole: "Pillar page",
+                excerpt: "A technical review of Amazon data-acquisition approaches, with context for product selection, pricing, ads, and seller decisions.",
+                icon: "chart-pie",
+                iconColor: "from-purple-500 to-cyan-600",
+                url: "articles/2026-amazon-data-acquisition-strategic-review.html",
+                date: "January 4, 2026",
+                readTime: "15 min read"
+            },
+            {
                 title: "A JSON Response Is Not Yet a Product Record",
                 category: "Amazon API",
+                clusterLabel: "API and Data Quality",
+                clusterRole: "Supporting guide",
                 excerpt: "Validate the response envelope and the fields your application needs before turning API JSON into a product decision.",
                 icon: "code",
                 iconColor: "from-cyan-500 to-blue-600",
@@ -562,6 +578,8 @@
             {
                 title: "Amazon Scraping API Ultimate Guide 2026: Pangolin vs Bright Data, Oxylabs & ScraperAPI",
                 category: "Amazon API",
+                clusterLabel: "API and Data Quality",
+                clusterRole: "Pillar guide",
                 excerpt: "Comprehensive technical comparison of leading Amazon scraping APIs. Deep dive into Pangolin Scrape API, Bright Data, Oxylabs, and ScraperAPI for e-commerce data extraction, ad intelligence, and SEO optimization.",
                 icon: "database",
                 iconColor: "from-indigo-500 to-purple-600",
@@ -572,6 +590,8 @@
             {
                 title: "Getting Started with Amazon Scraping API for Product Data Extraction",
                 category: "Amazon API",
+                clusterLabel: "API and Data Quality",
+                clusterRole: "Supporting guide",
                 excerpt: "Learn how to leverage Pangol Info's Amazon scraping API to extract comprehensive product data, pricing, and reviews from Amazon marketplace.",
                 icon: "shopping-cart",
                 iconColor: "from-orange-500 to-orange-600",
@@ -582,6 +602,8 @@
             {
                 title: "Advanced Amazon Data Extraction: Best Practices for E-commerce Intelligence",
                 category: "E-commerce",
+                clusterLabel: "API and Data Quality",
+                clusterRole: "Supporting guide",
                 excerpt: "Discover proven techniques for Amazon product data extraction, pricing intelligence, and customer review analysis at scale.",
                 icon: "box",
                 iconColor: "from-blue-500 to-blue-600",
@@ -592,6 +614,8 @@
             {
                 title: "Amazon Product Selection: Using API Data to Find Winning Products",
                 category: "Product Selection",
+                clusterLabel: "Market Intelligence",
+                clusterRole: "Supporting article",
                 excerpt: "Master Amazon product selection by analyzing market trends, competitor data, and customer behavior with automated API extraction.",
                 icon: "chart-line",
                 iconColor: "from-green-500 to-green-600",
@@ -602,6 +626,8 @@
             {
                 title: "Amazon Sponsored Products: Monitor Competitor Ad Campaigns with API",
                 category: "Amazon Ads",
+                clusterLabel: "Market Intelligence",
+                clusterRole: "Supporting article",
                 excerpt: "Track Amazon sponsored product placements, advertising strategies, and promotional campaigns using Amazon SERP API.",
                 icon: "bullhorn",
                 iconColor: "from-purple-500 to-purple-600",
@@ -612,6 +638,8 @@
             {
                 title: "Building Real-time Amazon Price Monitoring with Scraping API",
                 category: "Price Tracking",
+                clusterLabel: "Market Intelligence",
+                clusterRole: "Supporting article",
                 excerpt: "Step-by-step guide to creating an automated Amazon price tracking system using Pangol Info's e-commerce API.",
                 icon: "code",
                 iconColor: "from-cyan-500 to-cyan-600",
@@ -622,6 +650,8 @@
             {
                 title: "Scale Your Amazon Business with Data-Driven Product Intelligence",
                 category: "Case Study",
+                clusterLabel: "Market Intelligence",
+                clusterRole: "Supporting article",
                 excerpt: "Real-world case studies showing how sellers leverage Amazon scraping API for 10x growth and competitive advantage.",
                 icon: "rocket",
                 iconColor: "from-pink-500 to-pink-600",
@@ -644,7 +674,8 @@
                 const matchesSearch = searchQuery === '' ||
                     article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    article.category.toLowerCase().includes(searchQuery.toLowerCase());
+                    article.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    article.clusterLabel.toLowerCase().includes(searchQuery.toLowerCase());
                 return matchesCategory && matchesSearch;
             });
 
@@ -663,8 +694,10 @@
                         <i class="fas fa-${article.icon} text-white"></i>
                     </div>
                     
-                    <div class="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-accent-cyan mb-4">
-                        ${article.category}
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-xs font-semibold text-accent-cyan">${article.category}</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">${article.clusterLabel}</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">${article.clusterRole}</span>
                     </div>
                     
                     <h3 class="text-2xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">

@@ -204,7 +204,16 @@
             margin: 24px 0;
             overflow-x: auto;
             border: 1px solid rgba(255, 255, 255, 0.1);
+
+            scrollbar-color: #475569 #1e293b;
+            scrollbar-width: thin;
         }
+
+        article pre::-webkit-scrollbar { height: 10px; }
+        article pre::-webkit-scrollbar-track { background: #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb { background: #475569; border: 2px solid #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        article pre::-webkit-scrollbar-corner { background: #1e293b; }
 
         article pre code {
             background: none;
@@ -383,7 +392,12 @@
             border-color: rgba(56, 189, 248, 0.5);
             transform: translateY(-1px);
         }
-    </style>
+
+        .topic-cluster-nav h2 { margin: 0 0 0.75rem; font-size: 1.5rem; line-height: 1.3; color: #38bdf8; }
+        .topic-cluster-nav p { margin-bottom: 0.5rem; }
+        .topic-cluster-nav li { margin-bottom: 0; }
+        .topic-cluster-nav a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+</style>
     <link rel="icon" type="image/x-icon" href="../Pangolin.ico">
 </head>
 
@@ -780,6 +794,18 @@ def analyze_negative_feedback(reviews):
                                 </p>
 
 
+
+
+                        <section class="topic-cluster-nav glass-card rounded-2xl p-6 md:p-8 mt-12 border border-white/10" aria-label="Topic cluster: Amazon Market Intelligence">
+                            <p class="text-xs font-semibold uppercase tracking-widest text-accent-cyan mb-2">Amazon Market Intelligence · Supporting articles</p>
+                            <h2 class="text-2xl font-bold mb-3">Explore this topic cluster</h2>
+                            <p class="text-gray-300">Use the pillar to orient the topic, then explore product selection, pricing, ads, and seller case studies.</p>
+                            <ul class="grid md:grid-cols-2 gap-x-6 gap-y-3 mt-4 list-disc">                            <li><a href="2026-amazon-data-acquisition-strategic-review.html" class="hover:text-accent-cyan underline underline-offset-4">Amazon data acquisition: the strategic review</a></li>
+                            <li><a href="amazon-product-selection-api-data.html" class="hover:text-accent-cyan underline underline-offset-4">Use API data to select products</a></li>
+                            <li><a href="amazon-price-monitoring-system.html" class="hover:text-accent-cyan underline underline-offset-4">Build an Amazon price-monitoring workflow</a></li>
+                            <li><a href="amazon-sponsored-products-ad-monitoring.html" class="hover:text-accent-cyan underline underline-offset-4">Monitor sponsored-product advertising</a></li>
+                            </ul>
+                        </section>
                     </article>
 
                     <!-- Bottom CTA -->
