@@ -63,8 +63,8 @@
 
 
     <!-- Standard Nav -->
-    <nav class="fixed w-full z-[9999] transition-all duration-300 bg-black/20 backdrop-blur-md pointer-events-auto" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+    <nav class="fixed w-full z-[9999] transition-all duration-300 pointer-events-auto" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
             <a href="../index.html" class="flex items-center gap-3">
                 <img src="../logo.webp" alt="Pangolinfo Logo" class="w-8 h-8 rounded-lg" />
                 <span class="text-xl font-bold tracking-tight text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
@@ -1585,7 +1585,7 @@
     <script>
         // Navbar Scroll 
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
+            const nav = document.querySelector('#navbar > .glass-card');
             if (window.scrollY > 10) {
                 nav.classList.add('shadow-lg');
             } else {

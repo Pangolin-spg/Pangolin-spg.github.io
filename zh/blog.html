@@ -420,7 +420,7 @@
     <section class="py-10 px-6 relative z-10">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="glass-card p-6 rounded-2xl text-center">
-                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2" id="articleCount">8</div>
+                <div class="text-3xl md:text-4xl font-extrabold text-white mb-2" id="articleCount">10</div>
                 <div class="text-sm text-gray-400">已发布文章</div>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center">
@@ -661,8 +661,135 @@
                 url: "articles/amazon-business-case-studies.html",
                 date: "December 12, 2025",
                 readTime: "12 分钟阅读"
-            }
+            },
+            {
+                title: "API 数据何时被观察？时间戳与数据时效边界",
+                category: "Amazon API",
+                clusterLabel: "API 与数据质量",
+                clusterRole: "集群子页",
+                excerpt: "如何判断 API 价格数据是否足以支持决策？区分请求与接收时间和源观察时间，并按风险设定刷新规则。",
+                icon: "code",
+                iconColor: "from-cyan-500 to-blue-600",
+                url: "articles/api-observation-timestamps-and-data-freshness.html",
+                date: "2026年11月24日",
+                readTime: "7 分钟阅读"
+            },
         ];
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, character => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[character]);
+        }
+
+        async function autoIndexPublishedArticles() {
+            const isChinese = location.pathname.startsWith('/zh/');
+            const directory = isChinese ? 'zh/articles' : 'articles';
+            const apiUrl = `https://api.github.com/repos/Pangolin-spg/Pangolin-spg.github.io/contents/${directory}?ref=main`;
+            const existingByUrl = new Map(articles.map(article => [article.url, article]));
+
+            try {
+                const listingResponse = await fetch(apiUrl, {
+                    headers: { Accept: 'application/vnd.github+json' },
+                    cache: 'no-cache'
+                });
+                if (!listingResponse.ok) throw new Error(`Article index unavailable (${listingResponse.status})`);
+                const files = (await listingResponse.json()).filter(file =>
+                    file.type === 'file' && /\.html$/i.test(file.name)
+                );
+
+                const discovered = await Promise.all(files.map(async file => {
+                    const articleUrl = `articles/${encodeURIComponent(file.name)}`;
+                    const fallback = existingByUrl.get(articleUrl);
+                    try {
+                        const pageResponse = await fetch(articleUrl, { cache: 'no-cache' });
+                        if (!pageResponse.ok) return fallback || null;
+                        const page = new DOMParser().parseFromString(await pageResponse.text(), 'text/html');
+                        const schema = [...page.querySelectorAll('script[type="application/ld+json"]')]
+                            .map(script => { try { return JSON.parse(script.textContent); } catch { return null; } })
+                            .flatMap(value => Array.isArray(value) ? value : [value])
+                            .find(value => value && (value.headline || value.datePublished));
+                        const meta = selector => page.querySelector(selector)?.content?.trim() || '';
+                        const title = meta('meta[property="og:title"]') || schema?.headline ||
+                            page.querySelector('h1')?.textContent?.trim() ||
+                            page.title.replace(/\s*\|\s*Pangolinfo\s*$/i, '') ||
+                            file.name.replace(/\.html$/i, '').replace(/[-_]/g, ' ');
+                        const excerpt = meta('meta[name="description"]') || schema?.description ||
+                            fallback?.excerpt || (isChinese ? '打开文章查看完整内容。' : 'Open the article to read the full guide.');
+                        const published = schema?.datePublished || meta('meta[property="article:published_time"]');
+                        let date = fallback?.date || '';
+                        if (/^\d{4}-\d{2}-\d{2}/.test(published || '')) {
+                            const [year, month, day] = published.slice(0, 10).split('-').map(Number);
+                            date = isChinese ? `${year}年${month}月${day}日` :
+                                new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+                                    .format(new Date(Date.UTC(year, month - 1, day, 12)));
+                        }
+
+                        const searchable = `${title} ${excerpt}`.toLowerCase();
+                        let category = fallback?.category || 'Amazon API';
+                        if (!fallback) {
+                            if (/选品|product selection/.test(searchable)) category = isChinese ? '产品选择' : 'Product Selection';
+                            else if (/广告|sponsored|advertising/.test(searchable)) category = isChinese ? 'Amazon 广告' : 'Amazon Ads';
+                            else if (/价格|price tracking|price monitoring/.test(searchable)) category = isChinese ? '价格跟踪' : 'Price Tracking';
+                            else if (/案例|case stud/.test(searchable)) category = isChinese ? '案例研究' : 'Case Study';
+                            else if (/电商|e-commerce/.test(searchable)) category = 'E-commerce';
+                        }
+                        const categoryStyle = {
+                            'Strategy': ['chart-pie', 'from-purple-500 to-cyan-600', isChinese ? '市场情报' : 'Market Intelligence'],
+                            '策略': ['chart-pie', 'from-purple-500 to-cyan-600', '市场情报'],
+                            'Product Selection': ['chart-line', 'from-green-500 to-green-600', isChinese ? '市场情报' : 'Market Intelligence'],
+                            '产品选择': ['chart-line', 'from-green-500 to-green-600', '市场情报'],
+                            'Amazon Ads': ['bullhorn', 'from-purple-500 to-purple-600', isChinese ? '市场情报' : 'Market Intelligence'],
+                            'Amazon 广告': ['bullhorn', 'from-purple-500 to-purple-600', '市场情报'],
+                            'Price Tracking': ['chart-line', 'from-cyan-500 to-cyan-600', isChinese ? '市场情报' : 'Market Intelligence'],
+                            '价格跟踪': ['chart-line', 'from-cyan-500 to-cyan-600', '市场情报'],
+                            'Case Study': ['rocket', 'from-pink-500 to-pink-600', isChinese ? '市场情报' : 'Market Intelligence'],
+                            '案例研究': ['rocket', 'from-pink-500 to-pink-600', '市场情报'],
+                            'E-commerce': ['box', 'from-blue-500 to-blue-600', isChinese ? 'API 与数据质量' : 'API and Data Quality']
+                        };
+                        const style = categoryStyle[category] || [
+                            'code', 'from-cyan-500 to-blue-600', isChinese ? 'API 与数据质量' : 'API and Data Quality'
+                        ];
+                        const bodyText = (page.querySelector('article, main') || page.body)?.innerText || '';
+                        const cjkCharacters = (bodyText.match(/[\u3400-\u9fff]/g) || []).length;
+                        const estimatedMinutes = Math.max(1, Math.round((isChinese ? cjkCharacters / 450 : bodyText.split(/\s+/).length / 220)));
+
+                        return {
+                            ...fallback,
+                            title,
+                            excerpt,
+                            category,
+                            clusterLabel: fallback?.clusterLabel || style[2],
+                            clusterRole: fallback?.clusterRole || (isChinese ? '系列文章' : 'Supporting article'),
+                            icon: fallback?.icon || style[0],
+                            iconColor: fallback?.iconColor || style[1],
+                            url: articleUrl,
+                            date: date || (isChinese ? '日期待补充' : 'Date unavailable'),
+                            publishedDate: /^\d{4}-\d{2}-\d{2}/.test(published || '') ? published.slice(0, 10) : (fallback?.publishedDate || ''),
+                            readTime: fallback?.readTime || (isChinese ? `${estimatedMinutes} 分钟阅读` : `${estimatedMinutes} min read`)
+                        };
+                    } catch (error) {
+                        console.warn(`Could not read published article ${file.name}`, error);
+                        return fallback || null;
+                    }
+                }));
+
+                const liveArticles = discovered.filter(Boolean);
+                if (liveArticles.length) {
+                    liveArticles.sort((left, right) => {
+                        const toTimestamp = article => {
+                            const isoDate = article.publishedDate || String(article.date || '').match(/\d{4}-\d{2}-\d{2}/)?.[0];
+                            return isoDate ? Date.parse(`${isoDate}T00:00:00Z`) : (Date.parse(article.date) || 0);
+                        };
+                        return toTimestamp(right) - toTimestamp(left);
+                    });
+                    articles.splice(0, articles.length, ...liveArticles);
+                    renderArticles();
+                }
+            } catch (error) {
+                console.warn('Showing the saved article list because automatic indexing is temporarily unavailable.', error);
+            }
+        }
 
         let currentFilter = 'all';
         let searchQuery = '';
@@ -692,28 +819,28 @@
             noResults.classList.add('hidden');
 
             grid.innerHTML = filteredArticles.map((article, index) => `
-                <a href="${article.url}" class="article-card glass-card rounded-3xl p-8 group block" style="animation-delay: ${index * 0.1}s">
-                    <div class="icon-wrapper bg-gradient-to-br ${article.iconColor} mb-6">
-                        <i class="fas fa-${article.icon} text-white"></i>
+                <a href="${escapeHtml(article.url)}" class="article-card glass-card rounded-3xl p-8 group block" style="animation-delay: ${index * 0.1}s">
+                    <div class="icon-wrapper bg-gradient-to-br ${escapeHtml(article.iconColor)} mb-6">
+                        <i class="fas fa-${escapeHtml(article.icon)} text-white"></i>
                     </div>
                     
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-xs font-semibold text-accent-cyan">${article.category}</span>
-                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">${article.clusterLabel}</span>
-                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">${article.clusterRole}</span>
+                        <span class="px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-xs font-semibold text-accent-cyan">${escapeHtml(article.category)}</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">${escapeHtml(article.clusterLabel)}</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">${escapeHtml(article.clusterRole)}</span>
                     </div>
                     
                     <h3 class="text-2xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
-                        ${article.title}
+                        ${escapeHtml(article.title)}
                     </h3>
                     
                     <p class="text-gray-400 mb-6 leading-relaxed">
-                        ${article.excerpt}
+                        ${escapeHtml(article.excerpt)}
                     </p>
                     
                     <div class="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-white/5">
-                        <span><i class="far fa-calendar mr-2"></i>${article.date}</span>
-                        <span><i class="far fa-clock mr-2"></i>${article.readTime}</span>
+                        <span><i class="far fa-calendar mr-2"></i>${escapeHtml(article.date)}</span>
+                        <span><i class="far fa-clock mr-2"></i>${escapeHtml(article.readTime)}</span>
                     </div>
                     
                     <div class="mt-4 flex items-center text-accent-cyan font-semibold group-hover:gap-3 transition-all">
@@ -745,15 +872,9 @@
             renderArticles();
         });
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const scrolled = window.scrollY > 10;
-            nav.style.backdropFilter = scrolled ? 'blur(8px)' : 'none';
-        });
-
         // Initial render
         renderArticles();
+        autoIndexPublishedArticles();
     </script>
 </body>
 

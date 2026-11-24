@@ -413,8 +413,8 @@
 
     <!-- Navigation -->
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/20" id="navbar">
-        <div class="glass-card rounded-full mt-4 mx-auto max-w-7xl px-6 py-3 flex justify-between items-center">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
             <a href="/index.html" class="flex items-center gap-3">
                 <img src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
                     alt="Pangolin Amazon Scraping API Logo"
@@ -940,13 +940,9 @@ def analyze_negative_feedback(reviews):
             });
 
             // Sticky Navbar
-            const navbar = document.getElementById('navbar');
+            const navbar = document.querySelector('#navbar > .glass-card');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    navbar.classList.add('shadow-lg', 'bg-black/40');
-                } else {
-                    navbar.classList.remove('shadow-lg', 'bg-black/20');
-                }
+                navbar.classList.toggle('shadow-lg', window.scrollY > 20);
             });
 
             // Highlight TOC on scroll
