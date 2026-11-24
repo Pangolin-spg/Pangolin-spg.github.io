@@ -79,4 +79,19 @@
         <priority>0.8</priority>
     </url>
 
+
+    <!-- Article: API observation timestamps and data freshness (English and Chinese) -->
+    <url>
+        <loc>https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html</loc>
+        <lastmod>2026-11-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html</loc>
+        <lastmod>2026-11-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
 </urlset>
