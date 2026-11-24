@@ -17,7 +17,7 @@
     <!-- Blog Archive Page -->
     <url>
         <loc>https://blog.pangolinfo.com/blog.html</loc>
-        <lastmod>2025-12-13</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -79,6 +79,20 @@
         <priority>0.8</priority>
     </url>
 
+
+    <!-- Article: Amazon Scraper API credit planning (English and Chinese) -->
+    <url>
+        <loc>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</loc>
+        <lastmod>2026-11-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html</loc>
+        <lastmod>2026-11-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Article: API observation timestamps and data freshness (English and Chinese) -->
     <url>

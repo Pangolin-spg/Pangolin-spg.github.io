@@ -5,13 +5,23 @@
         <link>https://blog.pangolinfo.com/</link>
         <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
         <language>en-us</language>
-        <lastBuildDate>Mon, 23 Nov 2026 09:10:00 +0800</lastBuildDate>
+        <lastBuildDate>Wed, 25 Nov 2026 00:00:00 +0800</lastBuildDate>
         <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
             <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
             <title>Pangol Info Scrape API Blog</title>
             <link>https://blog.pangolinfo.com/</link>
         </image>
+        <!-- Article: How Many Amazon Scraper API Credits Will Your Workflow Need? -->
+        <item>
+            <title>How Many Amazon Scraper API Credits Will Your Workflow Need?</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</guid>
+            <pubDate>Wed, 25 Nov 2026 00:00:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>Estimate monthly Amazon Scraper API credits from products tracked, refresh cadence, and endpoint costs, then compare the workload with current plan allowances.</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
         <!-- Article: When Was This Data Observed? -->
         <item>
             <title>When Was This Data Observed? Timestamp Boundaries in API Pipelines</title>
