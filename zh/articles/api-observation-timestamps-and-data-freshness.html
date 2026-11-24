@@ -6,20 +6,20 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <!-- SEO Meta Tags -->
 <title>API 数据何时被观察？时间戳与数据时效边界</title>
-<meta content="从数据来源与时间戳出发，区分请求时间、接收时间和源页面观察时间，并为应用定义有依据的数据时效规则。" name="description"/>
-<meta content="API 时间戳, 数据来源, 数据时效, requested_at, received_at, 数据质量" name="keywords"/>
+<meta content="如何判断 API 价格数据是否足以支持决策？本文区分请求与接收时间和源观察时间，说明如何核对字段契约并按风险设定刷新规则。" name="description"/>
+<meta content="API 价格数据时效, API 时间戳含义, 源观察时间, API 选型, requested_at, received_at" name="keywords"/>
 <meta content="Pangol Info Scrape API" name="author"/>
 <meta content="index, follow" name="robots"/>
 <!-- Open Graph -->
 <meta content="article" property="og:type"/>
 <meta content="API 数据何时被观察？时间戳与数据时效边界" property="og:title"/>
-<meta content="从数据来源与时间戳出发，区分请求时间、接收时间和源页面观察时间，并为应用定义有依据的数据时效规则。" property="og:description"/>
+<meta content="如何判断 API 价格数据是否足以支持决策？本文区分请求与接收时间和源观察时间，说明如何核对字段契约并按风险设定刷新规则。" property="og:description"/>
 <meta content="https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html" property="og:url"/>
 <meta content="https://d34c7q5wjf4spy.cloudfront.net/6ad8253ce79adb1585713ee1/45748fb384fa4ecabf15ff394658ed06424a3552244646fea806cdb0ed08ef1c/time-bounded-snapshots.webp" property="og:image"/>
 <!-- Twitter Card -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="API 数据何时被观察？时间戳与数据时效边界" name="twitter:title"/>
-<meta content="从数据来源与时间戳出发，区分请求时间、接收时间和源页面观察时间，并为应用定义有依据的数据时效规则。" name="twitter:description"/>
+<meta content="如何判断 API 价格数据是否足以支持决策？本文区分请求与接收时间和源观察时间，说明如何核对字段契约并按风险设定刷新规则。" name="twitter:description"/>
 <!-- Canonical URL -->
 <link href="https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html" rel="canonical"/>
 <!-- Schema.org Article Markup -->
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "API 数据何时被观察？时间戳与数据时效边界",
-  "description": "从数据来源与时间戳出发，区分请求时间、接收时间和源页面观察时间，并为应用定义有依据的数据时效规则。",
+  "description": "如何判断 API 价格数据是否足以支持决策？本文区分请求与接收时间和源观察时间，说明如何核对字段契约并按风险设定刷新规则。",
   "author": {
     "@type": "Organization",
     "name": "Pangol Info Scrape API"
@@ -475,6 +475,10 @@
 <h2 id="section-5">把快照保留为可解释的证据</h2>
 <p>每条记录尽量带上请求标识、市场、邮编（若指定）、变体、卖家和原始字段值，并分别记录 <code>requested_at</code>、<code>received_at</code> 与明确由接口提供的源时间戳。保留原始价格文本，不要在币种、地区格式和报价含义未确认前，静默转换成可比较的数字。</p>
 <p>在写入历史记录前，先验证响应结构和业务必需字段；再把“当前响应字段缺失”“成功返回但结果为空”和“请求或 API 错误”分开。关于响应边界与 <code>received_at</code> 的记录方式，可继续读<a href="https://blog.pangolinfo.com/zh/articles/a-json-response-is-not-yet-a-product-record.html">JSON 响应校验：从响应到商品记录</a>；构建采集流程的其他实践见<a href="https://blog.pangolinfo.com/zh/articles/advanced-amazon-data-extraction-best-practices.html">数据提取高级实践</a>。本页属于<a href="https://blog.pangolinfo.com/zh/articles/amazon-scraping-api-comprehensive-guide-2025.html">Amazon 数据采集 API 完整指南</a>的 API 与数据质量主题。</p>
+<h2 id="section-6">价格决策前如何评估时间戳证据</h2>
+<p><strong>API 时间戳能告诉我 Amazon 价格是不是当前价格吗？</strong>只有当所选操作明确返回源观察时间戳，并说明其定义时，它才能告诉你源数据何时被观察。客户端的 <code>requested_at</code> 和 <code>received_at</code> 记录应用何时发出请求、收到结果，并不能证明源页面何时被观察。上文链接的商品详情字段文档没有定义逐条记录的源观察时间，因此不要用接收时间代替它。即使有明确的源时间，它也只是一个快照，并不能证明价格此刻仍然有效；还要按你的业务规则判断数据有多旧。</p>
+<p><strong>如何判断商品数据接口能否支持我的决策？</strong>先将所选操作的文档字段和参数与具体决策逐项对照，再用相同的 ASIN、市场站点、相关变体、卖家情境和请求邮编进行测试；在有代表性的多次请求中比较返回字段，并测量自己的请求到接收耗时。如果决策依赖源时间戳，就确认该操作确实提供了它且定义清楚。这些检查能判断证据是否适合你的流程，但不能保证之后的结账价格与快照相同。</p>
+<p><strong>什么时候应该刷新？</strong>根据使用旧数据的代价，设定应用可持有数据的最长时间。高影响的价格动作可以要求执行前重新取数并核验关键字段；即便如此，也无法锁定源页面或保证最终价格与库存。如果你正在为 Amazon 商品数据流程比较数据来源，可以查看 <a href="https://www.pangolinfo.com/amazon-scraper-api/">Amazon Scraper API</a>，并结合具体操作文档，测试决策所需的字段与时间戳证据。</p>
 <p><strong>关键原则：</strong>每个价格或库存值都应携带它所描述的商品上下文和本系统的接收时间。若源观察时间没有明确提供，就保留这个未知；让下游决策按自己的风险设定重新查询或停止，而不是把一个快照包装成永久事实。</p></article>
 <div class="glass-card rounded-3xl p-8 mt-8">
 <h2 class="text-2xl font-bold mb-3 text-white">查看操作文档</h2>
@@ -486,7 +490,7 @@
 <div class="sidebar-sticky space-y-6">
 <div class="glass-card rounded-2xl p-6">
 <h2 class="text-lg font-bold mb-4 text-white">In this article</h2>
-<nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">价格与库存不是静态属性</a><a class="toc-link" href="#section-2">记录两个时钟，而不是伪造一个</a><a class="toc-link" href="#section-3">异步完成时间也不是源时间</a><a class="toc-link" href="#section-4">让“可用多久”由你的决策定义</a><a class="toc-link" href="#section-5">把快照保留为可解释的证据</a></nav>
+<nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">价格与库存不是静态属性</a><a class="toc-link" href="#section-2">记录两个时钟，而不是伪造一个</a><a class="toc-link" href="#section-3">异步完成时间也不是源时间</a><a class="toc-link" href="#section-4">让“可用多久”由你的决策定义</a><a class="toc-link" href="#section-5">把快照保留为可解释的证据</a><a class="toc-link" href="#section-6">价格决策前如何评估时间戳证据</a></nav>
 </div>
 <a class="glass-card rounded-2xl p-6 block product-card group" href="https://docs.pangolinfo.com/en-api-reference/amazonApi/product-detail" rel="noopener" target="_blank">
 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-code text-white text-2xl"></i></div>

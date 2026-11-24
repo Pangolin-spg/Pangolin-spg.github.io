@@ -6,20 +6,20 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <!-- SEO Meta Tags -->
 <title>When Was This Data Observed? Timestamp Boundaries in API Pipelines</title>
-<meta content="A practical guide to API data provenance: distinguish client request and receipt times from source-observation timestamps, and define application freshness rules." name="description"/>
-<meta content="API source observation timestamp, API data freshness, data provenance, requested_at, received_at, data quality" name="keywords"/>
+<meta content="How can you tell whether API price data is fresh enough for a decision? Learn to distinguish request and receipt times from source-observation time, check field contracts, and set refresh rules." name="description"/>
+<meta content="API price data freshness, API timestamp meaning, source-observation time, buyer API evaluation, requested_at, received_at" name="keywords"/>
 <meta content="Pangol Info Scrape API" name="author"/>
 <meta content="index, follow" name="robots"/>
 <!-- Open Graph -->
 <meta content="article" property="og:type"/>
 <meta content="When Was This Data Observed? Timestamp Boundaries in API Pipelines" property="og:title"/>
-<meta content="A practical guide to API data provenance: distinguish client request and receipt times from source-observation timestamps, and define application freshness rules." property="og:description"/>
+<meta content="How can you tell whether API price data is fresh enough for a decision? Learn to distinguish request and receipt times from source-observation time, check field contracts, and set refresh rules." property="og:description"/>
 <meta content="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" property="og:url"/>
 <meta content="https://d34c7q5wjf4spy.cloudfront.net/6ad8253ce79adb1585713ee1/45748fb384fa4ecabf15ff394658ed06424a3552244646fea806cdb0ed08ef1c/time-bounded-snapshots.webp" property="og:image"/>
 <!-- Twitter Card -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="When Was This Data Observed? Timestamp Boundaries in API Pipelines" name="twitter:title"/>
-<meta content="A practical guide to API data provenance: distinguish client request and receipt times from source-observation timestamps, and define application freshness rules." name="twitter:description"/>
+<meta content="How can you tell whether API price data is fresh enough for a decision? Learn to distinguish request and receipt times from source-observation time, check field contracts, and set refresh rules." name="twitter:description"/>
 <!-- Canonical URL -->
 <link href="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" rel="canonical"/>
 <!-- Schema.org Article Markup -->
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "When Was This Data Observed? Timestamp Boundaries in API Pipelines",
-  "description": "A practical guide to API data provenance: distinguish client request and receipt times from source-observation timestamps, and define application freshness rules.",
+  "description": "How can you tell whether API price data is fresh enough for a decision? Learn to distinguish request and receipt times from source-observation time, check field contracts, and set refresh rules.",
   "author": {
     "@type": "Organization",
     "name": "Pangol Info Scrape API"
@@ -475,6 +475,10 @@
 <h2 id="section-5">Preserve snapshots as explainable evidence</h2>
 <p>Where the workflow permits, keep each record with its request identifier, marketplace, requested ZIP code, variant, seller, and original field values. Store <code>requested_at</code>, <code>received_at</code>, and any source timestamp explicitly supplied by the API as separate fields. Preserve the original price text until currency, locale, and offer semantics are understood well enough to normalize it safely.</p>
 <p>Before storing history, validate the response shape and the fields the application actually needs. Keep “field missing from this response,” “successful response with no results,” and “request or API error” as distinct states. For the response boundary and <code>received_at</code> practice, see <a href="https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html">A JSON Response Is Not Yet a Product Record</a>; for the broader collection workflow, see <a href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html">Advanced data-extraction practices</a>. This page belongs to the API and data-quality cluster under <a href="https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html">Amazon Scraping API: the complete guide</a>.</p>
+<h2 id="section-6">Evaluate timestamp evidence before a price decision</h2>
+<p><strong>Can an API timestamp tell me whether an Amazon price is current?</strong> It can tell you when the source was observed only if the selected operation explicitly returns a source-observation timestamp and defines what it means. A client’s <code>requested_at</code> and <code>received_at</code> show when your system sent and received a result; they are not proof of when the source page was observed. The product-detail field reference linked above does not define a per-record source-observation time, so do not treat receipt time as a substitute. Even an explicit source time is a snapshot, not proof that the price is still current now; compare its age with your application’s decision rule.</p>
+<p><strong>How do I evaluate whether product data can support my decision?</strong> Check the exact operation’s documented fields and parameters against the decision you need to make. Test with the same ASIN, marketplace, relevant variant, seller context, and requested ZIP code; compare the returned fields and your own request-to-receipt timings across representative runs. If a source timestamp is essential, confirm that the operation actually supplies one with a clear definition. These checks tell you whether the evidence fits your workflow; they do not guarantee that a later checkout will match a snapshot.</p>
+<p><strong>When should I refresh?</strong> Set the application-held age according to the cost of acting on stale data. A high-consequence price action may warrant fetching again and validating critical fields immediately beforehand; that still cannot lock the source page or guarantee availability or a final price. If you are comparing sources for Amazon product-data workflows, review the <a href="https://www.pangolinfo.com/amazon-scraper-api/">Amazon Scraper API</a> alongside the operation-specific documentation, then test the fields and timestamp evidence your decision requires.</p>
 <p><strong>The rule of thumb:</strong> attach product context and your system’s receipt time to every price or stock value. If source-observation time is not explicitly supplied, keep it unknown. Let downstream decisions set their own risk threshold and refresh or stop when needed; do not dress a snapshot up as a permanent fact.</p></article>
 <div class="glass-card rounded-3xl p-8 mt-8">
 <h2 class="text-2xl font-bold mb-3 text-white">Review the operation contract</h2>
@@ -486,7 +490,7 @@
 <div class="sidebar-sticky space-y-6">
 <div class="glass-card rounded-2xl p-6">
 <h2 class="text-lg font-bold mb-4 text-white">In this article</h2>
-<nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">Price and availability are not static attributes</a><a class="toc-link" href="#section-2">Keep two clocks; do not invent a third</a><a class="toc-link" href="#section-3">Asynchronous completion is not source time</a><a class="toc-link" href="#section-4">Let the decision define how old is too old</a><a class="toc-link" href="#section-5">Preserve snapshots as explainable evidence</a></nav>
+<nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">Price and availability are not static attributes</a><a class="toc-link" href="#section-2">Keep two clocks; do not invent a third</a><a class="toc-link" href="#section-3">Asynchronous completion is not source time</a><a class="toc-link" href="#section-4">Let the decision define how old is too old</a><a class="toc-link" href="#section-5">Preserve snapshots as explainable evidence</a><a class="toc-link" href="#section-6">Evaluate timestamp evidence before a price decision</a></nav>
 </div>
 <a class="glass-card rounded-2xl p-6 block product-card group" href="https://docs.pangolinfo.com/en-api-reference/amazonApi/product-detail" rel="noopener" target="_blank">
 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-code text-white text-2xl"></i></div>
