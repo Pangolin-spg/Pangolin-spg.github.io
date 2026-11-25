@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- SEO Meta Tags -->
+<title>Amazon FBA Profit Calculator: What the Estimate Includes—and What It Doesn't</title>
+<meta content="Before sourcing a product, learn which Amazon FBA and MFN fees a profit estimate models, which inputs can distort it, and which seller costs still belong in your own margin calculation." name="description"/>
+<meta content="Amazon FBA profit calculator, FBA fees API, Amazon Revenue Calculator API, FBA versus MFN, product sourcing margin estimate" name="keywords"/>
+<meta content="Pangol Info Scrape API" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- Open Graph -->
+<meta content="article" property="og:type"/>
+<meta content="Amazon FBA Profit Calculator: What the Estimate Includes—and What It Doesn't" property="og:title"/>
+<meta content="Before sourcing a product, learn which Amazon FBA and MFN fees a profit estimate models, which inputs can distort it, and which seller costs still belong in your own margin calculation." property="og:description"/>
+<meta content="https://blog.pangolinfo.com/articles/amazon-fba-profit-estimate.html" property="og:url"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-fba-profit-estimate-en.webp" property="og:image"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-fba-profit-estimate-en.webp" name="twitter:image"/>
+<meta content="Amazon FBA Profit Calculator: What the Estimate Includes—and What It Doesn't" name="twitter:title"/>
+<meta content="Before sourcing a product, learn which Amazon FBA and MFN fees a profit estimate models, which inputs can distort it, and which seller costs still belong in your own margin calculation." name="twitter:description"/>
+<!-- Canonical URL -->
+<link href="https://blog.pangolinfo.com/articles/amazon-fba-profit-estimate.html" rel="canonical"/>
+<!-- Schema.org Article Markup -->
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Amazon FBA Profit Calculator: What the Estimate Includes—and What It Doesn't",
+  "description": "Before sourcing a product, learn which Amazon FBA and MFN fees a profit estimate models, which inputs can distort it, and which seller costs still belong in your own margin calculation.",
+  "author": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+    }
+  },
+  "image": [
+    "https://blog.pangolinfo.com/assets/article-covers/amazon-fba-profit-estimate-en.webp"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.pangolinfo.com/articles/amazon-fba-profit-estimate.html"
+  },
+  "datePublished": "2026-11-25",
+  "dateModified": "2026-11-25"
+}
+    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Styles */
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            scrollbar-color: #475569 #1e293b;
+            scrollbar-width: thin;
+        }
+
+        article pre::-webkit-scrollbar { height: 10px; }
+        article pre::-webkit-scrollbar-track { background: #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb { background: #475569; border: 2px solid #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        article pre::-webkit-scrollbar-corner { background: #1e293b; }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        /* Table of Contents Styles */
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* Sticky Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Code Copy Button */
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .topic-cluster-nav h2 { margin: 0 0 0.75rem; font-size: 1.5rem; line-height: 1.3; color: #38bdf8; }
+        .topic-cluster-nav p { margin-bottom: 0.5rem; }
+        .topic-cluster-nav li { margin-bottom: 0; }
+        .topic-cluster-nav a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+</style>
+<link href="../Pangolin.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+<div class="liquid-wrapper">
+<div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+<div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+</div>
+<!-- Navigation -->
+<!-- Navigation -->
+<nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+<div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
+<a class="flex items-center gap-3" href="/index.html">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" decoding="async" />
+<span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
+</a>
+<div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+<a class="nav-link hover:text-white transition" href="/index.html#home">Home</a>
+<a class="nav-link hover:text-white transition" href="/index.html#solutions">Solutions</a>
+<a class="nav-link hover:text-white transition" href="/index.html#use-cases">Use Cases</a>
+<a class="nav-link hover:text-white transition" href="/blog.html">Blog</a>
+<a class="nav-link hover:text-white transition" href="https://docs.pangolinfo.com/en-index">Docs</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/pricing/" target="_blank">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<!-- Language Switcher -->
+<div class="language-switcher">
+<a class="language-btn" href="https://blog.pangolinfo.com/zh/articles/amazon-fba-profit-estimate.html">
+<span>🇨🇳</span>
+<span>中文</span>
+</a>
+</div>
+<!-- Get API Key Button -->
+<a class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20" href="https://tool.pangolinfo.com/">
+                    Get API Key
+                </a>
+</div>
+</div>
+</nav>
+<!-- Article Header -->
+<section class="relative pt-40 pb-12 px-6">
+<div class="max-w-7xl mx-auto text-center">
+<div class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase">Amazon API · Product economics</div>
+<h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">Amazon FBA Profit Calculator: What the Estimate Includes—and What It Doesn't</h1>
+<p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">Before sourcing a product, learn which Amazon FBA and MFN fees a profit estimate models, which inputs can distort it, and which seller costs still belong in your own margin calculation.</p>
+<div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+<time datetime="2026-11-25">November 25, 2026</time>
+<span><i class="far fa-clock mr-2"></i> 8 min read</span>
+<span><i class="far fa-user mr-2"></i>Pangol Info Team</span>
+</div>
+</div>
+</section>
+<!-- Article Content with Sidebar -->
+<section class="relative px-6 pb-20">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2">
+<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="A shipping carton on a scale beside three fee layers, illustrating the inputs behind an FBA estimate." class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/amazon-fba-profit-estimate-en.webp" width="1536" height="864" fetchpriority="high" decoding="async" srcset="/assets/article-covers/amazon-fba-profit-estimate-en-1024.webp 1024w, /assets/article-covers/amazon-fba-profit-estimate-en.webp 1536w" sizes="(max-width: 640px) calc(100vw - 112px), (max-width: 1024px) calc(100vw - 96px), 928px"/><figcaption class="text-sm text-gray-400 mt-3 text-center">A fee estimate starts with the selling price and Amazon’s fee model; it is not a complete seller P&amp;L.</figcaption></figure>
+<p class="text-xl text-gray-300 font-medium mb-8">Can an Amazon FBA calculator tell you whether a product will be profitable before you buy inventory? It can help compare Amazon’s fulfillment-fee scenarios, but the word “profit” needs a boundary. The Revenue Calculator API returns an Amazon-fee estimate for an ASIN and marketplace; it does not replace your own landed-cost and operating-cost model.</p>
+<h2 id="section-1">Compare fulfillment paths on the same assumptions</h2>
+<p>The <a href="https://docs.pangolinfo.com/en-api-reference/revenueCalculatorApi/revenueCalculatorAPI" rel="noopener" target="_blank">Amazon Revenue Calculator API</a> takes a product ASIN and a marketplace country. Its documented supported countries are US and JP. It can return fee summaries for both Fulfilled by Amazon (FBA) and Merchant Fulfilled (MFN), or only the program you request. That makes it useful for an early “does this price still work under either fulfillment path?” screen.</p>
+<p>For a fair comparison, use the same realistic selling-price assumptions for both modes. You can supply separate <code>fbaPrice</code> and <code>mfnPrice</code>, plus <code>mfnShippingPrice</code> for buyer-paid MFN shipping. The API can use the product’s current price when a price is omitted, but a live listing price is not necessarily your planned offer price. If you are sourcing around a target sale price, pass that price explicitly rather than letting a default silently decide the scenario.</p>
+<figure class="my-8 rounded-2xl border border-white/10 bg-slate-900/60 p-5 md:p-7">
+<svg viewBox="0 0 900 250" role="img" aria-labelledby="fee-model-title fee-model-desc" class="w-full" xmlns="http://www.w3.org/2000/svg"><title id="fee-model-title">What the Amazon fee estimate subtracts</title><desc id="fee-model-desc">FBA price less Amazon referral and fulfillment fees and one non-peak monthly storage estimate; MFN price less referral and fixed closing fees. Seller costs remain outside both estimates.</desc><rect width="900" height="250" fill="#0f172a"/><text x="34" y="42" fill="#cbd5e1" font-size="18" font-family="Arial,sans-serif" letter-spacing="2">FBA MODEL</text><text x="34" y="88" fill="#fff" font-size="24" font-family="Arial,sans-serif">Selling price</text><text x="34" y="126" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">− referral + fixed fees</text><text x="34" y="158" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">− fulfillment fee</text><text x="34" y="190" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">− off-peak monthly storage estimate</text><line x1="34" y1="205" x2="438" y2="205" stroke="#334155"/><text x="34" y="234" fill="#60a5fa" font-size="20" font-family="Arial,sans-serif">API “profit” field · fee-model remainder</text><line x1="470" y1="30" x2="470" y2="222" stroke="#334155"/><text x="512" y="42" fill="#cbd5e1" font-size="18" font-family="Arial,sans-serif" letter-spacing="2">YOUR FULL MARGIN</text><text x="512" y="88" fill="#fff" font-size="24" font-family="Arial,sans-serif">Add costs the model does not define:</text><text x="512" y="126" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">landed product cost · inbound / prep</text><text x="512" y="158" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">advertising · returns · other operating costs</text><line x1="512" y1="180" x2="866" y2="180" stroke="#334155"/><text x="512" y="211" fill="#fbbf24" font-size="20" font-family="Arial,sans-serif">Do not treat the API field as net margin.</text></svg>
+<figcaption class="text-sm text-gray-400 mt-3 text-center">Conceptual fee boundary—not a quote, Amazon output, or a complete accounting formula.</figcaption></figure>
+<h2 id="section-2">Read the fee model before trusting its profit field</h2>
+<p>For FBA, the response separates the fulfillment fee, net referral fee, any returned fixed closing fee, and monthly storage estimates for peak and off-peak periods. Its <code>totalCost</code> is fulfillment plus net referral plus fixed closing fee; storage is listed separately. The documented FBA <code>profit</code> calculation subtracts <code>totalCost</code> and the off-peak monthly storage fee from the selling price. The returned peak-season storage estimate is a separate field, not the storage amount used in that profit formula.</p>
+<p>MFN has no Amazon fulfillment or storage fee in this summary: its documented total is the net referral fee plus any fixed closing fee, and the profit field subtracts that total from the MFN selling price. The exact fee items can vary with what Amazon returns. The response also includes <code>raw</code>, the original fee breakdown, which may expose fee items that are not rolled into the summary.</p>
+<p>There is a subtle naming distinction: <code>amazonFeeTotal</code> is documented as base referral fee plus fixed closing fee, while <code>totalCost</code> uses the net referral fee and, for FBA, also includes the fulfillment fee. Do not swap these fields when building your own comparison. Read the exact field definitions in the <a href="https://docs.pangolinfo.com/en-api-reference/revenueCalculatorApi/revenueCalculatorAPI" rel="noopener" target="_blank">response schema</a>.</p>
+<h2 id="section-3">Supply real prices and package measurements</h2>
+<p>Smart defaults are convenient for a first look: when omitted, the API uses the current product price and available product dimensions and weight. But the documentation warns that if no current price can be fetched, an omitted FBA or MFN price can fall back to <code>1</code>. The calculated profit and margin then have no practical meaning. For a decision, pass a realistic price for each fulfillment scenario.</p>
+<p>Dimensions and weight deserve a separate check. Amazon may use its internal measurements to calculate the fulfillment fee, but the API’s <code>product.dimension</code> and <code>product.weight</code> output fields remain zero unless you pass the corresponding package measurements. A zero in those returned fields therefore does not prove Amazon used a zero-size package; conversely, do not treat hidden/default measurements as verified inputs for your own model. If your packaging differs from the listing or fee classification matters, provide the actual package length, width, height and weight in the marketplace’s documented units and validate them against your own records.</p>
+<p>Check the ASIN and marketplace too. This is a fee estimate tied to those inputs and the current Amazon fee response; it is not a universal rate card for every country or future date.</p>
+<h2 id="section-4">Add the costs outside Amazon’s fee estimate</h2>
+<p>The documented input and output contract is centered on Amazon’s fee calculation. It does not ask for your supplier price, freight to the fulfillment center, prep or labeling labor, advertising budget, return rate, financing cost, or your tax and duty treatment. Do not assume those expenses are included just because a response field is named <code>profit</code>. Add them in your own unit-economics sheet using the relevant quantities and time horizon.</p>
+<p>Storage is especially easy to misread. The API returns peak and off-peak monthly storage estimates per unit, while the FBA profit formula uses the off-peak monthly value. If inventory is likely to sit through a different season or for longer than one month, model that duration separately instead of multiplying or replacing the API’s figure without checking your scenario.</p>
+<h2 id="section-5">Use the estimate as a sourcing filter</h2>
+<p>A practical workflow is to use the estimate to screen candidates, not to authorize a purchase order:</p>
+<ol><li>Choose the marketplace and a plausible selling price for FBA and, if relevant, MFN.</li><li>Supply measured package dimensions and weight when your packaging or fee tier could change the result.</li><li>Compare the returned Amazon fee components and inspect <code>raw</code> when an extra fee matters.</li><li>Subtract supplier, shipping, prep, ads, expected returns and other seller-specific costs in your own model.</li><li>Stress-test the result with lower selling prices, longer storage, or other realistic operating assumptions before committing to inventory.</li></ol>
+<p>The Revenue Calculator endpoint is documented at five credits per request, and the API reference notes a relatively low source-IP threshold: concurrent requests at QPS 3 or higher can trigger rate limits. If you are planning repeated checks, use the current <a href="https://www.pangolinfo.com/pricing/" rel="noopener" target="_blank">pricing page</a> and the live endpoint documentation to estimate usage and design a modest request rate. Cost and availability terms can change.</p>
+<h2 id="section-6">Questions sellers should settle before committing</h2>
+<p><strong>Is the API’s “profit” my true net profit?</strong> No—not by itself. It is the result of the documented Amazon-fee calculation for the supplied or default price. It does not include your full landed cost and seller operating expenses.</p>
+<p><strong>Why did my returned product dimensions show zero?</strong> The reference says Amazon’s anonymous fee service does not return those measurements in this response. Unless you pass package dimensions and weight, the output fields can be zero even though Amazon used internal measurements to calculate fees.</p>
+<p><strong>Can I compare FBA and MFN?</strong> Yes, for the supported US and JP country codes, using the same product and realistic scenario-specific prices. Add MFN shipping when it matters, and make sure you compare equivalent seller costs outside the API.</p>
+<p><strong>What should I verify before a real sourcing decision?</strong> Confirm the marketplace, selling price, package measurements, storage duration, Amazon fee fields, supplier cost and delivery-to-fulfillment costs. The estimate is a useful early filter; your own complete margin model is the decision tool. For the API’s broader product-data capabilities, see the <a href="https://www.pangolinfo.com/amazon-scraper-api/" rel="noopener" target="_blank">Amazon Scraper API</a> and the operation-specific <a href="https://docs.pangolinfo.com/en-api-reference/revenueCalculatorApi/revenueCalculatorAPI" rel="noopener" target="_blank">Revenue Calculator API reference</a>.</p></article>
+<div class="glass-card rounded-3xl p-8 mt-8">
+<h2 class="text-2xl font-bold mb-3 text-white">Estimate current usage</h2>
+<p class="text-gray-300 mb-4">Start with the actual request schedule, then verify the current credit allowance and pricing terms.</p>
+<a class="text-accent-cyan hover:underline" href="https://www.pangolinfo.com/pricing/" rel="noopener" target="_blank">Live pricing calculator</a>
+</div>
+</div>
+<aside class="lg:col-span-1">
+<div class="sidebar-sticky space-y-6">
+<div class="glass-card rounded-2xl p-6">
+<h2 class="text-lg font-bold mb-4 text-white">In this article</h2>
+<nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">Compare fulfillment paths on the same assumptions</a><a class="toc-link" href="#section-2">Read the fee model before trusting its profit field</a><a class="toc-link" href="#section-3">Supply real prices and package measurements</a><a class="toc-link" href="#section-4">Add the costs outside Amazon’s fee estimate</a><a class="toc-link" href="#section-5">Use the estimate as a sourcing filter</a><a class="toc-link" href="#section-6">Questions sellers should settle before committing</a></nav>
+</div>
+<a class="glass-card rounded-2xl p-6 block product-card group" href="https://docs.pangolinfo.com/en-api-reference/revenueCalculatorApi/revenueCalculatorAPI" rel="noopener" target="_blank"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4"><i class="fas fa-calculator text-white text-2xl"></i></div><h3 class="text-lg font-bold mb-2 text-white">Revenue Calculator API reference</h3><p class="text-gray-400 text-sm">Check exact supported inputs, fee fields, and current credit use.</p></a>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" loading="lazy" decoding="async">
+<span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
+</img></div>
+<div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Products</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/amazon-scraper-api/" target="_blank">Amazon Scraping API</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/amz-data-tracker/" target="_blank">AMZ Data
+                            Tracker</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/pricing/" target="_blank">Pricing</a>
+</li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Resources</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/en-index">API Documentation</a>
+</li>
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/en-api-reference/authApi/auth?playground=open">API Playground</a></li>
+<li><a class="hover:text-white" href="../index.html#articles">Blog Articles</a></li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Company</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/" target="_blank">Official Website</a></li>
+<li><a class="hover:text-white" href="https://tool.pangolinfo.com/">Console</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/" target="_blank">Amazon Solutions</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. All rights reserved.</div>
+<div class="text-gray-600 text-sm">Amazon Scraping API &amp; E-commerce Data Intelligence</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script>
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.setAttribute('data-code-index', index);
+
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+</html>
