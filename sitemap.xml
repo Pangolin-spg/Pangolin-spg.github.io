@@ -1,111 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-
-    <!-- Homepage -->
-    <url>
-        <loc>https://blog.pangolinfo.com/</loc>
-        <lastmod>2025-12-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <!-- Blog Archive Page -->
-    <url>
-        <loc>https://blog.pangolinfo.com/blog.html</loc>
-        <lastmod>2026-11-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <!-- Article: A JSON Response Is Not Yet a Product Record -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html</loc>
-        <lastmod>2026-11-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-
-
-    <!-- Article 1: Getting Started with Amazon Scraping API -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article 2: Advanced Amazon Data Extraction -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article 3: Amazon Product Selection -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article 4: Amazon Sponsored Products -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article 5: Building Real-time Amazon Price Monitoring -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article 6: Scale Your Amazon Business -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/amazon-business-case-studies.html</loc>
-        <lastmod>2025-12-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-
-    <!-- Article: Amazon Scraper API credit planning (English and Chinese) -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</loc>
-        <lastmod>2026-11-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html</loc>
-        <lastmod>2026-11-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Article: API observation timestamps and data freshness (English and Chinese) -->
-    <url>
-        <loc>https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html</loc>
-        <lastmod>2026-11-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html</loc>
-        <lastmod>2026-11-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.pangolinfo.com/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/2026-amazon-data-acquisition-strategic-review.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/2026-amazon-data-acquisition-strategic-review.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/2026-amazon-data-acquisition-strategic-review.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/2026-amazon-data-acquisition-strategic-review.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/a-json-response-is-not-yet-a-product-record.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/advanced-amazon-data-extraction-best-practices.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-business-case-studies.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-business-case-studies.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-new-releases-ai-product-teardown.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-new-releases-ai-product-teardown.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-new-releases-ai-product-teardown.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-new-releases-ai-product-teardown.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-price-monitoring-system.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-product-selection-api-data.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-sponsored-products-ad-monitoring.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/getting-started-amazon-scraping-api.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/blog.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/blog.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/blog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/blog.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/2026-amazon-data-acquisition-strategic-review.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/2026-amazon-data-acquisition-strategic-review.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/2026-amazon-data-acquisition-strategic-review.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/2026-amazon-data-acquisition-strategic-review.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/a-json-response-is-not-yet-a-product-record.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/a-json-response-is-not-yet-a-product-record.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/a-json-response-is-not-yet-a-product-record.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/advanced-amazon-data-extraction-best-practices.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/advanced-amazon-data-extraction-best-practices.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/advanced-amazon-data-extraction-best-practices.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-business-case-studies.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-business-case-studies.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-business-case-studies.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-new-releases-ai-product-teardown.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-new-releases-ai-product-teardown.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-new-releases-ai-product-teardown.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-new-releases-ai-product-teardown.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-price-monitoring-system.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-price-monitoring-system.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-price-monitoring-system.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-product-selection-api-data.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-product-selection-api-data.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-scraping-api-comprehensive-guide-2025.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-scraping-api-comprehensive-guide-2025.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-sponsored-products-ad-monitoring.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-sponsored-products-ad-monitoring.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-sponsored-products-ad-monitoring.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/api-observation-timestamps-and-data-freshness.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/getting-started-amazon-scraping-api.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/getting-started-amazon-scraping-api.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/getting-started-amazon-scraping-api.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/blog.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/blog.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/blog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/blog.html" />
+  </url>
 </urlset>

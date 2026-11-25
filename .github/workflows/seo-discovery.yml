@@ -1,0 +1,88 @@
+name: Refresh SEO discovery and notify IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'scripts/update_seo.py'
+      - '.github/workflows/seo-discovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo-discovery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Determine changed pages
+        id: changed
+        shell: bash
+        run: |
+          before='${{ github.event.before }}'
+          if [[ -n "$before" && "$before" != '0000000000000000000000000000000000000000' ]]; then
+            git diff --name-only "$before" '${{ github.sha }}' > /tmp/changed-files.txt
+          else
+            git ls-files '*.html' > /tmp/changed-files.txt
+          fi
+      - name: Regenerate sitemap and IndexNow manifest
+        run: |
+          if grep -Eq '\.html$' /tmp/changed-files.txt; then
+            python3 scripts/update_seo.py --changed-files /tmp/changed-files.txt --changed-url-file /tmp/changed-urls.txt
+          else
+            python3 scripts/update_seo.py --all --changed-url-file /tmp/changed-urls.txt
+          fi
+      - name: Commit generated discovery files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml indexnow.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh sitemap and IndexNow URL manifest'
+            git push origin HEAD:main
+          fi
+      - name: Wait for GitHub Pages to serve the sitemap and changed pages
+        id: live
+        shell: bash
+        run: |
+          if [[ ! -s /tmp/changed-urls.txt ]]; then echo 'ready=false' >> "$GITHUB_OUTPUT"; exit 0; fi
+          for attempt in {1..24}; do
+            if curl -fsS --max-time 20 https://blog.pangolinfo.com/sitemap.xml -o /tmp/live-sitemap.xml; then
+              ready=1
+              while IFS= read -r url; do
+                grep -Fq "$url" /tmp/live-sitemap.xml || ready=0
+              done < /tmp/changed-urls.txt
+              if [[ "$ready" == 1 ]] && xargs -r -n1 -P8 sh -c 'curl -fsS --max-time 30 -o /dev/null "$0"' < /tmp/changed-urls.txt; then
+                echo 'ready=true' >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            sleep 15
+          done
+          echo 'ready=false' >> "$GITHUB_OUTPUT"
+          echo 'Pages did not expose all target URLs within the wait window; sitemap generation remains committed, IndexNow was not called.'
+      - name: Notify IndexNow
+        if: steps.live.outputs.ready == 'true'
+        env:
+          INDEXNOW_KEY: f95cfee06c954ae3bcb1d71d5718bc71
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          json.dump({
+              'host': 'blog.pangolinfo.com',
+              'key': os.environ['INDEXNOW_KEY'],
+              'keyLocation': 'https://blog.pangolinfo.com/f95cfee06c954ae3bcb1d71d5718bc71.txt',
+              'urlList': Path('/tmp/changed-urls.txt').read_text().splitlines(),
+          }, open('/tmp/indexnow-payload.json','w'))
+          PY
+          status=$(curl -sS --max-time 30 -o /tmp/indexnow-response.txt -w '%{http_code}' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data-binary @/tmp/indexnow-payload.json https://api.indexnow.org/indexnow)
+          echo "IndexNow HTTP status: $status"
+          cat /tmp/indexnow-response.txt
+          case "$status" in 200|202) ;; *) exit 1 ;; esac
