@@ -400,7 +400,7 @@
 <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
 <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
 <a class="flex items-center gap-3" href="/index.html">
-<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"/>
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" decoding="async" />
 <span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
 </a>
 <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
@@ -447,7 +447,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 <div class="lg:col-span-2">
-<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="三个离散的商品观测快照，时间点之间留有空白。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/api-observation-timestamps-zh.webp"/><figcaption class="text-sm text-gray-400 mt-3 text-center">三个离散的商品观测快照，时间点之间留有空白。</figcaption></figure><p class="text-xl text-gray-300 font-medium mb-8">一次抓取结果不是“现在”的同义词。价格、库存和配送信息都带着一个隐含时间边界：它们说明系统在某次请求中取回了什么，却不能保证用户稍后看到的页面、下单时的报价或最终可购买状态仍然相同。把结果当作有上下文的快照，而不是永不过期的商品事实，能让监控、比较和自动化决策更诚实。</p>
+<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="三个离散的商品观测快照，时间点之间留有空白。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/api-observation-timestamps-zh.webp" width="1536" height="864" fetchpriority="high"  decoding="async" /><figcaption class="text-sm text-gray-400 mt-3 text-center">三个离散的商品观测快照，时间点之间留有空白。</figcaption></figure><p class="text-xl text-gray-300 font-medium mb-8">一次抓取结果不是“现在”的同义词。价格、库存和配送信息都带着一个隐含时间边界：它们说明系统在某次请求中取回了什么，却不能保证用户稍后看到的页面、下单时的报价或最终可购买状态仍然相同。把结果当作有上下文的快照，而不是永不过期的商品事实，能让监控、比较和自动化决策更诚实。</p>
 <h2 id="section-1">价格与库存不是静态属性</h2>
 <p>商品详情 API 可以返回 <code>price</code>、<code>inStock</code>、<code>seller</code>、<code>shipper</code> 和 <code>delivery</code> 等字段；配送信息也可能包含标准或最快配送时间。字段存在，不等于该值永久有效。一个页面上看到的价格可能与不同卖家、商品变体、市场或配送条件有关；库存和配送承诺也可能变化。</p>
 <p>在把两次结果比较之前，先确认它们描述的是同一个对象和配送上下文。若要让配送情境一致，应在请求中明确指定同一个、且符合该市场的邮编；Pangolinfo 文档说明，不指定 <code>bizContext.zipcode</code> 时，后台会随机选择邮编，因此不能假定两次请求的配送条件相同。保存请求中明确指定的邮编；不要假设商品详情响应会返回后台实际使用的邮编。还要保留 ASIN、市场站点、相关变体和请求时间。具体字段及参数以所选<a href="https://docs.pangolinfo.com/en-api-reference/amazonApi/product-detail">商品详情操作文档</a>为准。</p>
@@ -508,7 +508,7 @@
 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
 <div>
 <div class="flex items-center gap-3 mb-4">
-<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" loading="lazy" decoding="async">
 <span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
 </img></div>
 <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction

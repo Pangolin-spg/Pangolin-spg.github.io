@@ -400,7 +400,7 @@
 <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
 <div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
 <a class="flex items-center gap-3" href="/index.html">
-<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"/>
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" decoding="async" />
 <span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
 </a>
 <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
@@ -447,7 +447,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 <div class="lg:col-span-2">
-<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="三个离散的商品观测快照，时间点之间留有空白。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/api-observation-timestamps-en.webp"/><figcaption class="text-sm text-gray-400 mt-3 text-center">三个离散的商品观测快照，时间点之间留有空白。</figcaption></figure><p class="text-xl text-gray-300 font-medium mb-8">A scrape result is not a synonym for “now.” Price, stock, and delivery fields have an implicit time boundary: they describe what a system retrieved for one request, not a promise that the page, offer, or purchasable state will remain unchanged when someone later acts. Treating each result as a contextual snapshot—rather than a timeless product fact—makes monitoring, comparisons, and automation more honest.</p>
+<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="三个离散的商品观测快照，时间点之间留有空白。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/api-observation-timestamps-en.webp" width="1536" height="864" fetchpriority="high"  decoding="async" /><figcaption class="text-sm text-gray-400 mt-3 text-center">三个离散的商品观测快照，时间点之间留有空白。</figcaption></figure><p class="text-xl text-gray-300 font-medium mb-8">A scrape result is not a synonym for “now.” Price, stock, and delivery fields have an implicit time boundary: they describe what a system retrieved for one request, not a promise that the page, offer, or purchasable state will remain unchanged when someone later acts. Treating each result as a contextual snapshot—rather than a timeless product fact—makes monitoring, comparisons, and automation more honest.</p>
 <h2 id="section-1">Price and availability are not static attributes</h2>
 <p>The product-detail API can return fields such as <code>price</code>, <code>inStock</code>, <code>seller</code>, <code>shipper</code>, and <code>delivery</code>; delivery data may include standard or fastest delivery estimates. A field being present does not make its value permanently valid. A displayed price may be tied to a seller, variant, marketplace, or delivery context, while stock and delivery promises can change.</p>
 <p>Before comparing two results, establish that they refer to the same item and delivery context. To keep that context consistent, explicitly request the same ZIP code that is valid for the marketplace. Pangolinfo’s documentation says the backend randomly selects a ZIP code when <code>bizContext.zipcode</code> is omitted, so do not assume two requests used the same delivery conditions. Preserve any ZIP code explicitly specified in the request; do not assume the product-detail response returns the ZIP code the backend actually used. Also preserve the ASIN, marketplace, relevant variant, and request time. Check the selected <a href="https://docs.pangolinfo.com/en-api-reference/amazonApi/product-detail">product-detail operation</a> for its exact fields and parameters.</p>
@@ -508,7 +508,7 @@
 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
 <div>
 <div class="flex items-center gap-3 mb-4">
-<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" loading="lazy" decoding="async">
 <span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
 </img></div>
 <div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
