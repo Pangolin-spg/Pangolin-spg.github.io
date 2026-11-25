@@ -444,7 +444,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 <div class="lg:col-span-2">
-<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="按商品检查计划估算每月 API Credits 的示意图。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/amazon-scraper-api-credit-planning-zh.webp" width="1536" height="864" fetchpriority="high"  decoding="async" /><figcaption class="text-sm text-gray-400 mt-3 text-center">估算框架：商品数 × 计划检查次数 × 每次请求成本。</figcaption></figure>
+<article class="glass-card rounded-3xl p-8 md:p-12"><figure class="mb-8"><img alt="按商品检查计划估算每月 API Credits 的示意图。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/amazon-scraper-api-credit-planning-zh.webp" width="1536" height="864" fetchpriority="high"  decoding="async"  srcset="/assets/article-covers/amazon-scraper-api-credit-planning-zh-1024.webp 1024w, /assets/article-covers/amazon-scraper-api-credit-planning-zh.webp 1536w" sizes="(max-width: 640px) calc(100vw - 112px), (max-width: 1024px) calc(100vw - 96px), 928px"/><figcaption class="text-sm text-gray-400 mt-3 text-center">估算框架：商品数 × 计划检查次数 × 每次请求成本。</figcaption></figure>
 <p class="text-xl text-gray-300 font-medium mb-8">商品目录有多少条，并不等于每月 API 用量。若你正在比较 Amazon 数据 API，或要为价格监控选套餐，先列出工作流实际会发出的请求，按每种操作的文档成本计算，再与当前套餐额度对照。这样得到的是工作量估算，不是固定账单承诺。</p>
 <h2 id="section-1">数计划执行的请求，而不只是 ASIN</h2>
 <p>如果工作流对每个 ASIN 发起一次 JSON 商品详情请求，第一步可以这样算：</p>
