@@ -5,13 +5,23 @@
         <link>https://blog.pangolinfo.com/</link>
         <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
         <language>en-us</language>
-        <lastBuildDate>Wed, 25 Nov 2026 00:00:00 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 26 Nov 2026 19:15:00 +0800</lastBuildDate>
         <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
             <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
             <title>Pangol Info Scrape API Blog</title>
             <link>https://blog.pangolinfo.com/</link>
         </image>
+        <!-- Article: Amazon Review API vs Product API: Which One Should You Use? -->
+        <item>
+            <title>Amazon Review API vs Product API: Which One Should You Use?</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html</guid>
+            <pubDate>Thu, 26 Nov 2026 19:15:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>Choose between Amazon product-detail records and review-page data, with documented billing units and a worked monthly workload estimate.</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
         <!-- Article: How Many Amazon Scraper API Credits Will Your Workflow Need? -->
         <item>
             <title>How Many Amazon Scraper API Credits Will Your Workflow Need?</title>

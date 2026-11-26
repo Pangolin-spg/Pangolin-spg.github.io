@@ -64,6 +64,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
   </url>
   <url>
+    <loc>https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-review-api-vs-product-api.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html" />
+  </url>
+  <url>
     <loc>https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html</loc>
     <lastmod>2026-11-25</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-scraper-api-credit-planning.html" />
@@ -167,6 +174,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-product-selection-api-data.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-product-selection-api-data.html" />
+  </url>
+  <url>
+    <loc>https://blog.pangolinfo.com/zh/articles/amazon-review-api-vs-product-api.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://blog.pangolinfo.com/zh/articles/amazon-review-api-vs-product-api.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blog.pangolinfo.com/articles/amazon-review-api-vs-product-api.html" />
   </url>
   <url>
     <loc>https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html</loc>
