@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- SEO Meta Tags -->
+<title>从亚马逊关键词搜索到 ASIN 候选清单：一套实用的选品工作流</title>
+<meta content="一套面向买家决策的 Amazon 选品工作流：用关键词搜索发现 ASIN 候选，再以商品详情核验清单，不把排名当作结论。" name="description"/>
+<meta content="Amazon 关键词搜索, Amazon 商品详情 API, ASIN 选品研究, Amazon 商品候选清单, Amazon 选品工作流" name="keywords"/>
+<meta content="Pangol Info Scrape API" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- Open Graph -->
+<meta content="article" property="og:type"/>
+<meta content="从亚马逊关键词搜索到 ASIN 候选清单：一套实用的选品工作流" property="og:title"/>
+<meta content="一套面向买家决策的 Amazon 选品工作流：用关键词搜索发现 ASIN 候选，再以商品详情核验清单，不把排名当作结论。" property="og:description"/>
+<meta content="https://blog.pangolinfo.com/zh/articles/amazon-keyword-search-asin-shortlist.html" property="og:url"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-keyword-asin-shortlist-zh.webp" property="og:image"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-keyword-asin-shortlist-zh.webp" name="twitter:image"/>
+<meta content="从亚马逊关键词搜索到 ASIN 候选清单：一套实用的选品工作流" name="twitter:title"/>
+<meta content="一套面向买家决策的 Amazon 选品工作流：用关键词搜索发现 ASIN 候选，再以商品详情核验清单，不把排名当作结论。" name="twitter:description"/>
+<!-- Canonical URL -->
+<link href="https://blog.pangolinfo.com/zh/articles/amazon-keyword-search-asin-shortlist.html" rel="canonical"/>
+<link href="https://blog.pangolinfo.com/articles/amazon-keyword-search-asin-shortlist.html" hreflang="en" rel="alternate"/>
+<link href="https://blog.pangolinfo.com/zh/articles/amazon-keyword-search-asin-shortlist.html" hreflang="zh-CN" rel="alternate"/>
+<link href="https://blog.pangolinfo.com/articles/amazon-keyword-search-asin-shortlist.html" hreflang="x-default" rel="alternate"/>
+<!-- Schema.org Article Markup -->
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "从亚马逊关键词搜索到 ASIN 候选清单：一套实用的选品工作流",
+  "description": "一套面向买家决策的 Amazon 选品工作流：用关键词搜索发现 ASIN 候选，再以商品详情核验清单，不把排名当作结论。",
+  "author": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+    }
+  },
+  "image": [
+    "https://blog.pangolinfo.com/assets/article-covers/amazon-keyword-asin-shortlist-zh.webp"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.pangolinfo.com/zh/articles/amazon-keyword-search-asin-shortlist.html"
+  },
+  "datePublished": "2026-11-28",
+  "dateModified": "2026-11-28"
+}
+    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Styles */
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            scrollbar-color: #475569 #1e293b;
+            scrollbar-width: thin;
+        }
+
+        article pre::-webkit-scrollbar { height: 10px; }
+        article pre::-webkit-scrollbar-track { background: #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb { background: #475569; border: 2px solid #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        article pre::-webkit-scrollbar-corner { background: #1e293b; }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        /* Table of Contents Styles */
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* Sticky Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Code Copy Button */
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .topic-cluster-nav h2 { margin: 0 0 0.75rem; font-size: 1.5rem; line-height: 1.3; color: #38bdf8; }
+        .topic-cluster-nav p { margin-bottom: 0.5rem; }
+        .topic-cluster-nav li { margin-bottom: 0; }
+        .topic-cluster-nav a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+</style>
+<link href="../Pangolin.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+<div class="liquid-wrapper">
+<div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+<div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+</div>
+<!-- Navigation -->
+<!-- Navigation -->
+<nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+<div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
+<a class="flex items-center gap-3" href="/index.html">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" decoding="async" />
+<span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
+</a>
+<div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">首页</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">解决方案</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">应用场景</a>
+<a class="nav-link hover:text-white transition" href="https://blog.pangolinfo.com/zh/blog.html">博客</a>
+<a class="nav-link hover:text-white transition" href="https://docs.pangolinfo.com/cn-index">文档</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/pricing/" target="_blank">价格</a>
+</div>
+<div class="flex items-center gap-4">
+<!-- Language Switcher -->
+<div class="language-switcher">
+<a class="language-btn" href="https://blog.pangolinfo.com/articles/amazon-keyword-search-asin-shortlist.html">
+<span>🇨🇳</span>
+<span>中文</span>
+</a>
+</div>
+<!-- Get API Key Button -->
+<a class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20" href="https://tool.pangolinfo.com/">
+                    Get API Key
+                </a>
+</div>
+</div>
+</nav>
+<!-- Article Header -->
+<section class="relative pt-40 pb-12 px-6">
+<div class="max-w-7xl mx-auto text-center">
+<div class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase">选品研究 · 工作流</div>
+<h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">从亚马逊关键词搜索到 ASIN 候选清单：一套实用的选品工作流</h1>
+<p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">一套面向买家决策的 Amazon 选品工作流：用关键词搜索发现 ASIN 候选，再以商品详情核验清单，不把排名当作结论。</p>
+<div class="flex items-center justify-center gap-6 text-sm text-gray-400"><time datetime="2026-11-28">2026年11月28日</time><span><i class="far fa-clock mr-2"></i>5 分钟阅读</span><span><i class="far fa-user mr-2"></i>Pangol Info Team</span></div>
+</div>
+</section>
+<!-- Article Content with Sidebar -->
+<section class="relative px-6 pb-20"><div class="max-w-7xl mx-auto"><div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2"><article class="glass-card rounded-3xl p-8 md:p-12">
+<figure class="mb-8"><img alt="流程图展示 Amazon 关键词搜索发现候选商品、商品详情核验所选 ASIN，再整理成待进一步研究的清单。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/amazon-keyword-asin-shortlist-zh.webp" width="1536" height="864" fetchpriority="high" decoding="async" srcset="/assets/article-covers/amazon-keyword-asin-shortlist-zh-1024.webp 1024w, /assets/article-covers/amazon-keyword-asin-shortlist-zh.webp 1536w" sizes="(max-width: 640px) calc(100vw - 112px), (max-width: 1024px) calc(100vw - 96px), 928px"/><figcaption class="text-sm text-gray-400 mt-3 text-center">先用关键词结果发现候选，再核验入选 ASIN 的商品详情，最后按明确标准保留清单。</figcaption></figure>
+<p class="text-xl text-gray-300 font-medium mb-8">一个有潜力的 Amazon 关键词，可能会带来比团队逐个深入分析更多的商品。更实用的做法是把搜索结果当作发现阶段：先决定哪些 ASIN 值得继续检查，再只为入选项获取商品详情。API 不会替你判定“爆品”；它的作用是让研究资源集中在符合预设条件的候选商品上。</p>
+<h2 id="section-1">1. 先定义问题，再发起搜索</h2><p>先把买家问题说清楚，例如：“在决定是否测试这个细分品类前，哪些商品值得进一步核查？”先选定 Amazon 站点，再写下哪些条件会让一个结果进入下一轮：例如价格区间、可见自然排名，或评分与评价数范围。这些是筛选规则，不是需求或利润的证明。</p><p>保持搜索上下文一致。<a href="https://docs.pangolinfo.com/cn-api-reference/amazonApi/keyword-search" rel="noopener" target="_blank">关键词搜索 API 文档</a>说明了 <code>parserName=amzKeyword</code>；未提供目标 URL 时，需要传入站点 <code>site</code> 和关键词 <code>content</code>，并使用 JSON 结构化格式。文档列出 13 个站点。PC 搜索可指定 <code>bizContext.zipcode</code>，也可省略；省略时，服务会从对应站点的邮编池中选择，响应会在 <code>data.zipcode</code> 中返回实际使用的邮编。移动端请求仅用于 Amazon 美国站，并固定使用 10041。把站点、设备选择和实际邮编与这次快照一起保存，避免后续比较时混入不同条件。</p><h2 id="section-2">2. 用关键词结果发现候选商品</h2><p>文档列出的搜索结果字段包括 ASIN、标题、价格、评分信息、销量、自然排名、是否为 Sponsored 广告以及广告排名。把这些字段放进一张小型筛选表，再按你自己的规则筛选。自然排名和广告位要分开记录：广告位不是自然排名；两者都只是这次搜索结果中的位置。</p><p>不要把一次响应当成整个市场的结论。搜索位置可能变化；销量字段或评价数是待核查的信号，不等于完整的需求模型。如果缺少你需要的字段，就标注缺失，不要猜值补齐。<a href="https://blog.pangolinfo.com/zh/articles/a-json-response-is-not-yet-a-product-record.html" rel="noopener" target="_blank">响应校验指南</a>进一步说明了如何保留缺失字段，并在下游使用前检查记录。</p><h2 id="section-3">3. 只对候选清单请求商品详情</h2><p>按筛选规则选出候选 ASIN 后，再使用<a href="https://docs.pangolinfo.com/cn-api-reference/amazonApi/product-detail" rel="noopener" target="_blank">商品详情 API</a>。如果不传商品 URL，文档要求以 ASIN 作为 <code>content</code>，并传入匹配的 <code>site</code>。其字段结构包括商品页价格、评分、评价数、卖家、库存、配送、变体和卖点等信息。具体数据取决于目标页面与站点；应检查实际响应，不要假设每个字段都会出现。</p><p>这一轮回答的问题与搜索不同：这个具体商品页是否提供了足够信息，支持下一步判断？需要时核对所选变体、卖家和配送上下文，并记录缺失或含糊的值。不要仅凭相似标题推断两个商品是同一款，也不要把短时显示的价格当成长期价格。</p><h2 id="section-4">4. 透明估算请求预算</h2><p>按文档列出的 JSON 请求 1 Credit 费率，1 次关键词搜索加 4 次商品详情请求，是 5 次请求的示例；按该费率计算为 5 Credits。这只是示例算术，不代表实测结果，也不是响应承诺。按实际工作流的请求数估算，并用账户记录核对实际用量。<a href="https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html" rel="noopener" target="_blank">月度 Credits 规划指南</a>讨论了刷新频率与月度工作量估算。</p><h2 id="section-5">5. 保存快照，不只保存结论</h2><p>每次运行都记录关键词、站点、响应返回的实际邮编、请求时间、入选 ASIN、筛选标准和缺失字段。只有当新的观测可能改变决策时才刷新，例如正式评估采购前，而不是因为还能再发一次请求。多次带日期的快照可以支持比较；单次快照无法证明趋势。</p><p>工作流可以概括为：先广泛发现，按明确规则筛选，再按 ASIN 检查较小的候选集，最后结合搜索位置以外的证据做商业决策。<a href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank">Amazon 数据采集 API 页面</a>介绍了可用解析器和当前方案；正式规划生产预算前，请核对实时条款和自己实际收到的字段。</p>
+</article>
+<div class="glass-card rounded-3xl p-8 mt-8"><h2 class="text-2xl font-bold mb-3 text-white">了解 Amazon 数据采集 API</h2><p class="text-gray-300 mb-4">发布工作流前，先核对官方文档中的解析器和当前站点支持情况。</p><a class="text-accent-cyan hover:underline" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank">Amazon 数据采集 API</a></div></div>
+<aside class="lg:col-span-1"><div class="sidebar-sticky space-y-6"><div class="glass-card rounded-2xl p-6"><h2 class="text-lg font-bold mb-4 text-white">本文目录</h2><nav aria-label="Table of contents" class="space-y-1"><a class="toc-link" href="#section-1">1. 先定义问题，再发起搜索</a><a class="toc-link" href="#section-2">2. 用关键词结果发现候选商品</a><a class="toc-link" href="#section-3">3. 只对候选清单请求商品详情</a><a class="toc-link" href="#section-4">4. 透明估算请求预算</a><a class="toc-link" href="#section-5">5. 保存快照，不只保存结论</a></nav></div>
+<a class="glass-card rounded-2xl p-6 block product-card group" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-code text-white text-2xl"></i></div><h3 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">Amazon 数据采集 API</h3><p class="text-gray-400 text-sm">发布工作流前，先核对官方文档中的解析器和当前站点支持情况。</p></a></div></aside>
+</div></div></section>
+<!-- Footer -->
+<footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" loading="lazy" decoding="async">
+<span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
+</img></div>
+<div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Products</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" target="_blank">Amazon 数据采集 API</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" target="_blank">AMZ Data Tracker</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/pricing/" target="_blank">价格</a>
+</li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Resources</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/cn-index">API 文档</a>
+</li>
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/cn-api-reference/authApi/auth?playground=open">API 调试台</a></li>
+<li><a class="hover:text-white" href="../index.html#articles">博客文章</a></li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Company</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/" target="_blank">官方网站</a></li>
+<li><a class="hover:text-white" href="https://tool.pangolinfo.com/">控制台</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/" target="_blank">Amazon 解决方案</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. All rights reserved.</div>
+<div class="text-gray-600 text-sm">Amazon Scraping API &amp; E-commerce Data Intelligence</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script>
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.setAttribute('data-code-index', index);
+
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+</html>

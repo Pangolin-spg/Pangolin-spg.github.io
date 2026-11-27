@@ -5,13 +5,24 @@
         <link>https://blog.pangolinfo.com/</link>
         <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
         <language>en-us</language>
-        <lastBuildDate>Thu, 26 Nov 2026 19:15:00 +0800</lastBuildDate>
+        <lastBuildDate>Fri, 27 Nov 2026 19:27:14 +0800</lastBuildDate>
         <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
             <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
             <title>Pangol Info Scrape API Blog</title>
             <link>https://blog.pangolinfo.com/</link>
         </image>
+        <!-- Article: From Amazon Keyword Search to an ASIN Shortlist -->
+        <item>
+            <title>From Amazon Keyword Search to an ASIN Shortlist: A Practical Product-Research Workflow</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-keyword-search-asin-shortlist.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-keyword-search-asin-shortlist.html</guid>
+            <pubDate>Sat, 28 Nov 2026 00:00:00 +0800</pubDate>
+            <category>Product Research</category>
+            <description>Use Keyword Search to discover candidate ASINs, apply explicit screening rules, then validate the shortlist with Product Detail.</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
+
         <!-- Article: Amazon Review API vs Product API: Which One Should You Use? -->
         <item>
             <title>Amazon Review API vs Product API: Which One Should You Use?</title>
