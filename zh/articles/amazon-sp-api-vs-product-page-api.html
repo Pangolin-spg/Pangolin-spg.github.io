@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- SEO Meta Tags -->
+<title>Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？</title>
+<meta content="对比 Amazon SP-API 与商品页数据 API 的竞品价格研究路径，按卖家授权、数据范围、站点上下文和工作流要支持的决策做选择。" name="description"/>
+<meta content="Amazon 关键词搜索, Amazon 商品详情 API, ASIN 选品研究, Amazon 商品候选清单, Amazon 选品工作流" name="keywords"/>
+<meta content="Pangol Info Scrape API" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- Open Graph -->
+<meta content="article" property="og:type"/>
+<meta content="Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？" property="og:title"/>
+<meta content="对比 Amazon SP-API 与商品页数据 API 的竞品价格研究路径，按卖家授权、数据范围、站点上下文和工作流要支持的决策做选择。" property="og:description"/>
+<meta content="https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html" property="og:url"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-api-source-choice-zh.webp" property="og:image"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://blog.pangolinfo.com/assets/article-covers/amazon-api-source-choice-zh.webp" name="twitter:image"/>
+<meta content="Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？" name="twitter:title"/>
+<meta content="对比 Amazon SP-API 与商品页数据 API 的竞品价格研究路径，按卖家授权、数据范围、站点上下文和工作流要支持的决策做选择。" name="twitter:description"/>
+<!-- Canonical URL -->
+<link href="https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html" rel="canonical"/>
+<link href="https://blog.pangolinfo.com/articles/amazon-sp-api-vs-product-page-api.html" hreflang="en" rel="alternate"/>
+<link href="https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html" hreflang="zh-CN" rel="alternate"/>
+<link href="https://blog.pangolinfo.com/articles/amazon-sp-api-vs-product-page-api.html" hreflang="x-default" rel="alternate"/>
+<!-- Schema.org Article Markup -->
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？",
+  "description": "对比 Amazon SP-API 与商品页数据 API 的竞品价格研究路径，按卖家授权、数据范围、站点上下文和工作流要支持的决策做选择。",
+  "author": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pangol Info Scrape API",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp"
+    }
+  },
+  "image": [
+    "https://blog.pangolinfo.com/assets/article-covers/amazon-api-source-choice-zh.webp"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html"
+  },
+  "datePublished": "2026-11-28",
+  "dateModified": "2026-11-28"
+}
+    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pangolin: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+
+        @keyframes blob {
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Styles */
+        article {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        article h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            color: #38bdf8;
+            scroll-margin-top: 100px;
+        }
+
+        article h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            color: #a855f7;
+            scroll-margin-top: 100px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        article ul,
+        article ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        article code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #ffa726;
+        }
+
+        article pre {
+            background: #1e293b !important;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            scrollbar-color: #475569 #1e293b;
+            scrollbar-width: thin;
+        }
+
+        article pre::-webkit-scrollbar { height: 10px; }
+        article pre::-webkit-scrollbar-track { background: #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb { background: #475569; border: 2px solid #1e293b; border-radius: 9999px; }
+        article pre::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        article pre::-webkit-scrollbar-corner { background: #1e293b; }
+
+        article pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        /* Table of Contents Styles */
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc-link:hover {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .toc-link.active {
+            color: #38bdf8;
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .toc-link-sub {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* Sticky Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-sticky::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Code Copy Button */
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .code-block-wrapper:hover .copy-code-btn {
+            opacity: 1;
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .copy-code-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #10b981;
+        }
+
+        .copy-code-btn i {
+            font-size: 14px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .topic-cluster-nav h2 { margin: 0 0 0.75rem; font-size: 1.5rem; line-height: 1.3; color: #38bdf8; }
+        .topic-cluster-nav p { margin-bottom: 0.5rem; }
+        .topic-cluster-nav li { margin-bottom: 0; }
+        .topic-cluster-nav a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+</style>
+<link href="../Pangolin.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body class="antialiased selection:bg-accent-cyan selection:text-white">
+<div class="liquid-wrapper">
+<div class="blob bg-accent-purple w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-cyan w-96 h-96 top-0 right-0 translate-x-1/2 -translate-y-1/2 mix-blend-multiply">
+</div>
+<div class="blob bg-accent-pink w-96 h-96 bottom-0 left-20 translate-y-1/2 mix-blend-multiply"></div>
+<div class="blob bg-pangolin-500 w-80 h-80 bottom-20 right-20 mix-blend-multiply"></div>
+</div>
+<!-- Navigation -->
+<!-- Navigation -->
+<nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+<div class="glass-card rounded-full mt-4 mx-auto max-w-6xl px-6 py-3 flex justify-between items-center">
+<a class="flex items-center gap-3" href="/index.html">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-accent-cyan/30" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" decoding="async" />
+<span class="text-xl font-bold tracking-tight">PANGOL<span style="color:#FF9900">INFO</span></span>
+</a>
+<div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">首页</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">解决方案</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/">应用场景</a>
+<a class="nav-link hover:text-white transition" href="https://blog.pangolinfo.com/zh/blog.html">博客</a>
+<a class="nav-link hover:text-white transition" href="https://docs.pangolinfo.com/cn-index">文档</a>
+<a class="nav-link hover:text-white transition" href="https://www.pangolinfo.com/zh/pricing/" target="_blank">价格</a>
+</div>
+<div class="flex items-center gap-4">
+<!-- Language Switcher -->
+<div class="language-switcher">
+<a class="language-btn" href="https://blog.pangolinfo.com/articles/amazon-sp-api-vs-product-page-api.html">
+<span>🇨🇳</span>
+<span>中文</span>
+</a>
+</div>
+<!-- Get API Key Button -->
+<a class="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-accent-cyan/20" href="https://tool.pangolinfo.com/">
+                    Get API Key
+                </a>
+</div>
+</div>
+</nav>
+<!-- Article Header -->
+<section class="relative pt-40 pb-12 px-6"><div class="max-w-7xl mx-auto text-center"><div class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-xs font-medium text-accent-cyan tracking-wider uppercase">Amazon API · 选型决策</div><h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？</h1><p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">从卖家授权的目录与价格信号，到 Amazon 商品页的结构化观察，按实际决策选择数据源。</p><div class="flex items-center justify-center gap-6 text-sm text-gray-400"><time datetime="2026-11-28">2026年11月28日</time><span><i class="far fa-clock mr-2"></i>6 分钟阅读</span><span><i class="far fa-user mr-2"></i>Pangol Info Team</span></div></div></section>
+<section class="relative px-6 pb-20"><div class="max-w-7xl mx-auto"><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-2"><article class="glass-card rounded-3xl p-8 md:p-12">
+<figure class="mb-8"><img alt="两条数据路径对比：卖家授权的 SP-API 目录与价格信号，以及 Amazon 商品页的结构化观察。" class="w-full rounded-2xl border border-white/10" loading="eager" src="https://blog.pangolinfo.com/assets/article-covers/amazon-api-source-choice-zh.webp" width="2100" height="900" fetchpriority="high" decoding="async" srcset="/assets/article-covers/amazon-api-source-choice-zh-1024.webp 1024w, /assets/article-covers/amazon-api-source-choice-zh.webp 2100w" sizes="(max-width: 640px) calc(100vw - 112px), (max-width: 1024px) calc(100vw - 96px), 928px"/><figcaption class="text-sm text-gray-400 mt-3 text-center">先确认要观察的是获授权的卖家目录/报价，还是特定站点和地区下的商品页信息。</figcaption></figure>
+<p class="text-xl text-gray-300 font-medium mb-8">“要用哪个 Amazon API 监控竞品价格？”看似是在比较功能，实则是在选择数据来源。Amazon Selling Partner API（SP-API）围绕获授权的卖家与供应商工作流设计；商品页数据 API 则把市场页面当时展示的内容整理成结构化观察。两者能服务相关决策，但不是可以互换的数据流。</p>
+<h2 id="section-1">先说清决策问题，再看 API 名称</h2><p>“竞品价格监控”至少可能指两种不同问题。卖家可能要取得自己有权操作的账号相关价格信号，用于支持调价工具；研究团队则可能想跨 ASIN 和站点重复观察商品页内容。前者是账号与报价工作流，后者是页面观察工作流。先判断你的场景属于哪一种，再估算 API 覆盖范围。</p>
+<h2 id="section-2">什么情况下优先看 SP-API</h2><p>当工作流属于卖家或供应商的官方集成，且你具备所需授权与角色时，优先查看 SP-API。当前<a href="https://developer-docs.amazon.com/sp-api/docs/catalog-items-api" rel="noopener" target="_blank">Catalog Items API 文档</a>说明了如何检索目录商品详情，并按标识符或关键词搜索目录商品。该 API 对卖家和供应商开放，文档列出的操作要求 Product Listing 角色。</p><p>报价与价格是另一组能力。Amazon 的<a href="https://developer-docs.amazon.com/sp-api/docs/product-pricing-api" rel="noopener" target="_blank">Product Pricing API 文档</a>将其描述为支持卖家价格自动化的接口；当前仅面向卖家，<code>getCompetitiveSummary</code> 等操作要求 Pricing 角色。该操作可返回竞争性定价和报价信息，但调用仍需要卖家授权，以及开发者资料和应用配置中的必要角色。如果企业拥有对应的卖家工作流，并需要这些官方支持的信号，SP-API 是合适起点。</p><p>不要把 Catalog Items 的每个字段都当作报价，也不要以为能搜索目录就自动获得 Product Pricing 权限。应把它们当作不同能力，逐项核对角色、授权、站点覆盖和响应字段。</p>
+<h2 id="section-3">什么情况下商品页数据 API 更合适</h2><p>如果研究问题是“某个 Amazon 站点和地区上下文中的商品页展示了什么”，而不是操作卖家授权的调价系统，就评估商品页数据 API。Pangolinfo 当前<a href="https://docs.pangolinfo.com/cn-api-reference/amazonApi/product-detail" rel="noopener" target="_blank">商品详情文档</a>说明，使用 <code>parserName=amzProductDetail</code>，可传商品 URL，或用 ASIN 搭配 <code>site</code>；可选的 <code>bizContext.zipcode</code> 必须匹配站点国家。页面当前列出 13 个 Amazon 站点，主 Scraper API 提供六类解析器。</p><p>商品详情结构可包含页面展示价格、卖家、库存、配送、变体和评分等字段。具体值取决于实时目标页和数据可用性；字段缺失或变化时，应在管道中保留缺失或标明条件。文档列出的 JSON 价格为每次成功抓取 1 Credit（实际费用看 <code>pointCost</code>）；产品页目前宣传每月 60 个免费 Credits。生产预算应以实时定价页和账户账单为准。</p><p>当市场研究系统需要跨多个 ASIN 或站点取得结构化商品页快照时，这条路径可能更贴合需求。但它不会自动产生可靠的价格历史，也不会替你判断是否应该调价。每次响应都应同时保存观察时间、ASIN、站点、相关邮编上下文和变体。单次快照只是一次观察，不是趋势。</p>
+<h2 id="section-4">买家对比表</h2><div class="overflow-x-auto"><table class="w-full text-left text-sm border-collapse my-6"><thead><tr><th class="border-b border-white/20 p-3">问题</th><th class="border-b border-white/20 p-3">SP-API</th><th class="border-b border-white/20 p-3">商品页数据 API</th></tr></thead><tbody><tr><td class="border-b border-white/10 p-3">数据模型是什么？</td><td class="border-b border-white/10 p-3">获授权的目录或卖家价格/报价操作。</td><td class="border-b border-white/10 p-3">市场页面的结构化观察。</td></tr><tr><td class="border-b border-white/10 p-3">需要什么权限？</td><td class="border-b border-white/10 p-3">卖家授权，以及具体 API 角色和应用配置。</td><td class="border-b border-white/10 p-3">服务商账号/API Key 和受支持站点的请求；核对服务商当前条款。</td></tr><tr><td class="border-b border-white/10 p-3">最适合的起步场景</td><td class="border-b border-white/10 p-3">卖家自身的调价或获授权报价工作流。</td><td class="border-b border-white/10 p-3">按 ASIN 与上下文比较可见商品页信息的市场研究。</td></tr><tr><td class="border-b border-white/10 p-3">哪些条件会影响结果？</td><td class="border-b border-white/10 p-3">授权、角色、操作和站点支持范围。</td><td class="border-b border-white/10 p-3">站点、邮编上下文、页面状态、变体及字段可用性。</td></tr></tbody></table></div>
+<h2 id="section-5">四步选型测试</h2><ol><li><strong>这是谁的工作流？</strong> 如果卖家会授权你的应用，而且任务属于卖家运营，先核实所需 SP-API 角色与操作。</li><li><strong>要观察什么对象？</strong> 如果要为独立研究数据集记录市场商品页展示的详情，用代表性 ASIN 测试商品页数据 API。</li><li><strong>能否公平比较？</strong> 固定站点、相关邮编上下文与变体；在发出告警前，定义多报价、缺失值和价格变化的处理方式。</li><li><strong>试点的成本与维护如何？</strong> 根据真实工作流估算请求量与刷新频率，再比较实时计费单位与权限配置工作，而不是只看一个标价。可参考<a href="https://blog.pangolinfo.com/zh/articles/amazon-scraper-api-credit-planning.html" rel="noopener" target="_blank">Credits 用量规划指南</a>估算请求量；<a href="https://blog.pangolinfo.com/zh/articles/api-observation-timestamps-and-data-freshness.html" rel="noopener" target="_blank">时间戳指南</a>解释了为什么不能把请求时间和来源观察时间混为一谈。</li></ol>
+<h2 id="section-6">结论</h2><p>如果要做卖家授权的价格工作流，从 SP-API 的 Catalog Items 与 Product Pricing 能力入手，并核对具体角色和授权要求。如果要研究受支持 ASIN 与站点上下文下的商品页展示，就用一组有代表性的商品测试商品页数据 API。真正的选择题不是“哪个 API 更好”，而是“哪种来源能在我具备的权限和运维条件下，为这项具体决策提供所需证据？”</p><p>若正在评估 Pangolinfo 的商品页数据路径，可查看当前<a href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank">Amazon 数据采集 API 页面</a>和<a href="https://docs.pangolinfo.com/cn-api-reference/amazonApi/product-detail" rel="noopener" target="_blank">商品详情文档</a>，再用自己的场景核验返回字段与实时价格。近期的<a href="https://blog.pangolinfo.com/zh/articles/amazon-review-api-vs-product-api.html" rel="noopener" target="_blank">Review API 与 Product API 对比</a>和<a href="https://blog.pangolinfo.com/zh/articles/amazon-keyword-search-asin-shortlist.html" rel="noopener" target="_blank">关键词到 ASIN 的研究工作流</a>也介绍了相邻的选型问题。</p>
+</article><div class="glass-card rounded-3xl p-8 mt-8"><h2 class="text-2xl font-bold mb-3 text-white">了解 Amazon 数据采集 API</h2><p class="text-gray-300 mb-4">查看当前解析器范围、支持站点与实时方案，再规划试用。</p><a class="text-accent-cyan hover:underline" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank">Amazon 数据采集 API</a></div></div>
+<aside class="lg:col-span-1"><div class="sidebar-sticky space-y-6"><div class="glass-card rounded-2xl p-6"><h2 class="text-lg font-bold mb-4 text-white">本文目录</h2><nav aria-label="目录" class="space-y-1"><a class="toc-link" href="#section-1">先明确决策问题</a><a class="toc-link" href="#section-2">SP-API 适用场景</a><a class="toc-link" href="#section-3">商品页 API 适用场景</a><a class="toc-link" href="#section-4">买家对比</a><a class="toc-link" href="#section-5">四步选型测试</a><a class="toc-link" href="#section-6">结论</a></nav></div><a class="glass-card rounded-2xl p-6 block product-card group" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" rel="noopener" target="_blank"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-code text-white text-2xl"></i></div><h3 class="text-lg font-bold mb-2 text-white group-hover:text-accent-cyan transition-colors">Amazon 数据采集 API</h3><p class="text-gray-400 text-sm">查看当前解析器范围和站点支持。</p></a></div></aside></div></div></section>
+<!-- Footer -->
+<footer class="border-t border-white/10 bg-black/20 backdrop-blur-lg pt-16 pb-10 px-6 relative z-10">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<img alt="Pangolin Amazon Scraping API Logo" class="w-8 h-8 rounded" src="/assets/pangolinfo-logo-64.webp" width="32" height="32" loading="lazy" decoding="async">
+<span class="font-bold text-lg text-white">PANGOL<span style="color:#FF9900">INFO</span></span>
+</img></div>
+<div class="text-gray-300 mb-4">Professional Amazon scraping API and e-commerce data extraction
+                    solutions for businesses worldwide.</div>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Products</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" target="_blank">Amazon 数据采集 API</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/amazon-shuju-caiji-api/" target="_blank">AMZ Data Tracker</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/zh/pricing/" target="_blank">价格</a>
+</li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Resources</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/cn-index">API 文档</a>
+</li>
+<li><a class="hover:text-white" href="https://docs.pangolinfo.com/cn-api-reference/authApi/auth?playground=open">API 调试台</a></li>
+<li><a class="hover:text-white" href="../index.html#articles">博客文章</a></li>
+</ul>
+</div>
+<div>
+<div class="font-semibold text-white mb-3">Company</div>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/" target="_blank">官方网站</a></li>
+<li><a class="hover:text-white" href="https://tool.pangolinfo.com/">控制台</a></li>
+<li><a class="hover:text-white" href="https://www.pangolinfo.com/pangolin-scrapeapi-empower-your-ai-with-the-amazon-data-scraping-api/" target="_blank">Amazon 解决方案</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-gray-500 text-sm">© 2025 Pangol Info Scrape API. All rights reserved.</div>
+<div class="text-gray-600 text-sm">Amazon Scraping API &amp; E-commerce Data Intelligence</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script>
+        // Table of Contents Active State
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+
+                if (entry.intersectionRatio > 0) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    if (tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-100px 0px -66%' });
+
+        // Observe all headings
+        document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
+            observer.observe(heading);
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlocks = document.querySelectorAll('pre');
+
+            codeBlocks.forEach((pre, index) => {
+                // Wrap pre in a div for positioning
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-code-btn';
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                copyButton.setAttribute('data-code-index', index);
+
+                // Add click handler
+                copyButton.addEventListener('click', async function () {
+                    const code = pre.querySelector('code');
+                    const text = code.textContent;
+
+                    try {
+                        await navigator.clipboard.writeText(text);
+
+                        // Update button state
+                        copyButton.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                        copyButton.classList.add('copied');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        copyButton.innerHTML = '<i class="fas fa-times"></i><span>Failed</span>';
+                        setTimeout(() => {
+                            copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    }
+                });
+
+                wrapper.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+</html>

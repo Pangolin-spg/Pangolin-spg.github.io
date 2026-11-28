@@ -5,13 +5,35 @@
         <link>https://blog.pangolinfo.com/</link>
         <description>Expert insights on Amazon scraping API, e-commerce data extraction, and product intelligence</description>
         <language>en-us</language>
-        <lastBuildDate>Fri, 27 Nov 2026 19:27:14 +0800</lastBuildDate>
+        <lastBuildDate>Sat, 28 Nov 2026 19:00:00 +0800</lastBuildDate>
         <atom:link href="https://blog.pangolinfo.com/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
             <url>https://www.pangolinfo.com/wp-content/uploads/2025/06/Pangolin-LOGO-Scrape-API-.webp</url>
             <title>Pangol Info Scrape API Blog</title>
             <link>https://blog.pangolinfo.com/</link>
         </image>
+        <!-- Article: Amazon Competitor Price Monitoring: SP-API or a Product-Page Data API? -->
+        <item>
+            <title>Amazon Competitor Price Monitoring: SP-API or a Product-Page Data API?</title>
+            <link>https://blog.pangolinfo.com/articles/amazon-sp-api-vs-product-page-api.html</link>
+            <guid>https://blog.pangolinfo.com/articles/amazon-sp-api-vs-product-page-api.html</guid>
+            <pubDate>Sat, 28 Nov 2026 19:00:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>Choose between seller-authorized SP-API catalog and pricing signals and structured Amazon product-page observations, based on access, data scope, marketplace context and workflow needs.</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
+
+        <!-- Article: Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？ -->
+        <item>
+            <title>Amazon 竞品价格监控：该选 SP-API 还是商品页数据 API？</title>
+            <link>https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html</link>
+            <guid>https://blog.pangolinfo.com/zh/articles/amazon-sp-api-vs-product-page-api.html</guid>
+            <pubDate>Sat, 28 Nov 2026 19:00:00 +0800</pubDate>
+            <category>Amazon API</category>
+            <description>根据授权、数据范围、站点上下文与工作流需求，在卖家 SP-API 信号和 Amazon 商品页结构化观察之间做选择。</description>
+            <author>Pangol Info Scrape API Team</author>
+        </item>
+
         <!-- Article: From Amazon Keyword Search to an ASIN Shortlist -->
         <item>
             <title>From Amazon Keyword Search to an ASIN Shortlist: A Practical Product-Research Workflow</title>
